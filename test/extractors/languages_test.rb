@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
 class TestCldrDataLanguages < Test::Unit::TestCase
-  define_method 'test: languages' do
+  define_method 'test: languages :de' do
     codes = [:aa, :ab, :ace, :ach, :ada, :ady, :ae, :af, :afa, :afh, :ain,
              :ak, :akk, :ale, :alg, :alt, :am, :an, :ang, :anp, :apa, :ar,
              :arc, :arn, :arp, :art, :arw, :as, :ast, :ath, :aus, :av, :awa,
@@ -54,6 +54,12 @@ class TestCldrDataLanguages < Test::Unit::TestCase
 
     assert (languages.keys - codes).empty? && (codes - languages.keys).empty?
     assert_equal({ :code => :de, :name => 'Deutsch' }, languages[:de])
+  end
+
+  Cldr::Data.locales.each do |locale|
+    define_method "test: extract languages for #{locale}" do
+      Cldr::Data::Languages.new(locale).data
+    end
   end
 end
 

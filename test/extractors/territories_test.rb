@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
 class TestCldrDataTerritories < Test::Unit::TestCase
-  define_method 'test: territories' do
+  define_method 'test: territories :de' do
     codes = [:"001", :"002", :"003", :"005", :"009", :"011", :"013", :"014",
              :"015", :"017", :"018", :"019", :"021", :"029", :"030", :"034",
              :"035", :"039", :"053", :"054", :"057", :"061", :"062", :"142",
@@ -30,9 +30,14 @@ class TestCldrDataTerritories < Test::Unit::TestCase
              :YT, :ZA, :ZM, :ZW, :ZZ]
 
     territories = Cldr::Data::Territories.new('de').data[:territories]
-
     assert (territories.keys - codes).empty? && (codes - territories.keys).empty?
     assert_equal({ :code => :DE, :name => 'Deutschland' }, territories[:DE])
+  end
+
+  Cldr::Data.locales.each do |locale|
+    define_method "test: extract territories for #{locale}" do
+      Cldr::Data::Territories.new(locale).data
+    end
   end
 end
 
@@ -41,4 +46,4 @@ end
 
 
 
-            
+

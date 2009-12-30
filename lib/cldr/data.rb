@@ -9,7 +9,7 @@ module Cldr
     autoload :NumberFormats, 'cldr/data/number_formats'
     autoload :Territories,   'cldr/data/territories'
     autoload :Units,         'cldr/data/units'
-    
+
     class << self
       def dir
         @dir ||= "#{File.dirname(__FILE__)}/../../vendor/cldr/data/core/main"
@@ -17,6 +17,10 @@ module Cldr
 
       def dir=(dir)
         @dir = dir
+      end
+
+      def locales
+        Dir["#{dir}/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && $1 }
       end
     end
   end

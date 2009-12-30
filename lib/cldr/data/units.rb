@@ -4,14 +4,14 @@ module Cldr
       def data
         { :units => units }
       end
-      
+
       def units
-        select('units/*').inject({}) do |result, node|
+        select('units/unit').inject({}) do |result, node|
           result[node.attribute('type').value.to_sym] = unit(node)
           result
         end
       end
-      
+
       def unit(node)
         node.xpath('unitPattern').inject({}) do |result, node|
           count = node.attribute('count') ? node.attribute('count').value.to_sym : :one

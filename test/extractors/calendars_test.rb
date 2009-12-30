@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + '/../test_helper.rb'
 require 'core_ext/hash/deep_stringify_keys'
 
 class TestCldrDataCalendars < Test::Unit::TestCase
-  define_method 'test: calendars months' do
+  define_method 'test: calendars months :de' do
     gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     months = {
       :default => :format,
@@ -24,7 +24,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal months, gregorian[:months]
   end
   
-  define_method 'test: calendars days' do
+  define_method 'test: calendars days :de' do
     gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     days = {
       :default => :format,
@@ -41,7 +41,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal days, gregorian[:days]
   end
   
-  define_method 'test: calendars quarters' do
+  define_method 'test: calendars quarters :de' do
     gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     quarters = {
       :default => :format,
@@ -58,7 +58,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal quarters, gregorian[:quarters]
   end
   
-  define_method 'test: calendars day_periods' do
+  define_method 'test: calendars day_periods :de' do
     gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     day_periods = {
       :am => 'vorm.',
@@ -67,7 +67,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal day_periods, gregorian[:day_periods]
   end
   
-  define_method 'test: calendars eras' do
+  define_method 'test: calendars eras :de' do
     gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     eras = {
       0 => { :abbr => "v. Chr.", :name => "v. Chr." },
@@ -76,7 +76,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal eras, gregorian[:eras]
   end
 
-  define_method 'test: calendars formats' do
+  define_method 'test: calendars formats :de' do
     gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     formats = {
       :date => {
@@ -100,7 +100,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal formats, gregorian[:formats]
   end
 
-  define_method 'test: calendars fields' do
+  define_method 'test: calendars fields :de' do
     gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     fields = {
       :hour      => "Stunde",
@@ -116,5 +116,11 @@ class TestCldrDataCalendars < Test::Unit::TestCase
       :zone      => "Zone"
     }
     assert_equal fields, gregorian[:fields]
+  end
+
+  Cldr::Data.locales.each do |locale|
+    define_method "test: extract calendars for #{locale}" do
+      Cldr::Data::Calendars.new(locale).data
+    end
   end
 end

@@ -2,13 +2,24 @@ module Cldr
   module Data
     class Delimiters < Base
       def data
-        map = {
-          'delimiters/quotationStart'          => 'delimiters/quotes/default/start',
-          'delimiters/quotationEnd'            => 'delimiters/quotes/default/end',
-          'delimiters/alternateQuotationStart' => 'delimiters/quotes/alternate/start',
-          'delimiters/alternateQuotationEnd'   => 'delimiters/quotes/alternate/end'
+        {
+          :delimiters => {
+            :quotes => {
+              :default   => quotes('quotation'),
+              :alternate => quotes('alternateQuotation')
+            }
+          }
         }
-        extract(map)
+      end
+
+      def quotes(type)
+        start = select("delimiters/#{type}Start").first
+        end_  = select("delimiters/#{type}End").first
+
+        result = {}
+        result[:start] = start.content if start
+        result[:end]   = end_.content  if end_
+        result
       end
     end
   end

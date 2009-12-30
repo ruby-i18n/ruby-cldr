@@ -2,16 +2,18 @@ module Cldr
   module Data
     class Territories < Base
       def data
-        names = extract(
-          { 'localeDisplayNames/territories/*' => 'territories' },
-          { :key   => lambda { |node| [node.attribute('type').value.gsub('_', '-').to_sym, :name] } } 
-        )
-        codes = extract(
-          { 'localeDisplayNames/territories/*' => 'territories' },
-          { :key   => lambda { |node| [node.attribute('type').value.gsub('_', '-').to_sym, :code] },
-            :value => lambda { |node|  node.attribute('type').value.gsub('_', '-').to_sym } } 
-        )
-        names.deep_merge(codes)
+        { :territories => territories }
+      end
+
+      def territories
+        select('localeDisplayNames/territories/territory').inject({}) do |result, node|
+          unless draft?(node)
+            code = node.attribute('type').value.to_sym
+            name = node.content
+            result[code] = { :code => code, :name => name }
+          end
+          result
+        end
       end
     end
   end

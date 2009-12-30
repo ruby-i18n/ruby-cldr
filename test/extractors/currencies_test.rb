@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
 class TestCldrCurrencies < Test::Unit::TestCase
-  define_method 'test: currencies' do
+  define_method 'test: currencies :de' do
     codes = [:ADP, :AED, :AFA, :AFN, :ALL, :AMD, :ANG, :AOA, :AOK, :AON, :AOR,
              :ARA, :ARP, :ARS, :ATS, :AUD, :AWG, :AZM, :AZN, :BAD, :BAM, :BBD,
              :BDT, :BEC, :BEF, :BEL, :BGL, :BGN, :BHD, :BIF, :BMD, :BND, :BOB,
@@ -33,6 +33,12 @@ class TestCldrCurrencies < Test::Unit::TestCase
     currencies = Cldr::Data::Currencies.new('de').data[:currencies]
     assert (currencies.keys - codes).empty? && (codes - currencies.keys).empty?
     assert_equal({ :one => 'Euro', :other => 'Euro' }, currencies[:EUR])
+  end
+
+  Cldr::Data.locales.each do |locale|
+    define_method "test: extract currencies for #{locale}" do
+      Cldr::Data::Currencies.new(locale).data
+    end
   end
 end
 

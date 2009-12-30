@@ -17,4 +17,10 @@ class TestCldrDataUnits < Test::Unit::TestCase
     }
     assert_equal expected, Cldr::Data::Units.new('de').data
   end
+
+  Cldr::Data.locales.each do |locale|
+    define_method "test: extract units for #{locale}" do
+      Cldr::Data::Units.new(locale).data
+    end
+  end
 end

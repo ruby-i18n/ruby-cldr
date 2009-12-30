@@ -2,16 +2,18 @@ module Cldr
   module Data
     class Languages < Base
       def data
-        names = extract(
-        	{ 'localeDisplayNames/languages/*' => 'languages' },
-        	{ :key   => lambda { |node| [node.attribute('type').value.gsub('_', '-').to_sym, :name] } } 
-        )
-        codes = extract(
-        	{ 'localeDisplayNames/languages/*' => 'languages' },
-        	{ :key   => lambda { |node| [node.attribute('type').value.gsub('_', '-').to_sym, :code] },
-        	  :value => lambda { |node|  node.attribute('type').value.gsub('_', '-').to_sym } } 
-        )
-        names.deep_merge(codes)
+        { :languages => languages }
+      end
+
+      def languages
+        select('localeDisplayNames/languages/language').inject({}) do |result, node|
+          unless draft?(node)
+            code = node.attribute('type').value.gsub('_', '-').to_sym
+            name = node.content
+            result[code] = { :code => code, :name => name }
+          end
+          result
+        end
       end
     end
   end

@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../test_helper.rb'
 
 class TestCldrDataNumberFormats < Test::Unit::TestCase
-  define_method "test: number_formats" do
+  define_method "test: number_formats :de" do
     expected = {
       :numbers => {
         :formats => {
@@ -27,5 +27,11 @@ class TestCldrDataNumberFormats < Test::Unit::TestCase
       }
     }
     assert_equal expected, Cldr::Data::NumberFormats.new('de').data
+  end
+
+  Cldr::Data.locales.each do |locale|
+    define_method "test: extract number_formats for #{locale}" do
+      Cldr::Data::NumberFormats.new(locale).data
+    end
   end
 end

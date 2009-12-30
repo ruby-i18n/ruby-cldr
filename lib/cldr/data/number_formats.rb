@@ -2,14 +2,31 @@ module Cldr
   module Data
     class NumberFormats < Base
       def data
-        map = {
-          'numbers/decimalFormats/decimalFormatLength/decimalFormat/*'          => 'numbers/formats/decimal',
-          'numbers/scientificFormats/scientificFormatLength/scientificFormat/*' => 'numbers/formats/scientific',
-          'numbers/percentFormats/percentFormatLength/percentFormat/*'          => 'numbers/formats/percent',
-          'numbers/currencyFormats/currencyFormatLength/currencyFormat/*'       => 'numbers/formats/currency',
-          'numbers/currencyFormats/unitPattern'                                 => 'numbers/formats/currency/unit'
+        {
+          :numbers => {
+            :formats => {
+              :decimal    => format('decimal'),
+              :scientific => format('scientific'),
+              :percent    => format('percent'),
+              :currency   => format('currency').merge(currency_unit)
+            }
+          }
         }
-        extract(map)
+      end
+
+      def format(type)
+        select("numbers/#{type}Formats/#{type}FormatLength/#{type}Format/pattern").inject({}) do |result, node|
+          result[name(node).to_sym] = node.content unless draft?(node)
+          result
+        end
+      end
+
+      def currency_unit
+        select("numbers/currencyFormats/unitPattern").inject({ :unit => {} }) do |result, node|
+          count = node.attribute('count').value rescue 'one'
+          result[:unit][count] = node.content
+          result
+        end
       end
     end
   end
