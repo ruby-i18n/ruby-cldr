@@ -1,0 +1,33 @@
+h1. Ruby library for exporting data from CLDR 
+
+CLDR ("Common Locale Data Repository":http://cldr.unicode.org) contains tons of high-quality locale data such as formatting rules for dates, times, numbers, currencies as well as language, country, calendar-specific names etc.
+
+For localizing applications in Ruby we'll obviously be able to use this incredibly comprehensive and well-maintained resource.
+
+This library is a first stab at that goal. You can export CLDR data to YAML and Ruby formatted files which are supposed to be usable in an  "I18n":http://github.com/svenfuchs/i18n context but might be usable elsewhere,  too.
+
+h2. Requirements
+
+* Ruby 1.9 (if you want well-ordered Hashes)
+* Thor
+
+h2. Usage
+
+This will export all known components from all locales to the target directory data/[locale]/[component].{yml,rb}:
+
+	$ thor cldr:export
+
+You can also optionally specify locales and/or components to export:
+
+	$ thor cldr:export --locales de fr en --components numbers plurals
+
+This will export the components :numbers and :plurals from the locales :de, :fr and :en to the same target directory.
+
+
+h2. Resources
+
+For additional information on CLDR plural rules see:
+
+*	"http://unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules":http://unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules
+* "http://www.unicode.org/cldr/data/charts/supplemental/language_plural_rules.html":http://www.unicode.org/cldr/data/charts/supplemental/language_plural_rules.html
+
