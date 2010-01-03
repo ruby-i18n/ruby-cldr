@@ -1,15 +1,10 @@
 module Cldr
   module Data
     class Delimiters < Base
-      def data
-        {
-          :delimiters => {
-            :quotes => {
-              :default   => quotes('quotation'),
-              :alternate => quotes('alternateQuotation')
-            }
-          }
-        }
+      def initialize(locale)
+        super
+        self[:'delimiters.quotes.default']   = quotes('quotation')
+        self[:'delimiters.quotes.alternate'] = quotes('alternateQuotation')
       end
 
       def quotes(type)

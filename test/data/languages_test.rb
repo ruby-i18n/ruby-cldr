@@ -50,15 +50,17 @@ class TestCldrDataLanguages < Test::Unit::TestCase
              :was, :wen, :wo, :xal, :xh, :yao, :yap, :yi, :yo, :ypk, :za, :zap,
              :zbl, :zen, :zh, :"zh-Hans", :"zh-Hant", :znd, :zu, :zun, :zxx, :zza]
     
-    languages = Cldr::Data::Languages.new('de').data[:languages]
-
+    languages = Cldr::Data::Languages.new('de')[:languages]
+  
     assert (languages.keys - codes).empty? && (codes - languages.keys).empty?
-    assert_equal({ :code => :de, :name => 'Deutsch' }, languages[:de])
+    assert_equal('Deutsch', languages[:de])
   end
-
+  
   Cldr::Data.locales.each do |locale|
     define_method "test: extract languages for #{locale}" do
-      Cldr::Data::Languages.new(locale).data
+      assert_nothing_raised do
+        Cldr::Data::Languages.new(locale)
+      end
     end
   end
 end

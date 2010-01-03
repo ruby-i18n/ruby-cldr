@@ -30,14 +30,16 @@ class TestCldrCurrencies < Test::Unit::TestCase
              :XPD, :XPF, :XPT, :XRE, :XTS, :XXX, :YDD, :YER, :YUD, :YUM, :YUN,
              :ZAR, :ZMK, :ZRN, :ZRZ, :ZWD]
     
-    currencies = Cldr::Data::Currencies.new('de').data[:currencies]
+    currencies = Cldr::Data::Currencies.new('de')[:currencies]
     assert (currencies.keys - codes).empty? && (codes - currencies.keys).empty?
     assert_equal({ :one => 'Euro', :other => 'Euro' }, currencies[:EUR])
   end
 
   Cldr::Data.locales.each do |locale|
     define_method "test: extract currencies for #{locale}" do
-      Cldr::Data::Currencies.new(locale).data
+      assert_nothing_raised do
+        Cldr::Data::Currencies.new(locale)
+      end
     end
   end
 end

@@ -15,12 +15,14 @@ class TestCldrDataUnits < Test::Unit::TestCase
         :second => { :one => "{0} Sekunde", :other => "{0} Sekunden" }
       }
     }
-    assert_equal expected, Cldr::Data::Units.new('de').data
+    assert_equal expected, Cldr::Data::Units.new('de')
   end
 
   Cldr::Data.locales.each do |locale|
     define_method "test: extract units for #{locale}" do
-      Cldr::Data::Units.new(locale).data
+      assert_nothing_raised do
+        Cldr::Data::Units.new(locale)
+      end
     end
   end
 end

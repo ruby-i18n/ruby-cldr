@@ -1,17 +1,14 @@
 module Cldr
   module Data
     class Territories < Base
-      def data
-        { :territories => territories }
+      def initialize(locale)
+        super
+        self[:territories] = territories
       end
 
       def territories
-        select('localeDisplayNames/territories/territory').inject({}) do |result, node|
-          unless draft?(node)
-            code = node.attribute('type').value.to_sym
-            name = node.content
-            result[code] = { :code => code, :name => name }
-          end
+        @territories ||= select('localeDisplayNames/territories/territory').inject({}) do |result, node|
+          result[node.attribute('type').value.to_sym] = node.content unless draft?(node)
           result
         end
       end

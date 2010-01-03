@@ -4,8 +4,11 @@ require File.dirname(__FILE__) + '/../test_helper.rb'
 require 'core_ext/hash/deep_stringify_keys'
 
 class TestCldrDataCalendars < Test::Unit::TestCase
+  def gregorian(locale = :de)
+    Cldr::Data::Calendars.new(locale)[:calendars][:gregorian]
+  end
+
   define_method 'test: calendars months :de' do
-    gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     months = {
       :default => :format,
       :format  => {
@@ -25,7 +28,6 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   end
   
   define_method 'test: calendars days :de' do
-    gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     days = {
       :default => :format,
       :format  => {
@@ -42,7 +44,6 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   end
   
   define_method 'test: calendars quarters :de' do
-    gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     quarters = {
       :default => :format,
       :format  => {
@@ -59,7 +60,6 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   end
   
   define_method 'test: calendars day_periods :de' do
-    gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     day_periods = {
       :am => 'vorm.',
       :pm => 'nachm.',
@@ -67,41 +67,44 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal day_periods, gregorian[:day_periods]
   end
   
-  define_method 'test: calendars eras :de' do
-    gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
-    eras = {
-      0 => { :abbr => "v. Chr.", :name => "v. Chr." },
-      1 => { :abbr => "n. Chr.", :name => "n. Chr." }
-    }
-    assert_equal eras, gregorian[:eras]
-  end
-
-  define_method 'test: calendars formats :de' do
-    gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
+  # define_method 'test: calendars eras :de' do
+  #   eras = {
+  #     0 => { :abbr => "v. Chr.", :name => "v. Chr." },
+  #     1 => { :abbr => "n. Chr.", :name => "n. Chr." }
+  #   }
+  #   assert_equal eras, gregorian[:eras]
+  # end
+  
+  define_method 'test: calendars date formats :de' do
     formats = {
-      :date => {
-        :default => :medium,
-        :short   => { :pattern => "dd.MM.yy" },
-        :medium  => { :pattern => "dd.MM.yyyy" },
-        :long    => { :pattern => "d. MMMM yyyy" },
-        :full    => { :pattern => "EEEE, d. MMMM yyyy" }
-      },
-      :time => {
-        :default => :medium,
-        :long    => { :pattern => "HH:mm:ss z" },
-        :medium  => { :pattern => "HH:mm:ss" },
-        :short   => { :pattern => "HH:mm" },
-        :full    => { :pattern => "HH:mm:ss v" }
-      },
-      :datetime  => {
-        :format  => { :pattern => "{1} {0}"}
-      }
+      :full    => { :pattern => "EEEE, d. MMMM yyyy" },
+      :long    => { :pattern => "d. MMMM yyyy" },
+      :medium  => { :pattern => "dd.MM.yyyy" },
+      :short   => { :pattern => "dd.MM.yy" },
+      :default => :medium
     }
-    assert_equal formats, gregorian[:formats]
+    assert_equal formats, gregorian[:formats][:date]
   end
-
+  
+  define_method 'test: calendars time formats :de' do
+    formats = {
+      :full    => { :pattern => "HH:mm:ss v" },
+      :long    => { :pattern => "HH:mm:ss z" },
+      :medium  => { :pattern => "HH:mm:ss" },
+      :short   => { :pattern => "HH:mm" },
+      :default => :medium
+    }
+    assert_equal formats, gregorian[:formats][:time]
+  end
+  
+  define_method 'test: calendars datetime formats :de' do
+    formats = {
+      :format  => { :pattern => "{1} {0}"}
+    }
+    assert_equal formats, gregorian[:formats][:datetime]
+  end
+  
   define_method 'test: calendars fields :de' do
-    gregorian = Cldr::Data::Calendars.new('de').data[:calendars][:gregorian]
     fields = {
       :hour      => "Stunde",
       :minute    => "Minute",
@@ -117,10 +120,10 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     }
     assert_equal fields, gregorian[:fields]
   end
-
+  
   Cldr::Data.locales.each do |locale|
     define_method "test: extract calendars for #{locale}" do
-      Cldr::Data::Calendars.new(locale).data
+      Cldr::Data::Calendars.new(locale)
     end
   end
 end

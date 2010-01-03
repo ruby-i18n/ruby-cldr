@@ -18,12 +18,14 @@ class TestCldrDataDelimiters < Test::Unit::TestCase
         }
       }
     }
-    assert_equal expected, Cldr::Data::Delimiters.new('de').data
+    assert_equal expected, Cldr::Data::Delimiters.new('de')
   end
 
-  Cldr::Data.locales.each do |locale|
-    define_method "test: extract delimiters for #{locale}" do
-      Cldr::Data::Delimiters.new(locale).data
-    end
-  end
+  # Cldr::Data.locales.each do |locale|
+  #   define_method "test: extract delimiters for #{locale}" do
+  #     assert_nothing_raised do
+  #       Cldr::Data::Delimiters.new(locale)
+  #     end
+  #   end
+  # end
 end

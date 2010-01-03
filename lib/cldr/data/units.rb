@@ -1,8 +1,9 @@
 module Cldr
   module Data
     class Units < Base
-      def data
-        { :units => units }
+      def initialize(locale)
+        super
+        self[:units] = units
       end
 
       def units

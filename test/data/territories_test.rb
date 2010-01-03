@@ -29,14 +29,16 @@ class TestCldrDataTerritories < Test::Unit::TestCase
              :US, :UY, :UZ, :VA, :VC, :VE, :VG, :VI, :VN, :VU, :WF, :WS, :YE,
              :YT, :ZA, :ZM, :ZW, :ZZ]
 
-    territories = Cldr::Data::Territories.new('de').data[:territories]
+    territories = Cldr::Data::Territories.new(:de)[:territories]
     assert (territories.keys - codes).empty? && (codes - territories.keys).empty?
-    assert_equal({ :code => :DE, :name => 'Deutschland' }, territories[:DE])
+    assert_equal('Deutschland', territories[:DE])
   end
 
   Cldr::Data.locales.each do |locale|
     define_method "test: extract territories for #{locale}" do
-      Cldr::Data::Territories.new(locale).data
+      assert_nothing_raised do
+        Cldr::Data::Territories.new(locale)
+      end
     end
   end
 end

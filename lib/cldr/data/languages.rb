@@ -1,17 +1,14 @@
 module Cldr
   module Data
     class Languages < Base
-      def data
-        { :languages => languages }
+      def initialize(locale)
+        super
+        self[:languages] = languages
       end
 
       def languages
-        select('localeDisplayNames/languages/language').inject({}) do |result, node|
-          unless draft?(node)
-            code = node.attribute('type').value.gsub('_', '-').to_sym
-            name = node.content
-            result[code] = { :code => code, :name => name }
-          end
+        @languages ||= select('localeDisplayNames/languages/language').inject({}) do |result, node|
+          result[node.attribute('type').value.gsub('_', '-').to_sym] = node.content unless draft?(node)
           result
         end
       end
