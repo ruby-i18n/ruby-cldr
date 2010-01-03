@@ -1,0 +1,50 @@
+# http://unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules
+#
+# condition       = and_condition ('or' and_condition)*
+# and_condition   = relation ('and' relation)*
+# relation        = is_relation | in_relation | within_relation | 'n' <EOL>
+# is_relation     = expr 'is' ('not')? value
+# in_relation     = expr ('not')? 'in' range
+# within_relation = expr ('not')? 'within' range
+# expr            = 'n' ('mod' value)?
+# value           = digit+
+# digit           = 0|1|2|3|4|5|6|7|8|9
+# range           = value'..'value
+
+grammar CldrPluralGrammar
+	rule or_condition
+		and_condition (" or " and_condition)?
+	end
+	
+	rule and_condition
+		relation (" and " relation)?
+	end
+	
+	rule relation
+		is_relation / in_relation / within_relation / "n"
+	end
+	
+	rule is_relation
+		expr " is " "not "? value
+	end	
+	
+	rule in_relation
+		expr " not"? " in " range
+	end
+	
+	rule within_relation
+		expr " not"? " within " range
+	end
+	
+	rule expr
+		"n" (" mod " value)?
+	end	
+	
+	rule range
+		value ".." value
+	end
+
+  rule value
+    [0-9]*
+  end
+end
