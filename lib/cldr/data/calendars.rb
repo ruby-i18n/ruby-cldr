@@ -1,4 +1,4 @@
-module Cldr
+class Cldr
   module Data
     class Calendars < Base
       autoload :Gregorian, 'cldr/data/calendars/gregorian'

@@ -1,4 +1,4 @@
-module Cldr
+class Cldr
   module Data
     class Currencies < Base
       def initialize(locale)

@@ -1,4 +1,4 @@
-module Cldr
+class Cldr
   module Format
     class Numeric
       attr_reader :int, :fraction, :prefix, :suffix, :locale

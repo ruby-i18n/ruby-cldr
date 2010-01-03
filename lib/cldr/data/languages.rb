@@ -1,4 +1,4 @@
-module Cldr
+class Cldr
   module Data
     class Languages < Base
       def initialize(locale)

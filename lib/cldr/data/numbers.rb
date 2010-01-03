@@ -1,4 +1,4 @@
-module Cldr
+class Cldr
   module Data
     class Numbers < Base
       def initialize(locale)

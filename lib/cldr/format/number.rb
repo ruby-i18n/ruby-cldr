@@ -1,4 +1,4 @@
-module Cldr
+class Cldr
   module Format
     class Number
       attr_reader :positive, :negative
