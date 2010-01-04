@@ -13,13 +13,13 @@ h2. Requirements
 
 h2. Usage
 
-This will export all known components from all locales to the target directory data/[locale]/[component].{yml,rb}:
+This will export all known components from all locales to the target directory ./data/[locale]/[component].{yml,rb}:
 
 	$ thor cldr:export
 
-You can also optionally specify locales and/or components to export:
+You can also optionally specify locales and/or components to export as well as the target directory:
 
-	$ thor cldr:export --locales de fr en --components numbers plurals
+	$ thor cldr:export --locales de fr en --components numbers plurals --target=./tmp/export
 
 This will export the components :numbers and :plurals from the locales :de, :fr and :en to the same target directory.
 
