@@ -22,21 +22,17 @@ class Cldr
         end
 
         def contexts(type)
-          result = select(calendar, "#{type}s/#{type}Context").inject({}) do |result, node|
+          select(calendar, "#{type}s/#{type}Context").inject({}) do |result, node|
             result[node.attribute('type').value.to_sym] = widths(node, type)
             result
           end
-          result.update(:default => :format) unless result.empty? # TODO where can we get the default from?
-          result
         end
 
         def widths(node, type)
-          result = select(node, "#{type}Width").inject({}) do |result, node|
+          select(node, "#{type}Width").inject({}) do |result, node|
             result[node.attribute('type').value.to_sym] = elements(node, type)
             result
           end
-          result.update(:default => :wide) unless result.empty? # TODO where can we get the default from?
-          result
         end
 
         def elements(node, type)
@@ -72,14 +68,11 @@ class Cldr
         end
 
         def formats(type)
-          formats = select(calendar, "#{type}Formats/#{type}FormatLength").inject({}) do |result, node|
+          select(calendar, "#{type}Formats/#{type}FormatLength").inject({}) do |result, node|
             key = node.attribute('type').value.to_sym rescue :format
             result[key] = pattern(node, type)
             result
           end
-          # TODO where can we get the default from?
-          formats.update(:default => :medium) unless formats.empty? || type == 'dateTime'
-          formats
         end
 
         def pattern(node, type)

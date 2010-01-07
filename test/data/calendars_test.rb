@@ -10,14 +10,11 @@ class TestCldrDataCalendars < Test::Unit::TestCase
 
   define_method 'test: calendars months :de' do
     months = {
-      :default => :format,
       :format  => {
-        :default     => :wide,
         :wide        => { 1 => 'Januar', 2 => 'Februar', 3 => 'März', 4 => 'April', 5 => 'Mai', 6 => 'Juni', 7 => 'Juli', 8 => 'August', 9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Dezember' },
         :abbreviated => { 1 => 'Jan', 2 => 'Feb', 3 => 'Mär', 4 => 'Apr', 5 => 'Mai', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug', 9 => 'Sep', 10 => 'Okt', 11 => 'Nov', 12 => 'Dez' }
       },
       :'stand-alone' => {
-        :default     => :wide,
         # HU? why's all the rest missing in cldr data??
         :abbreviated => { 3 => 'Mär', 7 => 'Jul', 8 => 'Aug', 9 => 'Sep', 10 => 'Okt', 11 => 'Nov', 12 => 'Dez' },
         :narrow      => { 1 => 'J', 2 => 'F', 3 => 'M', 4 => 'A', 5 => 'M', 6 => 'J', 7 => 'J', 8 => 'A', 9 => 'S', 10 => 'O', 11 => 'N', 12 => 'D' }
@@ -29,14 +26,11 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   
   define_method 'test: calendars days :de' do
     days = {
-      :default => :format,
       :format  => {
-        :default     => :wide,
         :wide        => { :sun => 'Sonntag', :mon => 'Montag', :tue => 'Dienstag', :wed => 'Mittwoch', :thu => 'Donnerstag', :fri => 'Freitag', :sat => 'Samstag' },
         :abbreviated => { :sun => 'So.', :mon => 'Mo.', :tue => 'Di.', :wed => 'Mi.', :thu => 'Do.', :fri => 'Fr.', :sat => 'Sa.' }
       },
       :'stand-alone' => {
-        :default     => :wide,
         :narrow      => { :sun => 'S', :mon => 'M', :tue => 'D', :wed => 'M', :thu => 'D', :fri => 'F', :sat => 'S' }
       }
     }
@@ -45,14 +39,11 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   
   define_method 'test: calendars quarters :de' do
     quarters = {
-      :default => :format,
       :format  => {
-        :default     => :wide,
         :wide        => { 1 => "1. Quartal", 2 => "2. Quartal", 3 => "3. Quartal", 4 => "4. Quartal" },
         :abbreviated => { 1 => "Q1", 2 => "Q2", 3 => "Q3", 4 => "Q4" }
       },
       :"stand-alone" => {
-        :default => :wide, 
         :narrow  => { 1 => "1", 2 => "2", 3 => "3", 4 => "4" }
       }
     }
@@ -80,8 +71,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
       :full    => { :pattern => "EEEE, d. MMMM yyyy" },
       :long    => { :pattern => "d. MMMM yyyy" },
       :medium  => { :pattern => "dd.MM.yyyy" },
-      :short   => { :pattern => "dd.MM.yy" },
-      :default => :medium
+      :short   => { :pattern => "dd.MM.yy" }
     }
     assert_equal formats, gregorian[:formats][:date]
   end
@@ -91,8 +81,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
       :full    => { :pattern => "HH:mm:ss v" },
       :long    => { :pattern => "HH:mm:ss z" },
       :medium  => { :pattern => "HH:mm:ss" },
-      :short   => { :pattern => "HH:mm" },
-      :default => :medium
+      :short   => { :pattern => "HH:mm" }
     }
     assert_equal formats, gregorian[:formats][:time]
   end
