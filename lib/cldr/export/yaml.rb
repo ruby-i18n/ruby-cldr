@@ -7,13 +7,14 @@ class Cldr
         super(:syck_compatible => true)
       end
 
-      def export(locale, component)
-        data = Export.data(component, locale)
+      def export(locale, component, options = {})
+        data = Export.data(component, locale, options)
         unless data.empty?
-          data = { locale.gsub('_', '-') => data }.deep_stringify_keys
+          data = { locale.to_s.gsub('_', '-') => data }.deep_stringify_keys
           path = Export.path(locale, component, 'yml')
           Export.write(path, yaml(data))
           yield(component, locale, path) if block_given?
+          data
         end
       end
 

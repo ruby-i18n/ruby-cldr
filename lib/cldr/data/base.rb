@@ -59,7 +59,7 @@ class Cldr
         end
 
         def path
-          @path ||= "#{Cldr::Data.dir}/main/#{locale}.xml"
+          @path ||= "#{Cldr::Data.dir}/main/#{locale.to_s.gsub('-', '_')}.xml"
         end
     end
   end

@@ -1,0 +1,19 @@
+- figure out rules to extract default keys for calendars
+	-> defaults seem to be defined in root.xml and then overwritten in very few
+	   locales (grep for "<default")
+
+- currency, date + time formatters
+- hook into I18n.localize
+
+
+extract:
+
+- territoryContainment (groups territories)
+- languageData (maps languages/scripts to territories)
+- territoryInfo (?)
+- calendarData
+- weekData
+
+what do the following tags in supplementalMetadata mean?
+- variable
+- defaultContent

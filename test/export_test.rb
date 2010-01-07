@@ -15,6 +15,14 @@ class TestExtract < Test::Unit::TestCase
     File.expand_path(File.dirname(__FILE__) + '/tmp')
   end
 
+  define_method 'test: passing the merge option generates and merge data for all fallback locales' do
+    data = Cldr::Export.data('numbers', 'de-AT')
+    assert !data[:numbers][:formats][:nan]
+
+    data = Cldr::Export.data('numbers', 'de-AT', :merge => true)
+    assert_equal 'NaN', data[:numbers][:symbols][:nan]
+  end
+
   define_method "test: exports data to files" do
     Cldr::Export.export(:locales => %w(de), :components => %w(calendars))
     assert File.exists?(Cldr::Export.path('de', 'calendars', 'yml'))

@@ -6,7 +6,7 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
   end
   
   def cldr_rules
-    Cldr::Data::Plurals::Rules.parse_cldr(cldr_data)
+    Cldr::Data::Plurals::Rules.parse(cldr_data)
   end
   
   def test_compiles_to_valid_ruby_code
