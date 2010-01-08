@@ -18,5 +18,9 @@ class Cldr
     def format_currency(number, options = {})
       format_number(number, options).gsub('¤', options[:currency])
     end
+
+    def format_percent(number, options = {})
+      format_number(number, options).gsub('¤', options[:percent_sign])
+    end
   end
 end

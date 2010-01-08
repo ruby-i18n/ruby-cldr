@@ -39,6 +39,23 @@ class TestCldrFormat < Test::Unit::TestCase
     assert_equal '1.000,00 EUR', format_currency(1000.0, options)
   end
 
+  define_method :"test: format_currency applies a cldr number format to an int" do
+    format   = t(:'numbers.formats.currency.pattern')
+    symbols  = t(:'numbers.symbols')
+    currency = 'EUR'
+    options  = symbols.merge(:format => format, :currency => currency)
+
+    assert_equal '1.000 EUR', format_currency(1000, options)
+  end
+
+  define_method :"test: format_percent applies a cldr number format to an int" do
+    format   = t(:'numbers.formats.percent.pattern')
+    symbols  = t(:'numbers.symbols')
+    options  = symbols.merge(:format => format)
+
+    assert_equal '1.000 %', format_percent(1000, options)
+  end
+
   define_method :"test: format_number rails compat" do
     @locale = :en
     format  = t(:'numbers.formats.decimal.pattern')
