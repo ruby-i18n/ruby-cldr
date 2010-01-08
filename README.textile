@@ -15,11 +15,15 @@ h2. Usage
 
 This will export all known components from all locales to the target directory ./data/[locale]/[component].{yml,rb}:
 
+<pre>
 	$ thor cldr:export
+</pre>
 
 You can also optionally specify locales and/or components to export as well as the target directory:
 
+<pre>
 	$ thor cldr:export --locales de fr en --components numbers plurals --target=./tmp/export
+</pre>
 
 This will export the components :numbers and :plurals from the locales :de, :fr and :en to the same target directory.
 
@@ -27,8 +31,9 @@ Also note that CLDR natively builds on a locale fallback concept where all local
 
 By default this library just exports data that is present in CLDR for a given locale. If you do not want to use locale fallbacks in your application you'll need to "flatten" locale fallbacks and merge the data during export time. To do that you can use the --merge option:
 
+<pre>
 	$ thor cldr:export --merge
-
+</pre>
 
 
 
