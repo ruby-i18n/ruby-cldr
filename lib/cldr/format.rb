@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Cldr
   module Format
     autoload :Base,     'cldr/format/base'
@@ -11,6 +13,10 @@ class Cldr
       symbols = options.select { |key, value| [:decimal, :group].include?(key) }
       format  = options.delete(:format)
       Number.new(format, symbols).apply(number, options)
+    end
+
+    def format_currency(number, options = {})
+      format_number(number, options).gsub('¤', options[:currency])
     end
   end
 end

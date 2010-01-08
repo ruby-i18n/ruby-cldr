@@ -1,3 +1,4 @@
+# encoding: utf-8
 require File.dirname(__FILE__) + '/../test_helper'
 
 class TestCldrFormat < Test::Unit::TestCase
@@ -16,15 +17,26 @@ class TestCldrFormat < Test::Unit::TestCase
   define_method :"test: format_number applies a cldr number format to an integer" do
     format  = t(:'numbers.formats.decimal.pattern')
     symbols = t(:'numbers.symbols')
+    options = symbols.merge(:format => format)
 
-    assert_equal '1.000', format_number(1000, symbols.merge(:format => format))
+    assert_equal '1.000', format_number(1000, options)
   end
 
   define_method :"test: format_number applies a cldr number format to a float" do
     format  = t(:'numbers.formats.decimal.pattern')
     symbols = t(:'numbers.symbols')
+    options = symbols.merge(:format => format)
 
-    assert_equal '1.000,0', format_number(1000.0, symbols.merge(:format => format))
+    assert_equal '1.000,0', format_number(1000.0, options)
+  end
+
+  define_method :"test: format_currency applies a cldr number format to a float" do
+    format   = t(:'numbers.formats.currency.pattern')
+    symbols  = t(:'numbers.symbols')
+    currency = 'EUR'
+    options  = symbols.merge(:format => format, :currency => currency)
+
+    assert_equal '1.000,00 EUR', format_currency(1000.0, options)
   end
 
   define_method :"test: format_number rails compat" do
