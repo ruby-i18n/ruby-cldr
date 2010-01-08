@@ -1,5 +1,6 @@
 - currency, date + time formatters
 - hook into I18n.localize
+- hook into Rails' select_month and DateTime helpers
 
 extract:
 
