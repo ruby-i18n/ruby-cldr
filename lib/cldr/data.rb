@@ -14,7 +14,7 @@ class Cldr
 
     class << self
       def dir
-        @dir ||= File.expand_path(File.dirname(__FILE__) + '/../../vendor/cldr/data/core')
+        @dir ||= File.expand_path(File.dirname(__FILE__) + '/../../vendor/cldr/common')
       end
       
       def dir=(dir)
