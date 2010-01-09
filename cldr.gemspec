@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sven Fuchs"]
   s.date = %q{2010-01-09}
-  s.description = %q{Ruby library for exporting and using data from CLDR}
+  s.description = %q{Ruby library for exporting and using data from CLDR, see http://cldr.unicode.org}
   s.email = %q{svenfuchs@artweb-design.de}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "TODO",
      "VERSION",
+     "cldr.thor",
      "lib/cldr.rb",
      "lib/cldr/data.rb",
      "lib/cldr/data/base.rb",
@@ -38,6 +39,7 @@ Gem::Specification.new do |s|
      "lib/cldr/data/plurals/rules.rb",
      "lib/cldr/data/territories.rb",
      "lib/cldr/data/units.rb",
+     "lib/cldr/download.rb",
      "lib/cldr/export.rb",
      "lib/cldr/export/ruby.rb",
      "lib/cldr/export/yaml.rb",
@@ -47,6 +49,7 @@ Gem::Specification.new do |s|
      "lib/cldr/format/integer.rb",
      "lib/cldr/format/number.rb",
      "lib/cldr/format/numeric.rb",
+     "lib/cldr/thor.rb",
      "lib/core_ext/hash/deep_merge.rb",
      "lib/core_ext/hash/deep_stringify_keys.rb",
      "lib/core_ext/hash/symbolize_keys.rb",

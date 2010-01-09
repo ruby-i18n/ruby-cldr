@@ -12,15 +12,9 @@ class Cldr
       source = URI.parse(source)
       tempfile = Tempfile.new('cldr-core')
 
-      Net::HTTP.start(source.host) do |http|
-        response = http.get(source.path)
-        File.open(tempfile, "wb") { |f| f.write(response.body) }
-      end
-      
+      system("curl #{source} -o #{tempfile.path}")
       FileUtils.mkdir_p(target)
-      `unzip #{tempfile.path} -d #{target}`
-
-      puts "extracted #{source} to #{target}"
+      system("unzip #{tempfile.path} -d #{target}")
     end
   end
 end
