@@ -29,7 +29,7 @@ class Cldr
         
         def parse_number(number, options = {})
           precision = options[:precision] || self.precision
-          number = round_to(number, precision) unless number.is_a?(Fixnum)
+          number = round_to(number, precision)
           number.abs.to_s.split('.')
         end
     end
