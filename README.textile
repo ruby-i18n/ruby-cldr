@@ -1,4 +1,4 @@
-h1. Ruby library for exporting data from CLDR 
+h1. Ruby library for exporting and using data from CLDR
 
 CLDR ("Common Locale Data Repository":http://cldr.unicode.org) contains tons of high-quality locale data such as formatting rules for dates, times, numbers, currencies as well as language, country, calendar-specific names etc.
 
