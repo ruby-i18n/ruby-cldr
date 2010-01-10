@@ -3,13 +3,13 @@ class Cldr
     class Integer < Base
       attr_reader :format, :separator, :groups
 
-      def initialize(format, options = {})
+      def initialize(format, symbols = {})
         format     = format.split('.')[0]
-        @format    = format.gsub(',', '')
+        @format    = prepare_format(format, symbols)
         @groups    = parse_groups(format)
-        @separator = options[:group] || ','
+        @separator = symbols[:group] || ','
       end
-      
+
       def apply(number, options = {})
         format_groups(interpolate(format, number.to_i))
       end
@@ -33,6 +33,11 @@ class Cldr
 
       def chop_group(string, size)
         string.slice!(-size, size) if string.length > size
+      end
+
+      def prepare_format(format, symbols)
+        signs = symbols.values_at(:plus_sign, :minus_sign)
+        format.tr(',', '').tr('+-', signs.join)
       end
     end
   end

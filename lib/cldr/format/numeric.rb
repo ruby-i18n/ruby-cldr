@@ -4,7 +4,7 @@ class Cldr
       attr_reader :formats, :symbols, :precision
 
       def initialize(format, symbols = {})
-        @symbols   = { :group => ',', :decimal => '.' }.merge(symbols)
+        @symbols   = { :group => ',', :decimal => '.', :plus_sign => '+', :minus_sign => '-' }.merge(symbols)
         @formats   = parse_format(format, symbols)
         @precision = formats[:fraction] ? formats[:fraction].precision : 0
       end
