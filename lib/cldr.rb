@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'core_ext/hash/symbolize_keys'
 
 class Cldr
