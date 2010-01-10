@@ -4,10 +4,10 @@ class Cldr
       def initialize(locale)
         super
         self[:'numbers.symbols'] = symbols
-        self[:'numbers.formats.decimal']    = format('decimal')
-        self[:'numbers.formats.scientific'] = format('scientific')
-        self[:'numbers.formats.percent']    = format('percent')
-        self[:'numbers.formats.currency']   = currency
+        self[:'numbers.formats.decimal.default']    = format('decimal')
+        self[:'numbers.formats.scientific.default'] = format('scientific')
+        self[:'numbers.formats.percent.default']    = format('percent')
+        self[:'numbers.formats.currency.default']   = currency
       end
       
       def currency
