@@ -4,14 +4,18 @@ class Cldr
       attr_reader :format, :decimal, :precision
 
       def initialize(format, symbols = {})
-        @format  = format.split('.').pop
+        @format  = format ? format.split('.').pop : ''
         @decimal = symbols[:decimal] || '.'
-        @precision = format.length
+        @precision = @format.length
       end
 
       def apply(fraction, options = {})
-        return '' if options[:precision] == 0
-        decimal + interpolate(format(options), fraction, :left)
+        precision = options[:precision] || self.precision
+        if precision > 0
+          decimal + interpolate(format(options), fraction, :left)
+        else
+          ''
+        end
       end
 
       def format(options)
