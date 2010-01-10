@@ -3,10 +3,12 @@
 class Cldr
   module Format
     autoload :Base,     'cldr/format/base'
+    autoload :Currency, 'cldr/format/currency'
     autoload :Fraction, 'cldr/format/fraction'
     autoload :Integer,  'cldr/format/integer'
     autoload :Number,   'cldr/format/number'
     autoload :Numeric,  'cldr/format/numeric'
+    autoload :Percent,  'cldr/format/percent'
 
     def format_integer(number, options = {})
       format_number(number, options.merge(:precision => 0))
