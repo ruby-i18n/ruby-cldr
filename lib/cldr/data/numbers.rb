@@ -4,10 +4,29 @@ class Cldr
       def initialize(locale)
         super
         self[:'numbers.symbols'] = symbols
-        self[:'numbers.formats.decimal.default']    = format('decimal')
-        self[:'numbers.formats.scientific.default'] = format('scientific')
-        self[:'numbers.formats.percent.default']    = format('percent')
-        self[:'numbers.formats.currency.default']   = currency
+        self[:'numbers.formats'] = {
+          :decimal => {
+            :patterns => {
+              :default => format('decimal')
+            }
+          },
+          :scientific => {
+            :patterns => {
+              :default => format('scientific')
+            }
+          },
+          :percent => {
+            :patterns => {
+              :default => format('percent')
+            }
+          },
+          :currency => {
+            :patterns => {
+              :default => format('currency')
+            }
+          },
+        }
+        self[:'numbers.formats.currency.unit'] = unit
       end
       
       def currency
@@ -25,8 +44,7 @@ class Cldr
 
       def format(type)
         select("numbers/#{type}Formats/#{type}FormatLength/#{type}Format/pattern").inject({}) do |result, node|
-          result[name(node).to_sym] = node.content unless draft?(node)
-          result
+          node.content unless draft?(node)
         end
       end
 

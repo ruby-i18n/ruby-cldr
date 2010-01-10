@@ -24,27 +24,27 @@ class TestCldrDataNumbers < Test::Unit::TestCase
   define_method "test: number formats :de" do
     expected = {
       :decimal => {
-        :default => {
-          :pattern => "#,##0.###"
+        :patterns => {
+          :default => "#,##0.###"
         }
       },
       :scientific => {
-        :default => {
-          :pattern => "#E0"
+        :patterns => {
+          :default => "#E0"
         }
       },
       :percent => {
-        :default => {
-          :pattern => "#,##0 %"      # includes a non-breaking space (\302\240)
+        :patterns => {
+          :default => "#,##0 %"     # includes a non-breaking space (\302\240)
         }
       },
       :currency => {
-        :default => {
-          :pattern  => "#,##0.00 ¤", # includes a non-breaking space (\302\240)
-          :unit => {
-            "one"   => "{0} {1}",
-            "other" => "{0} {1}"
-          }
+        :patterns => {
+          :default => "#,##0.00 ¤", # includes a non-breaking space (\302\240)
+        },
+        :unit => {
+          "one"   => "{0} {1}",
+          "other" => "{0} {1}"
         }
       }
     }

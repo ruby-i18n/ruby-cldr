@@ -42,15 +42,11 @@ class Cldr
     protected
 
       def formatter(locale, type, format)
-        formatters[type][locale] ||= begin
+        (@formatters ||= {})[:"#{locale}.#{type}.#{format}"] ||= begin
           format  = lookup_number_format(locale, type, format)
           symbols = lookup_number_symbols(locale)
           self.class.const_get(type.to_s.camelize).new(format, symbols)
         end
-      end
-
-      def formatters
-        @formatters ||= { :decimal => {}, :percent => {}, :currency => {} }
       end
 
       def raise_unspecified_format_type!
