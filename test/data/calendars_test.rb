@@ -50,12 +50,12 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal quarters, gregorian[:quarters]
   end
   
-  define_method 'test: calendars day_periods :de' do
-    day_periods = {
+  define_method 'test: calendars periods :de' do
+    periods = {
       :am => 'vorm.',
       :pm => 'nachm.',
     }
-    assert_equal day_periods, gregorian[:day_periods]
+    assert_equal periods, gregorian[:periods]
   end
   
   # define_method 'test: calendars eras :de' do

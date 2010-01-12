@@ -9,7 +9,7 @@ class Cldr
             :days        => contexts('day'),
             :eras        => contexts('era'),
             :quarters    => contexts('quarter'),
-            :day_periods => day_periods,
+            :periods     => periods,
             :fields      => fields,
             :'formats.date'      => formats('date'),
             :'formats.time'      => formats('time'),
@@ -44,7 +44,7 @@ class Cldr
           end
         end
 
-        def day_periods
+        def periods
           am = select(calendar, "am").first
           pm = select(calendar, "pm").first
 
