@@ -7,6 +7,7 @@ class Cldr
     autoload :Currency, 'cldr/format/currency'
     autoload :Fraction, 'cldr/format/fraction'
     autoload :Integer,  'cldr/format/integer'
+    autoload :Datetime, 'cldr/format/datetime'
     autoload :Decimal,  'cldr/format/decimal'
     autoload :Numeric,  'cldr/format/numeric'
     autoload :Percent,  'cldr/format/percent'
