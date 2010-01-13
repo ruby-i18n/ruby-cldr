@@ -10,6 +10,7 @@ class Cldr
     autoload :Numbers,       'cldr/data/numbers'
     autoload :Plurals,       'cldr/data/plurals'
     autoload :Territories,   'cldr/data/territories'
+    autoload :Timezones,     'cldr/data/timezones'
     autoload :Units,         'cldr/data/units'
 
     class << self
