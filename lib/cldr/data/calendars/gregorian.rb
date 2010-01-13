@@ -5,18 +5,18 @@ class Cldr
         def initialize(locale)
           super
           update(
-            :months      => contexts('month'),
-            :days        => contexts('day'),
-            :eras        => contexts('era'),
-            :quarters    => contexts('quarter'),
-            :periods     => periods,
-            :fields      => fields,
+            :months              => contexts('month'),
+            :days                => contexts('day'),
+            :eras                => contexts('era'),
+            :quarters            => contexts('quarter'),
+            :periods             => periods,
+            :fields              => fields,
             :'formats.date'      => formats('date'),
             :'formats.time'      => formats('time'),
             :'formats.datetime'  => formats('dateTime')
           )
         end
-        
+
         def calendar
           @calendar ||= select('dates/calendars/calendar[@type="gregorian"]').first
         end
@@ -30,17 +30,23 @@ class Cldr
 
         def widths(node, type)
           select(node, "#{type}Width").inject({}) do |result, node|
-            result[node.attribute('type').value.to_sym] = elements(node, type)
+            key  = node.attribute('type').value.to_sym
+            result[key] = elements(node, type)
             result
           end
         end
 
         def elements(node, type)
-          select(node, "#{type}").inject({}) do |result, node|
-            key = node.attribute('type').value
-            key = key =~ /^\d*$/ ? key.to_i : key.to_sym
-            result[key] = node.content
-            result
+          aliased = select(node, 'alias').first
+          if aliased
+            elements(select(node, aliased.attribute('path').value).first, type)
+          else
+            select(node, "#{type}").inject({}) do |result, node|
+              key = node.attribute('type').value
+              key = key =~ /^\d*$/ ? key.to_i : key.to_sym
+              result[key] = node.content
+              result
+            end
           end
         end
 
@@ -68,11 +74,14 @@ class Cldr
         end
 
         def formats(type)
-          select(calendar, "#{type}Formats/#{type}FormatLength").inject({}) do |result, node|
+          formats = select(calendar, "#{type}Formats/#{type}FormatLength").inject({}) do |result, node|
             key = node.attribute('type').value.to_sym rescue :format
             result[key] = pattern(node, type)
             result
           end
+          default = select(calendar, "#{type}Formats/default").first
+          formats[:default] = default.attribute('choice').value.to_sym if default
+          formats
         end
 
         def pattern(node, type)
