@@ -22,8 +22,8 @@ class Cldr
     		emit(data, 1)[1..-1]
     	end
 
-    	def emit(object, level)
-    		result = object.is_a?(Symbol) ? object.to_s : super
+    	def emit(object, level = 1)
+    		result = object.is_a?(Symbol) ? object.inspect : super
     		result.gsub(/(\s{1})(no):/i) { %(#{$1}"#{$2}":) } # FIXME fucking spaghetti code
     	end
 

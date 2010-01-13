@@ -30,25 +30,29 @@ class Cldr
         end
       end
 
-      def fallbacks(locale)
-        locale = locale.to_s.gsub('_', '-').to_sym
-        I18n::Locale::Fallbacks.new(:root)[locale] # TODO should have default_fallbacks in I18n
-      end
-
       def exporter(component, format)
         name = format ? format : component.to_s == 'Plurals' ? 'ruby' : 'yaml'
         const_get(name.to_s.camelize).new
       end
 
       def data(component, locale, options = {})
-        if options[:merge] && component.to_s != 'Plurals'
-          fallbacks(locale).inject({}) do |result, locale|
+        if component.to_s == 'Plurals'
+          Data.const_get(component.to_s.camelize).new(locale)
+        else
+          data = locales(locale, options).inject({}) do |result, locale|
             data = Data.const_get(component.to_s.camelize).new(locale)
             data ? data.deep_merge(result) : result
           end
-        else
-          Data.const_get(component.to_s.camelize).new(locale)
+          # data = resolve_links if options[:merge] TODO!!
+          data
         end
+      end
+
+      def locales(locale, options)
+        locale = locale.to_s.gsub('_', '-')
+        locales = options[:merge] ? I18n::Locale::Fallbacks.new[locale.to_sym] : [locale.to_sym] 
+        locales << :root unless locale.index('-')
+        locales
       end
 
       def write(path, data)

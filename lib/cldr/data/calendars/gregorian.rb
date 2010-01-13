@@ -21,33 +21,44 @@ class Cldr
           @calendar ||= select('dates/calendars/calendar[@type="gregorian"]').first
         end
 
-        def contexts(type)
-          select(calendar, "#{type}s/#{type}Context").inject({}) do |result, node|
-            result[node.attribute('type').value.to_sym] = widths(node, type)
+        def contexts(kind)
+          select(calendar, "#{kind}s/#{kind}Context").inject({}) do |result, node|
+            context = node.attribute('type').value.to_sym
+            result[context] = widths(node, kind, context)
             result
           end
         end
 
-        def widths(node, type)
-          select(node, "#{type}Width").inject({}) do |result, node|
-            key  = node.attribute('type').value.to_sym
-            result[key] = elements(node, type)
+        def widths(node, kind, context)
+          select(node, "#{kind}Width").inject({}) do |result, node|
+            width  = node.attribute('type').value.to_sym
+            result[width] = elements(node, kind, context, width)
             result
           end
         end
 
-        def elements(node, type)
+        def elements(node, kind, context, width)
           aliased = select(node, 'alias').first
           if aliased
-            elements(select(node, aliased.attribute('path').value).first, type)
+            xpath_to_key(aliased.attribute('path').value, kind, context, width)
           else
-            select(node, "#{type}").inject({}) do |result, node|
+            select(node, kind).inject({}) do |result, node|
               key = node.attribute('type').value
               key = key =~ /^\d*$/ ? key.to_i : key.to_sym
               result[key] = node.content
               result
             end
           end
+        end
+        
+        def xpath_to_key(xpath, kind, context, width)
+          kind    = (xpath =~ %r(/([^\/]*)Width) && $1) || kind
+          context = (xpath =~ %r(Context\[@type='([^\/]*)'\]) && $1) || context
+          width   = (xpath =~ %r(Width\[@type='([^\/]*)'\]) && $1) || width
+          :"calendars.gregorian.#{kind}s.#{context}.#{width}"
+        end
+        
+        def xpath_width
         end
 
         def periods
@@ -79,9 +90,17 @@ class Cldr
             result[key] = pattern(node, type)
             result
           end
-          default = select(calendar, "#{type}Formats/default").first
-          formats[:default] = default.attribute('choice').value.to_sym if default
+          if default = default_format(type)
+            formats = default.merge(formats)
+          end
           formats
+        end
+        
+        def default_format(type)
+          if node = select(calendar, "#{type}Formats/default").first
+            key = node.attribute('choice').value.to_sym
+            { :default => :"calendars.gregorian.formats.#{type.downcase}.#{key}" }
+          end
         end
 
         def pattern(node, type)
