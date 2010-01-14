@@ -1,13 +1,4 @@
-Current merge strategy does not work because of aliases that point from :root
-to e.g. :de (and then might fall back from :de to :root again).
-
-Plan:
-
-+ always merge in :root (done)
-+ resolve an alias xpath to a yaml key (done)
-- resolve keys if :merge => true
-
-
+- during export resolve links if :merge => true
 
 - DateTime format needs to use {0} {1} cldr format
 - make sense of timezone data
