@@ -135,60 +135,11 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     }
     assert_equal fields, gregorian[:fields]
   end
-
-  # define_method 'test: resolves aliases for month context format widths' do
-  #   formats = {
-  #     :abbreviated => { 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", 10 => "10", 11 => "11", 12 => "12" },
-  #     :narrow      => { 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", 10 => "10", 11 => "11", 12 => "12" },
-  #     :wide        => { 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", 10 => "10", 11 => "11", 12 => "12" }
-  #   }
-  #   assert_equal formats, gregorian(:locale => :root)[:months][:format]
-  # end
-  # 
-  # define_method 'test: resolves aliases for month context stand-alone widths' do
-  #   formats = {
-  #     :abbreviated => { 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", 10 => "10", 11 => "11", 12 => "12" },
-  #     :narrow      => { 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", 10 => "10", 11 => "11", 12 => "12" },
-  #     :wide        => { 1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", 10 => "10", 11 => "11", 12 => "12" }
-  #   }
-  #   assert_equal formats, gregorian(:locale => :root)[:months][:'stand-alone']
-  # end
-  # 
-  # define_method 'test: resolves aliases for day context format widths' do
-  #   formats = {
-  #     :abbreviated => { :sun => '1', :mon => '2', :tue => '3', :wed => '4', :thu => '5', :fri => '6', :sat => '7' },
-  #     :narrow      => { :sun => '1', :mon => '2', :tue => '3', :wed => '4', :thu => '5', :fri => '6', :sat => '7' },
-  #     :wide        => { :sun => '1', :mon => '2', :tue => '3', :wed => '4', :thu => '5', :fri => '6', :sat => '7' }
-  #   }
-  #   assert_equal formats, gregorian(:locale => :root)[:days][:format]
-  # end
-  # 
-  # define_method 'test: resolves aliases for day context stand-alone widths' do
-  #   formats = {
-  #     :abbreviated => { :sun => '1', :mon => '2', :tue => '3', :wed => '4', :thu => '5', :fri => '6', :sat => '7' },
-  #     :narrow      => { :sun => '1', :mon => '2', :tue => '3', :wed => '4', :thu => '5', :fri => '6', :sat => '7' },
-  #     :wide        => { :sun => '1', :mon => '2', :tue => '3', :wed => '4', :thu => '5', :fri => '6', :sat => '7' }
-  #   }
-  #   assert_equal formats, gregorian(:locale => :root)[:days][:'stand-alone']
-  # end
-  # 
-  # define_method 'test: resolves aliases for quarters context format widths' do
-  #   formats = {
-  #     :abbreviated => { 1 => "Q1", 2 => "Q2", 3 => "Q3", 4 => "Q4" },
-  #     :narrow      => { 1 => "1",  2 => "2",  3 => "3",  4 => "4" },
-  #     :wide        => { 1 => "Q1", 2 => "Q2", 3 => "Q3", 4 => "Q4" },
-  #   }
-  #   assert_equal formats, gregorian(:locale => :root)[:quarters][:format]
-  # end
-  # 
-  # define_method 'test: resolves aliases for quarters context stand-alone widths' do
-  #   formats = {
-  #     :abbreviated => { 1 => "Q1", 2 => "Q2", 3 => "Q3", 4 => "Q4" },
-  #     :narrow      => { 1 => "1",  2 => "2",  3 => "3",  4 => "4" },
-  #     :wide        => { 1 => "Q1", 2 => "Q2", 3 => "Q3", 4 => "Q4" },
-  #   }
-  #   assert_equal formats, gregorian(:locale => :root)[:quarters][:'stand-alone']
-  # end
+  
+  define_method 'test: merged calendars for de-AT contains all date format and stand-alone name types' do
+    assert_equal [:abbreviated, :narrow, :wide], gregorian(:merged => true)[:months][:format].keys
+    assert_equal [:abbreviated, :narrow, :wide], gregorian(:merged => true)[:months][:"stand-alone"].keys
+  end
 
   # Cldr::Data.locales.each do |locale|
   #   define_method "test: extract calendars for #{locale}" do
