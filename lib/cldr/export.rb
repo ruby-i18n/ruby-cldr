@@ -51,7 +51,7 @@ class Cldr
       def locales(locale, options)
         locale = locale.to_s.gsub('_', '-')
         locales = options[:merge] ? I18n::Locale::Fallbacks.new[locale.to_sym] : [locale.to_sym] 
-        locales << :root unless locale.index('-')
+        locales << :root
         locales
       end
 
