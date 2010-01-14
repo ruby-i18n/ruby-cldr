@@ -10,7 +10,7 @@ class TestCldrDateQuarterFormat < Test::Unit::TestCase
   end
 
   def format(object, pattern)
-    Cldr::Format::Datetime.new(pattern, @calendar).apply(object)
+    Cldr::Format::Date.new(pattern, @calendar).apply(object)
   end
 
   # QUARTER
