@@ -42,16 +42,22 @@ class Cldr
       formatter(locale, :percent, options.delete(:format)).apply(number, options)
     end
 
-    def format_date(locale, datetime, options = {})
-      formatter(locale, :date, options.delete(:format)).apply(datetime, options)
+    def format_date(locale, date, options = {})
+      formatter(locale, :date, options.delete(:format)).apply(date, options)
+    end
+
+    def format_time(locale, time, options = {})
+      formatter(locale, :time, options.delete(:format)).apply(time, options)
     end
 
     def format_datetime(locale, datetime, options = {})
-      formatter(locale, :datetime, options.delete(:format)).apply(datetime, options)
-    end
-
-    def format_time(locale, datetime, options = {})
-      formatter(locale, :time, options.delete(:format)).apply(datetime, options)
+      format = options.delete(:format)
+      (@formatters ||= {})[:"#{locale}.datetime.#{format}"] ||= begin
+        date = formatter(locale, :date, options.delete(:date_format) || format)
+        time = formatter(locale, :time, options.delete(:time_format) || format)
+        format = lookup_format(locale, :datetime, format)
+        Cldr::Format::Datetime.new(format, date, time).apply(datetime, options)
+      end
     end
 
     protected
