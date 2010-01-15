@@ -14,11 +14,11 @@ class Cldr
     autoload :Percent,  'cldr/format/percent'
     autoload :Time,     'cldr/format/time'
 
-    def format(locale, number, options = {})
+    def format(locale, object, options = {})
       type = options.has_key?(:currency) ? :currency : options.delete(:as)
-      type || raise_unspecified_format_type!
+      type ||= guess_type(object)
 
-      send(:"format_#{type}", locale, number, options)
+      send(:"format_#{type}", locale, object, options)
     end
 
     def format_decimal(locale, number, options = {})
@@ -51,7 +51,7 @@ class Cldr
     end
 
     def format_datetime(locale, datetime, options = {})
-      format = options.delete(:format)
+      format = options.delete(:format) || :default
       (@formatters ||= {})[:"#{locale}.datetime.#{format}"] ||= begin
         date = formatter(locale, :date, options.delete(:date_format) || format)
         time = formatter(locale, :time, options.delete(:time_format) || format)
@@ -62,6 +62,17 @@ class Cldr
 
     protected
 
+      def guess_type(object)
+        case object
+        when ::Numeric
+          :number
+        when ::Date, ::DateTime, ::Time
+          object.class.name.downcase
+        else
+          raise_unspecified_format_type!
+        end
+      end
+
       def formatter(locale, type, format)
         (@formatters ||= {})[:"#{locale}.#{type}.#{format}"] ||= begin
           format = lookup_format(locale, type, format)
@@ -70,12 +81,33 @@ class Cldr
         end
       end
 
+      def lookup_format(locale, type, format)
+        # Lookup the format string for the given type (e.g. :number).
+        raise_abstract!
+      end
+
+      def lookup_format_data(locale, type)
+        # Lookup the format data required for the given type (e.g. number
+        # symbols for type :number, calendar data for type :date etc.).
+        raise_abstract!
+      end
+
+      def lookup_currency(locale, currency, count)
+        # Lookup the currency representation for the given locale and amount.
+        # This might be a translation.
+        raise_abstract!
+      end
+
       def raise_unspecified_format_type!
         raise ArgumentError.new("You have to specify a format type, e.g. :as => :number.")
       end
 
       def raise_unspecified_currency!
         raise ArgumentError.new("You have to specify a currency, e.g. :currency => 'EUR'.")
+      end
+
+      def raise_abstract!
+        raise "you have to implement this method"
       end
   end
 end
