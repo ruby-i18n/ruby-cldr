@@ -20,14 +20,14 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   # end
   
   define_method "test: long time pattern :de" do
-    assert_equal '13:12:11 CET', format(Time.local(2010, 1, 1, 13, 12, 11), 'HH:mm:ss z')
+    assert_equal '13:12:11 UTC', format(Time.utc(2010, 1, 1, 13, 12, 11), 'HH:mm:ss z')
   end
 
   define_method "test: medium time pattern :de" do
-    assert_equal '13:12:11', format(Time.local(2010, 1, 1, 13, 12, 11), 'HH:mm:ss')
+    assert_equal '13:12:11', format(Time.utc(2010, 1, 1, 13, 12, 11), 'HH:mm:ss')
   end
 
   define_method "test: short time pattern :de" do
-    assert_equal '13:12', format(Time.local(2010, 1, 1, 13, 12, 11), 'HH:mm')
+    assert_equal '13:12', format(Time.utc(2010, 1, 1, 13, 12, 11), 'HH:mm')
   end
 end
