@@ -5,7 +5,7 @@ class Cldr
         attr_reader :prefix, :suffix, :integer_format, :fraction_format, :symbols
 
         DEFAULT_SYMBOLS = { :group => ',', :decimal => '.', :plus_sign => '+', :minus_sign => '-' }
-        FORMAT_PATTERN  = /^([^0#,\.]*)([0#,\.]+)([^0#,\.]*)$/
+        FORMAT_PATTERN  = /([^0#,\.]*)([0#,\.]+)([^0#,\.]*)$/
 
         def initialize(format, symbols = {})
           @symbols = DEFAULT_SYMBOLS.merge(symbols)
@@ -24,8 +24,8 @@ class Cldr
 
           def parse_format(format, symbols = {})
             format =~ FORMAT_PATTERN
-            int, fraction = $2.split('.')
-            [$1.to_s, $3.to_s, Integer.new(int, symbols), Fraction.new(fraction, symbols)]
+            prefix, suffix, int, fraction = $1.to_s, $3.to_s, *$2.split('.')
+            [prefix, suffix, Integer.new(int, symbols), Fraction.new(fraction, symbols)]
           end
 
           def parse_number(number, options = {})

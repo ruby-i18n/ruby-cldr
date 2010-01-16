@@ -22,7 +22,7 @@ class Cldr
           #        month(date, "MMMM", 4)   + ' ' + year(date, "y", 1) + ''
           def compile_format(format)
             "'" + format.gsub(self.class.const_get(:PATTERN)) do |token|
-              method = self.class.const_get(:METHODS)[token[0]]
+              method = self.class.const_get(:METHODS)[token[0, 1]]
               "' + #{method}(date, #{token.inspect}, #{token.length}) + '"
             end + "'"
           end

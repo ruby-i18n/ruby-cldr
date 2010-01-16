@@ -19,7 +19,7 @@ class Cldr
         end
         
         def compile_format(format)
-          "'" + format.gsub(%r({(0|1)})) do |token|
+          "'" + format.gsub(%r(\{(0|1)\})) do |token|
             "' + #{token == '{0}' ? 'time' : 'date'}.apply(datetime, options) + '"
           end + "'"
         end

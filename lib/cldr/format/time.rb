@@ -23,7 +23,7 @@ class Cldr
 
       def hour(time, pattern, length)
         hour = time.hour
-        hour = case pattern[0]
+        hour = case pattern[0, 1]
         when 'h' # [1-12]
           hour > 12 ? (hour - 12) : (hour == 0 ? 12 : hour)
         when 'H' # [0-23]

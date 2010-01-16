@@ -137,8 +137,8 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   end
   
   define_method 'test: merged calendars for de-AT contains all date format and stand-alone name types' do
-    assert_equal [:abbreviated, :narrow, :wide], gregorian(:merged => true)[:months][:format].keys
-    assert_equal [:abbreviated, :narrow, :wide], gregorian(:merged => true)[:months][:"stand-alone"].keys
+    assert_equal %w(abbreviated narrow wide), gregorian(:merged => true)[:months][:format].keys.map { |key| key.to_s }.sort
+    assert_equal %w(abbreviated narrow wide), gregorian(:merged => true)[:months][:"stand-alone"].keys.map { |key| key.to_s }.sort
   end
 
   # Cldr::Data.locales.each do |locale|
