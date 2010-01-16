@@ -24,6 +24,7 @@ Instead of exporting YAML, maybe by default export Ruby classes:
 					"#,##0.00 ¤"
 				end
 			end
+
 			class DeAt::Numbers::Formats::Currency < De::Numbers::Formats::Currency
 			end
 		end
