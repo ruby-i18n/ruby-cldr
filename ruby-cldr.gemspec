@@ -4,7 +4,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{cldr}
+  s.name = %q{ruby-cldr}
   s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -77,7 +77,7 @@ Gem::Specification.new do |s|
      "test/formats/rails_compat/format_number_test.rb",
      "test/test_helper.rb"
   ]
-  s.homepage = %q{http://github.com/svenfuchs/cldr}
+  s.homepage = %q{http://github.com/svenfuchs/ruby-cldr}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
