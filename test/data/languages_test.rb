@@ -56,12 +56,12 @@ class TestCldrDataLanguages < Test::Unit::TestCase
     assert_equal('Deutsch', languages[:de])
   end
   
-  Cldr::Data.locales.each do |locale|
-    define_method "test: extract languages for #{locale}" do
-      assert_nothing_raised do
-        Cldr::Data::Languages.new(locale)
-      end
-    end
-  end
+  # Cldr::Data.locales.each do |locale|
+  #   define_method "test: extract languages for #{locale}" do
+  #     assert_nothing_raised do
+  #       Cldr::Data::Languages.new(locale)
+  #     end
+  #   end
+  # end
 end
 

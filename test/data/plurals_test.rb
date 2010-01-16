@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper.rb'
 
 class TestCldrDataPluralParser < Test::Unit::TestCase
   def cldr_data
-    File.read(File.dirname(__FILE__) + '/../../vendor/cldr/data/core/supplemental/plurals.xml')
+    File.read(File.dirname(__FILE__) + '/../../vendor/cldr/common/supplemental/plurals.xml')
   end
   
   def cldr_rules

@@ -51,11 +51,11 @@ class TestCldrDataNumbers < Test::Unit::TestCase
     assert_equal expected, Cldr::Data::Numbers.new('de')[:numbers][:formats]
   end
 
-  Cldr::Data.locales.each do |locale|
-    define_method "test: extract number_symbols for #{locale}" do
-      assert_nothing_raised do
-        Cldr::Data::Numbers.new(locale)
-      end
-    end
-  end
+  # Cldr::Data.locales.each do |locale|
+  #   define_method "test: extract number_symbols for #{locale}" do
+  #     assert_nothing_raised do
+  #       Cldr::Data::Numbers.new(locale)
+  #     end
+  #   end
+  # end
 end

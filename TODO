@@ -1,6 +1,4 @@
 - during export resolve links if :merge => true
-
-- DateTime format needs to use {0} {1} cldr format
 - make sense of timezone data
 - hook into Rails' select_month and DateTime helpers
 
@@ -15,3 +13,18 @@ extract:
 what do the following tags in supplementalMetadata mean?
 - variable
 - defaultContent
+
+
+Instead of exporting YAML, maybe by default export Ruby classes:
+
+	module Cldr
+		module Data
+			class De::Numbers::Formats::Currency
+				def pattern
+					"#,##0.00 ¤"
+				end
+			end
+			class DeAt::Numbers::Formats::Currency < De::Numbers::Formats::Currency
+			end
+		end
+	end

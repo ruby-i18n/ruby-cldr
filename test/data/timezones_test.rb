@@ -40,13 +40,13 @@ class TestCldrDataTimezones < Test::Unit::TestCase
     assert_equal({ :city => 'Wien' }, timezones[:"Europe/Vienna"])
   end
 
-  Cldr::Data.locales.each do |locale|
-    define_method "test: extract timezones for #{locale}" do
-      assert_nothing_raised do
-        Cldr::Data::Timezones.new(locale)
-      end
-    end
-  end
+  # Cldr::Data.locales.each do |locale|
+  #   define_method "test: extract timezones for #{locale}" do
+  #     assert_nothing_raised do
+  #       Cldr::Data::Timezones.new(locale)
+  #     end
+  #   end
+  # end
 end
 
 

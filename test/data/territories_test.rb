@@ -34,13 +34,13 @@ class TestCldrDataTerritories < Test::Unit::TestCase
     assert_equal('Deutschland', territories[:DE])
   end
 
-  Cldr::Data.locales.each do |locale|
-    define_method "test: extract territories for #{locale}" do
-      assert_nothing_raised do
-        Cldr::Data::Territories.new(locale)
-      end
-    end
-  end
+  # Cldr::Data.locales.each do |locale|
+  #   define_method "test: extract territories for #{locale}" do
+  #     assert_nothing_raised do
+  #       Cldr::Data::Territories.new(locale)
+  #     end
+  #   end
+  # end
 end
 
 
