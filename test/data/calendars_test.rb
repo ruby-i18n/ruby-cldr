@@ -111,10 +111,10 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   define_method 'test: calendars datetime formats :de' do
     formats = {
       :default => :"calendars.gregorian.formats.datetime.medium",
-      :full    => { :pattern => "{1} {0}"},
-      :long    => { :pattern => "{1} {0}"},
-      :medium  => { :pattern => "{1} {0}"},
-      :short   => { :pattern => "{1} {0}"}
+      :full    => { :pattern => "{{date}} {{time}}"},
+      :long    => { :pattern => "{{date}} {{time}}"},
+      :medium  => { :pattern => "{{date}} {{time}}"},
+      :short   => { :pattern => "{{date}} {{time}}"}
     }
     assert_equal formats, gregorian[:formats][:datetime]
   end

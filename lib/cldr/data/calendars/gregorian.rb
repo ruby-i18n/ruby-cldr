@@ -105,7 +105,9 @@ class Cldr
 
         def pattern(node, type)
           select(node, "#{type}Format/pattern").inject({}) do |result, node|
-            result[:pattern] = node.content
+            pattern = node.content
+            pattern = pattern.gsub('{0}', '{{time}}').gsub('{1}', '{{date}}') if type == 'dateTime'
+            result[:pattern] = pattern
             result
           end
         end
