@@ -1,0 +1,9 @@
+# require "autotest/restart"
+# require 'autotest/timestamp'
+require 'test/test_autotest'
+
+Autotest.add_hook :initialize do |config|
+  config.add_mapping(%r(^lib\/.*rb$), true) do |filename, _|
+    tests_for(filename)
+  end
+end
