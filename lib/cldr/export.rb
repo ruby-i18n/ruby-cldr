@@ -6,6 +6,8 @@ require 'core_ext/hash/deep_stringify_keys'
 
 class Cldr
   module Export
+    autoload :Code, 'cldr/export/code'
+    autoload :Data, 'cldr/export/data'
     autoload :Ruby, 'cldr/export/ruby'
     autoload :Yaml, 'cldr/export/yaml'
 

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../test_helper.rb'
+require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataNumbers < Test::Unit::TestCase
   define_method "test: number symbols :de" do
@@ -18,7 +18,7 @@ class TestCldrDataNumbers < Test::Unit::TestCase
       :infinity          => "∞",
       :pattern_digit     => "#"
     }
-    assert_equal expected, Cldr::Data::Numbers.new('de')[:numbers][:symbols]
+    assert_equal expected, Cldr::Export::Data::Numbers.new('de')[:numbers][:symbols]
   end
 
   define_method "test: number formats :de" do
@@ -48,13 +48,13 @@ class TestCldrDataNumbers < Test::Unit::TestCase
         }
       }
     }
-    assert_equal expected, Cldr::Data::Numbers.new('de')[:numbers][:formats]
+    assert_equal expected, Cldr::Export::Data::Numbers.new('de')[:numbers][:formats]
   end
 
-  # Cldr::Data.locales.each do |locale|
+  # Cldr::Export::Data.locales.each do |locale|
   #   define_method "test: extract number_symbols for #{locale}" do
   #     assert_nothing_raised do
-  #       Cldr::Data::Numbers.new(locale)
+  #       Cldr::Export::Data::Numbers.new(locale)
   #     end
   #   end
   # end

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../test_helper.rb'
+require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrCurrencies < Test::Unit::TestCase
   define_method 'test: currencies :de' do
@@ -30,15 +30,15 @@ class TestCldrCurrencies < Test::Unit::TestCase
              :XPF, :XPT, :XRE, :XTS, :XXX, :YDD, :YER, :YUD, :YUM, :YUN, :ZAL,
              :ZAR, :ZMK, :ZRN, :ZRZ, :ZWD]
     
-    currencies = Cldr::Data::Currencies.new('de')[:currencies]
+    currencies = Cldr::Export::Data::Currencies.new('de')[:currencies]
     assert (currencies.keys - codes).empty? && (codes - currencies.keys).empty?
     assert_equal({ :one => 'Euro', :other => 'Euro' }, currencies[:EUR])
   end
 
-  # Cldr::Data.locales.each do |locale|
+  # Cldr::Export::Data.locales.each do |locale|
   #   define_method "test: extract currencies for #{locale}" do
   #     assert_nothing_raised do
-  #       Cldr::Data::Currencies.new(locale)
+  #       Cldr::Export::Data::Currencies.new(locale)
   #     end
   #   end
   # end

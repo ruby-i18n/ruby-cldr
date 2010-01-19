@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../test_helper.rb'
+require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataUnits < Test::Unit::TestCase
   define_method 'test: units' do
@@ -14,7 +14,7 @@ class TestCldrDataUnits < Test::Unit::TestCase
       :second => { :one => "{0} Sek.",  :other => "{0} Sek." }
     }
     keys = %w(day week month year hour minute second).sort
-    data = Cldr::Data::Units.new('de')[:units]
+    data = Cldr::Export::Data::Units.new('de')[:units]
 
     assert_equal keys, data.keys.map { |key| key.to_s }.sort
     assert_equal units[:day],    data[:day]
@@ -26,10 +26,10 @@ class TestCldrDataUnits < Test::Unit::TestCase
     assert_equal units[:second], data[:second]
   end
 
-  # Cldr::Data.locales.each do |locale|
+  # Cldr::Export::Data.locales.each do |locale|
   #   define_method "test: extract units for #{locale}" do
   #     assert_nothing_raised do
-  #       Cldr::Data::Units.new(locale)
+  #       Cldr::Export::Data::Units.new(locale)
   #     end
   #   end
   # end

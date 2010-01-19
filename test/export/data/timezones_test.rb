@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../test_helper.rb'
+require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataTimezones < Test::Unit::TestCase
   define_method 'test: timezones :de' do
@@ -35,15 +35,15 @@ class TestCldrDataTimezones < Test::Unit::TestCase
              :"America/Indiana/Knox", :"Asia/Tashkent", :"America/St_Vincent",
              :"America/St_Thomas"]
   
-    timezones = Cldr::Data::Timezones.new(:de)[:timezones]
+    timezones = Cldr::Export::Data::Timezones.new(:de)[:timezones]
     assert (timezones.keys - codes).empty? && (codes - timezones.keys).empty?
     assert_equal({ :city => 'Wien' }, timezones[:"Europe/Vienna"])
   end
 
-  # Cldr::Data.locales.each do |locale|
+  # Cldr::Export::Data.locales.each do |locale|
   #   define_method "test: extract timezones for #{locale}" do
   #     assert_nothing_raised do
-  #       Cldr::Data::Timezones.new(locale)
+  #       Cldr::Export::Data::Timezones.new(locale)
   #     end
   #   end
   # end

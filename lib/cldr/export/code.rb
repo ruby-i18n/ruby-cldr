@@ -1,0 +1,34 @@
+class Cldr
+  module Export
+    module Code
+      # autoload :Base,          'cldr/export/data/base'
+      # autoload :Calendars,     'cldr/export/data/calendars'
+      # autoload :Currencies,    'cldr/export/data/currencies'
+      # autoload :Delimiters,    'cldr/export/data/delimiters'
+      # autoload :Languages,     'cldr/export/data/languages'
+      autoload :Numbers,       'cldr/export/data/numbers'
+      # autoload :Plurals,       'cldr/export/data/plurals'
+      # autoload :Territories,   'cldr/export/data/territories'
+      # autoload :Timezones,     'cldr/export/data/timezones'
+      # autoload :Units,         'cldr/export/data/units'
+      # 
+      # class << self
+      #   def dir
+      #     @dir ||= File.expand_path('./vendor/cldr/common')
+      #   end
+      # 
+      #   def dir=(dir)
+      #     @dir = dir
+      #   end
+      # 
+      #   def locales
+      #     Dir["#{dir}/main/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && $1 }
+      #   end
+      # 
+      #   def components
+      #     self.constants.sort - [:Base, :Export]
+      #   end
+      # end
+    end
+  end
+end

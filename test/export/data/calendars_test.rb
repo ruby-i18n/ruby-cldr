@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../test_helper.rb'
+require File.dirname(__FILE__) + '/../../test_helper.rb'
 require 'core_ext/hash/deep_stringify_keys'
 
 class TestCldrDataCalendars < Test::Unit::TestCase
@@ -141,9 +141,9 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal %w(abbreviated narrow wide), gregorian(:merged => true)[:months][:"stand-alone"].keys.map { |key| key.to_s }.sort
   end
 
-  # Cldr::Data.locales.each do |locale|
+  # Cldr::Export::Data.locales.each do |locale|
   #   define_method "test: extract calendars for #{locale}" do
-  #     Cldr::Data::Calendars.new(locale)
+  #     Cldr::Export::Data::Calendars.new(locale)
   #   end
   # end
 end

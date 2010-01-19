@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../test_helper.rb'
+require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataDelimiters < Test::Unit::TestCase
   define_method 'test: delimiters :de' do
@@ -18,13 +18,13 @@ class TestCldrDataDelimiters < Test::Unit::TestCase
         }
       }
     }
-    assert_equal expected, Cldr::Data::Delimiters.new('de')
+    assert_equal expected, Cldr::Export::Data::Delimiters.new('de')
   end
 
-  # Cldr::Data.locales.each do |locale|
+  # Cldr::Export::Data.locales.each do |locale|
   #   define_method "test: extract delimiters for #{locale}" do
   #     assert_nothing_raised do
-  #       Cldr::Data::Delimiters.new(locale)
+  #       Cldr::Export::Data::Delimiters.new(locale)
   #     end
   #   end
   # end

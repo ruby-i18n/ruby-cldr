@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../test_helper.rb'
+require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataLanguages < Test::Unit::TestCase
   define_method 'test: languages :de' do
@@ -50,16 +50,16 @@ class TestCldrDataLanguages < Test::Unit::TestCase
              :was, :wen, :wo, :xal, :xh, :yao, :yap, :yi, :yo, :ypk, :za, :zap,
              :zbl, :zen, :zh, :"zh-Hans", :"zh-Hant", :znd, :zu, :zun, :zxx, :zza]
     
-    languages = Cldr::Data::Languages.new('de')[:languages]
+    languages = Cldr::Export::Data::Languages.new('de')[:languages]
   
     assert (languages.keys - codes).empty? && (codes - languages.keys).empty?
     assert_equal('Deutsch', languages[:de])
   end
   
-  # Cldr::Data.locales.each do |locale|
+  # Cldr::Export::Data.locales.each do |locale|
   #   define_method "test: extract languages for #{locale}" do
   #     assert_nothing_raised do
-  #       Cldr::Data::Languages.new(locale)
+  #       Cldr::Export::Data::Languages.new(locale)
   #     end
   #   end
   # end
