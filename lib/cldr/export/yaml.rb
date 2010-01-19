@@ -1,6 +1,6 @@
 require 'ya2yaml'
 
-class Cldr
+module Cldr
   module Export
     class Yaml < Ya2YAML
       def initialize

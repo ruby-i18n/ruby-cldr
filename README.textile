@@ -57,12 +57,12 @@ E.g.:
 	format.apply(1234.567)
 	# => "1 234,57"
 
-	calendar = Cldr::Data::Calendars.new(:de)[:calendars][:gregorian]
-	format   = Cldr::Format::Date.new('EEEE, d. MMMM y', calendar)
+	calendar = Cldr::Export::Data::Calendars.new(:de)[:calendars][:gregorian]
+	format   = Cldr::Export::Format::Date.new('EEEE, d. MMMM y', calendar)
 	format.apply(Date.new(2010, 1, 11))
 	# => "Montag, 11. Januar 2010"
 
-	calendar = Cldr::Data::Calendars.new(:de)[:calendars][:gregorian]
+	calendar = Cldr::Export::Data::Calendars.new(:de)[:calendars][:gregorian]
 	format   = Cldr::Format::Time.new('HH:mm:ss z', calendar)
 	format.apply(Time.utc(2010, 1, 1, 13, 12, 11))
 	# => "13:12:11 UTC"
@@ -100,5 +100,5 @@ h2. Resources
 For additional information on CLDR plural rules see:
 
   * "http://unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules":http://unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules
-  * "http://www.unicode.org/cldr/data/charts/supplemental/language_plural_rules.html":http://www.unicode.org/cldr/data/charts/supplemental/language_plural_rules.html
+  * "http://www.unicode.org/cldr/export/data/charts/supplemental/language_plural_rules.html":http://www.unicode.org/cldr/export/data/charts/supplemental/language_plural_rules.html
 

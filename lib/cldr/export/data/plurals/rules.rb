@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'rexml/document'
 
-class Cldr
+module Cldr
   module Export
     module Data
       class Plurals

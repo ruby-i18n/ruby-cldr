@@ -1,7 +1,7 @@
 require 'thor'
 require 'cldr'
 
-class Cldr
+module Cldr
   class Thor < ::Thor
     namespace 'cldr'
 

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Cldr
+module Cldr
   module Format
     class Percent < Decimal
       def apply(number, options = {})

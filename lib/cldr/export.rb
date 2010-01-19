@@ -4,7 +4,7 @@ require 'core_ext/string/camelize'
 require 'core_ext/string/underscore'
 require 'core_ext/hash/deep_stringify_keys'
 
-class Cldr
+module Cldr
   module Export
     autoload :Code, 'cldr/export/code'
     autoload :Data, 'cldr/export/data'

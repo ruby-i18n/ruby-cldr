@@ -2,7 +2,7 @@ require 'core_ext/string/underscore'
 require 'core_ext/hash/deep_merge'
 require 'nokogiri'
 
-class Cldr
+module Cldr
   module Export
     module Data
       class Base < Hash

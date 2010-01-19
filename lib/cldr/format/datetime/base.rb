@@ -1,4 +1,4 @@
-class Cldr
+module Cldr
   module Format
     class Datetime
       class Base

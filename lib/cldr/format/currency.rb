@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class Cldr
+module Cldr
   module Format
     class Currency < Decimal
       def apply(number, options = {})

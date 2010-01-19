@@ -3,7 +3,7 @@ require 'net/http'
 require 'uri'
 require 'tempfile'
 
-class Cldr
+module Cldr
   class << self
     def download(source = nil, target = nil)
       source ||= 'http://unicode.org/Public/cldr/1.7.2/core.zip'

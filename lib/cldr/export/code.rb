@@ -1,4 +1,4 @@
-class Cldr
+module Cldr
   module Export
     module Code
       # autoload :Base,          'cldr/export/data/base'

@@ -1,4 +1,4 @@
-class Cldr
+module Cldr
   module Export
     class Ruby
       def export(locale, component, options = {})

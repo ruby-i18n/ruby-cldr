@@ -1,4 +1,4 @@
-class Cldr
+module Cldr
   module Format
     class Decimal
       class Number

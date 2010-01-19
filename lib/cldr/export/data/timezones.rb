@@ -1,6 +1,6 @@
 # I probably don't really get timezones.
 
-class Cldr
+module Cldr
   module Export
     module Data
       class Timezones < Base

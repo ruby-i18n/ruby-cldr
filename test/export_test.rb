@@ -44,12 +44,12 @@ class TestExtract < Test::Unit::TestCase
     assert_equal yaml, Cldr::Export::Yaml.new.emit(data.deep_stringify_keys)
   end
 
-  # Cldr::Data.locales.each do |locale|
-  #   Cldr::Data.components.each do |component|
+  # Cldr::Export::Data.locales.each do |locale|
+  #   Cldr::Export::Data.components.each do |component|
   #     define_method "test: exported yaml file yaml for #{locale}/#{component} readable" do
   #       Cldr::Export.export(:locales => [locale], :components => [component])
   #       assert_nothing_raised do
-  #         YAML.load(File.open(Cldr::Data::Export.path(locale, component))) rescue Errno::ENOENT
+  #         YAML.load(File.open(Cldr::Export::Data::Export.path(locale, component))) rescue Errno::ENOENT
   #       end
   #     end
   #   end

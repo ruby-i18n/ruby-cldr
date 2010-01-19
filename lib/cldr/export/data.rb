@@ -1,6 +1,6 @@
 require 'core_ext/string/camelize'
 
-class Cldr
+module Cldr
   module Export
     module Data
       autoload :Base,          'cldr/export/data/base'

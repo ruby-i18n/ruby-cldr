@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'core_ext/string/camelize'
 
-class Cldr
+module Cldr
   module Format
     autoload :Base,     'cldr/format/base'
     autoload :Currency, 'cldr/format/currency'
