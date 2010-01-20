@@ -1,16 +1,16 @@
 module Cldr
   module Export
     module Code
-      # autoload :Base,          'cldr/export/data/base'
-      # autoload :Calendars,     'cldr/export/data/calendars'
-      # autoload :Currencies,    'cldr/export/data/currencies'
-      # autoload :Delimiters,    'cldr/export/data/delimiters'
-      # autoload :Languages,     'cldr/export/data/languages'
-      autoload :Numbers,       'cldr/export/data/numbers'
-      # autoload :Plurals,       'cldr/export/data/plurals'
-      # autoload :Territories,   'cldr/export/data/territories'
-      # autoload :Timezones,     'cldr/export/data/timezones'
-      # autoload :Units,         'cldr/export/data/units'
+      # autoload :Base,          'cldr/export/code/base'
+      # autoload :Calendars,     'cldr/export/code/calendars'
+      # autoload :Currencies,    'cldr/export/code/currencies'
+      # autoload :Delimiters,    'cldr/export/code/delimiters'
+      # autoload :Languages,     'cldr/export/code/languages'
+      autoload :Numbers,       'cldr/export/code/numbers'
+      # autoload :Plurals,       'cldr/export/code/plurals'
+      # autoload :Territories,   'cldr/export/code/territories'
+      # autoload :Timezones,     'cldr/export/code/timezones'
+      # autoload :Units,         'cldr/export/code/units'
       # 
       # class << self
       #   def dir
