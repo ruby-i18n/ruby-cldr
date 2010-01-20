@@ -6,15 +6,17 @@ module Cldr
           def initialize(locale)
             super
             update(
-              :months              => contexts('month'),
-              :days                => contexts('day'),
-              :eras                => contexts('era'),
-              :quarters            => contexts('quarter'),
-              :periods             => periods,
-              :fields              => fields,
-              :'formats.date'      => formats('date'),
-              :'formats.time'      => formats('time'),
-              :'formats.datetime'  => formats('dateTime')
+              :months   => contexts('month'),
+              :days     => contexts('day'),
+              :eras     => contexts('era'),
+              :quarters => contexts('quarter'),
+              :periods  => periods,
+              :fields   => fields,
+              :formats => {
+                :date     => formats('date'),
+                :time     => formats('time'),
+                :datetime => formats('dateTime')
+              }
             )
           end
 

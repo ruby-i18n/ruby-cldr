@@ -4,7 +4,7 @@ module Cldr
       class Currencies < Base
         def initialize(locale)
           super
-          self[:currencies] = currencies
+          update(:currencies => currencies)
         end
 
         def currencies

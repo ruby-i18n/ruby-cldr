@@ -4,7 +4,7 @@ module Cldr
       class Units < Base
         def initialize(locale)
           super
-          self[:units] = units
+          update(:units => units)
         end
 
         def units

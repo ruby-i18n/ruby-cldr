@@ -4,8 +4,14 @@ module Cldr
       class Delimiters < Base
         def initialize(locale)
           super
-          self[:'delimiters.quotes.default']   = quotes('quotation')
-          self[:'delimiters.quotes.alternate'] = quotes('alternateQuotation')
+          update(
+            :delimiters => {
+              :quotes => {
+                :default   => quotes('quotation'),
+                :alternate => quotes('alternateQuotation')
+              }
+            }
+          )
         end
 
         def quotes(type)

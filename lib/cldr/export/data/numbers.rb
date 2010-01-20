@@ -4,30 +4,34 @@ module Cldr
       class Numbers < Base
         def initialize(locale)
           super
-          self[:'numbers.symbols'] = symbols
-          self[:'numbers.formats'] = {
-            :decimal => {
-              :patterns => {
-                :default => format('decimal')
+          update(
+            :numbers => {
+              :symbols => symbols,
+              :formats => {
+                :decimal => {
+                  :patterns => {
+                    :default => format('decimal')
+                  }
+                },
+                :scientific => {
+                  :patterns => {
+                    :default => format('scientific')
+                  }
+                },
+                :percent => {
+                  :patterns => {
+                    :default => format('percent')
+                  }
+                },
+                :currency => {
+                  :patterns => {
+                    :default => format('currency'),
+                  },
+                  :unit => unit
+                }
               }
-            },
-            :scientific => {
-              :patterns => {
-                :default => format('scientific')
-              }
-            },
-            :percent => {
-              :patterns => {
-                :default => format('percent')
-              }
-            },
-            :currency => {
-              :patterns => {
-                :default => format('currency')
-              }
-            },
-          }
-          self[:'numbers.formats.currency.unit'] = unit
+            }
+          )
         end
       
         def currency

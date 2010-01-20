@@ -6,7 +6,7 @@ module Cldr
       class Timezones < Base
         def initialize(locale)
           super
-          self[:timezones] = timezones
+          update(:timezones => timezones)
         end
 
         def timezones
