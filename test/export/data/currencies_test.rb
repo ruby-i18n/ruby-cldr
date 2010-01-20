@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrCurrencies < Test::Unit::TestCase
-  define_method 'test: currencies :de' do
+  test 'currencies :de' do
     codes = [:ADP, :AED, :AFA, :AFN, :ALL, :AMD, :ANG, :AOA, :AOK, :AON, :AOR,
              :ARA, :ARP, :ARS, :ATS, :AUD, :AWG, :AZM, :AZN, :BAD, :BAM, :BBD,
              :BDT, :BEC, :BEF, :BEL, :BGL, :BGN, :BHD, :BIF, :BMD, :BND, :BOB,
@@ -36,7 +36,7 @@ class TestCldrCurrencies < Test::Unit::TestCase
   end
 
   # Cldr::Export::Data.locales.each do |locale|
-  #   define_method "test: extract currencies for #{locale}" do
+  #   test "extract currencies for #{locale}" do
   #     assert_nothing_raised do
   #       Cldr::Export::Data::Currencies.new(locale)
   #     end

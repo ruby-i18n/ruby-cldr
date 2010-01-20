@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataTerritories < Test::Unit::TestCase
-  define_method 'test: territories :de' do
+  test 'territories :de' do
     codes = [:"001", :"002", :"003", :"005", :"009", :"011", :"013", :"014",
              :"015", :"017", :"018", :"019", :"021", :"029", :"030", :"034",
              :"035", :"039", :"053", :"054", :"057", :"061", :"062", :"142",
@@ -35,7 +35,7 @@ class TestCldrDataTerritories < Test::Unit::TestCase
   end
 
   # Cldr::Export::Data.locales.each do |locale|
-  #   define_method "test: extract territories for #{locale}" do
+  #   test "extract territories for #{locale}" do
   #     assert_nothing_raised do
   #       Cldr::Export::Data::Territories.new(locale)
   #     end

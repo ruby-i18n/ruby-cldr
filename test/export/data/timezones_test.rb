@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataTimezones < Test::Unit::TestCase
-  define_method 'test: timezones :de' do
+  test 'timezones :de' do
     codes = [:"Etc/Unknown", :"Europe/Tirane", :"Asia/Yerevan",
              :"America/Curacao", :"Antarctica/South_Pole",
              :"Antarctica/Vostok", :"Antarctica/DumontDUrville",
@@ -41,7 +41,7 @@ class TestCldrDataTimezones < Test::Unit::TestCase
   end
 
   # Cldr::Export::Data.locales.each do |locale|
-  #   define_method "test: extract timezones for #{locale}" do
+  #   test "extract timezones for #{locale}" do
   #     assert_nothing_raised do
   #       Cldr::Export::Data::Timezones.new(locale)
   #     end

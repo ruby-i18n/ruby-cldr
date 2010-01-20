@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataUnits < Test::Unit::TestCase
-  define_method 'test: units' do
+  test 'units' do
     units = {
       :day    => { :one => "{0} Tag",   :other => "{0} Tage" },
       :week   => { :one => "{0} Woche", :other => "{0} Wochen" },
@@ -27,7 +27,7 @@ class TestCldrDataUnits < Test::Unit::TestCase
   end
 
   # Cldr::Export::Data.locales.each do |locale|
-  #   define_method "test: extract units for #{locale}" do
+  #   test "extract units for #{locale}" do
   #     assert_nothing_raised do
   #       Cldr::Export::Data::Units.new(locale)
   #     end

@@ -18,7 +18,7 @@ class TestExtract < Test::Unit::TestCase
     File.expand_path(File.dirname(__FILE__) + '/tmp')
   end
 
-  define_method 'test: passing the merge option generates and merge data for all fallback locales' do
+  test 'passing the merge option generates and merge data for all fallback locales' do
     data = Cldr::Export.data('numbers', 'de-AT')
     assert !data[:numbers][:formats][:nan]
 
@@ -26,18 +26,18 @@ class TestExtract < Test::Unit::TestCase
     assert_equal 'NaN', data[:numbers][:symbols][:nan]
   end
 
-  define_method "test: exports data to files" do
+  test "exports data to files" do
     Cldr::Export.export(:locales => %w(de), :components => %w(calendars))
     assert File.exists?(Cldr::Export.path('de', 'calendars', 'yml'))
   end
 
-  define_method "test: exported data starts with the locale at top level" do
+  test "exported data starts with the locale at top level" do
     Cldr::Export.export(:locales => %w(de), :components => %w(calendars))
     data = YAML.load(File.open(Cldr::Export.path('de', 'calendars', 'yml')))
     assert data['de']
   end
 
-  define_method "test: writes dot-separated symbols to yaml" do
+  test "writes dot-separated symbols to yaml" do
     data = { :format  => { :narrow => :"calendars.gregorian.months.stand-alone.narrow" } }
     yaml = %(\nformat: \n  narrow: :"calendars.gregorian.months.stand-alone.narrow")
 
@@ -46,7 +46,7 @@ class TestExtract < Test::Unit::TestCase
 
   # Cldr::Export::Data.locales.each do |locale|
   #   Cldr::Export::Data.components.each do |component|
-  #     define_method "test: exported yaml file yaml for #{locale}/#{component} readable" do
+  #     test "exported yaml file yaml for #{locale}/#{component} readable" do
   #       Cldr::Export.export(:locales => [locale], :components => [component])
   #       assert_nothing_raised do
   #         YAML.load(File.open(Cldr::Export::Data::Export.path(locale, component))) rescue Errno::ENOENT

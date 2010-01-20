@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataNumbers < Test::Unit::TestCase
-  define_method "test: number symbols :de" do
+  test "number symbols :de" do
     expected = {
       :nan               => "NaN",
       :decimal           => ",",
@@ -21,7 +21,7 @@ class TestCldrDataNumbers < Test::Unit::TestCase
     assert_equal expected, Cldr::Export::Data::Numbers.new('de')[:numbers][:symbols]
   end
 
-  define_method "test: number formats :de" do
+  test "number formats :de" do
     expected = {
       :decimal => {
         :patterns => {
@@ -52,7 +52,7 @@ class TestCldrDataNumbers < Test::Unit::TestCase
   end
 
   # Cldr::Export::Data.locales.each do |locale|
-  #   define_method "test: extract number_symbols for #{locale}" do
+  #   test "extract number_symbols for #{locale}" do
   #     assert_nothing_raised do
   #       Cldr::Export::Data::Numbers.new(locale)
   #     end

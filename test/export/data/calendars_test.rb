@@ -9,7 +9,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     Cldr::Export.data(:calendars, locale, options)[:calendars][:gregorian]
   end
 
-  define_method 'test: calendars months :de' do
+  test 'calendars months :de' do
     months = {
       :format  => {
         :wide        => { 1 => 'Januar', 2 => 'Februar', 3 => 'März', 4 => 'April', 5 => 'Mai', 6 => 'Juni', 7 => 'Juli', 8 => 'August', 9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Dezember' },
@@ -25,7 +25,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal months, gregorian[:months]
   end
 
-  define_method 'test: calendars days :de' do
+  test 'calendars days :de' do
     days = {
       :format  => {
         :wide        => { :sun => 'Sonntag', :mon => 'Montag', :tue => 'Dienstag', :wed => 'Mittwoch', :thu => 'Donnerstag', :fri => 'Freitag', :sat => 'Samstag' },
@@ -41,7 +41,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal days, gregorian[:days]
   end
 
-  define_method 'test: calendars quarters :de' do
+  test 'calendars quarters :de' do
     quarters = {
       :format  => {
         :wide        => { 1 => "1. Quartal", 2 => "2. Quartal", 3 => "3. Quartal", 4 => "4. Quartal" },
@@ -57,7 +57,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal quarters, gregorian[:quarters]
   end
 
-  define_method 'test: calendars periods :de' do
+  test 'calendars periods :de' do
     periods = {
       :am => 'vorm.',
       :pm => 'nachm.',
@@ -78,7 +78,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   #     <alias source="locale" path="../eraAbbr"/>
   #   </eraNarrow>
   # </eras>
-  # define_method 'test: calendars eras :de' do
+  # test 'calendars eras :de' do
   #   eras = {
   #     0 => { :abbr => "v. Chr.", :name => "v. Chr." },
   #     1 => { :abbr => "n. Chr.", :name => "n. Chr." }
@@ -86,7 +86,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   #   assert_equal eras, gregorian[:eras]
   # end
 
-  define_method 'test: calendars date formats :de' do
+  test 'calendars date formats :de' do
     formats = {
       :default => :"calendars.gregorian.formats.date.medium",
       :full    => { :pattern => "EEEE, d. MMMM y" },
@@ -97,7 +97,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal formats, gregorian[:formats][:date]
   end
 
-  define_method 'test: calendars time formats :de' do
+  test 'calendars time formats :de' do
     formats = {
       :default => :"calendars.gregorian.formats.time.medium",
       :full    => { :pattern => "HH:mm:ss zzzz" },
@@ -108,7 +108,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal formats, gregorian[:formats][:time]
   end
 
-  define_method 'test: calendars datetime formats :de' do
+  test 'calendars datetime formats :de' do
     formats = {
       :default => :"calendars.gregorian.formats.datetime.medium",
       :full    => { :pattern => "{{date}} {{time}}"},
@@ -119,7 +119,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal formats, gregorian[:formats][:datetime]
   end
 
-  define_method 'test: calendars fields :de' do
+  test 'calendars fields :de' do
     fields = {
       :hour      => "Stunde",
       :minute    => "Minute",
@@ -136,13 +136,13 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal fields, gregorian[:fields]
   end
   
-  define_method 'test: merged calendars for de-AT contains all date format and stand-alone name types' do
+  test 'merged calendars for de-AT contains all date format and stand-alone name types' do
     assert_equal %w(abbreviated narrow wide), gregorian(:merged => true)[:months][:format].keys.map { |key| key.to_s }.sort
     assert_equal %w(abbreviated narrow wide), gregorian(:merged => true)[:months][:"stand-alone"].keys.map { |key| key.to_s }.sort
   end
 
   # Cldr::Export::Data.locales.each do |locale|
-  #   define_method "test: extract calendars for #{locale}" do
+  #   test "extract calendars for #{locale}" do
   #     Cldr::Export::Data::Calendars.new(locale)
   #   end
   # end

@@ -17,25 +17,25 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   
   # Timezone missing
   #
-  # define_method "test: full time pattern :de" do
+  # test "full time pattern :de" do
   #   assert_equal '13:12:11 zzzz', format(Time.local(2000, 1, 1, 13, 12, 11), 'HH:mm:ss zzzz')
   # end
   
-  define_method "test: long time pattern :de" do
+  test "long time pattern :de" do
     assert_equal '13:12:11 UTC', format(Time.utc(2010, 1, 1, 13, 12, 11), 'HH:mm:ss z')
   end
 
-  define_method "test: medium time pattern :de" do
+  test "medium time pattern :de" do
     assert_equal '13:12:11', format(Time.utc(2010, 1, 1, 13, 12, 11), 'HH:mm:ss')
   end
 
-  define_method "test: short time pattern :de" do
+  test "short time pattern :de" do
     assert_equal '13:12', format(Time.utc(2010, 1, 1, 13, 12, 11), 'HH:mm')
   end
   
   # TIMEZONE
 
-  define_method "test: z, zz, zzz" do # TODO is this what's meant by the spec?
+  test "z, zz, zzz" do # TODO is this what's meant by the spec?
     assert_equal  'CET', format(Time.local(2000, 1, 1, 1, 1,  1), 'z')
     assert_equal  'CET', format(Time.local(2000, 1, 1, 1, 1,  1), 'zz')
     assert_equal  'CET', format(Time.local(2000, 1, 1, 1, 1,  1), 'zzz')
@@ -43,14 +43,14 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   
   # PERIOD
 
-  define_method "test: period" do
+  test "period" do
     assert_equal 'vorm.', format(Time.local(2000, 1, 1, 1, 1, 1), 'a')
     assert_equal 'nachm.', format(Time.local(2000, 1, 1, 15, 1, 1), 'a')
   end
   
   # HOUR
 
-  define_method "test: h" do
+  test "h" do
     assert_equal '12', format(Time.local(2000, 1, 1,  0, 1, 1), 'h')
     assert_equal  '1', format(Time.local(2000, 1, 1,  1, 1, 1), 'h')
     assert_equal '11', format(Time.local(2000, 1, 1, 11, 1, 1), 'h')
@@ -58,7 +58,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '11', format(Time.local(2000, 1, 1, 23, 1, 1), 'h')
   end
 
-  define_method "test: hh" do
+  test "hh" do
     assert_equal '12', format(Time.local(2000, 1, 1,  0, 1, 1), 'hh')
     assert_equal '01', format(Time.local(2000, 1, 1,  1, 1, 1), 'hh')
     assert_equal '11', format(Time.local(2000, 1, 1, 11, 1, 1), 'hh')
@@ -66,7 +66,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '11', format(Time.local(2000, 1, 1, 23, 1, 1), 'hh')
   end
 
-  define_method "test: H" do
+  test "H" do
     assert_equal  '0', format(Time.local(2000, 1, 1,  0, 1, 1), 'H')
     assert_equal  '1', format(Time.local(2000, 1, 1,  1, 1, 1), 'H')
     assert_equal '11', format(Time.local(2000, 1, 1, 11, 1, 1), 'H')
@@ -74,7 +74,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '23', format(Time.local(2000, 1, 1, 23, 1, 1), 'H')
   end
 
-  define_method "test: HH" do
+  test "HH" do
     assert_equal '00', format(Time.local(2000, 1, 1,  0, 1, 1), 'HH')
     assert_equal '01', format(Time.local(2000, 1, 1,  1, 1, 1), 'HH')
     assert_equal '11', format(Time.local(2000, 1, 1, 11, 1, 1), 'HH')
@@ -82,7 +82,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '23', format(Time.local(2000, 1, 1, 23, 1, 1), 'HH')
   end
 
-  define_method "test: K" do
+  test "K" do
     assert_equal  '0', format(Time.local(2000, 1, 1,  0, 1, 1), 'K')
     assert_equal  '1', format(Time.local(2000, 1, 1,  1, 1, 1), 'K')
     assert_equal '11', format(Time.local(2000, 1, 1, 11, 1, 1), 'K')
@@ -90,7 +90,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '11', format(Time.local(2000, 1, 1, 23, 1, 1), 'K')
   end
 
-  define_method "test: KK" do
+  test "KK" do
     assert_equal '00', format(Time.local(2000, 1, 1,  0, 1, 1), 'KK')
     assert_equal '01', format(Time.local(2000, 1, 1,  1, 1, 1), 'KK')
     assert_equal '11', format(Time.local(2000, 1, 1, 11, 1, 1), 'KK')
@@ -98,7 +98,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '11', format(Time.local(2000, 1, 1, 23, 1, 1), 'KK')
   end
 
-  define_method "test: k" do
+  test "k" do
     assert_equal '24', format(Time.local(2000, 1, 1,  0, 1, 1), 'k')
     assert_equal  '1', format(Time.local(2000, 1, 1,  1, 1, 1), 'k')
     assert_equal '11', format(Time.local(2000, 1, 1, 11, 1, 1), 'k')
@@ -106,7 +106,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '23', format(Time.local(2000, 1, 1, 23, 1, 1), 'k')
   end
 
-  define_method "test: kk" do
+  test "kk" do
     assert_equal '24', format(Time.local(2000, 1, 1,  0, 1, 1), 'kk')
     assert_equal '01', format(Time.local(2000, 1, 1,  1, 1, 1), 'kk')
     assert_equal '11', format(Time.local(2000, 1, 1, 11, 1, 1), 'kk')
@@ -116,30 +116,30 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   
   # MINUTE
 
-  define_method "test: m" do
+  test "m" do
     assert_equal  '1', format(Time.local(2000, 1, 1, 1,  1, 1), 'm')
     assert_equal '11', format(Time.local(2000, 1, 1, 1, 11, 1), 'm')
   end
 
-  define_method "test: mm" do
+  test "mm" do
     assert_equal '01', format(Time.local(2000, 1, 1, 1,  1, 1), 'mm')
     assert_equal '11', format(Time.local(2000, 1, 1, 1, 11, 1), 'mm')
   end
   
   # SECOND
 
-  define_method "test: s" do
+  test "s" do
     assert_equal  '1', format(Time.local(2000, 1, 1, 1, 1,  1), 's')
     assert_equal '11', format(Time.local(2000, 1, 1, 1, 1, 11), 's')
   end
 
-  define_method "test: ss" do
+  test "ss" do
     assert_equal '01', format(Time.local(2000, 1, 1, 1, 1,  1), 'ss')
     assert_equal '11', format(Time.local(2000, 1, 1, 1, 1, 11), 'ss')
   end
 
   # have i gotten the spec right here?
-  define_method "test: S" do
+  test "S" do
     assert_equal '0', format(Time.local(2000, 1, 1, 1, 1, 1,      7), 'S')
     assert_equal '0', format(Time.local(2000, 1, 1, 1, 1, 1,     77), 'S')
     assert_equal '0', format(Time.local(2000, 1, 1, 1, 1, 1,    777), 'S')
@@ -148,7 +148,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '8', format(Time.local(2000, 1, 1, 1, 1, 1, 777777), 'S')
   end
 
-  define_method "test: SS" do
+  test "SS" do
     assert_equal '00', format(Time.local(2000, 1, 1, 1, 1, 1,      7), 'SS')
     assert_equal '00', format(Time.local(2000, 1, 1, 1, 1, 1,     77), 'SS')
     assert_equal '00', format(Time.local(2000, 1, 1, 1, 1, 1,    777), 'SS')
@@ -157,7 +157,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '78', format(Time.local(2000, 1, 1, 1, 1, 1, 777777), 'SS')
   end
 
-  define_method "test: SSS" do
+  test "SSS" do
     assert_equal '000', format(Time.local(2000, 1, 1, 1, 1, 1,      7), 'SSS')
     assert_equal '000', format(Time.local(2000, 1, 1, 1, 1, 1,     77), 'SSS')
     assert_equal '001', format(Time.local(2000, 1, 1, 1, 1, 1,    777), 'SSS')
@@ -166,7 +166,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '778', format(Time.local(2000, 1, 1, 1, 1, 1, 777777), 'SSS')
   end
 
-  define_method "test: SSSS" do
+  test "SSSS" do
     assert_equal '0000', format(Time.local(2000, 1, 1, 1, 1, 1,      7), 'SSSS')
     assert_equal '0001', format(Time.local(2000, 1, 1, 1, 1, 1,     77), 'SSSS')
     assert_equal '0008', format(Time.local(2000, 1, 1, 1, 1, 1,    777), 'SSSS')
@@ -175,7 +175,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '7778', format(Time.local(2000, 1, 1, 1, 1, 1, 777777), 'SSSS')
   end
 
-  define_method "test: SSSSS" do
+  test "SSSSS" do
     assert_equal '00001', format(Time.local(2000, 1, 1, 1, 1, 1,      7), 'SSSSS')
     assert_equal '00008', format(Time.local(2000, 1, 1, 1, 1, 1,     77), 'SSSSS')
     assert_equal '00078', format(Time.local(2000, 1, 1, 1, 1, 1,    777), 'SSSSS')
@@ -184,7 +184,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal '77778', format(Time.local(2000, 1, 1, 1, 1, 1, 777777), 'SSSSS')
   end
 
-  define_method "test: SSSSSS" do
+  test "SSSSSS" do
     assert_equal '000007', format(Time.local(2000, 1, 1, 1, 1, 1,      7), 'SSSSSS')
     assert_equal '000077', format(Time.local(2000, 1, 1, 1, 1, 1,     77), 'SSSSSS')
     assert_equal '000777', format(Time.local(2000, 1, 1, 1, 1, 1,    777), 'SSSSSS')

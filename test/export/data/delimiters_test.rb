@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataDelimiters < Test::Unit::TestCase
-  define_method 'test: delimiters :de' do
+  test 'delimiters :de' do
     expected = {
       :delimiters => {
         :quotes => {
@@ -22,7 +22,7 @@ class TestCldrDataDelimiters < Test::Unit::TestCase
   end
 
   # Cldr::Export::Data.locales.each do |locale|
-  #   define_method "test: extract delimiters for #{locale}" do
+  #   test "extract delimiters for #{locale}" do
   #     assert_nothing_raised do
   #       Cldr::Export::Data::Delimiters.new(locale)
   #     end

@@ -3,7 +3,7 @@
 require File.dirname(__FILE__) + '/../../test_helper.rb'
 
 class TestCldrDataLanguages < Test::Unit::TestCase
-  define_method 'test: languages :de' do
+  test 'languages :de' do
     codes = [:aa, :ab, :ace, :ach, :ada, :ady, :ae, :af, :afa, :afh, :ain,
              :ak, :akk, :ale, :alg, :alt, :am, :an, :ang, :anp, :apa, :ar,
              :arc, :arn, :arp, :art, :arw, :as, :ast, :ath, :aus, :av, :awa,
@@ -57,7 +57,7 @@ class TestCldrDataLanguages < Test::Unit::TestCase
   end
   
   # Cldr::Export::Data.locales.each do |locale|
-  #   define_method "test: extract languages for #{locale}" do
+  #   test "extract languages for #{locale}" do
   #     assert_nothing_raised do
   #       Cldr::Export::Data::Languages.new(locale)
   #     end
