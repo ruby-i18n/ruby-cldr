@@ -17,8 +17,8 @@ h2. Requirements
 h2. Installation
 
 <pre>
-gem install cldr (not there, yet. install locally)
-thor install http://github.com/svenfuchs/cldr/raw/master/cldr.thor --as=cldr
+gem install bundler
+bundle install
 </pre>
 
 h2. Export
