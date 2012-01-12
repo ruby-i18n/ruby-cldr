@@ -19,6 +19,9 @@ h2. Installation
 <pre>
 gem install bundler
 bundle install
+
+
+thor cldr:download
 </pre>
 
 h2. Export
