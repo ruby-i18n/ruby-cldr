@@ -68,6 +68,11 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
     assert_equal [:in, '[1, 2]', true, '1'], [rule.operator, rule.operand, rule.negate, rule.mod]
   end
 
+  def test_parses_n_within_0_2
+    expression = Cldr::Export::Data::Plurals::Rule.parse('n within 0..2')
+    assert_equal [:within, %w{0 2}], [expression.operator, expression.operand]
+  end
+
   def test_parses_or_condition
     rule = Cldr::Export::Data::Plurals::Rule.parse('n mod 1 is not 2 or n mod 2 in 3..4')
     assert_equal 2, rule.size
@@ -128,5 +133,9 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
 
   def test_compiles_n_mod_100_in_3_99
     assert_equal '[3, 4, 5, 6].include?(n % 100)', Cldr::Export::Data::Plurals::Rule.parse('n mod 100 in 3..6').to_ruby
+  end
+
+  def test_compiles_n_within_0_2
+    assert_equal 'n.between?(0, 2)', Cldr::Export::Data::Plurals::Rule.parse('n within 0..2').to_ruby
   end
 end

@@ -51,6 +51,8 @@ module Cldr
                 Expression.new(:is, $2, !!$3, $4)
               when /n( mod ([\d]+))?( not)? in ([\d]+\.\.[\d]+)/
                 Expression.new(:in, $2, !!$3, eval($4).to_a.inspect)
+              when /n within ([\d]+)\.\.([\d]+)/
+                Expression.new(:within, nil, nil, [$1, $2])
               when /n/
                 Expression.new
               else
@@ -103,6 +105,8 @@ module Cldr
                 op + (@negate ? ' != ' : ' == ') + @operand
               when :in
                 (@negate ? '!' : '') + "#{@operand}.include?(#{op})"
+              when :within
+                "#{op}.between?(#{@operand.first}, #{@operand.last})" 
               else
                 op
               end
