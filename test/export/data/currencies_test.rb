@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../../test_helper.rb'
+require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
 
 class TestCldrCurrencies < Test::Unit::TestCase
   test 'currencies :de' do

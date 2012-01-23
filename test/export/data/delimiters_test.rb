@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../../test_helper.rb'
+require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
 
 class TestCldrDataDelimiters < Test::Unit::TestCase
   test 'delimiters :de' do

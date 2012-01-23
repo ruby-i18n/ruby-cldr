@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.dirname(__FILE__) + '/../../test_helper.rb'
+require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
 
 class TestCldrDataTerritories < Test::Unit::TestCase
   test 'territories :de' do

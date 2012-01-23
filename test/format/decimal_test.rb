@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require File.expand_path(File.join(File.dirname(__FILE__) + '/../test_helper'))
 
 class TestCldrDecimalFormat < Test::Unit::TestCase
   test "single pattern, positive number" do
