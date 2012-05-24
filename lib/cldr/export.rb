@@ -43,7 +43,11 @@ module Cldr
         else
           data = locales(locale, options).inject({}) do |result, locale|
             data = Data.const_get(component.to_s.camelize).new(locale)
-            data ? data.deep_merge(result) : result
+            if data
+              data.is_a?(Hash) ? data.deep_merge(result) : data
+            else
+              result
+            end
           end
           # data = resolve_links if options[:merge] TODO!!
           data
