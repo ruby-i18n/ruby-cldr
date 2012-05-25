@@ -10,7 +10,7 @@ module Cldr
               :days     => contexts('day'),
               :eras     => contexts('era'),
               :quarters => contexts('quarter'),
-              :periods  => periods,
+              :periods  => contexts('dayPeriod'),
               :fields   => fields,
               :formats => {
                 :date     => formats('date'),
@@ -62,16 +62,6 @@ module Cldr
           end
         
           def xpath_width
-          end
-
-          def periods
-            am = select(calendar, "am").first
-            pm = select(calendar, "pm").first
-
-            result = {}
-            result[:am] = am.content if am
-            result[:pm] = pm.content if pm
-            result
           end
 
           def eras
