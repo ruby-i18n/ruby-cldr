@@ -9,24 +9,16 @@ module Cldr
               :symbols => symbols,
               :formats => {
                 :decimal => {
-                  :patterns => {
-                    :default => format('decimal')
-                  }
+                  :patterns => format('decimal')
                 },
                 :scientific => {
-                  :patterns => {
-                    :default => format('scientific')
-                  }
+                  :patterns => format('scientific')
                 },
                 :percent => {
-                  :patterns => {
-                    :default => format('percent')
-                  }
+                  :patterns => format('percent')
                 },
                 :currency => {
-                  :patterns => {
-                    :default => format('currency'),
-                  },
+                  :patterns => format('currency'),
                   :unit => unit
                 }
               }
@@ -48,9 +40,18 @@ module Cldr
         end
 
         def format(type)
-          select("numbers/#{type}Formats/#{type}FormatLength/#{type}Format/pattern").inject({}) do |result, node|
-            node.content unless draft?(node)
+          result = select("numbers/#{type}Formats/#{type}FormatLength/#{type}Format").inject({}) do |format_result, format_node|
+            format_key = format_node.parent.attribute('type')
+            format_result[format_key ? format_key.value : :default] = select(format_node, "pattern").inject({}) do |pattern_result, pattern_node|
+              pattern_key = pattern_node.attribute('type')
+              pattern_result[pattern_key ? pattern_key.value : :default] = pattern_node.content unless draft?(pattern_node)
+              pattern_result
+            end
+            format_result
           end
+
+          result[:default] = result[:default][:default] if result[:default]
+          result
         end
 
         def unit
