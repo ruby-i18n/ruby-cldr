@@ -8,9 +8,9 @@ module Cldr
             update(
               :months   => contexts('month'),
               :days     => contexts('day'),
-              :eras     => contexts('era'),
+              :eras     => eras,
               :quarters => contexts('quarter'),
-              :periods  => periods,
+              :periods  => contexts('dayPeriod'),
               :fields   => fields,
               :formats => {
                 :date     => formats('date'),
@@ -78,13 +78,25 @@ module Cldr
             base_path = calendar.path.gsub('/ldml/', '') + '/eras'
             keys = select("#{base_path}/*").map { |node| node.name }
 
-            eras = keys.inject([]) do |result, name|
+            keys.inject({}) do |result, name|
               path = "#{base_path}/#{name}/*"
               key  = name.gsub('era', '').gsub(/s$/, '').downcase.to_sym
-              result << extract(path, :key   => lambda { |node| node.attribute('type').value.to_i rescue 0 },
-                                      :value => lambda { |node| { key => node.content } })
+              result[key] = select(path).inject({}) do |ret, node|
+                type = node.attribute('type').value.to_i rescue 0
+                ret[type] = node.content
+                ret
+              end
+              result
             end
-            eras.inject({}) { |result, data| result.deep_merge(data) }
+          end
+
+          def extract(path, lambdas)
+            nodes = select(path)
+            nodes.inject({}) do |ret, node|
+              key = lambdas[:key].call(node)
+              ret[key] = lambdas[:value].call(node)
+              ret
+            end
           end
 
           def formats(type)
