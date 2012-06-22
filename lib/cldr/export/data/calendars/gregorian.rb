@@ -64,16 +64,6 @@ module Cldr
           def xpath_width
           end
 
-          def periods
-            am = select(calendar, "am").first
-            pm = select(calendar, "pm").first
-
-            result = {}
-            result[:am] = am.content if am
-            result[:pm] = pm.content if pm
-            result
-          end
-
           def eras
             base_path = calendar.path.gsub('/ldml/', '') + '/eras'
             keys = select("#{base_path}/*").map { |node| node.name }
