@@ -16,8 +16,10 @@ module Cldr
 
         def unit(node)
           node.xpath('unitPattern').inject({}) do |result, node|
+            alt = node.attribute('alt') ? node.attribute('alt').value.to_sym : :default
             count = node.attribute('count') ? node.attribute('count').value.to_sym : :one
-            result[count] = node.content unless draft?(node)
+            result[alt] ||= {}
+            result[alt][count] = node.content unless draft?(node)
             result
           end
         end
