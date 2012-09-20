@@ -13,6 +13,7 @@ module Cldr
       autoload :Territories,   'cldr/export/data/territories'
       autoload :Timezones,     'cldr/export/data/timezones'
       autoload :Units,         'cldr/export/data/units'
+      autoload :Lists,         'cldr/export/data/lists'
 
       class << self
         def dir
