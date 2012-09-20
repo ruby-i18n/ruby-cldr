@@ -33,12 +33,12 @@ module Cldr
       end
 
       def exporter(component, format)
-        name = format ? format : component.to_s == 'Plurals' ? 'ruby' : 'yaml'
+        name = format ? format : component.to_s == 'plurals' ? 'ruby' : 'yaml'
         const_get(name.to_s.camelize).new
       end
 
       def data(component, locale, options = {})
-        if component.to_s == 'Plurals'
+        if component.to_s == 'plurals'
           Data.const_get(component.to_s.camelize).new(locale)
         else
           data = locales(locale, options).inject({}) do |result, locale|
@@ -56,7 +56,7 @@ module Cldr
 
       def locales(locale, options)
         locale = locale.to_s.gsub('_', '-')
-        locales = options[:merge] ? I18n::Locale::Fallbacks.new[locale.to_sym] : [locale.to_sym] 
+        locales = options[:merge] ? I18n::Locale::Fallbacks.new[locale.to_sym] : [locale.to_sym]
         locales << :root
         locales
       end

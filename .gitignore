@@ -1,2 +1,4 @@
 /vendor/
 /data/
+.rvmrc
+/pkg/
