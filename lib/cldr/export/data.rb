@@ -14,6 +14,7 @@ module Cldr
       autoload :Timezones,     'cldr/export/data/timezones'
       autoload :Units,         'cldr/export/data/units'
       autoload :Lists,         'cldr/export/data/lists'
+      autoload :Layout,        'cldr/export/data/layout'
 
       class << self
         def dir
