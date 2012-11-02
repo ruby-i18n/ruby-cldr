@@ -1,5 +1,5 @@
 class String
   def camelize
-    self.gsub(/(^.{1}|[^a-z0-9])/) { $1.capitalize }
+    self.gsub(/(^.|_[a-zA-Z])/) { |m| m.sub("_",'').capitalize }
   end
 end unless String.new.respond_to?(:camelize)
