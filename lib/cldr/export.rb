@@ -43,8 +43,6 @@ module Cldr
       end
 
       def data(component, locale, options = {})
-        puts component
-        puts locales(locale, options)
         if component.to_s == 'Plurals'
           Data.const_get(component.to_s.camelize).new(locale)
         elsif component.to_s == 'CurrencyDigitsAndRounding'
