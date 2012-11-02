@@ -3,4 +3,4 @@
 /pkg/
 .rvmrc
 /pkg/
-/.bundle/
+.bundle/*
