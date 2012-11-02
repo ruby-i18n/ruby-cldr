@@ -1,0 +1,31 @@
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "<%= project_name %>"
+  gem.homepage = "<%= homepage %>"
+  gem.license = "MIT"
+  gem.summary = %Q{<%= summary %>}
+  gem.description = %Q{<%= description %>}
+  gem.email = "<%= user_email %>"
+  gem.authors = ["<%= user_name %>"]
+<% if should_setup_rubyforge %>
+  gem.rubyforge_project = "<%= project_name %>"
+<% end %>
+<% if should_use_bundler %>
+  # dependencies defined in Gemfile
+<% else %>
+<% development_dependencies.each do |name, version| %>
+  # Include your dependencies below. Runtime dependencies are required when using your gem,
+  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
+  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
+  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.add_development_dependency "<%= name %>", "<%= version %>"
+<% end %>
+<% end %>
+end
+Jeweler::RubygemsDotOrgTasks.new
+<% if should_setup_rubyforge %>
+Jeweler::RubyforgeTasks.new do |rubyforge|
+  rubyforge.doc_task = "<%= doc_task %>"
+end
+<% end %>

@@ -22,8 +22,13 @@ module Cldr
 
       def export(options = {}, &block)
         locales        = options[:locales]    || Data.locales
-        components     = options[:components] || Data.components
+        components     = (options[:components] || Data.components).map{|c| c.to_s.camelize}
         self.base_path = options[:target] if options[:target]
+
+        if components.include?('CurrencyDigitsAndRounding')
+          components.delete('CurrencyDigitsAndRounding')
+          exporter('CurrencyDigitsAndRounding', options[:format]).export('', 'CurrencyDigitsAndRounding', options, &block)
+        end
 
         locales.each do |locale|
           components.each do |component|
@@ -38,8 +43,12 @@ module Cldr
       end
 
       def data(component, locale, options = {})
-        if component.to_s == 'plurals'
+        puts component
+        puts locales(locale, options)
+        if component.to_s == 'Plurals'
           Data.const_get(component.to_s.camelize).new(locale)
+        elsif component.to_s == 'CurrencyDigitsAndRounding'
+          Data.const_get(component.to_s.camelize).new()
         else
           data = locales(locale, options).inject({}) do |result, locale|
             data = Data.const_get(component.to_s.camelize).new(locale)

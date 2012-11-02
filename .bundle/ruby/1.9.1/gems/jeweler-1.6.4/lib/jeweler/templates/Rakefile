@@ -1,0 +1,9 @@
+# encoding: utf-8
+
+require 'rubygems'
+<%= render_template 'bundler_setup.erb' %>
+require 'rake'
+
+<%= render_template 'jeweler_tasks.erb' %>
+
+<%= render_template 'other_tasks.erb' %>

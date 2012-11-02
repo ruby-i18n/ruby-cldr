@@ -1,0 +1,8 @@
+lib/jeweler.rb
+lib/jeweler/*.rb
+lib/jeweler/commands/*.rb
+lib/jeweler/generator/*.rb
+bin/*
+-
+features/**/*.feature
+LICENSE.txt
