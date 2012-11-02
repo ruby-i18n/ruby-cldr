@@ -38,7 +38,7 @@ module Cldr
       end
 
       def exporter(component, format)
-        name = format ? format : component.to_s == 'plurals' ? 'ruby' : 'yaml'
+        name = format ? format : component.to_s == 'Plurals' ? 'ruby' : 'yaml'
         const_get(name.to_s.camelize).new
       end
 

@@ -9,6 +9,7 @@ module Cldr
          "Download and extract CLDR data from source to target dir"
     method_options %w(source -s) => :string,
                    %w(target -t) => :string
+
     def download
       require 'cldr/download'
       Cldr.download(options['source'], options['target'])
@@ -20,11 +21,13 @@ module Cldr
                    %w(components -l) => :array,
                    %w(target  -t)    => :string,
                    %w(merge   -m)    => :boolean
+
     def export
       $stdout.sync
       Cldr::Export.export(options.dup.symbolize_keys) { putc '.' }
       puts
     end
+  
     # TODO flatten task, e.g. flatten all plural locale files into one big file
   end
 end
