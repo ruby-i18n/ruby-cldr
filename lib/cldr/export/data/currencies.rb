@@ -16,11 +16,16 @@ module Cldr
         end
 
         def currency(node)
-          select(node, 'displayName').inject({}) do |result, node|
+          data = select(node, 'displayName').inject({}) do |result, node|
             count = node.attribute('count') ? node.attribute('count').value.to_sym : :one
             result[count] = node.content unless draft?(node)
             result
           end
+
+          symbol = select(node, 'symbol')
+          data[:symbol] = symbol.first.content if symbol.length > 0
+
+          data
         end
       end
     end

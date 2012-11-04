@@ -6,6 +6,7 @@ module Cldr
       autoload :Base,          'cldr/export/data/base'
       autoload :Calendars,     'cldr/export/data/calendars'
       autoload :Currencies,    'cldr/export/data/currencies'
+      autoload :CurrencyDigitsAndRounding,    'cldr/export/data/currency_digits_and_rounding'
       autoload :Delimiters,    'cldr/export/data/delimiters'
       autoload :Languages,     'cldr/export/data/languages'
       autoload :Numbers,       'cldr/export/data/numbers'
