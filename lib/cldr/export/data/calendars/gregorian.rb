@@ -16,7 +16,8 @@ module Cldr
                 :date     => formats('date'),
                 :time     => formats('time'),
                 :datetime => formats('dateTime')
-              }
+              },
+              :additional_formats => additional_formats
             )
           end
 
@@ -110,7 +111,15 @@ module Cldr
             end
             formats
           end
-        
+
+          def additional_formats
+            select(calendar, "dateTimeFormats/availableFormats/dateFormatItem").inject({}) do |result, node|
+              key = node.attribute('id').value
+              result[key] = node.content
+              result
+            end
+          end
+
           def default_format(type)
             if node = select(calendar, "#{type}Formats/default").first
               key = node.attribute('choice').value.to_sym
