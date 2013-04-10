@@ -154,7 +154,7 @@ module Cldr
           # NOTE: As of CLDR 23, this data moved from inside each "calendar" tag to under its parent, the "dates" tag.
           # That probably means this `fields` method should be moved up to the parent as well.
           def fields
-            doc.xpath(xpath(["dates", "fields", "field"])).inject({}) do |result, node|
+            select("dates/fields/field").inject({}) do |result, node|
               key  = node.attribute('type').value.to_sym
               name = node.xpath('displayName').first
               result[key] = name.content if name
