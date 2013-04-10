@@ -87,18 +87,22 @@ module Cldr
           end
 
           def eras
-            base_path = calendar.path.gsub('/ldml/', '') + '/eras'
-            keys = select("#{base_path}/*").map { |node| node.name }
+            if calendar
+              base_path = calendar.path.gsub('/ldml/', '') + '/eras'
+              keys = select("#{base_path}/*").map { |node| node.name }
 
-            keys.inject({}) do |result, name|
-              path = "#{base_path}/#{name}/*"
-              key  = name.gsub('era', '').gsub(/s$/, '').downcase.to_sym
-              result[key] = select(path).inject({}) do |ret, node|
-                type = node.attribute('type').value.to_i rescue 0
-                ret[type] = node.content
-                ret
+              keys.inject({}) do |result, name|
+                path = "#{base_path}/#{name}/*"
+                key  = name.gsub('era', '').gsub(/s$/, '').downcase.to_sym
+                result[key] = select(path).inject({}) do |ret, node|
+                  type = node.attribute('type').value.to_i rescue 0
+                  ret[type] = node.content
+                  ret
+                end
+                result
               end
-              result
+            else
+              {}
             end
           end
 
