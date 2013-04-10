@@ -8,15 +8,13 @@ module Cldr
         end
 
         def layout
-          select('layout').inject({}) do |result, node|
-            result['orientation'] = select(node, 'orientation').inject({}) do |orient_result, orient_node|
-              if orient_node.attribute('characters')
-                orient_result['characters'] = orient_node.attribute('characters').value
-              end
-              orient_result
-            end
-            result
+          result = { :orientation => { :character_order => nil } }
+
+          if node = select("layout/orientation/characterOrder/text()").first
+            result[:orientation][:character_order] = node.text
           end
+
+          result
         end
       end
     end

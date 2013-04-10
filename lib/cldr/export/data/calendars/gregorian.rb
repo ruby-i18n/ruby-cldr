@@ -1,3 +1,6 @@
+require 'pry'
+require 'pry-nav'
+
 module Cldr
   module Export
     module Data
@@ -10,7 +13,7 @@ module Cldr
               :days     => contexts('day'),
               :eras     => eras,
               :quarters => contexts('quarter'),
-              :periods  => contexts('dayPeriod'),
+              :periods  => contexts('dayPeriod', :group => "alt"),
               :fields   => fields,
               :formats => {
                 :date     => formats('date'),
@@ -25,31 +28,39 @@ module Cldr
             @calendar ||= select('dates/calendars/calendar[@type="gregorian"]').first
           end
 
-          def contexts(kind)
+          def contexts(kind, options = {})
             select(calendar, "#{kind}s/#{kind}Context").inject({}) do |result, node|
               context = node.attribute('type').value.to_sym
-              result[context] = widths(node, kind, context)
+              result[context] = widths(node, kind, context, options)
               result
             end
           end
 
-          def widths(node, kind, context)
+          def widths(node, kind, context, options = {})
             select(node, "#{kind}Width").inject({}) do |result, node|
-              width  = node.attribute('type').value.to_sym
-              result[width] = elements(node, kind, context, width)
+              width = node.attribute('type').value.to_sym
+              result[width] = elements(node, kind, context, width, options)
               result
             end
           end
 
-          def elements(node, kind, context, width)
+          def elements(node, kind, context, width, options = {})
             aliased = select(node, 'alias').first
+
             if aliased
               xpath_to_key(aliased.attribute('path').value, kind, context, width)
             else
               select(node, kind).inject({}) do |result, node|
                 key = node.attribute('type').value
                 key = key =~ /^\d*$/ ? key.to_i : key.to_sym
-                result[key] = node.content
+
+                if options[:group] && found_group = node.attribute(options[:group])
+                  result[found_group.value] ||= {}
+                  result[found_group.value][key] = node.content
+                else
+                  result[key] = node.content
+                end
+
                 result
               end
             end
@@ -140,8 +151,10 @@ module Cldr
             end
           end
 
+          # NOTE: As of CLDR 23, this data moved from inside each "calendar" tag to under its parent, the "dates" tag.
+          # That probably means this `fields` method should be moved up to the parent as well.
           def fields
-            select(calendar, "fields/field").inject({}) do |result, node|
+            select("dates/fields/field").inject({}) do |result, node|
               key  = node.attribute('type').value.to_sym
               name = node.xpath('displayName').first
               result[key] = name.content if name
