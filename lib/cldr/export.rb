@@ -43,15 +43,21 @@ module Cldr
       end
 
       def data(component, locale, options = {})
-        if component.to_s == 'Plurals'
-          Data.const_get(component.to_s.camelize).new(locale)
-        elsif component.to_s == 'CurrencyDigitsAndRounding'
+        if component.to_s == 'CurrencyDigitsAndRounding'
           Data.const_get(component.to_s.camelize).new()
         else
           data = locales(locale, options).inject({}) do |result, locale|
             data = Data.const_get(component.to_s.camelize).new(locale)
+
             if data
-              data.is_a?(Hash) ? data.deep_merge(result) : data
+              case data
+                when Hash
+                  data.deep_merge(result)
+                when String
+                  data.strip.empty? ? result : data
+                else
+                  data
+              end
             else
               result
             end
