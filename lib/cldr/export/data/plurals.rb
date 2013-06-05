@@ -3,7 +3,7 @@ require 'fileutils'
 module Cldr
   module Export
     module Data
-      class Plurals < String
+      class Plurals < Hash
         autoload :Grammar,     'cldr/export/data/plurals/grammar'
         autoload :Parser,      'cldr/export/data/plurals/grammar'
         autoload :Rules,       'cldr/export/data/plurals/rules'
@@ -20,18 +20,19 @@ module Cldr
             File.read("#{Cldr::Export::Data.dir}/supplemental/plurals.xml")
           end
         end
-    
+
         attr_reader :locale
 
         def initialize(locale)
           @locale = locale
-          super(rule ? ruby : "")
+          self.merge!(rule ? to_hash : {})
         end
-    
-        def ruby
-          "{ :#{locale} => { :i18n => {:plural => { :keys => #{rule.keys.inspect}, :rule => #{rule.to_ruby} } } } }"
+
+        def to_hash
+          rule_rb = rule ? rule.to_ruby : nil
+          { :keys => (rule || {}).keys, :rule => rule_rb }
         end
-    
+
         def rule
           @rule = Plurals.rules.rule(locale)
         end
