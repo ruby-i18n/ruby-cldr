@@ -43,22 +43,37 @@ module Cldr
       end
 
       def data(component, locale, options = {})
-        if component.to_s == 'Plurals'
-          Data.const_get(component.to_s.camelize).new(locale)
-        elsif component.to_s == 'CurrencyDigitsAndRounding'
-          Data.const_get(component.to_s.camelize).new()
-        else
-          data = locales(locale, options).inject({}) do |result, locale|
-            data = Data.const_get(component.to_s.camelize).new(locale)
-            if data
-              data.is_a?(Hash) ? data.deep_merge(result) : data
-            else
-              result
-            end
-          end
-          # data = resolve_links if options[:merge] TODO!!
-          data
+        case component.to_s
+          when 'CurrencyDigitsAndRounding'
+            currency_rounding_data(component, locale, options)
+          when 'Plurals'
+            plural_data(component, locale, options)
+          else
+            default_data(component, locale, options)
         end
+      end
+
+      def default_data(component, locale, options = {})
+        data = locales(locale, options).inject({}) do |result, locale|
+          data = Data.const_get(component.to_s.camelize).new(locale)
+          if data
+            data.is_a?(Hash) ? data.deep_merge(result) : data
+          else
+            result
+          end
+        end
+
+        # data = resolve_links if options[:merge] TODO!!
+        data
+      end
+
+      def plural_data(component, locale, options = {})
+        data = default_data(component, locale, options)
+        "{ :#{locale} => { :i18n => { :plural => { :keys => #{data[:keys].inspect}, :rule => #{data[:rule]} } } } }"
+      end
+
+      def currency_rounding_data(component, locale, options = {})
+        Data.const_get(component.to_s.camelize).new
       end
 
       def locales(locale, options)
