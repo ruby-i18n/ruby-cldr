@@ -69,7 +69,7 @@ module Cldr
 
       def plural_data(component, locale, options = {})
         data = default_data(component, locale, options)
-        "{ :#{locale} => { :i18n => { :plural => { :keys => #{data[:keys].inspect}, :rule => #{data[:rule]} } } } }"
+        "{ :'#{locale}' => { :i18n => { :plural => { :keys => #{data[:keys].inspect}, :rule => #{data[:rule]} } } } }"
       end
 
       def currency_rounding_data(component, locale, options = {})
