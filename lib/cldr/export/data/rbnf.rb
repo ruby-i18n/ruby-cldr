@@ -52,8 +52,6 @@ module Cldr
 
         def fix_rule(rule)
           rule.gsub(/\A'/, '').gsub("←", '<').gsub("→", '>')
-        rescue => e
-          binding.pry
         end
 
         def path

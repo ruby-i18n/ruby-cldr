@@ -4,8 +4,6 @@ require 'core_ext/string/camelize'
 require 'core_ext/string/underscore'
 require 'core_ext/hash/deep_stringify_keys'
 
-require 'pry-nav'
-
 module Cldr
   module Export
     autoload :Code, 'cldr/export/code'
