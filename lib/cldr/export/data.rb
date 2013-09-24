@@ -16,6 +16,8 @@ module Cldr
       autoload :Units,         'cldr/export/data/units'
       autoload :Lists,         'cldr/export/data/lists'
       autoload :Layout,        'cldr/export/data/layout'
+      autoload :Rbnf,          'cldr/export/data/rbnf'
+      autoload :RbnfRoot,      'cldr/export/data/rbnf_root'
 
       class << self
         def dir
