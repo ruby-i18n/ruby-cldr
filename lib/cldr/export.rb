@@ -11,6 +11,11 @@ module Cldr
     autoload :Ruby, 'cldr/export/ruby'
     autoload :Yaml, 'cldr/export/yaml'
 
+    SHARED_COMPONENTS = [
+      'CurrencyDigitsAndRounding',
+      'RbnfRoot'
+    ]
+
     class << self
       def base_path
         @@base_path ||= File.expand_path('./data')
@@ -22,16 +27,20 @@ module Cldr
 
       def export(options = {}, &block)
         locales        = options[:locales]    || Data.locales
-        components     = (options[:components] || Data.components).map{|c| c.to_s.camelize}
+        components     = (options[:components] || Data.components).map { |c| c.to_s.camelize }
         self.base_path = options[:target] if options[:target]
 
-        if components.include?('CurrencyDigitsAndRounding')
-          components.delete('CurrencyDigitsAndRounding')
-          exporter('CurrencyDigitsAndRounding', options[:format]).export('', 'CurrencyDigitsAndRounding', options, &block)
+        shared_components, locale_components = components.partition do |component|
+          is_shared_component?(component)
+        end
+
+        shared_components.each do |component|
+          ex = exporter(component, options[:format])
+          ex.export('', component, options, &block)
         end
 
         locales.each do |locale|
-          components.each do |component|
+          locale_components.each do |component|
             exporter(component, options[:format]).export(locale, component, options, &block)
           end
         end
@@ -44,17 +53,19 @@ module Cldr
 
       def data(component, locale, options = {})
         case component.to_s
-          when 'CurrencyDigitsAndRounding'
-            currency_rounding_data(component, locale, options)
           when 'Plurals'
             plural_data(component, locale, options)
           else
-            default_data(component, locale, options)
+            if is_shared_component?(component)
+              shared_data(component, options)
+            else
+              locale_based_data(component, locale, options)
+            end
         end
       end
 
-      def default_data(component, locale, options = {})
-        data = locales(locale, options).inject({}) do |result, locale|
+      def locale_based_data(component, locale, options = {})
+        data = locales(locale, component, options).inject({}) do |result, locale|
           data = Data.const_get(component.to_s.camelize).new(locale)
           if data
             data.is_a?(Hash) ? data.deep_merge(result) : data
@@ -68,18 +79,18 @@ module Cldr
       end
 
       def plural_data(component, locale, options = {})
-        data = default_data(component, locale, options)
+        data = locale_based_data(component, locale, options)
         "{ :'#{locale}' => { :i18n => { :plural => { :keys => #{data[:keys].inspect}, :rule => #{data[:rule]} } } } }"
       end
 
-      def currency_rounding_data(component, locale, options = {})
+      def shared_data(component, options = {})
         Data.const_get(component.to_s.camelize).new
       end
 
-      def locales(locale, options)
+      def locales(locale, component, options)
         locale = locale.to_s.gsub('_', '-')
         locales = options[:merge] ? I18n::Locale::Fallbacks.new[locale.to_sym] : [locale.to_sym]
-        locales << :root
+        locales << :root if component_should_merge_root?(component)
         locales
       end
 
@@ -90,7 +101,18 @@ module Cldr
       end
 
       def path(locale, component, extension)
-        "#{Export.base_path}/#{locale.to_s.gsub('_', '-')}/#{component.to_s.underscore}.#{extension}"
+        path = [Export.base_path]
+        path << locale.to_s.gsub('_', '-') unless is_shared_component?(component)
+        path << "#{component.to_s.underscore}.#{extension}"
+        File.join(*path)
+      end
+
+      def is_shared_component?(component)
+        SHARED_COMPONENTS.include?(component)
+      end
+
+      def component_should_merge_root?(component)
+        component != "Rbnf"
       end
     end
   end
