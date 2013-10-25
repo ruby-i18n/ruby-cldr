@@ -107,12 +107,14 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<ya2yaml>, [">= 0"])
       s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<rubyzip>, [">= 0"])
     else
       s.add_dependency(%q<thor>, [">= 0"])
       s.add_dependency(%q<i18n>, [">= 0"])
       s.add_dependency(%q<ya2yaml>, [">= 0"])
       s.add_dependency(%q<nokogiri>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<rubyzip>, [">= 0"])
     end
   else
     s.add_dependency(%q<thor>, [">= 0"])
@@ -120,6 +122,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<ya2yaml>, [">= 0"])
     s.add_dependency(%q<nokogiri>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<rubyzip>, [">= 0"])
   end
 end
 

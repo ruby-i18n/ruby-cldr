@@ -1,20 +1,24 @@
-require 'fileutils'
-require 'net/http'
 require 'uri'
-require 'tempfile'
+require 'open-uri'
+require 'zip'
 
 module Cldr
-  class << self
-    def download(source = nil, target = nil)
-      source ||= 'http://unicode.org/Public/cldr/23/core.zip'
-      target ||= File.expand_path('./vendor/cldr')
+    class << self
+        def download(source = nil, target = nil)
+            source ||= 'http://unicode.org/Public/cldr/23/core.zip'
+            target ||= File.expand_path('./vendor/cldr')
 
-      source = URI.parse(source)
-      tempfile = Tempfile.new('cldr-core')
-
-      system("curl #{source} -o #{tempfile.path}")
-      FileUtils.mkdir_p(target)
-      system("unzip #{tempfile.path} -d #{target}")
+            URI.parse(source).open do |tempfile|
+                FileUtils.mkdir_p(target)
+                Zip.on_exists_proc = true
+                Zip::File.open(tempfile.path) do |file|
+                    file.each do |entry|
+                        path = target + '/' + entry.name
+                        FileUtils.mkdir_p(File.dirname(path))
+                        file.extract(entry, path)
+                    end
+                end
+            end
+        end
     end
-  end
 end
