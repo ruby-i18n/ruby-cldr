@@ -14,9 +14,8 @@ class TestCldrDataNumbers < Test::Unit::TestCase
       :percent_sign      => "%",
       :list              => ";",
       :per_mille         => "‰",
-      :native_zero_digit => "0",
       :infinity          => "∞",
-      :pattern_digit     => "#"
+      :superscripting_exponent => "·"
     }
     assert_equal expected, Cldr::Export::Data::Numbers.new('de')[:numbers][:symbols]
   end
@@ -25,7 +24,35 @@ class TestCldrDataNumbers < Test::Unit::TestCase
     expected = {
       :decimal => {
         :patterns => {
-          :default => "#,##0.###"
+          :default => "#,##0.###",
+          "long" => {
+            "1000" => "0 Tausend",
+            "10000" => "00 Tausend",
+            "100000" => "000 Tausend",
+            "1000000" => "0 Millionen",
+            "10000000" => "00 Millionen",
+            "100000000" => "000 Millionen",
+            "1000000000" => "0 Milliarden",
+            "10000000000" => "00 Milliarden",
+            "100000000000" => "000 Milliarden",
+            "1000000000000" => "0 Billionen",
+            "10000000000000" => "00 Billionen",
+            "100000000000000" => "000 Billionen"
+          },
+          "short" => {
+            "1000" => "0 Tsd",
+            "10000" => "00 Tsd",
+            "100000" => "000 Tsd",
+            "1000000" => "0 Mio",
+            "10000000" => "00 Mio",
+            "100000000" => "000 Mio",
+            "1000000000" => "0 Mrd",
+            "10000000000" => "00 Mrd",
+            "100000000000" => "000 Mrd",
+            "1000000000000" => "0 Bio",
+            "10000000000000" => "00 Bio",
+            "100000000000000" => "000 Bio"
+          }
         }
       },
       :scientific => {
