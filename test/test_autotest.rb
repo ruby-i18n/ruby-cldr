@@ -26,7 +26,7 @@ if $0 == __FILE__
     end
 
     define_method :"test: mapping for gregorian.rb" do
-      assert_equal ['test/data/calendars_test.rb'], tests_for("lib/cldr/calendars/gregorian.rb")
+      assert_equal ['test/export/data/calendars_test.rb'], tests_for("lib/cldr/calendars/gregorian.rb")
     end
 
     define_method :"test: default mapping for test files" do

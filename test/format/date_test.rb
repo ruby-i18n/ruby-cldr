@@ -189,8 +189,8 @@ class TestCldrDateFormat < Test::Unit::TestCase
   end
 
   test "pattern MMM" do
-    assert_equal 'Jan', format(Date.new(2010,  1, 1), 'MMM')
-    assert_equal 'Okt', format(Date.new(2010, 10, 1), 'MMM')
+    assert_equal 'Jan.', format(Date.new(2010,  1, 1), 'MMM')
+    assert_equal 'Okt.', format(Date.new(2010, 10, 1), 'MMM')
   end
 
   test "pattern MMMM" do
