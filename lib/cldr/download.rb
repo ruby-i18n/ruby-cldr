@@ -6,7 +6,7 @@ require 'tempfile'
 module Cldr
   class << self
     def download(source = nil, target = nil)
-      source ||= 'http://unicode.org/Public/cldr/23/core.zip'
+      source ||= 'http://unicode.org/Public/cldr/24/core.zip'
       target ||= File.expand_path('./vendor/cldr')
 
       source = URI.parse(source)
