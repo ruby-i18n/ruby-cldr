@@ -18,7 +18,7 @@ module Cldr
       }
 
       def period(time, pattern, length)
-        calendar[:periods][time.strftime('%p').downcase.to_sym]
+        calendar[:periods][:format][:wide][time.strftime('%p').downcase.to_sym]
       end
 
       def hour(time, pattern, length)

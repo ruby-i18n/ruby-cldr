@@ -23,7 +23,7 @@ module Cldr
           def compile_format(format)
             "'" + format.gsub(self.class.const_get(:PATTERN)) do |token|
               method = self.class.const_get(:METHODS)[token[0, 1]]
-              "' + #{method}(date, #{token.inspect}, #{token.length}) + '"
+              "' + #{method}(date, #{token.inspect}, #{token.length}).to_s + '"
             end + "'"
           end
       end
