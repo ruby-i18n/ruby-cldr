@@ -33,7 +33,10 @@ class TestExtract < Test::Unit::TestCase
 
   test "exported data starts with the locale at top level" do
     Cldr::Export.export(:locales => %w(de), :components => %w(calendars))
-    data = YAML.load(File.open(Cldr::Export.path('de', 'calendars', 'yml')))
+    data = {}
+    File.open(Cldr::Export.path('de', 'calendars', 'yml')) do |f|
+      data = YAML.load(f)
+    end
     assert data['de']
   end
 
