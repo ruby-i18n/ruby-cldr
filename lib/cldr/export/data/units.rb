@@ -4,11 +4,23 @@ module Cldr
       class Units < Base
         def initialize(locale)
           super
-          update(:units => units)
+          update(
+            :units => {
+              :unitLength => unitLength,
+              :durationUnit => durationUnit,
+            }
+          )
         end
 
-        def units
-          select('units/unit').inject({}) do |result, node|
+        def unitLength
+          select('units/unitLength').inject({}) do |result, node|
+            result[node.attribute('type').value.to_sym] = units(node)
+            result
+          end
+        end
+
+        def units(node)
+          node.xpath('unit').inject({}) do |result, node|
             result[node.attribute('type').value.to_sym] = unit(node)
             result
           end
@@ -16,10 +28,15 @@ module Cldr
 
         def unit(node)
           node.xpath('unitPattern').inject({}) do |result, node|
-            alt = node.attribute('alt') ? node.attribute('alt').value.to_sym : :default
             count = node.attribute('count') ? node.attribute('count').value.to_sym : :one
-            result[alt] ||= {}
-            result[alt][count] = node.content unless draft?(node)
+            result[count] = node.content unless draft?(node)
+            result
+          end
+        end
+
+        def durationUnit
+          select('units/durationUnit').inject({}) do |result, node|
+            result[node.attribute('type').value.to_sym] = node.xpath('durationUnitPattern').first.content
             result
           end
         end
