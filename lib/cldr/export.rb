@@ -13,7 +13,9 @@ module Cldr
 
     SHARED_COMPONENTS = [
       'CurrencyDigitsAndRounding',
-      'RbnfRoot'
+      'RbnfRoot',
+      'Metazones',
+      'WindowsZones'
     ]
 
     class << self
