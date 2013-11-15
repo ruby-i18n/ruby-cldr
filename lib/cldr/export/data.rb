@@ -13,6 +13,8 @@ module Cldr
       autoload :Plurals,       'cldr/export/data/plurals'
       autoload :Territories,   'cldr/export/data/territories'
       autoload :Timezones,     'cldr/export/data/timezones'
+      autoload :Metazones,     'cldr/export/data/metazones'
+      autoload :WindowsZones,  'cldr/export/data/windows_zones'
       autoload :Units,         'cldr/export/data/units'
       autoload :Lists,         'cldr/export/data/lists'
       autoload :Layout,        'cldr/export/data/layout'

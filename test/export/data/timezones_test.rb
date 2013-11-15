@@ -51,6 +51,18 @@ class TestCldrDataTimezones < Test::Unit::TestCase
     assert_equal({ :city => 'Wien' }, timezones[:"Europe/Vienna"])
   end
 
+  test 'timezone daylight' do
+    london = Cldr::Export::Data::Timezones.new(:de)[:timezones][:'Europe/London']
+    assert_equal({ :long => { :daylight => 'Britische Sommerzeit'} }, london)
+  end
+
+  test 'metazone :de Europe_Western' do
+    europe_western = Cldr::Export::Data::Timezones.new(:de)[:metazones][:Europe_Western]
+    long = { :generic => 'Westeuropäische Zeit', :standard => 'Westeuropäische Normalzeit', :daylight => 'Westeuropäische Sommerzeit' }
+    short = { :generic => 'WEZ', :standard => 'WEZ', :daylight => 'WESZ' }
+    assert_equal({ :long => long, :short => short }, europe_western)
+  end
+
   # Cldr::Export::Data.locales.each do |locale|
   #   test "extract timezones for #{locale}" do
   #     assert_nothing_raised do
