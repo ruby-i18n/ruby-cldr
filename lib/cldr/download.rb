@@ -10,8 +10,8 @@ module Cldr
 
       URI.parse(source).open do |tempfile|
         FileUtils.mkdir_p(target)
-        Zip.on_exists_proc = true
-        Zip::File.open(tempfile.path) do |file|
+        # Zip.on_exists_proc = true
+        Zip::ZipFile.open(tempfile.path) do |file|
           file.each do |entry|
             path = target + '/' + entry.name
             FileUtils.mkdir_p(File.dirname(path))

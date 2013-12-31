@@ -9,15 +9,19 @@ module Cldr
               :symbols => symbols,
               :formats => {
                 :decimal => {
+                  :number_system => number_system('decimal'),
                   :patterns => format('decimal')
                 },
                 :scientific => {
+                  :number_system => number_system('scientific'),
                   :patterns => format('scientific')
                 },
                 :percent => {
+                  :number_system => number_system('percent'),
                   :patterns => format('percent')
                 },
                 :currency => {
+                  :number_system => number_system('currency'),
                   :patterns => format('currency'),
                   :unit => unit
                 }
@@ -52,6 +56,11 @@ module Cldr
 
           result[:default] = result[:default][:default] if result[:default]
           result
+        end
+
+        def number_system(type)
+          node = select("numbers/#{type}Formats").first
+          node.attribute('numberSystem').value rescue "latn"
         end
 
         def unit

@@ -15,7 +15,8 @@ module Cldr
       'CurrencyDigitsAndRounding',
       'RbnfRoot',
       'Metazones',
-      'WindowsZones'
+      'WindowsZones',
+      'NumberingSystems'
     ]
 
     class << self
