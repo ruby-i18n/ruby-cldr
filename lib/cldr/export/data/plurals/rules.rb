@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'rexml/document'
+require 'core_ext/hash/deep_merge'
 
 module Cldr
   module Export
@@ -119,27 +120,36 @@ module Cldr
             @operator, @mod, @negate, @operand, @type = operator, mod, negate, operand, type
           end
 
+          # Symbol  Value
+          # n       absolute value of the source number (integer and decimals).
+          # i       integer digits of n.
+          # v       number of visible fraction digits in n, with trailing zeros.
+          # w       number of visible fraction digits in n, without trailing zeros.
+          # f       visible fractional digits in n, with trailing zeros.
+          # t       visible fractional digits in n, without trailing zeros.
+          #
+          # http://www.unicode.org/reports/tr35/tr35-numbers.html#Language_Plural_Rules
           def to_ruby
             @ruby ||= begin
               return nil unless @operator
               enclose = false
               case @type
               when 'i'
-                op = 'n.to_i.to_s.length'
+                op = 'n.to_i'
               when 'f'
-                op = '(f = n.to_s.split(".")).count > 1 ? f.last.to_i : 0'
+                op = '(f = n.to_s.split(".")[1] || []).count > 1 ? f.last.to_i : 0'
                 enclose = true
               when 't'
-                op = '(t = n.to_s.split(".")).count > 1 ? t.last.gsub(/0+$/, "").to_i : 0'
+                op = '(t = n.to_s.split(".")[1] || []).count > 1 ? t.last.gsub(/0+$/, "").to_i : 0'
                 enclose = true
               when 'v'
-                op = '(v = n.to_s.split(".")).count > 1 ? v.last.length : 0'
+                op = '(v = n.to_s.split(".")[1] || []).count > 1 ? v.last.length : 0'
                 enclose = true
               when 'w'
-                op = '(w = n.to_s.split(".")).count > 1 ? w.last.gsub(/0+$/, "").length : 0'
+                op = '(w = n.to_s.split(".")[1] || []).count > 1 ? w.last.gsub(/0+$/, "").length : 0'
                 enclose = true
               else
-                op = 'n.to_f'
+                op = 'n.to_f.abs'
               end
               if @mod
                 op = '(' << op << ')' if enclose
