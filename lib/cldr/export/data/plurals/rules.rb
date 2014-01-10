@@ -92,7 +92,7 @@ module Cldr
           end
 
           def to_ruby
-            @condition ||= 'lambda { |n| ' + reverse.inject(':other') do |result, (key, code)|
+            @condition ||= 'lambda { |n| n = n.respond_to?(:abs) ? n.abs : 0;' + reverse.inject(':other') do |result, (key, code)|
               code = self.class.parse(code).to_ruby
               if code
                 "#{code} ? :#{key} : #{result}"
@@ -149,14 +149,13 @@ module Cldr
                 op = '(w = n.to_s.split(".")).size > 1 ? w.last.gsub(/0+$/, "").length : 0'
                 enclose = true
               else
-                op = 'n.to_f.abs'
+                op = 'n.to_f'
               end
               if @mod
                 op = '(' << op << ')' if enclose
                 op << ' % ' << @mod.to_s
                 enclose = false
               end
-              op = "n = n.respond_to?(:abs) ? n.abs : n; #{op}"
               case @operator
               when :is
                 op = '(' << op << ')' if enclose
