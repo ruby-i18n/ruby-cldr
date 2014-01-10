@@ -135,18 +135,18 @@ module Cldr
               enclose = false
               case @type
               when 'i'
-                op = 'n.to_i'
+                op = 'n.abs.to_i'
               when 'f'
-                op = '(f = n.to_s.split(".")[1] || []).count > 1 ? f.last.to_i : 0'
+                op = '(f = n.abs.to_s.split(".") || []).size > 1 ? f.last : 0'
                 enclose = true
               when 't'
-                op = '(t = n.to_s.split(".")[1] || []).count > 1 ? t.last.gsub(/0+$/, "").to_i : 0'
+                op = '(t = n.abs.to_s.split(".") || []).size > 1 ? t.last.gsub(/0+$/, "") : 0'
                 enclose = true
               when 'v'
-                op = '(v = n.to_s.split(".")[1] || []).count > 1 ? v.last.length : 0'
+                op = '(v = n.abs.to_s.split(".") || []).size > 1 ? v.last.length : 0'
                 enclose = true
               when 'w'
-                op = '(w = n.to_s.split(".")[1] || []).count > 1 ? w.last.gsub(/0+$/, "").length : 0'
+                op = '(w = n.abs.to_s.split(".") || []).size > 1 ? w.last.gsub(/0+$/, "").length : 0'
                 enclose = true
               else
                 op = 'n.to_f.abs'
