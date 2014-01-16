@@ -1,5 +1,3 @@
-require 'pry-nav'
-
 module Cldr
   module Export
     module Data
