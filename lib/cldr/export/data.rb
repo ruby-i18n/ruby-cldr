@@ -21,6 +21,7 @@ module Cldr
       autoload :Rbnf,             'cldr/export/data/rbnf'
       autoload :RbnfRoot,         'cldr/export/data/rbnf_root'
       autoload :NumberingSystems, 'cldr/export/data/numbering_systems'
+      autoload :Transforms,       'cldr/export/data/transforms'
 
       class << self
         def dir

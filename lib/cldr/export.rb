@@ -16,7 +16,8 @@ module Cldr
       'RbnfRoot',
       'Metazones',
       'WindowsZones',
-      'NumberingSystems'
+      'NumberingSystems',
+      'Transforms'  # this is not really a shared component, but it's not exported by locale either, so...
     ]
 
     class << self
@@ -38,8 +39,21 @@ module Cldr
         end
 
         shared_components.each do |component|
-          ex = exporter(component, options[:format])
-          ex.export('', component, options, &block)
+          case component
+            when "Transforms"
+              yaml_exporter = Cldr::Export::Yaml.new
+              Dir.glob("#{Cldr::Export::Data.dir}/transforms/**.xml").each do |transform_file|
+                data = Data::Transforms.new(transform_file)
+                source = data[:transforms].first[:source]
+                target = data[:transforms].first[:target]
+                output_path = File.join(base_path, "transforms", "#{source}-#{target}.yml")
+                write(output_path, yaml_exporter.yaml(data))
+                yield component, nil, output_path if block_given?
+              end
+            else
+              ex = exporter(component, options[:format])
+              ex.export('', component, options, &block)
+          end
         end
 
         locales.each do |locale|
@@ -87,7 +101,12 @@ module Cldr
       end
 
       def shared_data(component, options = {})
-        Data.const_get(component.to_s.camelize).new
+        case component.to_s
+          when 'Transforms'
+            # do nothing, this has to be handled separately
+          else
+            Data.const_get(component.to_s.camelize).new
+        end
       end
 
       def locales(locale, component, options)
