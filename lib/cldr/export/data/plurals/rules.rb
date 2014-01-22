@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'rexml/document'
-require 'core_ext/hash/deep_merge'
 
 module Cldr
   module Export
