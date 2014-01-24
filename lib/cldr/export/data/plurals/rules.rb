@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'rexml/document'
-require 'core_ext/hash/deep_merge'
 
 module Cldr
   module Export
@@ -92,7 +91,7 @@ module Cldr
           end
 
           def to_ruby
-            @condition ||= 'lambda { |n| n = n.respond_to?(:abs) ? n.abs : 0;' + reverse.inject(':other') do |result, (key, code)|
+            @condition ||= 'lambda { |n| n = n.respond_to?(:abs) ? n.abs : ((m = n.to_s)[0] == "-" ? m[1,m.length] : m); ' + reverse.inject(':other') do |result, (key, code)|
               code = self.class.parse(code).to_ruby
               if code
                 "#{code} ? :#{key} : #{result}"
@@ -133,22 +132,24 @@ module Cldr
             @ruby ||= begin
               return nil unless @operator
               enclose = false
+              fraction = false
               case @type
               when 'i'
                 op = 'n.to_i'
               when 'f'
-                op = '(f = n.to_s.split(".")).size > 1 ? f.last : 0'
+                op = '(f = n.to_s.split(".")[1]) ? f.to_i : 0'
                 enclose = true
               when 't'
-                op = '(t = n.to_s.split(".")).size > 1 ? t.last.gsub(/0+$/, "") : 0'
+                op = '(t = n.to_s.split(".")[1]) ? t.gsub(/0+$/, "").to_i : 0'
                 enclose = true
               when 'v'
-                op = '(v = n.to_s.split(".")).size > 1 ? v.last.length : 0'
+                op = '(v = n.to_s.split(".")[1]) ? v.length : 0'
                 enclose = true
               when 'w'
-                op = '(w = n.to_s.split(".")).size > 1 ? w.last.gsub(/0+$/, "").length : 0'
+                op = '(w = n.to_s.split(".")[1]) ? w.gsub(/0+$/, "").length : 0'
                 enclose = true
               else
+                fraction = true
                 op = 'n.to_f'
               end
               if @mod
@@ -175,14 +176,14 @@ module Cldr
                 enclose = ranges.count > 1 || (values.count > 0 && ranges.count > 0)
                 if ranges.count > 0
                   str << ' || ' if values.count > 0
-                  str << "((#{bop} % 1).zero? && "
+                  str << "((#{bop} % 1).zero? && " if fraction
                   str << '(' if ranges.count > 1
                   str << prepend + "(#{ranges.shift.inspect}).include?(#{op})"
                   ranges.each do |range|
                     str << ' || ' << prepend + "(#{range.inspect}).include?(#{op})"
                   end
                   str << ')' if ranges.count > 0
-                  str << ')'
+                  str << ')' if fraction
                 end
                 str = '(' << str << ')' if enclose
                 str

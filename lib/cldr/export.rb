@@ -3,6 +3,7 @@ require 'i18n/locale/fallbacks'
 require 'core_ext/string/camelize'
 require 'core_ext/string/underscore'
 require 'core_ext/hash/deep_stringify_keys'
+require 'core_ext/hash/deep_merge'
 
 module Cldr
   module Export

@@ -23,6 +23,7 @@ class TestCldrDataNumbers < Test::Unit::TestCase
   test "number formats :de" do
     expected = {
       :decimal => {
+        :number_system => "latn",
         :patterns => {
           :default => "#,##0.###",
           "long" => {
@@ -56,16 +57,19 @@ class TestCldrDataNumbers < Test::Unit::TestCase
         }
       },
       :scientific => {
+        :number_system => "latn",
         :patterns => {
           :default => "#E0"
         }
       },
       :percent => {
+        :number_system => "latn",
         :patterns => {
           :default => "#,##0 %"     # includes a non-breaking space (\302\240)
         }
       },
       :currency => {
+        :number_system => "latn",
         :patterns => {
           :default => "#,##0.00 ¤", # includes a non-breaking space (\302\240)
         },
