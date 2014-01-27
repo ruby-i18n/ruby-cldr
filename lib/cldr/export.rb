@@ -17,7 +17,8 @@ module Cldr
       'RbnfRoot',
       'Metazones',
       'WindowsZones',
-      'NumberingSystems'
+      'NumberingSystems',
+      'SegmentsRoot'
     ]
 
     class << self
