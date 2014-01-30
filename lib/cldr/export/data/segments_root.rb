@@ -9,7 +9,7 @@ module Cldr
         end
 
         def segmentations
-          doc.xpath("segmentations/segmentation").inject({}) do |ret, seg|
+          doc.xpath("ldml/segmentations/segmentation").inject({}) do |ret, seg|
             type = seg.attribute("type").value
             ret[type] = segmentation(seg)
             ret
@@ -33,16 +33,16 @@ module Cldr
         end
 
         def rules(node)
-          (node / "segmentRules" / "rule").each do |rule|
+          (node / "segmentRules" / "rule").map do |rule|
             {
-              :id => variable.attribute("id").value,
-              :value => variable.text
+              :id => rule.attribute("id").value,
+              :value => rule.text
             }
           end
         end
 
         def path
-          @path ||= "#{Cldr::Export::Data.dir}/common/segments/root.xml"
+          @path ||= "#{Cldr::Export::Data.dir}/segments/root.xml"
         end
 
       end
