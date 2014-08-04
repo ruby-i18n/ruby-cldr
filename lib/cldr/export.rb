@@ -18,7 +18,7 @@ module Cldr
       NumberingSystems
       RbnfRoot
       SegmentsRoot
-      TerritoryContainment
+      TerritoriesContainment
       WindowsZones
     ]
 
