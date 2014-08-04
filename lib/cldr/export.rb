@@ -12,13 +12,14 @@ module Cldr
     autoload :Ruby, 'cldr/export/ruby'
     autoload :Yaml, 'cldr/export/yaml'
 
-    SHARED_COMPONENTS = [
-      'CurrencyDigitsAndRounding',
-      'RbnfRoot',
-      'Metazones',
-      'WindowsZones',
-      'NumberingSystems',
-      'SegmentsRoot'
+    SHARED_COMPONENTS = %w[
+      CurrencyDigitsAndRounding
+      Metazones
+      NumberingSystems
+      RbnfRoot
+      SegmentsRoot
+      TerritoryContainment
+      WindowsZones
     ]
 
     class << self
