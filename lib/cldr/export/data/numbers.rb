@@ -47,8 +47,28 @@ module Cldr
           result = select("numbers/#{type}Formats/#{type}FormatLength/#{type}Format").inject({}) do |format_result, format_node|
             format_key = format_node.parent.attribute('type')
             format_result[format_key ? format_key.value : :default] = select(format_node, "pattern").inject({}) do |pattern_result, pattern_node|
-              pattern_key = pattern_node.attribute('type')
-              pattern_result[pattern_key ? pattern_key.value : :default] = pattern_node.content unless draft?(pattern_node)
+              pattern_key_node = pattern_node.attribute('type')
+
+              pattern_count_node = pattern_node.attribute('count')
+
+              unless draft?(pattern_node)
+                pattern_key = pattern_key_node ? pattern_key_node.value : :default
+
+                if pattern_count_node
+                  pattern_count = pattern_count_node.value
+
+                  if pattern_result[pattern_key].nil?
+                    pattern_result[pattern_key] ||= {}
+                  elsif !pattern_result[pattern_key].is_a?(Hash)
+                    raise "can't parse patterns with and without 'count' attribute in the same section"
+                  end
+
+                  pattern_result[pattern_key][pattern_count] = pattern_node.content
+                else
+                  pattern_result[pattern_key] = pattern_node.content
+                end
+              end
+
               pattern_result
             end
             format_result
