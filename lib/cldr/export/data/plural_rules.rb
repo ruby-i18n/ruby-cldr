@@ -1,5 +1,4 @@
 require 'nokogiri'
-require 'pry-nav'
 
 module Cldr
   module Export
@@ -8,31 +7,44 @@ module Cldr
         attr_reader :locale
 
         def initialize(locale)
-          find_rules(locale).each do |rule|
-            self[rule.attributes['count'].text] = rule.text
+          find_rules(locale).each_pair do |rule_type, rule_data|
+            self[rule_type.to_sym] = rule_data.inject({}) do |ret, rule|
+              ret[rule.attributes['count'].text] = rule.text
+              ret
+            end
           end
         end
 
         private
 
-        def source
-          @source ||=
-            ::Nokogiri::XML(File.read("#{Cldr::Export::Data.dir}/supplemental/plurals.xml"))
+        def sources
+          @sources ||= ['plurals', 'ordinals'].inject({}) do |ret, source_name|
+            ret[source_name] = ::Nokogiri::XML(
+              File.read("#{Cldr::Export::Data.dir}/supplemental/#{source_name}.xml")
+            )
+            ret
+          end
         end
 
         def find_rules(locale)
           locale = locale.to_s
 
-          # try to find exact match, then fall back
-          node = find_rules_for_exact_locale(locale) ||
-            find_rules_for_exact_locale(base_locale(locale)) ||
-            find_rules_for_base_locale(locale)
-            find_rules_for_base_locale(base_locale(locale))
+          sources.inject({}) do |ret, (name, source)|
+            # try to find exact match, then fall back
+            node = find_rules_for_exact_locale(locale, source) ||
+              find_rules_for_exact_locale(base_locale(locale), source) ||
+              find_rules_for_base_locale(locale, source) ||
+              find_rules_for_base_locale(base_locale(locale), source)
 
-          node / 'pluralRule'
+            if node
+              ret[name] = node / 'pluralRule'
+            end
+
+            ret
+          end
         end
 
-        def find_rules_for_exact_locale(locale)
+        def find_rules_for_exact_locale(locale, source)
           (source / 'plurals/pluralRules').find do |node|
             node.attributes['locales'].text
               .split(' ').map(&:downcase)
@@ -40,7 +52,7 @@ module Cldr
           end
         end
 
-        def find_rules_for_base_locale(locale)
+        def find_rules_for_base_locale(locale, source)
           (source / 'plurals/pluralRules').find do |node|
             node.attributes['locales'].text
               .split(' ').map { |l| base_locale(l) }
