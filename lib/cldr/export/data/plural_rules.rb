@@ -29,7 +29,7 @@ module Cldr
         def find_rules(locale)
           locale = locale.to_s
 
-          sources.inject({}) do |ret, (name, source)|
+          sources.inject({}) do |ret, (file, source)|
             # try to find exact match, then fall back
             node = find_rules_for_exact_locale(locale, source) ||
               find_rules_for_exact_locale(base_locale(locale), source) ||
@@ -37,6 +37,7 @@ module Cldr
               find_rules_for_base_locale(base_locale(locale), source)
 
             if node
+              name = (source / 'plurals').first.attributes['type'].value
               ret[name] = node / 'pluralRule'
             end
 
