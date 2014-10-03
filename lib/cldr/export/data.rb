@@ -15,6 +15,7 @@ module Cldr
       autoload :NumberingSystems,          'cldr/export/data/numbering_systems'
       autoload :Numbers,                   'cldr/export/data/numbers'
       autoload :Plurals,                   'cldr/export/data/plurals'
+      autoload :PluralRules,               'cldr/export/data/plural_rules'
       autoload :Rbnf,                      'cldr/export/data/rbnf'
       autoload :RbnfRoot,                  'cldr/export/data/rbnf_root'
       autoload :SegmentsRoot,              'cldr/export/data/segments_root'
@@ -28,7 +29,7 @@ module Cldr
         def dir
           @dir ||= File.expand_path('./vendor/cldr/common')
         end
-      
+
         def dir=(dir)
           @dir = dir
         end
