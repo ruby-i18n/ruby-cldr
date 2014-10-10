@@ -84,6 +84,11 @@ class TestCldrDataNumbers < Test::Unit::TestCase
     assert_equal expected, Cldr::Export::Data::Numbers.new('de')[:numbers][:formats]
   end
 
+  test "redirects in root locale" do
+    assert_equal :"numbers.formats.decimal.patterns.short",
+         Cldr::Export::Data::Numbers.new('root')[:numbers][:formats][:decimal][:patterns]['long']
+  end
+
   # Cldr::Export::Data.locales.each do |locale|
   #   test "extract number_symbols for #{locale}" do
   #     assert_nothing_raised do
