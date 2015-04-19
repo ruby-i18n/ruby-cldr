@@ -20,6 +20,10 @@ module Cldr
       SegmentsRoot
       TerritoriesContainment
       WindowsZones
+      LikelySubtags
+      Variables
+      Aliases
+      RegionCurrencies
     ]
 
     class << self
