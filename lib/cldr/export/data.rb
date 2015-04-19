@@ -17,6 +17,7 @@ module Cldr
       autoload :NumberingSystems,          'cldr/export/data/numbering_systems'
       autoload :Numbers,                   'cldr/export/data/numbers'
       autoload :Plurals,                   'cldr/export/data/plurals'
+      autoload :PluralRules,               'cldr/export/data/plural_rules'
       autoload :Rbnf,                      'cldr/export/data/rbnf'
       autoload :RbnfRoot,                  'cldr/export/data/rbnf_root'
       autoload :RegionCurrencies,          'cldr/export/data/region_currencies'
