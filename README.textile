@@ -98,6 +98,12 @@ E.g.:
 	# => "12. November 2010 13:14"
 </pre>
 
+h2. Tests
+
+<pre>
+ bundle exec ruby test/all.rb
+</pre>
+
 h2. Resources
 
 For additional information on CLDR plural rules see:

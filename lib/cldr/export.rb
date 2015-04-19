@@ -3,6 +3,7 @@ require 'i18n/locale/fallbacks'
 require 'core_ext/string/camelize'
 require 'core_ext/string/underscore'
 require 'core_ext/hash/deep_stringify_keys'
+require 'core_ext/hash/deep_merge'
 
 module Cldr
   module Export
@@ -11,13 +12,15 @@ module Cldr
     autoload :Ruby, 'cldr/export/ruby'
     autoload :Yaml, 'cldr/export/yaml'
 
-    SHARED_COMPONENTS = [
-      'CurrencyDigitsAndRounding',
-      'RbnfRoot',
-      'Metazones',
-      'WindowsZones',
-      'NumberingSystems',
-      'Transforms'  # this is not really a shared component, but it's not exported by locale either, so...
+    SHARED_COMPONENTS = %w[
+      CurrencyDigitsAndRounding
+      Metazones
+      NumberingSystems
+      RbnfRoot
+      SegmentsRoot
+      TerritoriesContainment
+      WindowsZones
+      Transforms
     ]
 
     class << self

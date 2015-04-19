@@ -21,7 +21,7 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
   end
   
   def test_lookup_rule_by_locale
-    assert_equal 'lambda { |n| (n.to_i.to_s.length == 1 && ((v = n.to_s.split(".")).count > 1 ? v.last.length : 0) == 0) ? :one : :other }', cldr_rules.rule(:de).to_ruby
+    assert_equal 'lambda { |n| n = n.respond_to?(:abs) ? n.abs : ((m = n.to_s)[0] == "-" ? m[1,m.length] : m); (n.to_i == 1 && ((v = n.to_s.split(".")[1]) ? v.length : 0) == 0) ? :one : :other }', cldr_rules.rule(:de).to_ruby
   end
 
   def test_parses_empty
@@ -152,7 +152,7 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
   end
 
   def test_compiles_and_priority
-    assert_equal '(n.to_i.to_s.length == 0 || (((v = n.to_s.split(".")).count > 1 ? v.last.length : 0) != 1 && (((((f = n.to_s.split(".")).count > 1 ? f.last.to_i : 0) % 2) % 1).zero? && (3..4).include?(((f = n.to_s.split(".")).count > 1 ? f.last.to_i : 0) % 2))))', Cldr::Export::Data::Plurals::Rule.parse('i = 0 or v != 1 and f mod 2 = 3..4').to_ruby
+    assert_equal '(n.to_i == 0 || (((v = n.to_s.split(".")[1]) ? v.length : 0) != 1 && (3..4).include?(((t = n.to_s.split(".")[1]) ? t.gsub(/0+$/, "").to_i : 0) % 2)))', Cldr::Export::Data::Plurals::Rule.parse('i = 0 or v != 1 and t mod 2 = 3..4').to_ruby
   end
 
   def test_compiles_n_mod_100_in_3_99
@@ -174,5 +174,69 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
   def test_eval_n_in
     n = 3.3
     assert_equal false, eval(Cldr::Export::Data::Plurals::Rule.parse('n mod 100 in 3..6').to_ruby, binding)
+  end
+
+  def test_n_negative
+    # one: i = 1 and v = 0 @integer 1
+    # other: @integer 0, 2~16, 100, 1000, 10000, 100000, 1000000, … @decimal 0.0~1.5, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …
+    fn = eval(cldr_rules.rule(:de).to_ruby)
+    assert_equal :one, fn.call(-1)
+    assert_equal :one, fn.call("-1")
+    assert_equal :one, fn.call(1)
+    assert_equal :other, fn.call("1.0")
+    assert_equal :other, fn.call("-1.0")
+    assert_equal :other, fn.call(-5)
+  end
+
+  def test_n_digit
+    # one: n = 0..1 or n = 11..99 @integer 0, 1, 11~24 @decimal 0.0, 1.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0
+    # other: @integer 2~10, 100~106, 1000, 10000, 100000, 1000000, … @decimal 0.1~0.9, 1.1~1.7, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …
+    fn = eval(cldr_rules.rule(:tzm).to_ruby)
+    assert_equal :one, fn.call(0)
+    assert_equal :one, fn.call(1)
+    assert_equal :one, fn.call(11)
+    assert_equal :one, fn.call(25.0)
+    assert_equal :one, fn.call("-62.00")
+    assert_equal :other, fn.call(2)
+    assert_equal :other, fn.call(10)
+    assert_equal :other, fn.call(25.1)
+    assert_equal :other, fn.call(111)
+  end
+
+  def test_n_string
+    # one: i = 1 and v = 0 or i = 0 and t = 1 @integer 1 @decimal 0.1, 0.01, 0.10, 0.001, 0.010, 0.100, 0.0001, 0.0010, 0.0100, 0.1000
+    # other: @integer 0, 2~16, 100, 1000, 10000, 100000, 1000000, … @decimal 0.0, 0.2~1.6, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …
+    fn = eval(cldr_rules.rule(:pt).to_ruby)
+    assert_equal :one, fn.call("1")
+    assert_equal :one, fn.call("0.00100")
+    assert_equal :one, fn.call("-0.01")
+    assert_equal :other, fn.call("0")
+    assert_equal :other, fn.call("1.1")
+    assert_equal :other, fn.call("0.21")
+  end
+
+  def test_n_mod
+    # one: v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11 @integer 1, 21, 31, 41, 51, 61, 71, 81, 101, 1001, … @decimal 0.1, 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 10.1, 100.1, 1000.1, …
+    # few: v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14 @integer 2~4, 22~24, 32~34, 42~44, 52~54, 62, 102, 1002, … @decimal 0.2~0.4, 1.2~1.4, 2.2~2.4, 3.2~3.4, 4.2~4.4, 5.2, 10.2, 100.2, 1000.2, …
+    # other: @integer 0, 5~19, 100, 1000, 10000, 100000, 1000000, … @decimal 0.0, 0.5~1.0, 1.5~2.0, 2.5~2.7, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …
+    fn = eval(cldr_rules.rule(:hr).to_ruby)
+    assert_equal :one, fn.call(1)
+    assert_equal :one, fn.call("21")
+    assert_equal :one, fn.call("131")
+    assert_equal :one, fn.call(11.321)
+    assert_equal :one, fn.call("25.01")
+    assert_equal :few, fn.call(24)
+    assert_equal :few, fn.call("252")
+    assert_equal :few, fn.call(2.04)
+    assert_equal :few, fn.call("113.0022")
+    assert_equal :other, fn.call("10")
+    assert_equal :other, fn.call("11")
+    assert_equal :other, fn.call(311)
+    assert_equal :other, fn.call("13")
+    assert_equal :other, fn.call(1212)
+    assert_equal :other, fn.call("0.10")
+    assert_equal :other, fn.call(0.11)
+    assert_equal :other, fn.call("0.220")
+    assert_equal :other, fn.call("41.0")
   end
 end
