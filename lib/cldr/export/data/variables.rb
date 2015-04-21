@@ -4,7 +4,7 @@ module Cldr
       class Variables < Base
 
         # only these variables will be exported
-        VARIABLE_IDS = %w($grandfathered)
+        VARIABLE_IDS = %w($grandfathered $language $territory $script $variant)
 
         def initialize
           super(nil)
