@@ -26,7 +26,7 @@ module Cldr
         def variables(node)
           (node / "variables" / "variable").map do |variable|
             {
-              :id => variable.attribute("id").value,
+              :id => cast_value(variable.attribute("id").value),
               :value => variable.text
             }
           end
@@ -35,7 +35,7 @@ module Cldr
         def rules(node)
           (node / "segmentRules" / "rule").map do |rule|
             {
-              :id => rule.attribute("id").value,
+              :id => cast_value(rule.attribute("id").value),
               :value => rule.text
             }
           end
@@ -43,6 +43,16 @@ module Cldr
 
         def path
           @path ||= "#{Cldr::Export::Data.dir}/segments/root.xml"
+        end
+
+        def cast_value(value)
+          if value =~ /\A[\d]+\z/
+            value.to_i
+          elsif value =~ /\A[\d.]+\z/
+            value.to_f
+          else
+            value
+          end
         end
 
       end
