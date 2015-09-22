@@ -30,13 +30,13 @@ module Cldr
             :type => ruleset_node.attribute("type").value,
             :rules => (ruleset_node / "rbnfrule").map do |rule_node|
               radix = if radix_attr = rule_node.attribute("radix")
-                radix_attr.value
+                cast_value(radix_attr.value)
               else
                 nil
               end
-              
+
               attrs = {
-                :value => rule_node.attribute("value").value,
+                :value => cast_value(rule_node.attribute("value").value),
                 :rule => fix_rule(rule_node.text)
               }
 
@@ -48,6 +48,14 @@ module Cldr
           access = ruleset_node.attribute("access")
           attrs[:access] = access.value if access
           attrs
+        end
+
+        def cast_value(val)
+          if val =~ /\A[\d]+\z/
+            val.to_i
+          else
+            val
+          end
         end
 
         def fix_rule(rule)

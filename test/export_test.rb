@@ -47,6 +47,23 @@ class TestExtract < Test::Unit::TestCase
     assert_equal yaml, Cldr::Export::Yaml.new.emit(data.deep_stringify_keys)
   end
 
+  test "wrap strings that might be interpreted as octal numbers in quotes" do
+    data = %w[017 017b 019 0]
+    yaml = %(\n- \"017\"\n- 017b\n- 019\n- 0)
+
+    assert_equal yaml, Cldr::Export::Yaml.new.emit(data)
+  end
+
+  test "#locales does not fall back to English (unless the locale is English based)" do
+    assert_equal [:ko, :root], Cldr::Export.locales('ko', 'numbers', :merge => true)
+    assert_equal [:'pt-br', :pt, :root], Cldr::Export.locales('pt-br', 'numbers', :merge => true)
+    assert_equal [:'en-gb', :en, :root], Cldr::Export.locales('en-gb', 'numbers', :merge => true)
+  end
+
+  test "#locales does not fall back if :merge option is false" do
+    assert_equal [:'pt-br', :root], Cldr::Export.locales('pt-br', 'numbers', :merge => false)
+  end
+
   # Cldr::Export::Data.locales.each do |locale|
   #   Cldr::Export::Data.components.each do |component|
   #     test "exported yaml file yaml for #{locale}/#{component} readable" do

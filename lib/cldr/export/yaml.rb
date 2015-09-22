@@ -19,22 +19,18 @@ module Cldr
         end
       end
 
-    	def yaml(data)
-    		emit(data, 1)[1..-1]
-    	end
+      def yaml(data)
+        emit(data, 1)[1..-1]
+      end
 
-    	def emit(object, level = 1)
-    		result = object.is_a?(Symbol) ? object.inspect : super
-    		result.gsub(/(\s{1})(no):/i) { %(#{$1}"#{$2}":) } # FIXME fucking spaghetti code
-    	end
+      def emit(object, level = 1)
+        result = object.is_a?(Symbol) ? object.inspect : super
+        result.gsub(/(\s{1})(no):/i) { %(#{$1}"#{$2}":) } # FIXME fucking spaghetti code
+      end
 
-    	def is_one_plain_line?(str)
-    		# removed REX_BOOL, REX_INT
-    		str !~ /^([\-\?:,\[\]\{\}\#&\*!\|>'"%@`\s]|---|\.\.\.)/    &&
-    		str !~ /[:\#\s\[\]\{\},]/                                  &&
-    		str !~ /#{REX_ANY_LB}/                                     &&
-    		str !~ /^(#{REX_FLOAT}|#{REX_MERGE}|#{REX_NULL}|#{REX_TIMESTAMP}|#{REX_VALUE})$/x
-    	end
+      def is_one_plain_line?(str)
+        false  # always quote, always dump symbols even if they are numbers
+      end
     end
   end
 end

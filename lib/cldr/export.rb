@@ -12,13 +12,18 @@ module Cldr
     autoload :Ruby, 'cldr/export/ruby'
     autoload :Yaml, 'cldr/export/yaml'
 
-    SHARED_COMPONENTS = [
-      'CurrencyDigitsAndRounding',
-      'RbnfRoot',
-      'Metazones',
-      'WindowsZones',
-      'NumberingSystems',
-      'SegmentsRoot'
+    SHARED_COMPONENTS = %w[
+      CurrencyDigitsAndRounding
+      Metazones
+      NumberingSystems
+      RbnfRoot
+      SegmentsRoot
+      TerritoriesContainment
+      WindowsZones
+      LikelySubtags
+      Variables
+      Aliases
+      RegionCurrencies
     ]
 
     class << self
@@ -93,8 +98,15 @@ module Cldr
       end
 
       def locales(locale, component, options)
-        locale = locale.to_s.gsub('_', '-')
-        locales = options[:merge] ? I18n::Locale::Fallbacks.new[locale.to_sym] : [locale.to_sym]
+        locale = locale.to_s.gsub('_', '-').to_sym
+
+        locales = if options[:merge]
+          # passing locale itself into constructor as a default fallback to avoid falling back to :en locale
+          I18n::Locale::Fallbacks.new([locale])[locale]
+        else
+          [locale]
+        end
+
         locales << :root if component_should_merge_root?(component)
         locales
       end
