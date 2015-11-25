@@ -29,12 +29,7 @@ module Cldr
       end
 
       def is_one_plain_line?(str)
-        # removed REX_BOOL, REX_INT
-        str !~ /^([\-\?:,\[\]\{\}\#&\*!\|>'"%@`\s]|---|\.\.\.)/ &&
-          str !~ /[:\#\s\[\]\{\},]/ &&
-          str !~ /#{REX_ANY_LB}/ &&
-          str !~ /^0[0-7]+$/ &&
-          str !~ /^(#{REX_FLOAT}|#{REX_MERGE}|#{REX_NULL}|#{REX_TIMESTAMP}|#{REX_VALUE})$/x
+        false  # always quote, always dump symbols even if they are numbers
       end
     end
   end
