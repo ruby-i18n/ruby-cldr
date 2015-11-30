@@ -53,7 +53,9 @@ module Cldr
                 data = Data::Transforms.new(transform_file)
                 source = data[:transforms].first[:source]
                 target = data[:transforms].first[:target]
-                output_path = File.join(base_path, "transforms", "#{source}-#{target}.yml")
+                variant = data[:transforms].first[:variant]
+                file_name = [source, target, variant].compact.join('-')
+                output_path = File.join(base_path, "transforms", "#{file_name}.yml")
                 write(output_path, yaml_exporter.yaml(data))
                 yield component, nil, output_path if block_given?
               end
