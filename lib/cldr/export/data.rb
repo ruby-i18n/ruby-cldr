@@ -29,6 +29,7 @@ module Cldr
       autoload :Units,                     'cldr/export/data/units'
       autoload :Variables,                 'cldr/export/data/variables'
       autoload :WindowsZones,              'cldr/export/data/windows_zones'
+      autoload :Transforms,                'cldr/export/data/transforms'
 
       class << self
         def dir
