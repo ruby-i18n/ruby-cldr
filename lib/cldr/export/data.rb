@@ -9,6 +9,7 @@ module Cldr
       autoload :Currencies,                'cldr/export/data/currencies'
       autoload :CurrencyDigitsAndRounding, 'cldr/export/data/currency_digits_and_rounding'
       autoload :Delimiters,                'cldr/export/data/delimiters'
+      autoload :Fields,                    'cldr/export/data/fields'
       autoload :Languages,                 'cldr/export/data/languages'
       autoload :Layout,                    'cldr/export/data/layout'
       autoload :LikelySubtags,             'cldr/export/data/likely_subtags'
