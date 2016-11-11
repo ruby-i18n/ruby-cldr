@@ -150,7 +150,7 @@ module Cldr
       end
 
       def component_should_merge_root?(component)
-        component != "Rbnf"
+        !%w(Rbnf Fields).include?(component)
       end
     end
   end
