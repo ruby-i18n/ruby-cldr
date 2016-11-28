@@ -26,6 +26,11 @@ class TestExtract < Test::Unit::TestCase
     assert_equal 'NaN', data[:numbers][:symbols][:nan]
   end
 
+  test 'the merge option respects parentLocales' do
+    data = Cldr::Export.data('calendars', 'en-GB', :merge => true)
+    assert_equal 'dd/MM/y', data[:calendars][:gregorian][:additional_formats]['yMd']
+  end
+
   test "exports data to files" do
     Cldr::Export.export(:locales => %w(de), :components => %w(calendars))
     assert File.exists?(Cldr::Export.path('de', 'calendars', 'yml'))
