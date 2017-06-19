@@ -18,6 +18,7 @@ module Cldr
       autoload :Metazones,                 'cldr/export/data/metazones'
       autoload :NumberingSystems,          'cldr/export/data/numbering_systems'
       autoload :Numbers,                   'cldr/export/data/numbers'
+      autoload :ParentLocales,             'cldr/export/data/parent_locales'
       autoload :Plurals,                   'cldr/export/data/plurals'
       autoload :PluralRules,               'cldr/export/data/plural_rules'
       autoload :Rbnf,                      'cldr/export/data/rbnf'

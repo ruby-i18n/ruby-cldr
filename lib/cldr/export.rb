@@ -1,5 +1,5 @@
 require 'i18n'
-require 'i18n/locale/fallbacks'
+require 'i18n/locale/tag'
 require 'core_ext/string/camelize'
 require 'core_ext/string/underscore'
 require 'core_ext/hash/deep_stringify_keys'
@@ -118,12 +118,32 @@ module Cldr
         end
       end
 
+      def to_i18n(locale)
+        return locale.to_s.gsub('_', '-').to_sym
+      end
+
+      def from_i18n(locale)
+        return locale.to_s.gsub('-', '_')
+      end
+
       def locales(locale, component, options)
-        locale = locale.to_s.gsub('_', '-').to_sym
+        locale = to_i18n(locale)
 
         locales = if options[:merge]
-          # passing locale itself into constructor as a default fallback to avoid falling back to :en locale
-          I18n::Locale::Fallbacks.new([locale])[locale]
+          defined_parents = Cldr::Export::Data::ParentLocales.new
+
+          ancestry = [locale]
+          loop do
+            if defined_parents[from_i18n(ancestry.last)]
+              ancestry << to_i18n(defined_parents[from_i18n(ancestry.last)])
+            elsif I18n::Locale::Tag.tag(ancestry.last).self_and_parents.count > 1
+              ancestry << I18n::Locale::Tag.tag(ancestry.last).self_and_parents.last.to_sym
+            else
+              break
+            end
+          end
+
+          ancestry
         else
           [locale]
         end
