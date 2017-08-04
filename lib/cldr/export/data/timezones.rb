@@ -6,7 +6,23 @@ module Cldr
       class Timezones < Base
         def initialize(locale)
           super
-          update(:timezones => timezones, :metazones => metazones)
+
+          update(
+            :formats => formats,
+            :timezones => timezones,
+            :metazones => metazones
+          )
+        end
+
+        def formats
+          @formats ||= select('dates/timeZoneNames/*').inject({}) do |result, format|
+            if format.name.end_with?('Format')
+              underscored_name = format.name.gsub(/([a-z])([A-Z])/, '\1_\2').downcase
+              result[underscored_name] = format.text
+            end
+
+            result
+          end
         end
 
         def timezones
