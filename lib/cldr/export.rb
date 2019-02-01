@@ -143,12 +143,12 @@ module Cldr
             end
           end
 
-          ancestry
+          ancestry << :root if component_should_merge_root?(component)
+          ancestry 
         else
           [locale]
         end
 
-        locales << :root if component_should_merge_root?(component)
         locales
       end
 
