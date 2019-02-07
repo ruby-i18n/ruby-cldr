@@ -66,7 +66,7 @@ class TestExtract < Test::Unit::TestCase
   end
 
   test "#locales does not fall back if :merge option is false" do
-    assert_equal [:'pt-br', :root], Cldr::Export.locales('pt-br', 'numbers', :merge => false)
+    assert_equal [:'pt-br'], Cldr::Export.locales('pt-br', 'numbers', :merge => false)
   end
 
   # Cldr::Export::Data.locales.each do |locale|
