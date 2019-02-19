@@ -4,13 +4,11 @@ require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'
 
 class TestCldrDataTimezones < Test::Unit::TestCase
   test 'timezones :de' do
-    codes = [:"Etc/Unknown", :"Europe/Tirane", :"Asia/Yerevan",
-             :"Antarctica/South_Pole", :"Antarctica/Vostok",
+    codes_subset = [:"Etc/Unknown", :"Europe/Tirane", :"Asia/Yerevan", :"Antarctica/Vostok",
              :"Antarctica/DumontDUrville", :"Europe/Vienna", :"Europe/Brussels",
              :"Africa/Ouagadougou", :"Africa/Porto-Novo", :"America/St_Barthelemy",
              :"Atlantic/Bermuda", :"America/Sao_Paulo", :"America/Coral_Harbour",
-             :"America/St_Johns", :"Europe/Zurich", :"Pacific/Easter",
-             :"Asia/Kashgar", :"America/Bogota", :"America/Havana",
+             :"America/St_Johns", :"Europe/Zurich", :"Pacific/Easter", :"America/Bogota", :"America/Havana",
              :"Atlantic/Cape_Verde", :"America/Curacao", :"Indian/Christmas",
              :"Asia/Nicosia", :"Europe/Prague", :"Europe/Busingen",
              :"Africa/Djibouti", :"Europe/Copenhagen", :"Africa/Algiers",
@@ -44,16 +42,15 @@ class TestCldrDataTimezones < Test::Unit::TestCase
              :"America/Indiana/Winamac", :"America/Indiana/Marengo",
              :"America/Indiana/Vevay", :"America/Kentucky/Monticello",
              :"Asia/Tashkent", :"Europe/Vatican", :"America/St_Vincent",
-             :"America/St_Thomas", :"Asia/Saigon"]
-
+             :"America/St_Thomas", :"Asia/Saigon", :"America/Santa_Isabel"]
     timezones = Cldr::Export::Data::Timezones.new(:de)[:timezones]
-    assert (timezones.keys - codes).empty? && (codes - timezones.keys).empty?
+    assert_empty codes_subset - timezones.keys, "Could not find some timezones"
     assert_equal({ :city => 'Wien' }, timezones[:"Europe/Vienna"])
   end
 
   test 'timezone daylight' do
     london = Cldr::Export::Data::Timezones.new(:de)[:timezones][:'Europe/London']
-    assert_equal({ :long => { :daylight => 'Britische Sommerzeit'} }, london)
+    assert_equal({ :city=>"London", :long => { :daylight => 'Britische Sommerzeit'} }, london)
   end
 
   test 'metazone :de Europe_Western' do

@@ -1,11 +1,8 @@
-require 'ya2yaml'
+require 'yaml'
 
 module Cldr
   module Export
-    class Yaml < Ya2YAML
-      def initialize
-        super(:syck_compatible => true)
-      end
+    class Yaml
 
       def export(locale, component, options = {})
         data = Export.data(component, locale, options)
@@ -20,16 +17,7 @@ module Cldr
       end
 
       def yaml(data)
-        emit(data, 1)[1..-1]
-      end
-
-      def emit(object, level = 1)
-        result = object.is_a?(Symbol) ? object.inspect : super
-        result.gsub(/(\s{1})(no):/i) { %(#{$1}"#{$2}":) } # FIXME fucking spaghetti code
-      end
-
-      def is_one_plain_line?(str)
-        false  # always quote, always dump symbols even if they are numbers
+         data.to_yaml
       end
     end
   end

@@ -45,18 +45,31 @@ class TestExtract < Test::Unit::TestCase
     assert data['de']
   end
 
-  test "writes dot-separated symbols to yaml" do
-    data = { :format  => { :narrow => :"calendars.gregorian.months.stand-alone.narrow" } }
-    yaml = %(\nformat: \n  narrow: :"calendars.gregorian.months.stand-alone.narrow")
+  test "writes dot-separated symbols to yaml in a way that can be loaded back" do
+    data = { 'format'  => { 'narrow' => :"calendars.gregorian.months.stand-alone.narrow" } }
+    yaml = Cldr::Export::Yaml.new.yaml(data.deep_stringify_keys)
 
-    assert_equal yaml, Cldr::Export::Yaml.new.emit(data.deep_stringify_keys)
+    assert_equal data, YAML.load(yaml)
   end
 
-  test "wrap strings that might be interpreted as octal numbers in quotes" do
-    data = %w[017 017b 019 0]
-    yaml = %(\n- \"017\"\n- 017b\n- 019\n- 0)
+  test "escapes data in a way that can be properly loaded back" do
+    data = ['017', '017b', '019', '0', '1', 'AAA', 1, 101]
+    yaml = Cldr::Export::Yaml.new.yaml(data)
+    new_data = YAML.load(yaml)
 
-    assert_equal yaml, Cldr::Export::Yaml.new.emit(data)
+    assert_equal data, new_data
+  end
+
+  test "escapes keys in a way that can be properly parsed back" do
+    data = {
+      '017' =>17,
+      15 => 9,
+      9 =>'009',
+    }
+    yaml = Cldr::Export::Yaml.new.yaml(data)
+    new_data = YAML.load(yaml)
+
+    assert_equal data, new_data
   end
 
   test "#locales does not fall back to English (unless the locale is English based)" do

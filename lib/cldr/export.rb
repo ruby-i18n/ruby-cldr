@@ -1,4 +1,5 @@
 require 'i18n'
+require 'fileutils'
 require 'i18n/locale/tag'
 require 'core_ext/string/camelize'
 require 'core_ext/string/underscore'
