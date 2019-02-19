@@ -35,6 +35,12 @@ class TestCldrDataTerritories < Test::Unit::TestCase
     assert_equal('Deutschland', territories[:DE])
   end
 
+  test 'territories does not overwrite long form with the short one' do
+    territories = Cldr::Export::Data::Territories.new(:en)[:territories]
+
+    assert_equal "United States", territories[:US]
+  end
+
   # Cldr::Export::Data.locales.each do |locale|
   #   test "extract territories for #{locale}" do
   #     assert_nothing_raised do

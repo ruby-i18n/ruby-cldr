@@ -31,6 +31,10 @@ module Cldr
             draft && draft.value == 'unconfirmed'
           end
 
+          def alt?(node)
+            !node.attribute('alt').nil?
+          end
+
           def name(node)
             node.name.underscore
           end
