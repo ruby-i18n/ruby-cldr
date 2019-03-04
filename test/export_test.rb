@@ -72,6 +72,23 @@ class TestExtract < Test::Unit::TestCase
     assert_equal data, new_data
   end
 
+  test "escapes unicode in a way that can be properly parsed back" do
+    space = '\u2009'.encode('utf-8')
+    data = {
+      'a' => 'ä',
+      'space' => space,
+      'o' => 'ø',
+      'vowel' => 'ৃ',
+    }
+    yaml = Cldr::Export::Yaml.new.yaml(data)
+    new_data = YAML.load(yaml)
+
+    assert_equal data, new_data
+    assert_include yaml, 'ৃ'
+    assert_include yaml, 'ø'
+    assert_include yaml, space
+  end
+
   test "#locales does not fall back to English (unless the locale is English based)" do
     assert_equal [:ko, :root], Cldr::Export.locales('ko', 'numbers', :merge => true)
     assert_equal [:'pt-br', :pt, :root], Cldr::Export.locales('pt-br', 'numbers', :merge => true)
