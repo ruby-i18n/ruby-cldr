@@ -210,9 +210,10 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
     assert_equal :one, fn.call("1")
     assert_equal :one, fn.call("0.00100")
     assert_equal :one, fn.call("-0.01")
-    assert_equal :other, fn.call("0")
-    assert_equal :other, fn.call("1.1")
-    assert_equal :other, fn.call("0.21")
+    assert_equal :one, fn.call("0")
+    assert_equal :one, fn.call("1.1")
+    assert_equal :one, fn.call("0.21")
+    assert_equal :other, fn.call("2")
   end
 
   def test_n_mod

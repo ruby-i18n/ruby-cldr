@@ -44,8 +44,8 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   # PERIOD
 
   test "period" do
-    assert_equal 'vorm.', format(Time.local(2000, 1, 1, 1, 1, 1), 'a')
-    assert_equal 'nachm.', format(Time.local(2000, 1, 1, 15, 1, 1), 'a')
+    assert_equal 'AM', format(Time.local(2000, 1, 1, 1, 1, 1), 'a')
+    assert_equal 'PM', format(Time.local(2000, 1, 1, 15, 1, 1), 'a')
   end
   
   # HOUR

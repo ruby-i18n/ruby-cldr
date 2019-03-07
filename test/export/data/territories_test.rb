@@ -7,8 +7,8 @@ class TestCldrDataTerritories < Test::Unit::TestCase
     codes = [:"001", :"002", :"003", :"005", :"009", :"011", :"013", :"014",
              :"015", :"017", :"018", :"019", :"021", :"029", :"030", :"034",
              :"035", :"039", :"053", :"054", :"057", :"061", :"142", :"143",
-             :"145", :"150", :"151", :"154", :"155", :"419", :AC, :AD, :AE,
-             :AF, :AG, :AI, :AL, :AM, :AN, :AO, :AQ, :AR, :AS, :AT, :AU, :AW,
+             :"145", :"150", :"151", :"154", :"155", :"202", :"419", :AC, :AD,
+             :AE, :AF, :AG, :AI, :AL, :AM, :AO, :AQ, :AR, :AS, :AT, :AU, :AW,
              :AX, :AZ, :BA, :BB, :BD, :BE, :BF, :BG, :BH, :BI, :BJ, :BL, :BM,
              :BN, :BO, :BQ, :BR, :BS, :BT, :BV, :BW, :BY, :BZ, :CA, :CC, :CD,
              :CF, :CG, :CH, :CI, :CK, :CL, :CM, :CN, :CO, :CP, :CR, :CU, :CV,
@@ -26,12 +26,19 @@ class TestCldrDataTerritories < Test::Unit::TestCase
              :RU, :RW, :SA, :SB, :SC, :SD, :SE, :SG, :SH, :SI, :SJ, :SK, :SL,
              :SM, :SN, :SO, :SR, :SS, :ST, :SV, :SX, :SY, :SZ, :TA, :TC, :TD,
              :TF, :TG, :TH, :TJ, :TK, :TL, :TM, :TN, :TO, :TR, :TT, :TV, :TW,
-             :TZ, :UA, :UG, :UM, :US, :UY, :UZ, :VA, :VC, :VE, :VG, :VI, :VN,
-             :VU, :WF, :WS, :XK, :YE, :YT, :ZA, :ZM, :ZW, :ZZ]
+             :TZ, :UA, :UG, :UN, :UM, :US, :UY, :UZ, :VA, :VC, :VE, :VG, :VI,
+             :VN, :VU, :WF, :WS, :XK, :YE, :YT, :ZA, :ZM, :ZW, :ZZ, :EZ]
 
     territories = Cldr::Export::Data::Territories.new(:de)[:territories]
-    assert (territories.keys - codes).empty? && (codes - territories.keys).empty?
+    assert_empty codes - territories.keys, "Unexpected missing territories"
+    assert_empty territories.keys - codes, "Unexpected extra territories"
     assert_equal('Deutschland', territories[:DE])
+  end
+
+  test 'territories does not overwrite long form with the short one' do
+    territories = Cldr::Export::Data::Territories.new(:en)[:territories]
+
+    assert_equal "United States", territories[:US]
   end
 
   # Cldr::Export::Data.locales.each do |locale|
