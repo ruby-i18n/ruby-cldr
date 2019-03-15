@@ -25,6 +25,7 @@ module Cldr
       autoload :RbnfRoot,                  'cldr/export/data/rbnf_root'
       autoload :RegionCurrencies,          'cldr/export/data/region_currencies'
       autoload :SegmentsRoot,              'cldr/export/data/segments_root'
+      autoload :Subdivisions,              'cldr/export/data/subdivisions'
       autoload :Territories,               'cldr/export/data/territories'
       autoload :TerritoriesContainment,    'cldr/export/data/territories_containment'
       autoload :Timezones,                 'cldr/export/data/timezones'
