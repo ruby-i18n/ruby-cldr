@@ -2,6 +2,6 @@ language: ruby
 rvm:
   - 2.3
 before_script:
-  - thor cldr:download
+  - bundle exec thor cldr:download
 script:
   - ruby test/all.rb
