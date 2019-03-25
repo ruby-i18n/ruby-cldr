@@ -144,12 +144,12 @@ module Cldr
             end
           end
 
-          ancestry << :root if component_should_merge_root?(component)
           ancestry 
         else
           [locale]
         end
 
+        locales << :root if should_merge_root?(locale, component, options)
         locales
       end
 
@@ -170,8 +170,10 @@ module Cldr
         SHARED_COMPONENTS.include?(component)
       end
 
-      def component_should_merge_root?(component)
-        !%w(Rbnf Fields).include?(component)
+      def should_merge_root?(locale, component, options)
+        return false if %w(Rbnf Fields).include?(component)
+        return true if options[:merge]
+        locale == :en
       end
     end
   end

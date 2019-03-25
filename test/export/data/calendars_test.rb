@@ -20,9 +20,25 @@ class TestCldrDataCalendars < Test::Unit::TestCase
         :abbreviated => { 1 => 'Jan', 2 => 'Feb', 3 => 'Mär', 4 => 'Apr', 5 => 'Mai', 6 => 'Jun', 7 => 'Jul', 8 => 'Aug', 9 => 'Sep', 10 => 'Okt', 11 => 'Nov', 12 => 'Dez' },
         :narrow => { 1 => 'J', 2 => 'F', 3 => 'M', 4 => 'A', 5 => 'M', 6 => 'J', 7 => 'J', 8 => 'A', 9 => 'S', 10 => 'O', 11 => 'N', 12 => 'D' },
         :wide => { 1 => 'Januar', 2 => 'Februar', 3 => 'März', 4 => 'April', 5 => 'Mai', 6 => 'Juni', 7 => 'Juli', 8 => 'August', 9 => 'September', 10 => 'Oktober', 11 => 'November', 12 => 'Dezember' },
-      }
+      },
     }
     assert_equal months, gregorian[:months]
+  end
+
+  test 'calendars months :en' do
+    months = {
+      :format => {
+        :abbreviated => { 1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec" },
+        :narrow => :"calendars.gregorian.months.stand-alone.narrow",
+        :wide => { 1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December" },
+      },
+      :"stand-alone" => {
+        :abbreviated => :"calendars.gregorian.months.format.abbreviated",
+        :narrow => { 1 => "J", 2 => "F", 3 => "M", 4 => "A", 5 => "M", 6 => "J", 7 => "J", 8 => "A", 9 => "S", 10 => "O", 11 => "N", 12 => "D" },
+        :wide => :"calendars.gregorian.months.format.wide",
+      },
+    }
+    assert_equal months, gregorian(locale: :en)[:months]
   end
 
   test 'calendars days :de' do
