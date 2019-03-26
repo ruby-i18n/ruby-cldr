@@ -24,14 +24,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ## [Unreleased]
 
 - Added a changelog, [#49](https://github.com/ruby-i18n/ruby-cldr/pull/49)
+- Added Travis CI for testing, [#48](https://github.com/ruby-i18n/ruby-cldr/pull/48)
+- Added root fallback to en language, [#47](https://github.com/ruby-i18n/ruby-cldr/pull/47)
+- Added subdivisions to the list of exportable components, [#46](https://github.com/ruby-i18n/ruby-cldr/pull/46)
 
 ---
 
 ## [0.2.0] - 2019-03-26
 
-- Added Travis CI for testing, [#48](https://github.com/ruby-i18n/ruby-cldr/pull/48)
-- Added root fallback to en language, [#47](https://github.com/ruby-i18n/ruby-cldr/pull/47)
-- Added subdivisions to the list of exportable components, [#46](https://github.com/ruby-i18n/ruby-cldr/pull/46)
+- Updated to CLDR 34 [#43](https://github.com/ruby-i18n/ruby-cldr/pull/43)
+- Lots of [other changes](https://github.com/ruby-i18n/ruby-cldr/compare/v0.1.1...v0.2.0)
 
 [Unreleased]: https://github.com/ruby-i18n/ruby-cldr/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/ruby-i18n/ruby-cldr/compare/v0.1.1...v0.2.0
