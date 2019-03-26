@@ -1,5 +1,7 @@
 h1. Ruby library for exporting and using data from CLDR
 
+!https://travis-ci.com/ruby-i18n/ruby-cldr.svg?branch=master!:https://travis-ci.com/ruby-i18n/ruby-cldr
+
 CLDR ("Common Locale Data Repository":http://cldr.unicode.org) contains tons of high-quality locale data such as formatting rules for dates, times, numbers, currencies as well as language, country, calendar-specific names etc.
 
 For localizing applications in Ruby we'll obviously be able to use this incredibly comprehensive and well-maintained resource.

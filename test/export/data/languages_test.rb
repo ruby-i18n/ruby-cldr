@@ -18,7 +18,7 @@ class TestCldrDataLanguages < Test::Unit::TestCase
       :csb, :cu, :cv, :cy, :da, :dak, :dar, :dav, :de, :"de-AT",
       :"de-CH", :del, :den, :dgr, :din, :dje, :doi, :dsb, :dtp,
       :dua, :dum, :dv, :dyo, :dyu, :dz, :dzg, :ebu, :ee, :efi,
-      :egl, :egy, :eka, :el, :elx, :en, :"en-GB", :"en-US", :enm,
+      :egl, :egy, :eka, :el, :elx, :en, :enm,
       :eo, :es, :esu, :et, :eu, :ewo, :ext, :fa, :fan, :fat, :ff,
       :fi, :fil, :fit, :fj, :fo, :fon, :fr, :frc, :frm, :fro,
       :frp, :frr, :frs, :fur, :fy, :ga, :gaa, :gag, :gan, :gay,
