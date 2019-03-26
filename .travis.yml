@@ -4,4 +4,4 @@ rvm:
 before_script:
   - bundle exec thor cldr:download
 script:
-  - ruby test/all.rb
+  - bundle exec ruby test/all.rb
