@@ -176,6 +176,12 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
     assert_equal false, eval(Cldr::Export::Data::Plurals::Rule.parse('n mod 100 in 3..6').to_ruby, binding)
   end
 
+	def test_codes_with_missing_spaces
+    assert_equal 'n.to_f % 100 == 0', Cldr::Export::Data::Plurals::Rule.parse('n%100 = 0').to_ruby
+    assert_equal 'n.to_f % 100 == 0', Cldr::Export::Data::Plurals::Rule.parse('n % 100=0').to_ruby
+    assert_equal 'n.to_f != 0', Cldr::Export::Data::Plurals::Rule.parse('n!=0').to_ruby
+	end
+
   def test_n_negative
     # one: i = 1 and v = 0 @integer 1
     # other: @integer 0, 2~16, 100, 1000, 10000, 100000, 1000000, … @decimal 0.0~1.5, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …
