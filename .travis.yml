@@ -5,3 +5,5 @@ before_script:
   - bundle exec thor cldr:download
 script:
   - bundle exec ruby test/all.rb
+before_install:
+  - gem install bundler
