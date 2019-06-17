@@ -35,5 +35,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Updated to CLDR 34 [#43](https://github.com/ruby-i18n/ruby-cldr/pull/43)
 - Lots of [other changes](https://github.com/ruby-i18n/ruby-cldr/compare/v0.1.1...v0.2.0)
 
-[Unreleased]: https://github.com/ruby-i18n/ruby-cldr/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/ruby-i18n/ruby-cldr/compare/v0.1.1...v0.2.0
+## [0.3.0] - 2019-06-16
+
+- Export currency names [#51](https://github.com/ruby-i18n/ruby-cldr/pull/51)
+- Bring back root fallback for english [#47](https://github.com/ruby-i18n/ruby-cldr/pull/47)
+- Export subdivisions [#46](https://github.com/ruby-i18n/ruby-cldr/pull/46)
+
+[Unreleased]: https://github.com/ruby-i18n/ruby-cldr/compare/v0.3.0...HEAD
