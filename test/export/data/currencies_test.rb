@@ -36,7 +36,12 @@ class TestCldrCurrencies < Test::Unit::TestCase
     currencies = Cldr::Export::Data::Currencies.new('de')[:currencies]
     assert_empty codes - currencies.keys, "Unexpected missing currencies"
     assert_empty currencies.keys - codes, "Unexpected extra currencies"
-    assert_equal({ :one => 'Euro', :other => 'Euro', :symbol => '€' }, currencies[:EUR])
+    assert_equal({ :name => 'Euro', :one => 'Euro', :other => 'Euro', :symbol => '€' }, currencies[:EUR])
+  end
+
+  test 'currencies uses the label to populate :one when count is unavailable' do
+    currencies = Cldr::Export::Data::Currencies.new('ak')[:currencies]
+    assert_equal({ :name => 'Yuan', :one => 'Yuan' }, currencies[:CNY])
   end
 
   # Cldr::Export::Data.locales.each do |locale|
