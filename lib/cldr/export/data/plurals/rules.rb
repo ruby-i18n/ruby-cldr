@@ -57,6 +57,8 @@ module Cldr
             end
 
             def parse(code)
+              code = scrub_code(code)
+
               code = code.split('@').first.to_s
               operand = /(n|i|f|t|v|w)/i
               expr = /#{operand}(?:\s+(?:mod|%)\s+([\d]+))?/i
@@ -77,6 +79,15 @@ module Cldr
               else
                 raise "can not parse '#{code}'"
               end
+            end
+
+            private
+
+            def scrub_code(code)
+              code
+                .gsub(/(n)%(\d+)/, '\1 % \2') # n%1000 -> n % 1000
+                .gsub(/(\d+)=(\d+)/, '\1 = \2') # 10=100-> 10 = 100
+                .gsub(/(n)!=(\d+)/, '\1 != \2') # n!=100 -> n != 100
             end
           end
 
