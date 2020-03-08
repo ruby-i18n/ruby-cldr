@@ -56,7 +56,7 @@ GEM
       pry (>= 0.9.10, < 0.11.0)
     psych (3.1.0)
     rack (2.0.6)
-    rake (12.3.2)
+    rake (13.0.1)
     rdoc (6.1.1)
     rubyzip (1.2.2)
     semver2 (3.4.2)
