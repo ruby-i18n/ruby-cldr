@@ -55,7 +55,7 @@ GEM
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
     psych (3.1.0)
-    rack (2.2.2)
+    rack (2.2.3)
     rake (13.0.1)
     rdoc (6.1.1)
     rubyzip (1.2.2)
