@@ -6,11 +6,11 @@ class TestCldrDataCountryCodes < Test::Unit::TestCase
   test 'country codes' do
     expected =
       {
-        "AA": {
+        AA: {
           "numeric" => "958",
           "alpha3" => "AAA",
         },
-        "AC": {
+        AC: {
           "alpha3" => "ASC",
         }
       }
