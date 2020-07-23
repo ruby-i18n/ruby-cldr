@@ -14,6 +14,7 @@ module Cldr
     autoload :Yaml, 'cldr/export/yaml'
 
     SHARED_COMPONENTS = %w[
+      CountryCodes
       CurrencyDigitsAndRounding
       Metazones
       NumberingSystems
