@@ -42,4 +42,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Bring back root fallback for english [#47](https://github.com/ruby-i18n/ruby-cldr/pull/47)
 - Export subdivisions [#46](https://github.com/ruby-i18n/ruby-cldr/pull/46)
 
-[Unreleased]: https://github.com/ruby-i18n/ruby-cldr/compare/v0.3.0...HEAD
+## [0.4.0] - 2020-09-01
+
+- Support pluralization codes with missing spaces [#53](https://github.com/ruby-i18n/ruby-cldr/pull/53)
+- Add in functionality to export country codes [#61](https://github.com/ruby-i18n/ruby-cldr/pull/61)
+
+[Unreleased]: https://github.com/ruby-i18n/ruby-cldr/compare/v0.4.0...HEAD
