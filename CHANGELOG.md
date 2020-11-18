@@ -28,6 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added root fallback to en language, [#47](https://github.com/ruby-i18n/ruby-cldr/pull/47)
 - Added subdivisions to the list of exportable components, [#46](https://github.com/ruby-i18n/ruby-cldr/pull/46)
 - Added country codes as an exportable component, [#61](https://github.com/ruby-i18n/ruby-cldr/pull/61)
+- Added narrow symbols to exported currency data, [#64](https://github.com/ruby-i18n/ruby-cldr/pull/64)
 
 ---
 
