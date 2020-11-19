@@ -31,7 +31,9 @@ module Cldr
           end
 
           symbol = select(node, 'symbol')
+          narrow_symbol = symbol.select { |child_node| child_node.values.include?('narrow') }.first
           data[:symbol] = symbol.first.content if symbol.length > 0
+          data[:'narrow_symbol'] = narrow_symbol.content unless narrow_symbol.nil?
 
           data
         end
