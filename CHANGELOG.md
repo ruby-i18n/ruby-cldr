@@ -23,13 +23,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-- Added a changelog, [#49](https://github.com/ruby-i18n/ruby-cldr/pull/49)
-- Added Travis CI for testing, [#48](https://github.com/ruby-i18n/ruby-cldr/pull/48)
-- Added root fallback to en language, [#47](https://github.com/ruby-i18n/ruby-cldr/pull/47)
-- Added subdivisions to the list of exportable components, [#46](https://github.com/ruby-i18n/ruby-cldr/pull/46)
-- Added country codes as an exportable component, [#61](https://github.com/ruby-i18n/ruby-cldr/pull/61)
-- Added narrow symbols to exported currency data, [#64](https://github.com/ruby-i18n/ruby-cldr/pull/64)
-
 ---
 
 ## [0.2.0] - 2019-03-26
@@ -48,4 +41,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Support pluralization codes with missing spaces [#53](https://github.com/ruby-i18n/ruby-cldr/pull/53)
 - Add in functionality to export country codes [#61](https://github.com/ruby-i18n/ruby-cldr/pull/61)
 
-[Unreleased]: https://github.com/ruby-i18n/ruby-cldr/compare/v0.4.0...HEAD
+## [0.5.0] - 2020-11-20
+
+- Added a changelog, [#49](https://github.com/ruby-i18n/ruby-cldr/pull/49)
+- Added Travis CI for testing, [#48](https://github.com/ruby-i18n/ruby-cldr/pull/48)
+- Added root fallback to en language, [#47](https://github.com/ruby-i18n/ruby-cldr/pull/47)
+- Added subdivisions to the list of exportable components, [#46](https://github.com/ruby-i18n/ruby-cldr/pull/46)
+- Added country codes as an exportable component, [#61](https://github.com/ruby-i18n/ruby-cldr/pull/61)
+- Added narrow symbols to exported currency data, [#64](https://github.com/ruby-i18n/ruby-cldr/pull/64)
+
+[Unreleased]: https://github.com/ruby-i18n/ruby-cldr/compare/v0.5.0...HEAD
