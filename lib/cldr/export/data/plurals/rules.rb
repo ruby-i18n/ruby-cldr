@@ -161,6 +161,12 @@ module Cldr
               when 'w'
                 op = '(w = n.to_s.split(".")[1]) ? w.gsub(/0+$/, "").length : 0'
                 enclose = true
+              when 'c', 'e'
+                # We don't support numbers in the "compact decimal" format.
+                # Since `c`/`e` are always 0 for non-"compact decimal" format
+                # numbers, we just hardcode it to 0 for now.
+                op = "#{@type} = 0"
+                enclose = true
               when 'n'
                 fraction = true
                 op = 'n.to_f'
