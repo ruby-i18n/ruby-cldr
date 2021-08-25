@@ -61,7 +61,7 @@ module Cldr
               code = scrub_code(code)
 
               code = code.split("@").first.to_s
-              operand = /(n|i|f|t|v|w)/i
+              operand = /(c|e|n|i|f|t|v|w)/i
               expr = /#{operand}(?:\s+(?:mod|%)\s+([\d]+))?/i
               range = /(?:\d+\.\.\d+|\d+)/i
               range_list = /(#{range}(?:\s*,\s*#{range})*)/i
@@ -146,6 +146,8 @@ module Cldr
           # w       number of visible fraction digits in n, without trailing zeros.
           # f       visible fractional digits in n, with trailing zeros.
           # t       visible fractional digits in n, without trailing zeros.
+          # c       compact decimal exponent value: exponent of the power of 10 used in compact decimal formatting.
+          # e       currently, synonym for ‘c’. however, may be redefined in the future.
           #
           # http://www.unicode.org/reports/tr35/tr35-numbers.html#Language_Plural_Rules
           def to_ruby
