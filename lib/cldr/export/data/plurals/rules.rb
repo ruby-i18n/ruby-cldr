@@ -161,9 +161,11 @@ module Cldr
               when 'w'
                 op = '(w = n.to_s.split(".")[1]) ? w.gsub(/0+$/, "").length : 0'
                 enclose = true
-              else
+              when 'n'
                 fraction = true
                 op = 'n.to_f'
+              else
+                raise "unknown type '#{@type}'"
               end
               if @mod
                 op = '(' << op << ')' if enclose
