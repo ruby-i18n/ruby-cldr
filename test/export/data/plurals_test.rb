@@ -106,6 +106,13 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
     assert_equal([:in, [[], [3..4]], "2", "f"], [rule[1][1].operator, rule[1][1].operand, rule[1][1].mod, rule[1][1].type])
   end
 
+  def test_parse_fails_when_given_unknown_operand
+    exc = assert_raises do
+      Cldr::Export::Data::Plurals::Rule.parse("q = 0")
+    end
+    assert_equal("can not parse 'q = 0'", exc.message)
+  end
+
   def test_compiles_empty
     assert_equal(nil, Cldr::Export::Data::Plurals::Rule.parse("").to_ruby)
     assert_equal(nil, Cldr::Export::Data::Plurals::Rule.parse(" ").to_ruby)

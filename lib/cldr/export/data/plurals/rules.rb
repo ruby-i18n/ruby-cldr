@@ -185,9 +185,11 @@ module Cldr
                 # TODO: https://github.com/ruby-i18n/ruby-cldr/issues/131
                 op = "#{@type} = 0"
                 enclose = true
-              else
+              when "n"
                 fraction = true
                 op = "n.to_f"
+              else
+                raise StandardError, "Unknown plural operand `#{@type}`"
               end
               if @mod
                 op = "(" << op << ")" if enclose
