@@ -28,6 +28,7 @@ module Cldr
 
         def unit(node)
           node.xpath("unitPattern").each_with_object({}) do |node, result|
+            next result if node.attribute("case") # Ignore cases for now. We don't have a way to expose them yet.
             count = node.attribute("count") ? node.attribute("count").value.to_sym : :one
             result[count] = node.content unless draft?(node)
           end
