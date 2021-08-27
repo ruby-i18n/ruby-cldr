@@ -49,7 +49,7 @@ class TestCldrDataLanguages < Test::Unit::TestCase
              :pa, :pag, :pal, :pam, :pap, :pau, :pcd, :pcm, :pdc, :pdt,
              :peo, :pfl, :phn, :pi, :pl, :pms, :pnt, :pon, :prg, :pro,
              :ps, :pt, :qu, :quc, :qug, :raj, :rap, :rar, :rgn, :rif, :rm,
-             :rn, :ro, :"ro-MD", :rof, :rom, :root, :rtm, :ru, :rue, :rug,
+             :rn, :ro, :"ro-MD", :rof, :rom, :rtm, :ru, :rue, :rug,
              :rup, :rw, :rwk, :sa, :sad, :sah, :sam, :saq, :sas, :sat, :saz,
              :sba, :sbp, :sc, :scn, :sco, :sd, :sdc, :sdh, :se, :see, :seh,
              :sei, :sel, :ses, :sg, :sga, :sgs, :sh, :shi, :shn, :shu, :si,
