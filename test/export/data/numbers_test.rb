@@ -5,6 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'
 class TestCldrDataNumbers < Test::Unit::TestCase
   test "number symbols :de" do
     expected = {
+      :approximately_sign => "≈",
       :decimal => ",",
       :exponential => "E",
       :group => ".",
