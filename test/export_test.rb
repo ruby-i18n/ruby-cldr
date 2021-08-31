@@ -26,6 +26,14 @@ class TestExtract < Test::Unit::TestCase
     assert_equal 'NaN', data[:numbers][:symbols][:nan]
   end
 
+  test 'passing the merge option generates and merges Plurals data from fallback locales' do
+    data = Cldr::Export.data('Plurals', 'af-NA')
+    assert_equal "", data
+
+    data = Cldr::Export.data('Plurals', 'af-NA', :merge => true)
+    assert_match(/{ :'af-NA' => { :i18n => { :plural/, data)
+  end
+
   test 'the merge option respects parentLocales' do
     data = Cldr::Export.data('calendars', 'en-GB', :merge => true)
     assert_equal 'dd/MM/y', data[:calendars][:gregorian][:additional_formats]['yMd']
