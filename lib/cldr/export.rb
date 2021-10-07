@@ -108,7 +108,7 @@ module Cldr
 
       def plural_data(component, locale, options = {})
         data = locale_based_data(component, locale, options)
-        "{ :'#{locale}' => { :i18n => { :plural => { :keys => #{data[:keys].inspect}, :rule => #{data[:rule]} } } } }"
+        data.empty? ? "" : "{ :'#{locale}' => { :i18n => { :plural => { :keys => #{data[:keys].inspect}, :rule => #{data[:rule]} } } } }"
       end
 
       def shared_data(component, options = {})
@@ -145,7 +145,7 @@ module Cldr
             end
           end
 
-          ancestry 
+          ancestry
         else
           [locale]
         end
