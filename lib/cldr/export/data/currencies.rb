@@ -22,7 +22,6 @@ module Cldr
                 count = node.attribute('count').value.to_sym
                 result[count] = node.content
               else
-                result[:one] = node.content if result[:one].nil?
                 result[:name] = node.content
               end
             end
