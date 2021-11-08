@@ -23,6 +23,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+- Only export plurals.rb for those that have plurals data, [#71](https://github.com/ruby-i18n/ruby-cldr/pull/71)
+
 ---
 
 ## [0.5.0] - 2020-11-20
