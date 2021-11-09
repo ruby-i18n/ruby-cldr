@@ -23,23 +23,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+- Only export plurals.rb for those that have plurals data, [#71](https://github.com/ruby-i18n/ruby-cldr/pull/71)
+- Only export plural keys for currencies that have pluralization data, [80](https://github.com/ruby-i18n/ruby-cldr/pull/80)
+
 ---
-
-## [0.2.0] - 2019-03-26
-
-- Updated to CLDR 34 [#43](https://github.com/ruby-i18n/ruby-cldr/pull/43)
-- Lots of [other changes](https://github.com/ruby-i18n/ruby-cldr/compare/v0.1.1...v0.2.0)
-
-## [0.3.0] - 2019-06-16
-
-- Export currency names [#51](https://github.com/ruby-i18n/ruby-cldr/pull/51)
-- Bring back root fallback for english [#47](https://github.com/ruby-i18n/ruby-cldr/pull/47)
-- Export subdivisions [#46](https://github.com/ruby-i18n/ruby-cldr/pull/46)
-
-## [0.4.0] - 2020-09-01
-
-- Support pluralization codes with missing spaces [#53](https://github.com/ruby-i18n/ruby-cldr/pull/53)
-- Add in functionality to export country codes [#61](https://github.com/ruby-i18n/ruby-cldr/pull/61)
 
 ## [0.5.0] - 2020-11-20
 
@@ -49,5 +36,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Added subdivisions to the list of exportable components, [#46](https://github.com/ruby-i18n/ruby-cldr/pull/46)
 - Added country codes as an exportable component, [#61](https://github.com/ruby-i18n/ruby-cldr/pull/61)
 - Added narrow symbols to exported currency data, [#64](https://github.com/ruby-i18n/ruby-cldr/pull/64)
+
+## [0.4.0] - 2020-09-01
+
+- Support pluralization codes with missing spaces [#53](https://github.com/ruby-i18n/ruby-cldr/pull/53)
+- Add in functionality to export country codes [#61](https://github.com/ruby-i18n/ruby-cldr/pull/61)
+
+## [0.3.0] - 2019-06-16
+
+- Export currency names [#51](https://github.com/ruby-i18n/ruby-cldr/pull/51)
+- Bring back root fallback for english [#47](https://github.com/ruby-i18n/ruby-cldr/pull/47)
+- Export subdivisions [#46](https://github.com/ruby-i18n/ruby-cldr/pull/46)
+
+## [0.2.0] - 2019-03-26
+
+- Updated to CLDR 34 [#43](https://github.com/ruby-i18n/ruby-cldr/pull/43)
+- Lots of [other changes](https://github.com/ruby-i18n/ruby-cldr/compare/v0.1.1...v0.2.0)
 
 [Unreleased]: https://github.com/ruby-i18n/ruby-cldr/compare/v0.5.0...HEAD

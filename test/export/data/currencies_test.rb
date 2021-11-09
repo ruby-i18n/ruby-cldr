@@ -44,11 +44,6 @@ class TestCldrCurrencies < Test::Unit::TestCase
     assert_equal({ :symbol=>'US$', :'narrow_symbol'=>'$'}, currencies[:USD])
   end
 
-  test 'currencies uses the label to populate :one when count is unavailable' do
-    currencies = Cldr::Export::Data::Currencies.new('ak')[:currencies]
-    assert_equal({ :name => 'Yuan', :one => 'Yuan' }, currencies[:CNY])
-  end
-
   # Cldr::Export::Data.locales.each do |locale|
   #   test "extract currencies for #{locale}" do
   #     assert_nothing_raised do
