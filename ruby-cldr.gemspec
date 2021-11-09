@@ -103,6 +103,7 @@ Gem::Specification.new do |s|
     "test/export/data/timezones_test.rb",
     "test/export/data/units_test.rb",
     "test/export/data/windows_zones_test.rb",
+    "test/export/yaml_test.rb",
     "test/export_test.rb",
     "test/format/all.rb",
     "test/format/currency_test.rb",
