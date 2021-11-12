@@ -5,6 +5,7 @@ require 'core_ext/string/camelize'
 require 'core_ext/string/underscore'
 require 'core_ext/hash/deep_stringify_keys'
 require 'core_ext/hash/deep_merge'
+require 'core_ext/hash/deep_prune'
 require 'core_ext/hash/deep_sort'
 
 module Cldr
