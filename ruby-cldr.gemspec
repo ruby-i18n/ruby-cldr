@@ -84,6 +84,7 @@ Gem::Specification.new do |s|
     "lib/cldr/format/time.rb",
     "lib/cldr/thor.rb",
     "lib/core_ext/hash/deep_merge.rb",
+    "lib/core_ext/hash/deep_sort.rb",
     "lib/core_ext/hash/deep_stringify_keys.rb",
     "lib/core_ext/hash/symbolize_keys.rb",
     "lib/core_ext/string/camelize.rb",
