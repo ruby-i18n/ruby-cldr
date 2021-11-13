@@ -62,14 +62,14 @@ module Cldr
               end
             end
           end
-        
+
           def xpath_to_key(xpath, kind, context, width)
             kind    = (xpath =~ %r(/([^\/]*)Width) && $1) || kind
             context = (xpath =~ %r(Context\[@type='([^\/]*)'\]) && $1) || context
             width   = (xpath =~ %r(Width\[@type='([^\/]*)'\]) && $1) || width
             :"calendars.gregorian.#{kind}s.#{context}.#{width}"
           end
-        
+
           def xpath_width
           end
 
@@ -114,7 +114,7 @@ module Cldr
 
           def formats(type)
             formats = select(calendar, "#{type}Formats/#{type}FormatLength").inject({}) do |result, node|
-              key = node.attribute('type').value.to_sym rescue :format
+              key = node.attribute('type').value.to_sym
               result[key] = pattern(node, type)
               result
             end
