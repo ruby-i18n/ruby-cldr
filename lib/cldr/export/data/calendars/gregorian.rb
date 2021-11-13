@@ -91,11 +91,13 @@ module Cldr
               keys.inject({}) do |result, name|
                 path = "#{base_path}/#{name}/*"
                 key  = name.gsub('era', '').gsub(/s$/, '').downcase.to_sym
-                result[key] = select(path).inject({}) do |ret, node|
-                  type = node.attribute('type').value.to_i rescue 0
+                key_result = select(path).inject({}) do |ret, node|
+                  next ret if node.name == "alias" # TODO: Actually handle alias nodes, https://github.com/ruby-i18n/ruby-cldr/issues/78
+                  type = node.attribute('type').value.to_i
                   ret[type] = node.content
                   ret
                 end
+                result[key] = key_result unless key_result.empty?
                 result
               end
             else
