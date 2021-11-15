@@ -196,6 +196,17 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal %w(abbreviated narrow wide), gregorian(:merged => true)[:months][:"stand-alone"].keys.map { |key| key.to_s }.sort
   end
 
+  test 'calendars for :root only contains `abbr` since we do not yet handle alias nodes' do
+    # https://github.com/ruby-i18n/ruby-cldr/issues/78
+    eras = {
+      abbr: {
+        0 => "BCE",
+        1 => "CE",
+      }
+    }
+    assert_equal eras, gregorian(locale: :root)[:eras]
+  end
+
   # Cldr::Export::Data.locales.each do |locale|
   #   test "extract calendars for #{locale}" do
   #     Cldr::Export::Data::Calendars.new(locale)

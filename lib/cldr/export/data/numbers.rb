@@ -107,7 +107,7 @@ module Cldr
 
         def unit
           @unit ||= select("numbers/currencyFormats/unitPattern").inject({}) do |result, node|
-            count = node.attribute('count').value rescue 'one'
+            count = node.attribute('count').value
             result[count] = node.content
             result
           end
