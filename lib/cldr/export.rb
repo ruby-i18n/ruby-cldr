@@ -16,19 +16,19 @@ module Cldr
     autoload :Yaml, 'cldr/export/yaml'
 
     SHARED_COMPONENTS = %w[
+      Aliases
       CountryCodes
       CurrencyDigitsAndRounding
+      LikelySubtags
       Metazones
       NumberingSystems
       RbnfRoot
+      RegionCurrencies
       SegmentsRoot
       TerritoriesContainment
-      WindowsZones
       Transforms
-      LikelySubtags
       Variables
-      Aliases
-      RegionCurrencies
+      WindowsZones
     ]
 
     class << self
