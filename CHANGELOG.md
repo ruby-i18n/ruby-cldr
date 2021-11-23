@@ -27,6 +27,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Only export plural keys for currencies that have pluralization data, [#80](https://github.com/ruby-i18n/ruby-cldr/pull/80)
 - Sort the exported data by key, [#82](https://github.com/ruby-i18n/ruby-cldr/pull/82)
 - Prune empty hashes / files before outputting, [#86](https://github.com/ruby-i18n/ruby-cldr/pull/86)
+- Re-add the `ParentLocales` component, this time as a shared component, [#91](https://github.com/ruby-i18n/ruby-cldr/pull/91)
 
 ---
 
