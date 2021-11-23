@@ -63,7 +63,7 @@ module Cldr
         end
 
         def path
-          @path ||= "#{Cldr::Export::Data.dir}/rbnf/#{locale.to_s.gsub('-', '_')}.xml"
+          @path ||= "#{Cldr::Export::Data.dir}/rbnf/#{Cldr::Export.from_i18n(locale)}.xml"
         end
 
       end
