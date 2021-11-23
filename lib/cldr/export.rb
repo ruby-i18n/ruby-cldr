@@ -22,6 +22,7 @@ module Cldr
       LikelySubtags
       Metazones
       NumberingSystems
+      ParentLocales
       RbnfRoot
       RegionCurrencies
       SegmentsRoot
