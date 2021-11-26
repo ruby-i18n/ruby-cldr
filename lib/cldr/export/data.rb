@@ -49,7 +49,7 @@ module Cldr
         end
 
         def components
-          self.constants.sort - [:Base, :Export, :ParentLocales]
+          self.constants.sort - [:Base, :Export]
         end
       end
     end
