@@ -128,7 +128,7 @@ module Cldr
       end
 
       def from_i18n(locale)
-        return locale.to_s.gsub('-', '_')
+        return locale.to_s.gsub('-', '_').to_sym
       end
 
       def locales(locale, component, options)
@@ -137,18 +137,18 @@ module Cldr
         locales = if options[:merge]
           defined_parents = Cldr::Export::Data::ParentLocales.new
 
-          ancestry = [locale]
+          ancestry = [locale.to_s]
           loop do
-            if defined_parents[from_i18n(ancestry.last)]
-              ancestry << to_i18n(defined_parents[from_i18n(ancestry.last)])
+            if defined_parents[ancestry.last]
+              ancestry << defined_parents[ancestry.last]
             elsif I18n::Locale::Tag.tag(ancestry.last).self_and_parents.count > 1
-              ancestry << I18n::Locale::Tag.tag(ancestry.last).self_and_parents.last.to_sym
+              ancestry << I18n::Locale::Tag.tag(ancestry.last).self_and_parents.last
             else
               break
             end
           end
 
-          ancestry
+          ancestry.map(&:to_sym)
         else
           [locale]
         end

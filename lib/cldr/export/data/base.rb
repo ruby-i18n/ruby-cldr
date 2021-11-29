@@ -11,7 +11,7 @@ module Cldr
         def initialize(locale)
           @locale = locale
         end
-      
+
         def update(hash)
           hash.each { |key, value| self[key] = value }
         end
@@ -46,7 +46,7 @@ module Cldr
           def select(*sources)
             doc.xpath(xpath(sources))
           end
-        
+
           def xpath(sources)
             path = sources.map { |source| source.respond_to?(:path) ? source.path : source }.join('/')
             path =~ /^\/?\/ldml/ ? path : "//ldml/#{path}"
@@ -57,7 +57,7 @@ module Cldr
           end
 
           def path
-            @path ||= "#{Cldr::Export::Data.dir}/main/#{locale.to_s.gsub('-', '_')}.xml"
+            @path ||= "#{Cldr::Export::Data.dir}/main/#{Cldr::Export.from_i18n(locale)}.xml"
           end
       end
     end

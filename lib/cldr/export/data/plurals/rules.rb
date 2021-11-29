@@ -94,7 +94,7 @@ module Cldr
           attr_reader :locales
 
           def initialize(locales)
-            @locales = locales.map { |locale| locale.gsub('_', '-').to_sym }
+            @locales = locales.map { |locale| Cldr::Export.to_i18n(locale) }
           end
 
           def keys

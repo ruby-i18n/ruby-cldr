@@ -26,7 +26,7 @@ module Cldr
         end
 
         def path
-          @path ||= "#{Cldr::Export::Data.dir}/subdivisions/#{locale.to_s.gsub('-', '_')}.xml"
+          @path ||= "#{Cldr::Export::Data.dir}/subdivisions/#{Cldr::Export.from_i18n(locale)}.xml"
         end
 
       end
