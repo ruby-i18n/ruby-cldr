@@ -51,6 +51,10 @@ module Cldr
         def components
           self.constants.sort - [:Base, :Export]
         end
+
+        def paths_by_root
+          @paths ||= Dir[File.join(dir, "**", "*.xml")].sort.group_by { |path| Nokogiri::XML(File.read(path)).root.name }
+        end
       end
     end
   end
