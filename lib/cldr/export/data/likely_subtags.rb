@@ -18,11 +18,6 @@ module Cldr
             ret
           end
         end
-
-        def path
-          @path ||= "#{Cldr::Export::Data.dir}/supplemental/likelySubtags.xml"
-        end
-
       end
     end
   end

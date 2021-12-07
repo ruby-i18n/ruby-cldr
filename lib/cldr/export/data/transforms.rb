@@ -66,8 +66,8 @@ module Cldr
             gsub("↔", '<>')
         end
 
-        def path
-          transform_file
+        def paths
+          [transform_file]
         end
 
       end

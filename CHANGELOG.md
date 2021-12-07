@@ -30,6 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Re-add the `ParentLocales` component, this time as a shared component, [#91](https://github.com/ruby-i18n/ruby-cldr/pull/91)
 - Changed the keys and values of `ParentLocales` component to be symbols, [#101](https://github.com/ruby-i18n/ruby-cldr/pull/101)
 - Fixed bug with fallbacks for locales that had more than two segments, [#101](https://github.com/ruby-i18n/ruby-cldr/pull/101)
+- Merge all the related data files before doing lookups, [#98](https://github.com/ruby-i18n/ruby-cldr/pull/98)
 
 ---
 

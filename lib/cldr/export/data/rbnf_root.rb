@@ -9,8 +9,8 @@ module Cldr
 
         private
 
-        def path
-          @path ||= "#{Cldr::Export::Data.dir}/rbnf/root.xml"
+        def paths
+          @paths ||= [File.join(Cldr::Export::Data.dir, "rbnf", "root.xml")]
         end
 
       end

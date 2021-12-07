@@ -11,17 +11,16 @@ module Cldr
         end
 
         def rule_groups
-          if File.exist?(path)
-            select("rbnf/rulesetGrouping").map do |grouping_node|
-              {
-                :type => grouping_node.attribute("type").value,
-                :ruleset => (grouping_node / "ruleset").map do |ruleset_node|
-                  rule_set(ruleset_node)
-                end
-              }
-            end
-          else
-            {}
+          grouping_nodes = select("rbnf/rulesetGrouping")
+          return {} if grouping_nodes.empty?
+
+          grouping_nodes.map do |grouping_node|
+            {
+              :type => grouping_node.attribute("type").value,
+              :ruleset => (grouping_node / "ruleset").map do |ruleset_node|
+                rule_set(ruleset_node)
+              end
+            }
           end
         end
 
@@ -61,11 +60,6 @@ module Cldr
         def fix_rule(rule)
           rule.gsub(/\A'/, '').gsub("←", '<').gsub("→", '>')
         end
-
-        def path
-          @path ||= "#{Cldr::Export::Data.dir}/rbnf/#{Cldr::Export.from_i18n(locale)}.xml"
-        end
-
       end
     end
   end

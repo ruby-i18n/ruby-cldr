@@ -16,19 +16,6 @@ module Cldr
             result
           end
         end
-
-        def doc
-          begin
-            super
-          rescue Errno::ENOENT
-            @doc = Nokogiri::XML('')
-          end
-        end
-
-        def path
-          @path ||= "#{Cldr::Export::Data.dir}/subdivisions/#{Cldr::Export.from_i18n(locale)}.xml"
-        end
-
       end
     end
   end

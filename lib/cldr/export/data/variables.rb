@@ -31,11 +31,6 @@ module Cldr
         def split_value_list(value_list)
           value_list.strip.split(/[\s]+/)
         end
-
-        def path
-          @path ||= "#{Cldr::Export::Data.dir}/supplemental/supplementalMetadata.xml"
-        end
-
       end
     end
   end
