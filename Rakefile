@@ -10,6 +10,7 @@ begin
     gem.email = "svenfuchs@artweb-design.de"
     gem.homepage = "http://github.com/ruby-i18n/ruby-cldr"
     gem.authors = ["Sven Fuchs"]
+    gem.license = "MIT"
     gem.files =  FileList["*.thor", "[A-Z]*", "{lib,test}/**/*"]
   end
   Jeweler::GemcutterTasks.new
