@@ -9,8 +9,8 @@ module Cldr
           doc = File.open(path) { |file| Nokogiri::XML(file) }
 
           doc.xpath('//parentLocales/parentLocale').each do |node|
-            parent = Cldr::Export.to_i18n(node.attr('parent')).to_s
-            locales = node.attr('locales').split(' ').map {|locale| Cldr::Export.to_i18n(locale) }.map(&:to_s)
+            parent = Cldr::Export.to_i18n(node.attr('parent'))
+            locales = node.attr('locales').split(' ').map {|locale| Cldr::Export.to_i18n(locale) }
 
             locales.each do |locale|
               self[locale] = parent

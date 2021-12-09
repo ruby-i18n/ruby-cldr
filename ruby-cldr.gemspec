@@ -82,6 +82,8 @@ Gem::Specification.new do |s|
     "lib/cldr/format/decimal/number.rb",
     "lib/cldr/format/percent.rb",
     "lib/cldr/format/time.rb",
+    "lib/cldr/locale.rb",
+    "lib/cldr/locale/fallbacks.rb",
     "lib/cldr/thor.rb",
     "lib/core_ext/hash/deep_merge.rb",
     "lib/core_ext/hash/deep_prune.rb",
@@ -118,6 +120,7 @@ Gem::Specification.new do |s|
     "test/format/decimal_test.rb",
     "test/format/percent_test.rb",
     "test/format/time_test.rb",
+    "test/locale/fallbacks_test.rb",
     "test/test_autotest.rb",
     "test/test_helper.rb"
   ]
