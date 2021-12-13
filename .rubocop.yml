@@ -1,0 +1,14 @@
+inherit_from:
+  - .rubocop_todo.yml
+
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 2.6
+  UseCache: true
+  CacheRootDirectory: tmp/rubocop
+  NewCops: enable
+
+Layout/LineLength:
+  Enabled: false

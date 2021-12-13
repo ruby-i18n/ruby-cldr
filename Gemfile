@@ -5,9 +5,11 @@ gem 'i18n'
 gem 'nokogiri'
 
 group :development do
-  gem 'rubyzip'
   gem 'jeweler'
-  gem 'pry'
   gem 'pry-nav'
+  gem 'pry'
+  gem "rubocop-lsp", require: false
+  gem "rubocop-shopify", require: false
+  gem 'rubyzip'
   gem 'test-unit'
 end
