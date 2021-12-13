@@ -51,7 +51,7 @@ module Cldr
             format_key = format_length_node.attribute("type")
             format_key = format_key ? format_key.value : :default
 
-            if format_nodes.size > 0
+            if !format_nodes.empty?
               format_nodes.each do |format_node|
                 format_result[format_key] ||= select(format_node, "pattern").each_with_object({}) do |pattern_node, pattern_result|
                   pattern_key_node = pattern_node.attribute("type")
