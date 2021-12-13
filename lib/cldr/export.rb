@@ -135,25 +135,12 @@ module Cldr
         locale = to_i18n(locale)
 
         locales = if options[:merge]
-          defined_parents = Cldr::Export::Data::ParentLocales.new
-
-          ancestry = [locale.to_s]
-          loop do
-            if defined_parents[ancestry.last]
-              ancestry << defined_parents[ancestry.last]
-            elsif I18n::Locale::Tag.tag(ancestry.last).self_and_parents.count > 1
-              ancestry << I18n::Locale::Tag.tag(ancestry.last).self_and_parents.last
-            else
-              break
-            end
-          end
-
-          ancestry.map(&:to_sym)
+          Cldr.fallbacks[locale]
         else
-          [locale]
+          [locale, :root]
         end
 
-        locales << :root if should_merge_root?(locale, component, options)
+        locales.pop unless should_merge_root?(locale, component, options)
         locales
       end
 
