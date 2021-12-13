@@ -55,22 +55,22 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
 
   def test_parses_n_in_1_2
     rule = Cldr::Export::Data::Plurals::Rule.parse("n in 1..2")
-    assert_equal([:in, [[],[1..2]], "n"], [rule.operator, rule.operand, rule.type])
+    assert_equal([:in, [[], [1..2]], "n"], [rule.operator, rule.operand, rule.type])
   end
 
   def test_parses_n_mod_1_in_1_2
     rule = Cldr::Export::Data::Plurals::Rule.parse("n mod 1 in 1..2")
-    assert_equal([:in, [[],[1..2]], "1", "n"], [rule.operator, rule.operand, rule.mod, rule.type])
+    assert_equal([:in, [[], [1..2]], "1", "n"], [rule.operator, rule.operand, rule.mod, rule.type])
   end
 
   def test_parses_n_not_in_1_2
     rule = Cldr::Export::Data::Plurals::Rule.parse("n not in 1..2")
-    assert_equal([:in, [[],[1..2]], true, "n"], [rule.operator, rule.operand, rule.negate, rule.type])
+    assert_equal([:in, [[], [1..2]], true, "n"], [rule.operator, rule.operand, rule.negate, rule.type])
   end
 
   def test_parses_n_mod_1_not_in_1_2
     rule = Cldr::Export::Data::Plurals::Rule.parse("n mod 1 not in 1..2")
-    assert_equal([:in, [[],[1..2]], true, "1", "n"], [rule.operator, rule.operand, rule.negate, rule.mod, rule.type])
+    assert_equal([:in, [[], [1..2]], true, "1", "n"], [rule.operator, rule.operand, rule.negate, rule.mod, rule.type])
   end
 
   def test_parses_n_within_0_2
@@ -80,21 +80,21 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
 
   def test_parses_n_list_range
     expression = Cldr::Export::Data::Plurals::Rule.parse("n % 100 != 10..19,30,34,39,90..99")
-    assert_equal([:in, [[30, 34, 39],[10..19, 90..99]], true, "100", "n"], [expression.operator, expression.operand, expression.negate, expression.mod, expression.type])
+    assert_equal([:in, [[30, 34, 39], [10..19, 90..99]], true, "100", "n"], [expression.operator, expression.operand, expression.negate, expression.mod, expression.type])
   end
 
   def test_parses_or_condition
     rule = Cldr::Export::Data::Plurals::Rule.parse("n mod 1 is not 2 or n mod 2 in 3..4")
     assert_equal(2, rule.size)
     assert_equal([:is, 2, true, "1", "n"], [rule[0].operator, rule[0].operand, rule[0].negate, rule[0].mod, rule[0].type])
-    assert_equal([:in, [[],[3..4]], false, "2", "n"], [rule[1].operator, rule[1].operand, rule[1].negate, rule[1].mod, rule[1].type])
+    assert_equal([:in, [[], [3..4]], false, "2", "n"], [rule[1].operator, rule[1].operand, rule[1].negate, rule[1].mod, rule[1].type])
   end
 
   def test_parses_and_condition
     rule = Cldr::Export::Data::Plurals::Rule.parse("n mod 1 is not 2 and n mod 2 in 3..4")
     assert_equal(2, rule.size)
     assert_equal([:is, 2, true, "1", "n"], [rule[0].operator, rule[0].operand, rule[0].negate, rule[0].mod, rule[0].type])
-    assert_equal([:in, [[],[3..4]], false, "2", "n"], [rule[1].operator, rule[1].operand, rule[1].negate, rule[1].mod, rule[1].type])
+    assert_equal([:in, [[], [3..4]], false, "2", "n"], [rule[1].operator, rule[1].operand, rule[1].negate, rule[1].mod, rule[1].type])
   end
 
   def test_parses_and_priority
@@ -103,7 +103,7 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
     assert_equal(2, rule[1].size)
     assert_equal([:is, 0, "i"], [rule[0].operator, rule[0].operand, rule[0].type])
     assert_equal([:is, 1, true, "v"], [rule[1][0].operator, rule[1][0].operand, rule[1][0].negate, rule[1][0].type])
-    assert_equal([:in, [[],[3..4]], "2", "f"], [rule[1][1].operator, rule[1][1].operand, rule[1][1].mod, rule[1][1].type])
+    assert_equal([:in, [[], [3..4]], "2", "f"], [rule[1][1].operator, rule[1][1].operand, rule[1][1].mod, rule[1][1].type])
   end
 
   def test_compiles_empty

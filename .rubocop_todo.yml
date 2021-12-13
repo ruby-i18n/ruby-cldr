@@ -159,16 +159,6 @@ Layout/MultilineHashBraceLayout:
     - 'test/export/data/calendars_test.rb'
     - 'test/export/data/numbers_test.rb'
 
-# Offense count: 42
-# Cop supports --auto-correct.
-Layout/SpaceAfterComma:
-  Exclude:
-    - 'lib/cldr/export/data/plurals/grammar.rb'
-    - 'lib/core_ext/string/camelize.rb'
-    - 'lib/core_ext/string/underscore.rb'
-    - 'test/export/data/plurals_test.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 22
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator.

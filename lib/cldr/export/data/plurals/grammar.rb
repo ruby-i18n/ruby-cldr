@@ -51,7 +51,7 @@ module Cldr
             if r1
               i3, s3 = index, []
               if input.index(" or ", index) == index
-                r4 = instantiate_node(SyntaxNode,input, index...(index + 4))
+                r4 = instantiate_node(SyntaxNode, input, index...(index + 4))
                 @index += 4
               else
                 terminal_parse_failure(" or ")
@@ -63,7 +63,7 @@ module Cldr
                 s3 << r5
               end
               if s3.last
-                r3 = instantiate_node(SyntaxNode,input, i3...index, s3)
+                r3 = instantiate_node(SyntaxNode, input, i3...index, s3)
                 r3.extend(OrCondition0)
               else
                 self.index = i3
@@ -72,12 +72,12 @@ module Cldr
               if r3
                 r2 = r3
               else
-                r2 = instantiate_node(SyntaxNode,input, index...index)
+                r2 = instantiate_node(SyntaxNode, input, index...index)
               end
               s0 << r2
             end
             if s0.last
-              r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+              r0 = instantiate_node(SyntaxNode, input, i0...index, s0)
               r0.extend(OrCondition1)
             else
               self.index = i0
@@ -116,7 +116,7 @@ module Cldr
             if r1
               i3, s3 = index, []
               if input.index(" and ", index) == index
-                r4 = instantiate_node(SyntaxNode,input, index...(index + 5))
+                r4 = instantiate_node(SyntaxNode, input, index...(index + 5))
                 @index += 5
               else
                 terminal_parse_failure(" and ")
@@ -128,7 +128,7 @@ module Cldr
                 s3 << r5
               end
               if s3.last
-                r3 = instantiate_node(SyntaxNode,input, i3...index, s3)
+                r3 = instantiate_node(SyntaxNode, input, i3...index, s3)
                 r3.extend(AndCondition0)
               else
                 self.index = i3
@@ -137,12 +137,12 @@ module Cldr
               if r3
                 r2 = r3
               else
-                r2 = instantiate_node(SyntaxNode,input, index...index)
+                r2 = instantiate_node(SyntaxNode, input, index...index)
               end
               s0 << r2
             end
             if s0.last
-              r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+              r0 = instantiate_node(SyntaxNode, input, i0...index, s0)
               r0.extend(AndCondition1)
             else
               self.index = i0
@@ -176,7 +176,7 @@ module Cldr
                   r0 = r3
                 else
                   if input.index("n", index) == index
-                    r4 = instantiate_node(SyntaxNode,input, index...(index + 1))
+                    r4 = instantiate_node(SyntaxNode, input, index...(index + 1))
                     @index += 1
                   else
                     terminal_parse_failure("n")
@@ -220,7 +220,7 @@ module Cldr
             s0 << r1
             if r1
               if input.index(" is ", index) == index
-                r2 = instantiate_node(SyntaxNode,input, index...(index + 4))
+                r2 = instantiate_node(SyntaxNode, input, index...(index + 4))
                 @index += 4
               else
                 terminal_parse_failure(" is ")
@@ -229,7 +229,7 @@ module Cldr
               s0 << r2
               if r2
                 if input.index("not ", index) == index
-                  r4 = instantiate_node(SyntaxNode,input, index...(index + 4))
+                  r4 = instantiate_node(SyntaxNode, input, index...(index + 4))
                   @index += 4
                 else
                   terminal_parse_failure("not ")
@@ -238,7 +238,7 @@ module Cldr
                 if r4
                   r3 = r4
                 else
-                  r3 = instantiate_node(SyntaxNode,input, index...index)
+                  r3 = instantiate_node(SyntaxNode, input, index...index)
                 end
                 s0 << r3
                 if r3
@@ -248,7 +248,7 @@ module Cldr
               end
             end
             if s0.last
-              r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+              r0 = instantiate_node(SyntaxNode, input, i0...index, s0)
               r0.extend(IsRelation0)
             else
               self.index = i0
@@ -283,7 +283,7 @@ module Cldr
             s0 << r1
             if r1
               if input.index(" not", index) == index
-                r3 = instantiate_node(SyntaxNode,input, index...(index + 4))
+                r3 = instantiate_node(SyntaxNode, input, index...(index + 4))
                 @index += 4
               else
                 terminal_parse_failure(" not")
@@ -292,12 +292,12 @@ module Cldr
               if r3
                 r2 = r3
               else
-                r2 = instantiate_node(SyntaxNode,input, index...index)
+                r2 = instantiate_node(SyntaxNode, input, index...index)
               end
               s0 << r2
               if r2
                 if input.index(" in ", index) == index
-                  r4 = instantiate_node(SyntaxNode,input, index...(index + 4))
+                  r4 = instantiate_node(SyntaxNode, input, index...(index + 4))
                   @index += 4
                 else
                   terminal_parse_failure(" in ")
@@ -311,7 +311,7 @@ module Cldr
               end
             end
             if s0.last
-              r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+              r0 = instantiate_node(SyntaxNode, input, i0...index, s0)
               r0.extend(InRelation0)
             else
               self.index = i0
@@ -346,7 +346,7 @@ module Cldr
             s0 << r1
             if r1
               if input.index(" not", index) == index
-                r3 = instantiate_node(SyntaxNode,input, index...(index + 4))
+                r3 = instantiate_node(SyntaxNode, input, index...(index + 4))
                 @index += 4
               else
                 terminal_parse_failure(" not")
@@ -355,12 +355,12 @@ module Cldr
               if r3
                 r2 = r3
               else
-                r2 = instantiate_node(SyntaxNode,input, index...index)
+                r2 = instantiate_node(SyntaxNode, input, index...index)
               end
               s0 << r2
               if r2
                 if input.index(" within ", index) == index
-                  r4 = instantiate_node(SyntaxNode,input, index...(index + 8))
+                  r4 = instantiate_node(SyntaxNode, input, index...(index + 8))
                   @index += 8
                 else
                   terminal_parse_failure(" within ")
@@ -374,7 +374,7 @@ module Cldr
               end
             end
             if s0.last
-              r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+              r0 = instantiate_node(SyntaxNode, input, i0...index, s0)
               r0.extend(WithinRelation0)
             else
               self.index = i0
@@ -405,7 +405,7 @@ module Cldr
 
             i0, s0 = index, []
             if input.index("n", index) == index
-              r1 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              r1 = instantiate_node(SyntaxNode, input, index...(index + 1))
               @index += 1
             else
               terminal_parse_failure("n")
@@ -415,7 +415,7 @@ module Cldr
             if r1
               i3, s3 = index, []
               if input.index(" mod ", index) == index
-                r4 = instantiate_node(SyntaxNode,input, index...(index + 5))
+                r4 = instantiate_node(SyntaxNode, input, index...(index + 5))
                 @index += 5
               else
                 terminal_parse_failure(" mod ")
@@ -427,7 +427,7 @@ module Cldr
                 s3 << r5
               end
               if s3.last
-                r3 = instantiate_node(SyntaxNode,input, i3...index, s3)
+                r3 = instantiate_node(SyntaxNode, input, i3...index, s3)
                 r3.extend(Expr0)
               else
                 self.index = i3
@@ -436,12 +436,12 @@ module Cldr
               if r3
                 r2 = r3
               else
-                r2 = instantiate_node(SyntaxNode,input, index...index)
+                r2 = instantiate_node(SyntaxNode, input, index...index)
               end
               s0 << r2
             end
             if s0.last
-              r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+              r0 = instantiate_node(SyntaxNode, input, i0...index, s0)
               r0.extend(Expr1)
             else
               self.index = i0
@@ -476,7 +476,7 @@ module Cldr
             s0 << r1
             if r1
               if input.index("..", index) == index
-                r2 = instantiate_node(SyntaxNode,input, index...(index + 2))
+                r2 = instantiate_node(SyntaxNode, input, index...(index + 2))
                 @index += 2
               else
                 terminal_parse_failure("..")
@@ -489,7 +489,7 @@ module Cldr
               end
             end
             if s0.last
-              r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+              r0 = instantiate_node(SyntaxNode, input, i0...index, s0)
               r0.extend(Range0)
             else
               self.index = i0
@@ -512,7 +512,7 @@ module Cldr
             s0, i0 = [], index
             loop do
               if input.index(Regexp.new("[0-9]"), index) == index
-                r1 = instantiate_node(SyntaxNode,input, index...(index + 1))
+                r1 = instantiate_node(SyntaxNode, input, index...(index + 1))
                 @index += 1
               else
                 r1 = nil
@@ -523,7 +523,7 @@ module Cldr
                 break
               end
             end
-            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0 = instantiate_node(SyntaxNode, input, i0...index, s0)
 
             node_cache[:value][start_index] = r0
 
