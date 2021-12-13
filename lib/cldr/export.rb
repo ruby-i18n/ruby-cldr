@@ -17,22 +17,7 @@ module Cldr
     autoload :Ruby, "cldr/export/ruby"
     autoload :Yaml, "cldr/export/yaml"
 
-    SHARED_COMPONENTS = %w[
-      Aliases
-      CountryCodes
-      CurrencyDigitsAndRounding
-      LikelySubtags
-      Metazones
-      NumberingSystems
-      ParentLocales
-      RbnfRoot
-      RegionCurrencies
-      SegmentsRoot
-      TerritoriesContainment
-      Transforms
-      Variables
-      WindowsZones
-    ]
+    SHARED_COMPONENTS = ["Aliases", "CountryCodes", "CurrencyDigitsAndRounding", "LikelySubtags", "Metazones", "NumberingSystems", "ParentLocales", "RbnfRoot", "RegionCurrencies", "SegmentsRoot", "TerritoriesContainment", "Transforms", "Variables", "WindowsZones"]
 
     class << self
       def base_path
@@ -164,7 +149,7 @@ module Cldr
       end
 
       def should_merge_root?(locale, component, options)
-        return false if %w(Rbnf Fields).include?(component)
+        return false if ["Rbnf", "Fields"].include?(component)
         return true if options[:merge]
         locale == :en
       end

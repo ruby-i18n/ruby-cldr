@@ -14,9 +14,9 @@ module Cldr
             * Use the --target parameter to specify where on the filesystem to extract the downloaded data
             * Use the --source parameter to override the location of the CLDR zip to download. Overrides --version
         DESCRIPTION
-    method_options %w(source -s) => :string,
-                   %w(target -t) => :string,
-                   %w(version -v) => :string
+    method_options ["source", "-s"] => :string,
+                   ["target", "-t"] => :string,
+                   ["version", "-v"] => :string
 
     def download
       require "cldr/download"
@@ -25,10 +25,10 @@ module Cldr
 
     desc "export [--locales=de fr en] [--components=numbers plurals] [--target=./data] [--merge]",
          "Export CLDR data by locales and components to target dir"
-    method_options %w(locales -l)    => :array,
-                   %w(components -l) => :array,
-                   %w(target  -t)    => :string,
-                   %w(merge   -m)    => :boolean
+    method_options ["locales", "-l"]    => :array,
+                   ["components", "-l"] => :array,
+                   ["target", "-t"] => :string,
+                   ["merge", "-m"] => :boolean
 
     def export
       $stdout.sync

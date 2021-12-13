@@ -41,12 +41,12 @@ class TestExport < Test::Unit::TestCase
   end
 
   test "exports data to files" do
-    Cldr::Export.export(locales: %w(de), components: %w(calendars))
+    Cldr::Export.export(locales: ["de"], components: ["calendars"])
     assert File.exists?(Cldr::Export.path("de", "calendars", "yml"))
   end
 
   test "exported data starts with the locale at top level" do
-    Cldr::Export.export(locales: %w(de), components: %w(calendars))
+    Cldr::Export.export(locales: ["de"], components: ["calendars"])
     data = {}
     File.open(Cldr::Export.path("de", "calendars", "yml")) do |f|
       data = YAML.load(f)

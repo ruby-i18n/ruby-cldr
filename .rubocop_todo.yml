@@ -476,14 +476,6 @@ Style/TrivialAccessors:
   Exclude:
     - 'lib/cldr/export/data.rb'
 
-# Offense count: 18
-# Cop supports --auto-correct.
-# Configuration parameters: WordRegex.
-# SupportedStyles: percent, brackets
-Style/WordArray:
-  EnforcedStyle: percent
-  MinSize: 3
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/ZeroLengthPredicate:
