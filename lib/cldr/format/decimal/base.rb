@@ -7,7 +7,7 @@ module Cldr
         def interpolate(string, value, orientation = :right)
           value  = value.to_s
           length = value.length
-          start, pad = orientation == :left ? [0, :rjust] : [-length, :ljust]
+          start = orientation == :left ? 0 : -length
 
           string = string.dup
           string = string.ljust(length, "#") if string.length < length

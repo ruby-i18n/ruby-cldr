@@ -54,12 +54,6 @@ Lint/UnreachableCode:
     - 'lib/cldr/format/date.rb'
 
 # Offense count: 2
-Lint/UselessAssignment:
-  Exclude:
-    - 'lib/cldr/export/data/currency_digits_and_rounding.rb'
-    - 'lib/cldr/format/decimal/base.rb'
-
-# Offense count: 2
 # Configuration parameters: CountBlocks.
 Metrics/BlockNesting:
   Max: 4
