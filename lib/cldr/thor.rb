@@ -32,7 +32,7 @@ module Cldr
 
     def export
       $stdout.sync
-      Cldr::Export.export(options.dup.symbolize_keys) { putc "." }
+      Cldr::Export.export(options.dup.symbolize_keys) { putc(".") }
       puts
     end
 

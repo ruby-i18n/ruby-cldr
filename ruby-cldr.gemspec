@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.name = "ruby-cldr"
   s.version = "0.5.0"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to?(:required_rubygems_version=)
   s.require_paths = ["lib"]
   s.authors = ["Sven Fuchs"]
   s.date = "2021-12-09"
@@ -136,11 +136,11 @@ Gem::Specification.new do |s|
   s.rubygems_version = "3.2.20"
   s.summary = "Ruby library for exporting and using data from CLDR"
 
-  if s.respond_to? :specification_version then
+  if s.respond_to?(:specification_version) then
     s.specification_version = 4
   end
 
-  if s.respond_to? :add_runtime_dependency then
+  if s.respond_to?(:add_runtime_dependency) then
     s.add_runtime_dependency(%q<i18n>, [">= 0"])
     s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
     s.add_runtime_dependency(%q<thor>, [">= 0"])

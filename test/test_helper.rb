@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-$:.unshift File.expand_path(File.dirname(__FILE__) + "/../lib")
+$:.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
 
 require "test/unit"
 require "cldr"
@@ -15,7 +15,7 @@ class Test::Unit::TestCase
       define_method(test_name, &block)
     else
       define_method(test_name) do
-        flunk "No implementation provided for #{name}"
+        flunk("No implementation provided for #{name}")
       end
     end
   end

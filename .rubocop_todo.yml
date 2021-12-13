@@ -522,18 +522,6 @@ Style/EmptyElse:
     - 'lib/cldr/export/data/rbnf.rb'
     - 'lib/cldr/format/date.rb'
 
-# Offense count: 99
-# Cop supports --auto-correct.
-# Configuration parameters: IgnoreMacros, IgnoredMethods, IgnoredPatterns, IncludedMacros, AllowParenthesesInMultilineCall, AllowParenthesesInChaining, AllowParenthesesInCamelCaseMethod, AllowParenthesesInStringInterpolation, EnforcedStyle.
-# SupportedStyles: require_parentheses, omit_parentheses
-Style/MethodCallWithArgsParentheses:
-  Exclude:
-    - 'lib/cldr/format/datetime/base.rb'
-    - 'lib/cldr/thor.rb'
-    - 'ruby-cldr.gemspec'
-    - 'test/export/data/plurals_test.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/MultilineIfThen:
