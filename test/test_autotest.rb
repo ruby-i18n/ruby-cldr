@@ -17,7 +17,7 @@ def tests_for(filename)
   pattern ? Dir[pattern.gsub("//", "/")] : []
 end
 
-if $0 == __FILE__
+if $PROGRAM_NAME == __FILE__
   require "test/unit"
 
   class TestAutotestMatching < Test::Unit::TestCase

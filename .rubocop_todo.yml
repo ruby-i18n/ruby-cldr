@@ -136,13 +136,6 @@ Style/PreferredHashMethods:
   Exclude:
     - 'lib/cldr/export/data/plurals/grammar.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: RequireEnglish.
-# SupportedStyles: use_perl_names, use_english_names
-Style/SpecialGlobalVars:
-  EnforcedStyle: use_perl_names
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: AllowMethodsWithArguments, IgnoredMethods.
