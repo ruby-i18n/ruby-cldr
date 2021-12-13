@@ -124,19 +124,6 @@ Layout/IndentationConsistency:
     - 'lib/cldr/format/decimal.rb'
     - 'lib/cldr/format/decimal/number.rb'
 
-# Offense count: 20
-# Cop supports --auto-correct.
-# Configuration parameters: Width, IgnoredPatterns.
-Layout/IndentationWidth:
-  Exclude:
-    - 'lib/cldr/export/data/base.rb'
-    - 'lib/cldr/export/yaml.rb'
-    - 'lib/cldr/format/datetime/base.rb'
-    - 'lib/cldr/format/decimal.rb'
-    - 'lib/cldr/format/decimal/number.rb'
-    - 'lib/core_ext/hash/deep_sort.rb'
-    - 'lib/core_ext/string/underscore.rb'
-
 # Offense count: 9
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

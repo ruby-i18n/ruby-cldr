@@ -24,11 +24,11 @@ module Cldr
 
       protected
 
-        def parse_format(format, symbols)
-          formats = format.split(symbols[:list] || ";")
-          formats << "#{symbols[:minus] || '-'}#{format}" if formats.size == 1
-          formats.map { |format| Number.new(format, symbols) }
-        end
+      def parse_format(format, symbols)
+        formats = format.split(symbols[:list] || ";")
+        formats << "#{symbols[:minus] || '-'}#{format}" if formats.size == 1
+        formats.map { |format| Number.new(format, symbols) }
+      end
     end
   end
 end

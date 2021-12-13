@@ -21,7 +21,7 @@ module Cldr
       end
 
       def yaml(data)
-         data.to_yaml
+        data.to_yaml
       end
     end
   end

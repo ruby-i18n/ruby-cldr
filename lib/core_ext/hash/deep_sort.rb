@@ -42,7 +42,7 @@ module DeepSort
     def deep_sort_by(options = {}, &block)
       hash = self.map do |key, value|
         [if key.respond_to?(:deep_sort_by)
-          key.deep_sort_by(options, &block)
+           key.deep_sort_by(options, &block)
         else
           key
         end,
@@ -60,7 +60,7 @@ module DeepSort
     def deep_sort_by!(options = {}, &block)
       hash = self.map do |key, value|
         [if key.respond_to?(:deep_sort_by!)
-          key.deep_sort_by!(options, &block)
+           key.deep_sort_by!(options, &block)
         else
           key
         end,
