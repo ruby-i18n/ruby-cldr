@@ -6,11 +6,11 @@ module Cldr
       autoload :Base, "cldr/format/datetime/base"
 
       attr_reader :format, :date, :time
-      
+
       def initialize(format, date, time)
         @format, @date, @time = format, date, time
       end
-      
+
       def apply(datetime, options = {})
         format.gsub(/(\{\{(date|time)\}\})/) do
           case $2

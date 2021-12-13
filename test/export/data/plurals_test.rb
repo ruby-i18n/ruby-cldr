@@ -6,22 +6,22 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
   def cldr_data
     File.read(File.dirname(__FILE__) + "/../../../vendor/cldr/common/supplemental/plurals.xml")
   end
-  
+
   def cldr_rules
     Cldr::Export::Data::Plurals::Rules.parse(cldr_data)
   end
-  
+
   def test_compiles_to_valid_ruby_code
     assert_nothing_raised { eval(cldr_rules.to_ruby) }
   end
-  
+
   def test_evals_to_a_hash_containing_plural_rule_and_keys_per_locale
     data = eval(cldr_rules.to_ruby)
     assert(Hash === data)
     assert(Proc === data[:de][:i18n][:plural][:rule])
     assert_equal([:one, :other], data[:de][:i18n][:plural][:keys])
   end
-  
+
   def test_lookup_rule_by_locale
     assert_equal('lambda { |n| n = n.respond_to?(:abs) ? n.abs : ((m = n.to_s)[0] == "-" ? m[1,m.length] : m); (n.to_i == 1 && ((v = n.to_s.split(".")[1]) ? v.length : 0) == 0) ? :one : :other }', cldr_rules.rule(:de).to_ruby)
   end

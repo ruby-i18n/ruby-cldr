@@ -9,4 +9,3 @@ class Hash
     }
   end
 end
- 

@@ -6,4 +6,3 @@ class Hash
     merge(other, &merger)
   end
 end
- 

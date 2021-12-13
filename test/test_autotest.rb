@@ -19,7 +19,7 @@ end
 
 if $0 == __FILE__
   require "test/unit"
-  
+
   class TestAutotestMatching < Test::Unit::TestCase
     define_method :"test: default mapping for library files" do
       assert tests_for("lib/cldr/format/date.rb").all? { |file| file =~ /date_test.rb/ }

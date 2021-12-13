@@ -13,15 +13,15 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   def format(object, pattern)
     Cldr::Format::Time.new(pattern, @calendar).apply(object)
   end
-  
+
   # FORMATS
-  
+
   # Timezone missing
   #
   # test "full time pattern :de" do
   #   assert_equal '13:12:11 zzzz', format(Time.local(2000, 1, 1, 13, 12, 11), 'HH:mm:ss zzzz')
   # end
-  
+
   test "long time pattern :de" do
     assert_equal "13:12:11 UTC", format(Time.utc(2010, 1, 1, 13, 12, 11), "HH:mm:ss z")
   end
@@ -33,7 +33,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   test "short time pattern :de" do
     assert_equal "13:12", format(Time.utc(2010, 1, 1, 13, 12, 11), "HH:mm")
   end
-  
+
   # TIMEZONE
 
   test "z, zz, zzz" do # TODO is this what's meant by the spec?
@@ -41,14 +41,14 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal  "UTC", format(Time.utc(2000, 1, 1, 1, 1,  1), "zz")
     assert_equal  "UTC", format(Time.utc(2000, 1, 1, 1, 1,  1), "zzz")
   end
-  
+
   # PERIOD
 
   test "period" do
     assert_equal "AM", format(Time.local(2000, 1, 1, 1, 1, 1), "a")
     assert_equal "PM", format(Time.local(2000, 1, 1, 15, 1, 1), "a")
   end
-  
+
   # HOUR
 
   test "h" do
@@ -114,7 +114,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal "12", format(Time.local(2000, 1, 1, 12, 1, 1), "kk")
     assert_equal "23", format(Time.local(2000, 1, 1, 23, 1, 1), "kk")
   end
-  
+
   # MINUTE
 
   test "m" do
@@ -126,7 +126,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal "01", format(Time.local(2000, 1, 1, 1,  1, 1), "mm")
     assert_equal "11", format(Time.local(2000, 1, 1, 1, 11, 1), "mm")
   end
-  
+
   # SECOND
 
   test "s" do

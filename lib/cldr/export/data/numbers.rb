@@ -31,7 +31,7 @@ module Cldr
             }
           )
         end
-      
+
         def currency
           currency = format("currency")
           currency.update(unit: unit) unless unit.empty?

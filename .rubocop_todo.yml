@@ -283,29 +283,6 @@ Layout/TrailingEmptyLines:
     - 'test/test_autotest.rb'
     - 'test/test_helper.rb'
 
-# Offense count: 64
-# Cop supports --auto-correct.
-# Configuration parameters: AllowInHeredoc.
-Layout/TrailingWhitespace:
-  Exclude:
-    - 'lib/cldr/data.rb'
-    - 'lib/cldr/export/code.rb'
-    - 'lib/cldr/export/data/numbers.rb'
-    - 'lib/cldr/export/ruby.rb'
-    - 'lib/cldr/format/datetime.rb'
-    - 'lib/core_ext/hash/deep_merge.rb'
-    - 'lib/core_ext/hash/deep_stringify_keys.rb'
-    - 'lib/core_ext/hash/symbolize_keys.rb'
-    - 'test/export/code/numbers_test.rb'
-    - 'test/export/data/plurals_test.rb'
-    - 'test/format/date_test.rb'
-    - 'test/format/decimal/fraction_test.rb'
-    - 'test/format/decimal/integer_test.rb'
-    - 'test/format/decimal/number_test.rb'
-    - 'test/format/decimal_test.rb'
-    - 'test/format/time_test.rb'
-    - 'test/test_autotest.rb'
-
 # Offense count: 12
 # Configuration parameters: AllowSafeAssignment.
 Lint/AssignmentInCondition:
