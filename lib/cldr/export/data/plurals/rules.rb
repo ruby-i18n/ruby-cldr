@@ -75,7 +75,7 @@ module Cldr
                 list = parse_list($6)
                 Expression.new((list.first.count == 1 && list.last.count == 0) ? :is : :in, $2, !($3.nil? && $4.nil? && $5.nil?), (list.first.count == 1 && list.last.count == 0) ? list.first.first : list, $1)
               when /^\s*#{expr}\s+(not\s+)?within\s+#{range_list}\s*$/i
-                Expression.new(:within, $2, !($3==nil), parse_list($4).last.first, $1)
+                Expression.new(:within, $2, !($3 == nil), parse_list($4).last.first, $1)
               when /^\s*$/
                 Expression.new
               else

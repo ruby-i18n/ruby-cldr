@@ -37,7 +37,7 @@ module Cldr
           end
 
           def round_to(number, precision)
-            factor = 10 ** precision
+            factor = 10**precision
             (number * factor).round.to_f / factor
           end
       end

@@ -146,22 +146,6 @@ Layout/MultilineHashBraceLayout:
     - 'test/export/data/calendars_test.rb'
     - 'test/export/data/numbers_test.rb'
 
-# Offense count: 22
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator.
-# SupportedStylesForExponentOperator: space, no_space
-Layout/SpaceAroundOperators:
-  Exclude:
-    - 'Rakefile'
-    - 'lib/cldr/export.rb'
-    - 'lib/cldr/export/data/plurals/rules.rb'
-    - 'lib/cldr/format/decimal/number.rb'
-    - 'lib/cldr/format/time.rb'
-    - 'test/export/data/calendars_test.rb'
-    - 'test/export/data/currencies_test.rb'
-    - 'test/export/data/timezones_test.rb'
-    - 'test/export_test.rb'
-
 # Offense count: 13
 # Cop supports --auto-correct.
 # Configuration parameters: AllowForAlignment.
