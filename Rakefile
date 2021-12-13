@@ -7,8 +7,8 @@ begin
   require "jeweler"
   Jeweler::Tasks.new do |gem|
     gem.name = "ruby-cldr"
-    gem.summary = %Q{Ruby library for exporting and using data from CLDR }
-    gem.description = %Q{Ruby library for exporting and using data from CLDR, see http://cldr.unicode.org}
+    gem.summary = "Ruby library for exporting and using data from CLDR "
+    gem.description = "Ruby library for exporting and using data from CLDR, see http://cldr.unicode.org"
     gem.email = "svenfuchs@artweb-design.de"
     gem.homepage = "http://github.com/ruby-i18n/ruby-cldr"
     gem.authors = ["Sven Fuchs"]

@@ -141,22 +141,22 @@ Gem::Specification.new do |s|
   end
 
   if s.respond_to?(:add_runtime_dependency) then
-    s.add_runtime_dependency(%q<i18n>, [">= 0"])
-    s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
-    s.add_runtime_dependency(%q<thor>, [">= 0"])
-    s.add_development_dependency(%q<jeweler>, [">= 0"])
-    s.add_development_dependency(%q<pry>, [">= 0"])
-    s.add_development_dependency(%q<pry-nav>, [">= 0"])
-    s.add_development_dependency(%q<rubyzip>, [">= 0"])
-    s.add_development_dependency(%q<test-unit>, [">= 0"])
+    s.add_runtime_dependency("i18n", [">= 0"])
+    s.add_runtime_dependency("nokogiri", [">= 0"])
+    s.add_runtime_dependency("thor", [">= 0"])
+    s.add_development_dependency("jeweler", [">= 0"])
+    s.add_development_dependency("pry", [">= 0"])
+    s.add_development_dependency("pry-nav", [">= 0"])
+    s.add_development_dependency("rubyzip", [">= 0"])
+    s.add_development_dependency("test-unit", [">= 0"])
   else
-    s.add_dependency(%q<i18n>, [">= 0"])
-    s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<nokogiri>, [">= 0"])
-    s.add_dependency(%q<pry>, [">= 0"])
-    s.add_dependency(%q<pry-nav>, [">= 0"])
-    s.add_dependency(%q<rubyzip>, [">= 0"])
-    s.add_dependency(%q<test-unit>, [">= 0"])
-    s.add_dependency(%q<thor>, [">= 0"])
+    s.add_dependency("i18n", [">= 0"])
+    s.add_dependency("jeweler", [">= 0"])
+    s.add_dependency("nokogiri", [">= 0"])
+    s.add_dependency("pry", [">= 0"])
+    s.add_dependency("pry-nav", [">= 0"])
+    s.add_dependency("rubyzip", [">= 0"])
+    s.add_dependency("test-unit", [">= 0"])
+    s.add_dependency("thor", [">= 0"])
   end
 end

@@ -379,13 +379,6 @@ Style/RedundantBegin:
   Exclude:
     - 'lib/cldr/export/data/base.rb'
 
-# Offense count: 18
-# Cop supports --auto-correct.
-Style/RedundantPercentQ:
-  Exclude:
-    - 'Rakefile'
-    - 'ruby-cldr.gemspec'
-
 # Offense count: 11
 # Cop supports --auto-correct.
 # Configuration parameters: AllowMultipleReturnValues.
