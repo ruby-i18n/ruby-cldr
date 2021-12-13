@@ -44,7 +44,7 @@ module Cldr
       end
 
       def export(options = {}, &block)
-        locales        = options[:locales]    || Data.locales
+        locales        = options[:locales] || Data.locales
         components     = (options[:components] || Data.components).map { |c| c.to_s.camelize }
         self.base_path = options[:target] if options[:target]
 

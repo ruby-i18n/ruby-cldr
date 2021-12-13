@@ -113,19 +113,6 @@ Layout/EndAlignment:
   Exclude:
     - 'lib/core_ext/hash/deep_sort.rb'
 
-# Offense count: 30
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
-Layout/ExtraSpacing:
-  Exclude:
-    - 'Rakefile'
-    - 'lib/cldr/export.rb'
-    - 'lib/cldr/export/code.rb'
-    - 'lib/cldr/locale.rb'
-    - 'test/export_test.rb'
-    - 'test/format/date_test.rb'
-    - 'test/format/time_test.rb'
-
 # Offense count: 16
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

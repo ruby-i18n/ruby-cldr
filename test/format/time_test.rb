@@ -52,8 +52,8 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   # HOUR
 
   test "h" do
-    assert_equal "12", format(Time.local(2000, 1, 1,  0, 1, 1), "h")
-    assert_equal  "1", format(Time.local(2000, 1, 1,  1, 1, 1), "h")
+    assert_equal "12", format(Time.local(2000, 1, 1, 0, 1, 1), "h")
+    assert_equal "1", format(Time.local(2000, 1, 1,  1, 1, 1), "h")
     assert_equal "11", format(Time.local(2000, 1, 1, 11, 1, 1), "h")
     assert_equal "12", format(Time.local(2000, 1, 1, 12, 1, 1), "h")
     assert_equal "11", format(Time.local(2000, 1, 1, 23, 1, 1), "h")
@@ -87,7 +87,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
     assert_equal  "0", format(Time.local(2000, 1, 1,  0, 1, 1), "K")
     assert_equal  "1", format(Time.local(2000, 1, 1,  1, 1, 1), "K")
     assert_equal "11", format(Time.local(2000, 1, 1, 11, 1, 1), "K")
-    assert_equal  "0", format(Time.local(2000, 1, 1, 12, 1, 1), "K")
+    assert_equal "0", format(Time.local(2000, 1, 1, 12, 1, 1), "K")
     assert_equal "11", format(Time.local(2000, 1, 1, 23, 1, 1), "K")
   end
 
@@ -100,8 +100,8 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   end
 
   test "k" do
-    assert_equal "24", format(Time.local(2000, 1, 1,  0, 1, 1), "k")
-    assert_equal  "1", format(Time.local(2000, 1, 1,  1, 1, 1), "k")
+    assert_equal "24", format(Time.local(2000, 1, 1, 0, 1, 1), "k")
+    assert_equal "1", format(Time.local(2000, 1, 1,  1, 1, 1), "k")
     assert_equal "11", format(Time.local(2000, 1, 1, 11, 1, 1), "k")
     assert_equal "12", format(Time.local(2000, 1, 1, 12, 1, 1), "k")
     assert_equal "23", format(Time.local(2000, 1, 1, 23, 1, 1), "k")
@@ -118,7 +118,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   # MINUTE
 
   test "m" do
-    assert_equal  "1", format(Time.local(2000, 1, 1, 1,  1, 1), "m")
+    assert_equal "1", format(Time.local(2000, 1, 1, 1,  1, 1), "m")
     assert_equal "11", format(Time.local(2000, 1, 1, 1, 11, 1), "m")
   end
 
@@ -130,7 +130,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
   # SECOND
 
   test "s" do
-    assert_equal  "1", format(Time.local(2000, 1, 1, 1, 1,  1), "s")
+    assert_equal "1", format(Time.local(2000, 1, 1, 1, 1,  1), "s")
     assert_equal "11", format(Time.local(2000, 1, 1, 1, 1, 11), "s")
   end
 

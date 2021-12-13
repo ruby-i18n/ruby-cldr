@@ -55,7 +55,7 @@ class TestExport < Test::Unit::TestCase
   end
 
   test "writes dot-separated symbols to yaml in a way that can be loaded back" do
-    data = { "format"  => { "narrow" => :"calendars.gregorian.months.stand-alone.narrow" } }
+    data = { "format" => { "narrow" => :"calendars.gregorian.months.stand-alone.narrow" } }
     yaml = Cldr::Export::Yaml.new.yaml(data.deep_stringify_keys)
 
     assert_equal data, YAML.load(yaml)

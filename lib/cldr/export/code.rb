@@ -8,7 +8,7 @@ module Cldr
       # autoload :Currencies,    'cldr/export/code/currencies'
       # autoload :Delimiters,    'cldr/export/code/delimiters'
       # autoload :Languages,     'cldr/export/code/languages'
-      autoload :Numbers,       "cldr/export/code/numbers"
+      autoload :Numbers, "cldr/export/code/numbers"
       # autoload :Plurals,       'cldr/export/code/plurals'
       # autoload :Territories,   'cldr/export/code/territories'
       # autoload :Timezones,     'cldr/export/code/timezones'
