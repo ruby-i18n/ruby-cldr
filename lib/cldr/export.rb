@@ -34,7 +34,7 @@ module Cldr
         self.base_path = options[:target] if options[:target]
 
         shared_components, locale_components = components.partition do |component|
-          is_shared_component?(component)
+          shared_component?(component)
         end
 
         shared_components.each do |component|
@@ -77,7 +77,7 @@ module Cldr
         when "Plurals"
           plural_data(component, locale, options)
         else
-          if is_shared_component?(component)
+          if shared_component?(component)
             shared_data(component, options)
           else
             locale_based_data(component, locale, options)
@@ -142,12 +142,12 @@ module Cldr
 
       def path(locale, component, extension)
         path = [Export.base_path]
-        path << locale.to_s.gsub("_", "-") unless is_shared_component?(component)
+        path << locale.to_s.gsub("_", "-") unless shared_component?(component)
         path << "#{component.to_s.underscore}.#{extension}"
         File.join(*path)
       end
 
-      def is_shared_component?(component)
+      def shared_component?(component)
         SHARED_COMPONENTS.include?(component)
       end
 
