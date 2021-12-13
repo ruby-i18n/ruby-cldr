@@ -394,33 +394,6 @@ Style/DateTime:
     - 'test/export/data/metazones_test.rb'
     - 'test/format/datetime_test.rb'
 
-# Offense count: 47
-# Cop supports --auto-correct.
-Style/EachWithObject:
-  Exclude:
-    - 'lib/cldr/export/data/aliases.rb'
-    - 'lib/cldr/export/data/base.rb'
-    - 'lib/cldr/export/data/calendars/gregorian.rb'
-    - 'lib/cldr/export/data/currencies.rb'
-    - 'lib/cldr/export/data/languages.rb'
-    - 'lib/cldr/export/data/likely_subtags.rb'
-    - 'lib/cldr/export/data/lists.rb'
-    - 'lib/cldr/export/data/metazones.rb'
-    - 'lib/cldr/export/data/numbering_systems.rb'
-    - 'lib/cldr/export/data/numbers.rb'
-    - 'lib/cldr/export/data/plural_rules.rb'
-    - 'lib/cldr/export/data/region_currencies.rb'
-    - 'lib/cldr/export/data/segments_root.rb'
-    - 'lib/cldr/export/data/subdivisions.rb'
-    - 'lib/cldr/export/data/territories.rb'
-    - 'lib/cldr/export/data/territories_containment.rb'
-    - 'lib/cldr/export/data/timezones.rb'
-    - 'lib/cldr/export/data/units.rb'
-    - 'lib/cldr/export/data/variables.rb'
-    - 'lib/cldr/export/data/windows_zones.rb'
-    - 'lib/core_ext/hash/deep_stringify_keys.rb'
-    - 'lib/core_ext/hash/symbolize_keys.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

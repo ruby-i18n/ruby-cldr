@@ -16,12 +16,11 @@ module Cldr
         private
 
         def variables
-          doc.xpath("//validity/variable").inject({}) do |ret, variable|
+          doc.xpath("//validity/variable").each_with_object({}) do |variable, ret|
             name = variable.attribute("id").value
             if VARIABLE_IDS.include?(name)
               ret[fix_var_name(name)] = split_value_list(variable.text)
             end
-            ret
           end
         end
 

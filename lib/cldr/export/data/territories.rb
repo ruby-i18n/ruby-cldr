@@ -10,9 +10,8 @@ module Cldr
         end
 
         def territories
-          @territories ||= select("localeDisplayNames/territories/territory").inject({}) do |result, node|
+          @territories ||= select("localeDisplayNames/territories/territory").each_with_object({}) do |node, result|
             result[node.attribute("type").value.to_sym] = node.content unless draft?(node) or alt?(node)
-            result
           end
         end
       end

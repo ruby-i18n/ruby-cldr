@@ -11,10 +11,9 @@ module Cldr
         end
 
         def segmentations
-          doc.xpath("ldml/segmentations/segmentation").inject({}) do |ret, seg|
+          doc.xpath("ldml/segmentations/segmentation").each_with_object({}) do |seg, ret|
             type = seg.attribute("type").value
             ret[type] = segmentation(seg)
-            ret
           end
         end
 

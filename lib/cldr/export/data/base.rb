@@ -87,14 +87,12 @@ module Cldr
             return Nokogiri::XML("") if paths_to_merge.empty?
 
             rest = paths_to_merge[1..paths_to_merge.size - 1]
-            rest.inject(Nokogiri::XML(File.read(paths_to_merge.first))) do |result, path|
+            rest.each_with_object(Nokogiri::XML(File.read(paths_to_merge.first))) do |path, result|
               next_doc = Nokogiri::XML(File.read(path))
 
               next_doc.root.children.each do |child|
                 result.root.add_child(child)
               end
-
-              result
             end
           end
       end

@@ -12,7 +12,7 @@ module Cldr
         end
 
         def numbering_systems
-          doc.xpath("supplementalData/numberingSystems/numberingSystem").inject({}) do |ret, numbering|
+          doc.xpath("supplementalData/numberingSystems/numberingSystem").each_with_object({}) do |numbering, ret|
             system_name = numbering.attribute("id").value
             type = numbering.attribute("type").value
 
@@ -27,8 +27,6 @@ module Cldr
               :type => type,
               param => numbering.attribute(param).value
             }
-
-            ret
           end
         end
       end

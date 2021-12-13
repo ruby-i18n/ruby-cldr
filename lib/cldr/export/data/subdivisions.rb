@@ -13,9 +13,8 @@ module Cldr
         private
 
         def subdivisions
-          @subdivisions ||= select("localeDisplayNames/subdivisions/subdivision").inject({}) do |result, node|
+          @subdivisions ||= select("localeDisplayNames/subdivisions/subdivision").each_with_object({}) do |node, result|
             result[node.attribute("type").value.to_sym] = node.content unless draft?(node) or alt?(node)
-            result
           end
         end
       end

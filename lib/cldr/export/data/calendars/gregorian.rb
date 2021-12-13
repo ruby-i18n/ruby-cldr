@@ -28,18 +28,16 @@ module Cldr
           end
 
           def contexts(kind, options = {})
-            select(calendar, "#{kind}s/#{kind}Context").inject({}) do |result, node|
+            select(calendar, "#{kind}s/#{kind}Context").each_with_object({}) do |node, result|
               context = node.attribute("type").value.to_sym
               result[context] = widths(node, kind, context, options)
-              result
             end
           end
 
           def widths(node, kind, context, options = {})
-            select(node, "#{kind}Width").inject({}) do |result, node|
+            select(node, "#{kind}Width").each_with_object({}) do |node, result|
               width = node.attribute("type").value.to_sym
               result[width] = elements(node, kind, context, width, options)
-              result
             end
           end
 
@@ -49,7 +47,7 @@ module Cldr
             if aliased
               xpath_to_key(aliased.attribute("path").value, kind, context, width)
             else
-              select(node, kind).inject({}) do |result, node|
+              select(node, kind).each_with_object({}) do |node, result|
                 key = node.attribute("type").value
                 key = key =~ /^\d*$/ ? key.to_i : key.to_sym
 
@@ -59,8 +57,6 @@ module Cldr
                 else
                   result[key] = node.content
                 end
-
-                result
               end
             end
           end
@@ -90,17 +86,15 @@ module Cldr
               base_path = calendar.path.gsub("/ldml/", "") + "/eras"
               keys = select("#{base_path}/*").map { |node| node.name }
 
-              keys.inject({}) do |result, name|
+              keys.each_with_object({}) do |name, result|
                 path = "#{base_path}/#{name}/*"
                 key  = name.gsub("era", "").gsub(/s$/, "").downcase.to_sym
-                key_result = select(path).inject({}) do |ret, node|
+                key_result = select(path).each_with_object({}) do |node, ret|
                   next ret if node.name == "alias" # TODO: Actually handle alias nodes, https://github.com/ruby-i18n/ruby-cldr/issues/78
                   type = node.attribute("type").value.to_i
                   ret[type] = node.content
-                  ret
                 end
                 result[key] = key_result unless key_result.empty?
-                result
               end
             else
               {}
@@ -109,18 +103,16 @@ module Cldr
 
           def extract(path, lambdas)
             nodes = select(path)
-            nodes.inject({}) do |ret, node|
+            nodes.each_with_object({}) do |node, ret|
               key = lambdas[:key].call(node)
               ret[key] = lambdas[:value].call(node)
-              ret
             end
           end
 
           def formats(type)
-            formats = select(calendar, "#{type}Formats/#{type}FormatLength").inject({}) do |result, node|
+            formats = select(calendar, "#{type}Formats/#{type}FormatLength").each_with_object({}) do |node, result|
               key = node.attribute("type").value.to_sym
               result[key] = pattern(node, type)
-              result
             end
             if default = default_format(type)
               formats = default.merge(formats)
@@ -129,10 +121,9 @@ module Cldr
           end
 
           def additional_formats
-            select(calendar, "dateTimeFormats/availableFormats/dateFormatItem").inject({}) do |result, node|
+            select(calendar, "dateTimeFormats/availableFormats/dateFormatItem").each_with_object({}) do |node, result|
               key = node.attribute("id").value
               result[key] = node.content
-              result
             end
           end
 
@@ -144,22 +135,20 @@ module Cldr
           end
 
           def pattern(node, type)
-            select(node, "#{type}Format/pattern").inject({}) do |result, node|
+            select(node, "#{type}Format/pattern").each_with_object({}) do |node, result|
               pattern = node.content
               pattern = pattern.gsub("{0}", "{{time}}").gsub("{1}", "{{date}}") if type == "dateTime"
               result[:pattern] = pattern
-              result
             end
           end
 
           # NOTE: As of CLDR 23, this data moved from inside each "calendar" tag to under its parent, the "dates" tag.
           # That probably means this `fields` method should be moved up to the parent as well.
           def fields
-            select("dates/fields/field").inject({}) do |result, node|
+            select("dates/fields/field").each_with_object({}) do |node, result|
               key  = node.attribute("type").value.to_sym
               name = node.xpath("displayName").first
               result[key] = name.content if name
-              result
             end
           end
         end

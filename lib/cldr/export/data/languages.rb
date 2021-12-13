@@ -10,9 +10,8 @@ module Cldr
         end
 
         def languages
-          @languages ||= select("localeDisplayNames/languages/language").inject({}) do |result, node|
+          @languages ||= select("localeDisplayNames/languages/language").each_with_object({}) do |node, result|
             result[Cldr::Export.to_i18n(node.attribute("type").value)] = node.content unless draft?(node) or alt?(node)
-            result
           end
         end
       end

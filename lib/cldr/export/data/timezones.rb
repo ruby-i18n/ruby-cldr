@@ -17,18 +17,16 @@ module Cldr
         end
 
         def formats
-          @formats ||= select("dates/timeZoneNames/*").inject({}) do |result, format|
+          @formats ||= select("dates/timeZoneNames/*").each_with_object({}) do |format, result|
             if format.name.end_with?("Format")
               underscored_name = format.name.gsub(/([a-z])([A-Z])/, '\1_\2').downcase
               result[underscored_name] = format.text
             end
-
-            result
           end
         end
 
         def timezones
-          @timezones ||= select("dates/timeZoneNames/zone").inject({}) do |result, zone|
+          @timezones ||= select("dates/timeZoneNames/zone").each_with_object({}) do |zone, result|
             type = zone.attr("type").to_sym
             result[type] = {}
             long = nodes_to_hash(zone.xpath("long/*"))
@@ -37,28 +35,25 @@ module Cldr
             result[type][:short] = short unless short.empty?
             city = select(zone, "exemplarCity").first
             result[type][:city] = city.content if city
-            result
           end
         end
 
         def metazones
-          @metazones ||= select("dates/timeZoneNames/metazone").inject({}) do |result, zone|
+          @metazones ||= select("dates/timeZoneNames/metazone").each_with_object({}) do |zone, result|
             type = zone.attr("type").to_sym
             result[type] = {}
             long = nodes_to_hash(zone.xpath("long/*"))
             result[type][:long] = long unless long.empty?
             short = nodes_to_hash(zone.xpath("short/*"))
             result[type][:short] = short unless short.empty?
-            result
           end
         end
 
         protected
 
         def nodes_to_hash(nodes)
-          nodes.inject({}) do |result, node|
+          nodes.each_with_object({}) do |node, result|
             result[node.name.to_sym] = node.content
-            result
           end
         end
 

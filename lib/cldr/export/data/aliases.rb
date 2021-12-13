@@ -16,26 +16,22 @@ module Cldr
         private
 
         def aliases
-          ALIAS_TAGS.inject({}) do |ret, alias_tag|
+          ALIAS_TAGS.each_with_object({}) do |alias_tag, ret|
             ret[alias_tag.sub("Alias", "")] = alias_for(alias_tag)
-            ret
           end
         end
 
         def alias_for(alias_tag)
-          doc.xpath("//alias/#{alias_tag}").inject({}) do |ret, alias_data|
-            if replacement_attr = alias_data.attribute("replacement")
-              replacement = replacement_attr.value
+          doc.xpath("//alias/#{alias_tag}").each_with_object({}) do |alias_data, ret|
+            next unless replacement_attr = alias_data.attribute("replacement")
+            replacement = replacement_attr.value
 
-              if replacement.include?(" ")
-                replacement = replacement.split(" ")
-              end
-
-              type = alias_data.attribute("type").value
-              ret[type] = replacement
+            if replacement.include?(" ")
+              replacement = replacement.split(" ")
             end
 
-            ret
+            type = alias_data.attribute("type").value
+            ret[type] = replacement
           end
         end
       end

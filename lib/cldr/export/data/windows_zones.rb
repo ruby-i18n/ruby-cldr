@@ -10,13 +10,12 @@ module Cldr
         def initialize
           path = "#{Cldr::Export::Data.dir}/supplemental/windowsZones.xml"
           doc = File.open(path) { |file| Nokogiri::XML(file) }
-          doc.xpath("//windowsZones/mapTimezones/mapZone").inject(self) do |result, node|
+          doc.xpath("//windowsZones/mapTimezones/mapZone").each_with_object(self) do |node, result|
             zone = node.attr("other").to_s
             territory = node.attr("territory")
             timezones = node.attr("type").split(" ")
             result[zone] ||= {}
             result[zone][territory] = timezones
-            result
           end
         end
       end

@@ -10,15 +10,14 @@ module Cldr
         end
 
         def currencies
-          select("numbers/currencies/*").inject({}) do |result, node|
+          select("numbers/currencies/*").each_with_object({}) do |node, result|
             currency = self.currency(node)
             result[node.attribute("type").value.to_sym] = currency unless currency.empty?
-            result
           end
         end
 
         def currency(node)
-          data = select(node, "displayName").inject({}) do |result, node|
+          data = select(node, "displayName").each_with_object({}) do |node, result|
             unless draft?(node)
               if node.attribute("count")
                 count = node.attribute("count").value.to_sym
@@ -27,8 +26,6 @@ module Cldr
                 result[:name] = node.content
               end
             end
-
-            result
           end
 
           symbol = select(node, "symbol")

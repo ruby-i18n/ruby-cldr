@@ -10,9 +10,8 @@ module Cldr
 
         def initialize(locale)
           find_rules(locale).each_pair do |rule_type, rule_data|
-            self[rule_type.to_sym] = rule_data.inject({}) do |ret, rule|
+            self[rule_type.to_sym] = rule_data.each_with_object({}) do |rule, ret|
               ret[rule.attributes["count"].text] = rule.text
-              ret
             end
           end
         end
@@ -20,18 +19,17 @@ module Cldr
         private
 
         def sources
-          @sources ||= ["plurals", "ordinals"].inject({}) do |ret, source_name|
+          @sources ||= ["plurals", "ordinals"].each_with_object({}) do |source_name, ret|
             ret[source_name] = ::Nokogiri::XML(
               File.read("#{Cldr::Export::Data.dir}/supplemental/#{source_name}.xml")
             )
-            ret
           end
         end
 
         def find_rules(locale)
           locale = locale.to_s
 
-          sources.inject({}) do |ret, (file, source)|
+          sources.each_with_object({}) do |(file, source), ret|
             # try to find exact match, then fall back
             node = find_rules_for_exact_locale(locale, source) ||
               find_rules_for_exact_locale(base_locale(locale), source) ||
@@ -42,8 +40,6 @@ module Cldr
               name = (source / "plurals").first.attributes["type"].value
               ret[name] = node / "pluralRule"
             end
-
-            ret
           end
         end
 

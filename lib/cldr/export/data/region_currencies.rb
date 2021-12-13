@@ -13,10 +13,9 @@ module Cldr
         private
 
         def currencies
-          doc.xpath("//currencyData/region").inject({}) do |ret, region|
+          doc.xpath("//currencyData/region").each_with_object({}) do |region, ret|
             name = region.attribute("iso3166").value
             ret[name] = currency(region)
-            ret
           end
         end
 
