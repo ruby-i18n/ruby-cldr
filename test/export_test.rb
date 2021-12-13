@@ -71,9 +71,9 @@ class TestExport < Test::Unit::TestCase
 
   test "escapes keys in a way that can be properly parsed back" do
     data = {
-      "017" =>17,
+      "017" => 17,
       15 => 9,
-      9 =>"009",
+      9 => "009",
     }
     yaml = Cldr::Export::Yaml.new.yaml(data)
     new_data = YAML.load(yaml)

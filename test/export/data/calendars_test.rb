@@ -143,7 +143,8 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   end
 
   test "calendars fields :de" do
-    fields = { day: "Tag",
+    fields = {
+      day: "Tag",
       "day-narrow": "Tag",
       "day-short": "Tag",
       dayOfYear: "Tag des Jahres",

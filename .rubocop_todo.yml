@@ -126,21 +126,6 @@ Layout/ExtraSpacing:
     - 'test/format/date_test.rb'
     - 'test/format/time_test.rb'
 
-# Offense count: 65
-# Cop supports --auto-correct.
-# Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
-# SupportedHashRocketStyles: key, separator, table
-# SupportedColonStyles: key, separator, table
-# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
-Layout/HashAlignment:
-  Exclude:
-    - 'lib/cldr/export/data/calendars/gregorian.rb'
-    - 'lib/cldr/export/data/delimiters.rb'
-    - 'test/export/data/calendars_test.rb'
-    - 'test/export/data/delimiters_test.rb'
-    - 'test/export/data/units_test.rb'
-    - 'test/export_test.rb'
-
 # Offense count: 16
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
