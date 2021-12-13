@@ -13,7 +13,7 @@ module Cldr
 
       def apply(datetime, options = {})
         format.gsub(/(\{\{(date|time)\}\})/) do
-          case $2
+          case Regexp.last_match(2)
           when "date"
             options[:date] || date.apply(datetime, options)
           when "time"

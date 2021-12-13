@@ -19,8 +19,8 @@ class TestCldrDataSubdivisions < Test::Unit::TestCase
   test "subdivisions locales are a subset of main locales" do
     root = File.expand_path("./vendor/cldr/common")
 
-    main_locales = Dir["#{root}/main/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && $1 }
-    subdivisions_locales = Dir["#{root}/subdivisions/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && $1 }
+    main_locales = Dir["#{root}/main/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && Regexp.last_match(1) }
+    subdivisions_locales = Dir["#{root}/subdivisions/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && Regexp.last_match(1) }
 
     assert_empty(subdivisions_locales - main_locales)
   end

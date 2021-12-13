@@ -26,7 +26,7 @@ module Cldr
 
           def parse_format(format, symbols = {})
             format =~ FORMAT_PATTERN
-            prefix, suffix, int, fraction = $1.to_s, $3.to_s, *$2.split(".")
+            prefix, suffix, int, fraction = Regexp.last_match(1).to_s, Regexp.last_match(3).to_s, *Regexp.last_match(2).split(".")
             [prefix, suffix, Integer.new(int, symbols), Fraction.new(fraction, symbols)]
           end
 

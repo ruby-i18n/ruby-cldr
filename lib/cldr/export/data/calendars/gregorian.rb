@@ -62,9 +62,9 @@ module Cldr
           end
 
           def xpath_to_key(xpath, kind, context, width)
-            kind    = (xpath =~ %r(/([^\/]*)Width) && $1) || kind
-            context = (xpath =~ %r(Context\[@type='([^\/]*)'\]) && $1) || context
-            width   = (xpath =~ %r(Width\[@type='([^\/]*)'\]) && $1) || width
+            kind    = (xpath =~ %r(/([^\/]*)Width) && Regexp.last_match(1)) || kind
+            context = (xpath =~ %r(Context\[@type='([^\/]*)'\]) && Regexp.last_match(1)) || context
+            width   = (xpath =~ %r(Width\[@type='([^\/]*)'\]) && Regexp.last_match(1)) || width
             :"calendars.gregorian.#{kind}s.#{context}.#{width}"
           end
 

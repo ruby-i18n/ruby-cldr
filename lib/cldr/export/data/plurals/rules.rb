@@ -72,10 +72,10 @@ module Cldr
               when /and/i
                 code.split(/and/i).inject(Proposition.new("&&")) { |rule, code| rule << parse(code) }
               when /^\s*#{expr}\s+(?:is(\s+not)?|(not\s+)?in|(!)?=)\s+#{range_list}\s*$/i
-                list = parse_list($6)
-                Expression.new((list.first.count == 1 && list.last.count == 0) ? :is : :in, $2, !($3.nil? && $4.nil? && $5.nil?), (list.first.count == 1 && list.last.count == 0) ? list.first.first : list, $1)
+                list = parse_list(Regexp.last_match(6))
+                Expression.new((list.first.count == 1 && list.last.count == 0) ? :is : :in, Regexp.last_match(2), !(Regexp.last_match(3).nil? && Regexp.last_match(4).nil? && Regexp.last_match(5).nil?), (list.first.count == 1 && list.last.count == 0) ? list.first.first : list, Regexp.last_match(1))
               when /^\s*#{expr}\s+(not\s+)?within\s+#{range_list}\s*$/i
-                Expression.new(:within, $2, !($3 == nil), parse_list($4).last.first, $1)
+                Expression.new(:within, Regexp.last_match(2), !(Regexp.last_match(3) == nil), parse_list(Regexp.last_match(4)).last.first, Regexp.last_match(1))
               when /^\s*$/
                 Expression.new
               else

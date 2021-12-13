@@ -400,17 +400,6 @@ Style/PercentQLiterals:
   Exclude:
     - 'Rakefile'
 
-# Offense count: 20
-# Cop supports --auto-correct.
-Style/PerlBackrefs:
-  Exclude:
-    - 'lib/cldr/export/data.rb'
-    - 'lib/cldr/export/data/calendars/gregorian.rb'
-    - 'lib/cldr/export/data/plurals/rules.rb'
-    - 'lib/cldr/format/datetime.rb'
-    - 'lib/cldr/format/decimal/number.rb'
-    - 'test/export/data/subdivisions_test.rb'
-
 # Offense count: 9
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

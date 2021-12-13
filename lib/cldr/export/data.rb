@@ -47,7 +47,7 @@ module Cldr
         end
 
         def locales
-          Dir["#{dir}/main/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && $1 }
+          Dir["#{dir}/main/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && Regexp.last_match(1) }
         end
 
         def components
