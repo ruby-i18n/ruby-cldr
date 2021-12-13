@@ -38,17 +38,6 @@ Layout/ArgumentAlignment:
   Exclude:
     - 'lib/cldr/thor.rb'
 
-# Offense count: 126
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: with_first_element, with_fixed_indentation
-Layout/ArrayAlignment:
-  Exclude:
-    - 'lib/core_ext/hash/deep_sort.rb'
-    - 'test/export/data/currencies_test.rb'
-    - 'test/export/data/languages_test.rb'
-    - 'test/export/data/timezones_test.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentOneStep, IndentationWidth.

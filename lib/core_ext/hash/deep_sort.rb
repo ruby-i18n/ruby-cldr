@@ -45,11 +45,11 @@ module DeepSort
           key
         end,
 
-        if value.respond_to?(:deep_sort_by)
-          value.deep_sort_by(options, &block)
-        else
-          value
-        end]
+         if value.respond_to?(:deep_sort_by)
+           value.deep_sort_by(options, &block)
+         else
+           value
+         end]
       end
 
       Hash[options[:hash] == false ? hash : hash.sort_by(&block)]
@@ -63,11 +63,11 @@ module DeepSort
           key
         end,
 
-        if value.respond_to?(:deep_sort_by!)
-          value.deep_sort_by!(options, &block)
-        else
-          value
-        end]
+         if value.respond_to?(:deep_sort_by!)
+           value.deep_sort_by!(options, &block)
+         else
+           value
+         end]
       end
       replace(Hash[options[:hash] == false ? hash : hash.sort_by!(&block)])
     end
