@@ -13,7 +13,7 @@ This library is a first stab at that goal. You can:
 
 ## Requirements
 
-  * Ruby 1.9 (if you want well-ordered Hashes to be exported)
+  * Ruby 2.6+
   * Thor
 
 ## Installation
