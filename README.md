@@ -1,44 +1,43 @@
-h1. Ruby library for exporting and using data from CLDR
+# Ruby library for exporting and using data from CLDR
 
-!https://github.com/ruby-i18n/ruby-cldr/actions/workflows/test.yml/badge.svg!:https://github.com/ruby-i18n/ruby-cldr/actions/workflows/test.yml
+[![Tests](https://github.com/ruby-i18n/ruby-cldr/actions/workflows/test.yml/badge.svg)](https://github.com/ruby-i18n/ruby-cldr/actions/workflows/test.yml)
 
-CLDR ("Common Locale Data Repository":http://cldr.unicode.org) contains tons of high-quality locale data such as formatting rules for dates, times, numbers, currencies as well as language, country, calendar-specific names etc.
+CLDR (["Common Locale Data Repository"](http://cldr.unicode.org)) contains tons of high-quality locale data such as formatting rules for dates, times, numbers, currencies as well as language, country, calendar-specific names etc.
 
 For localizing applications in Ruby we'll obviously be able to use this incredibly comprehensive and well-maintained resource.
 
 This library is a first stab at that goal. You can: 
 
-* export CLDR data to YAML and Ruby formatted files which are supposed to be usable in an  "I18n":http://github.com/svenfuchs/i18n context but might be usable elsewhere, too. 
+* export CLDR data to YAML and Ruby formatted files which are supposed to be usable in an  ["I18n"](http://github.com/svenfuchs/i18n) context but might be usable elsewhere, too. 
 * use CLDR compliant formatters for the following types: number, percentage, currency, date, time, datetime.
 
-h2. Requirements
+## Requirements
 
   * Ruby 1.9 (if you want well-ordered Hashes to be exported)
   * Thor
 
-h2. Installation
+## Installation
 
-<pre>
+```
 gem install bundler
 bundle install
 
-
 thor cldr:download
-</pre>
+```
 
-h2. Export
+## Export
 
 The following command will export all known components from all locales to the target directory ./data/[locale]/[component].{yml,rb}:
 
-<pre>
+```
 $ thor cldr:export
-</pre>
+```
 
 You can also optionally specify locales and/or components to export as well as the target directory:
 
-<pre>
+```
 $ thor cldr:export --locales de fr en --components numbers plurals --target=./tmp/export
-</pre>
+```
 
 This will export the components :numbers and :plurals from the locales :de, :fr and :en to the same target directory.
 
@@ -46,17 +45,17 @@ Also note that CLDR natively builds on a locale fallback concept where all local
 
 By default this library just exports data that is present in CLDR for a given locale. If you do not want to use locale fallbacks in your application you'll need to "flatten" locale fallbacks and merge the data during export time. To do that you can use the --merge option:
 
-<pre>
+```
 $ thor cldr:export --merge
-</pre>
+```
 
-h2. Formatters
+## Formatters
 
 The library includes a bunch of formatter classes that can be used to format Ruby objects like Numerics, Date, Time, DateTime etc. using the format information provided by CLDR.
 
 E.g.:
 
-<pre>
+```ruby
 	options = { :decimal => ',', :group => ' ' }
 	format  = Cldr::Format::Numeric.new('#,##0.##', options)
 	format.apply(1234.567)
@@ -71,13 +70,13 @@ E.g.:
 	format   = Cldr::Format::Time.new('HH:mm:ss z', calendar)
 	format.apply(Time.utc(2010, 1, 1, 13, 12, 11))
 	# => "13:12:11 UTC"
-</pre>
+```
 
 In order to make these things easier to use the library provides a bunch of helpers defined in the module Cldr::Format. (This module is supposed to work as an extension to the Simple backend in the I18n gem but is included here to suggest a common API to formatters and make development easier for usecases outside of the I18n gem. If you want to include this module somewhere else you have to implement a few abstract methods to provide translations.)
 
 E.g.:
 
-<pre>
+```ruby
 	format(:de, 123456.78)
 	# => "123.456,78"
 
@@ -98,18 +97,18 @@ E.g.:
 
 	format(:de, DateTime.new(2010, 11, 12, 13, 14, 15), :date_format => :long, :time_format => :short)
 	# => "12. November 2010 13:14"
-</pre>
+```
 
-h2. Tests
+## Tests
 
-<pre>
+```
  bundle exec ruby test/all.rb
-</pre>
+```
 
-h2. Resources
+## Resources
 
 For additional information on CLDR plural rules see:
 
-  * "http://unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules":http://unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules
-  * "http://www.unicode.org/cldr/export/data/charts/supplemental/language_plural_rules.html":http://www.unicode.org/cldr/export/data/charts/supplemental/language_plural_rules.html
+  * [http://unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules](http://unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules)
+  * [http://www.unicode.org/cldr/export/data/charts/supplemental/language_plural_rules.html](http://www.unicode.org/cldr/export/data/charts/supplemental/language_plural_rules.html)
 
