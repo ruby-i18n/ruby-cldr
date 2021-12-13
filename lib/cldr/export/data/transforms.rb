@@ -23,7 +23,7 @@ module Cldr
               target: transform_node.attribute("target").value,
               variant: get_variant(transform_node),
               direction: transform_node.attribute("direction").value,
-              rules: rules(transform_node)
+              rules: rules(transform_node),
             }
           end
         end

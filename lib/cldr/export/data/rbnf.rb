@@ -20,7 +20,7 @@ module Cldr
               type: grouping_node.attribute("type").value,
               ruleset: (grouping_node / "ruleset").map do |ruleset_node|
                 rule_set(ruleset_node)
-              end
+              end,
             }
           end
         end
@@ -37,12 +37,12 @@ module Cldr
 
               attrs = {
                 value: cast_value(rule_node.attribute("value").value),
-                rule: fix_rule(rule_node.text)
+                rule: fix_rule(rule_node.text),
               }
 
               attrs[:radix] = radix if radix
               attrs
-            end
+            end,
           }
 
           access = ruleset_node.attribute("access")

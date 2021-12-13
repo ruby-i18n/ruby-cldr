@@ -20,7 +20,7 @@ module Cldr
         def segmentation(node)
           {
             variables: variables(node),
-            rules: rules(node)
+            rules: rules(node),
           }
         end
 
@@ -28,7 +28,7 @@ module Cldr
           (node / "variables" / "variable").map do |variable|
             {
               id: cast_value(variable.attribute("id").value),
-              value: variable.text
+              value: variable.text,
             }
           end
         end
@@ -37,7 +37,7 @@ module Cldr
           (node / "segmentRules" / "rule").map do |rule|
             {
               id: cast_value(rule.attribute("id").value),
-              value: rule.text
+              value: rule.text,
             }
           end
         end

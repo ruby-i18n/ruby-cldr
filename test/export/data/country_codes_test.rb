@@ -13,7 +13,7 @@ class TestCldrDataCountryCodes < Test::Unit::TestCase
         },
         AC: {
           "alpha3" => "ASC",
-        }
+        },
       }
     country_codes = Cldr::Export::Data::CountryCodes.new
     assert_equal(country_codes[:country_codes][:AA], expected[:AA])

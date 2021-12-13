@@ -10,8 +10,8 @@ module Cldr
             delimiters: {
               quotes: {
                 default: quotes("quotation"),
-                alternate: quotes("alternateQuotation")
-              }
+                alternate: quotes("alternateQuotation"),
+              },
             }
           )
         end

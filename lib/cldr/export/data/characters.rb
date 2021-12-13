@@ -14,7 +14,7 @@ module Cldr
             {
               # remove enclosing brackets
               characters: node.content[1..-2],
-              type: type_from(node)
+              type: type_from(node),
             }
           end
         end

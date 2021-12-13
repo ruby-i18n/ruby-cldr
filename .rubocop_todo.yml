@@ -574,27 +574,6 @@ Style/TrailingCommaInArrayLiteral:
     - 'test/export/data/territories_test.rb'
     - 'test/export/data/timezones_test.rb'
 
-# Offense count: 40
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'lib/cldr/export/data/calendars/gregorian.rb'
-    - 'lib/cldr/export/data/characters.rb'
-    - 'lib/cldr/export/data/delimiters.rb'
-    - 'lib/cldr/export/data/numbering_systems.rb'
-    - 'lib/cldr/export/data/numbers.rb'
-    - 'lib/cldr/export/data/rbnf.rb'
-    - 'lib/cldr/export/data/segments_root.rb'
-    - 'lib/cldr/export/data/transforms.rb'
-    - 'lib/cldr/format/time.rb'
-    - 'test/export/data/calendars_test.rb'
-    - 'test/export/data/country_codes_test.rb'
-    - 'test/export/data/delimiters_test.rb'
-    - 'test/export/data/numbers_test.rb'
-    - 'test/export/data/units_test.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: ExactNameMatch, AllowPredicates, AllowDSLWriters, IgnoreClassMethods, AllowedMethods.

@@ -10,14 +10,14 @@ class TestCldrDataDelimiters < Test::Unit::TestCase
         quotes: {
           default: {
             start: "„",
-            end: "“"
+            end: "“",
           },
           alternate: {
             start: "‚",
-            end: "‘"
-          }
-        }
-      }
+            end: "‘",
+          },
+        },
+      },
     }
     assert_equal expected, Cldr::Export::Data::Delimiters.new("de")
   end

@@ -16,7 +16,7 @@ module Cldr
         "z" => :timezone,
         "Z" => :timezone,
         "v" => :timezone_generic_non_location,
-        "V" => :timezone_metazone
+        "V" => :timezone_metazone,
       }
 
       def period(time, pattern, length)

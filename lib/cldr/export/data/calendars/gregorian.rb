@@ -17,7 +17,7 @@ module Cldr
               formats: {
                 date: formats("date"),
                 time: formats("time"),
-                datetime: formats("dateTime")
+                datetime: formats("dateTime"),
               },
               additional_formats: additional_formats
             )

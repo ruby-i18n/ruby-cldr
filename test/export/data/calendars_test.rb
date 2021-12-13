@@ -48,14 +48,14 @@ class TestCldrDataCalendars < Test::Unit::TestCase
         wide: { sun: "Sonntag", mon: "Montag", tue: "Dienstag", wed: "Mittwoch", thu: "Donnerstag", fri: "Freitag", sat: "Samstag" },
         abbreviated: { sun: "So.", mon: "Mo.", tue: "Di.", wed: "Mi.", thu: "Do.", fri: "Fr.", sat: "Sa." },
         narrow: { sun: "S", mon: "M", tue: "D", wed: "M", thu: "D", fri: "F", sat: "S" },
-        short: { sun: "So.", mon: "Mo.", tue: "Di.", wed: "Mi.", thu: "Do.", fri: "Fr.", sat: "Sa." }
+        short: { sun: "So.", mon: "Mo.", tue: "Di.", wed: "Mi.", thu: "Do.", fri: "Fr.", sat: "Sa." },
       },
       'stand-alone': {
         abbreviated: { sun: "So", mon: "Mo", tue: "Di", wed: "Mi", thu: "Do", fri: "Fr", sat: "Sa" },
         narrow: { sun: "S", mon: "M", tue: "D", wed: "M", thu: "D", fri: "F", sat: "S" },
         short: { sun: "So.", mon: "Mo.", tue: "Di.", wed: "Mi.", thu: "Do.", fri: "Fr.", sat: "Sa." },
         wide: { sun: "Sonntag", mon: "Montag", tue: "Dienstag", wed: "Mittwoch", thu: "Donnerstag", fri: "Freitag", sat: "Samstag" },
-      }
+      },
     }
     assert_equal days, gregorian[:days]
   end
@@ -65,13 +65,13 @@ class TestCldrDataCalendars < Test::Unit::TestCase
       format: {
         wide: { 1 => "1. Quartal", 2 => "2. Quartal", 3 => "3. Quartal", 4 => "4. Quartal" },
         narrow: { 1 => "1", 2 => "2", 3 => "3", 4 => "4" },
-        abbreviated: { 1 => "Q1", 2 => "Q2", 3 => "Q3", 4 => "Q4" }
+        abbreviated: { 1 => "Q1", 2 => "Q2", 3 => "Q3", 4 => "Q4" },
       },
       "stand-alone": {
         abbreviated: { 1 => "Q1", 2 => "Q2", 3 => "Q3", 4 => "Q4" },
         narrow: { 1 => "1", 2 => "2", 3 => "3", 4 => "4" },
-        wide: { 1 => "1. Quartal", 2 => "2. Quartal", 3 => "3. Quartal", 4 => "4. Quartal" }
-      }
+        wide: { 1 => "1. Quartal", 2 => "2. Quartal", 3 => "3. Quartal", 4 => "4. Quartal" },
+      },
     }
     assert_equal quarters, gregorian[:quarters]
   end
@@ -117,7 +117,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
       full: { pattern: "EEEE, d. MMMM y" },
       long: { pattern: "d. MMMM y" },
       medium: { pattern: "dd.MM.y" },
-      short: { pattern: "dd.MM.yy" }
+      short: { pattern: "dd.MM.yy" },
     }
     assert_equal formats, gregorian[:formats][:date]
   end
@@ -127,7 +127,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
       full: { pattern: "HH:mm:ss zzzz" },
       long: { pattern: "HH:mm:ss z" },
       medium: { pattern: "HH:mm:ss" },
-      short: { pattern: "HH:mm" }
+      short: { pattern: "HH:mm" },
     }
     assert_equal formats, gregorian[:formats][:time]
   end
@@ -137,7 +137,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
       full: { pattern: "{{date}} 'um' {{time}}" },
       long: { pattern: "{{date}} 'um' {{time}}" },
       medium: { pattern: "{{date}}, {{time}}" },
-      short: { pattern: "{{date}}, {{time}}" }
+      short: { pattern: "{{date}}, {{time}}" },
     }
     assert_equal formats, gregorian[:formats][:datetime]
   end
@@ -204,7 +204,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
       abbr: {
         0 => "BCE",
         1 => "CE",
-      }
+      },
     }
     assert_equal eras, gregorian(locale: :root)[:eras]
   end

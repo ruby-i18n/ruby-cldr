@@ -12,22 +12,22 @@ module Cldr
               formats: {
                 decimal: {
                   number_system: number_system("decimal"),
-                  patterns: format("decimal")
+                  patterns: format("decimal"),
                 },
                 scientific: {
                   number_system: number_system("scientific"),
-                  patterns: format("scientific")
+                  patterns: format("scientific"),
                 },
                 percent: {
                   number_system: number_system("percent"),
-                  patterns: format("percent")
+                  patterns: format("percent"),
                 },
                 currency: {
                   number_system: number_system("currency"),
                   patterns: format("currency"),
-                  unit: unit
-                }
-              }
+                  unit: unit,
+                },
+              },
             }
           )
         end

@@ -25,7 +25,7 @@ module Cldr
 
             ret[system_name] = {
               :type => type,
-              param => numbering.attribute(param).value
+              param => numbering.attribute(param).value,
             }
           end
         end

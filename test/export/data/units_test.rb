@@ -12,7 +12,7 @@ class TestCldrDataUnits < Test::Unit::TestCase
       year: { one: "{0} Jahr",    other: "{0} Jahre" },
       hour: { one: "{0} Stunde",  other: "{0} Stunden" },
       minute: { one: "{0} Minute",  other: "{0} Minuten" },
-      second: { one: "{0} Sekunde", other: "{0} Sekunden" }
+      second: { one: "{0} Sekunde", other: "{0} Sekunden" },
     }
     data = Cldr::Export::Data::Units.new("de")[:units][:unitLength][:long]
 

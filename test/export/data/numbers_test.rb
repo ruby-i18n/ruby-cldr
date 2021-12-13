@@ -40,8 +40,8 @@ class TestCldrDataNumbers < Test::Unit::TestCase
             "100000000000" => { "one" => "000 Mrd'.' ¤", "other" => "000 Mrd'.' ¤" },
             "1000000000000" => { "one" => "0 Bio'.' ¤", "other" => "0 Bio'.' ¤" },
             "10000000000000" => { "one" => "00 Bio'.' ¤", "other" => "00 Bio'.' ¤" },
-            "100000000000000" => { "one" => "000 Bio'.' ¤", "other" => "000 Bio'.' ¤" } } },
-        unit: { "one" => "{0} {1}", "other" => "{0} {1}" } },
+            "100000000000000" => { "one" => "000 Bio'.' ¤", "other" => "000 Bio'.' ¤" }, }, },
+        unit: { "one" => "{0} {1}", "other" => "{0} {1}" }, },
       decimal: {
         number_system: "latn",
         patterns: {
@@ -58,7 +58,7 @@ class TestCldrDataNumbers < Test::Unit::TestCase
             "100000000000" => { "one" => "000 Milliarden", "other" => "000 Milliarden" },
             "1000000000000" => { "one" => "0 Billion", "other" => "0 Billionen" },
             "10000000000000" => { "one" => "00 Billionen", "other" => "00 Billionen" },
-            "100000000000000" => { "one" => "000 Billionen", "other" => "000 Billionen" } },
+            "100000000000000" => { "one" => "000 Billionen", "other" => "000 Billionen" }, },
           "short" => {
             "1000" => { "one" => "0", "other" => "0" },
             "10000" => { "one" => "0", "other" => "0" },
@@ -71,9 +71,9 @@ class TestCldrDataNumbers < Test::Unit::TestCase
             "100000000000" => { "one" => "000 Mrd'.'", "other" => "000 Mrd'.'" },
             "1000000000000" => { "one" => "0 Bio'.'", "other" => "0 Bio'.'" },
             "10000000000000" => { "one" => "00 Bio'.'", "other" => "00 Bio'.'" },
-            "100000000000000" => { "one" => "000 Bio'.'", "other" => "000 Bio'.'" } } } },
+            "100000000000000" => { "one" => "000 Bio'.'", "other" => "000 Bio'.'" }, }, }, },
       percent: { number_system: "latn", patterns: { default: "#,##0 %" } },
-      scientific: { number_system: "latn", patterns: { default: "#E0" } } }
+      scientific: { number_system: "latn", patterns: { default: "#E0" } }, }
     assert_equal expected, Cldr::Export::Data::Numbers.new("de")[:numbers][:formats]
   end
 
