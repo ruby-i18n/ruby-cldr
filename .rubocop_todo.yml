@@ -181,15 +181,6 @@ Layout/SpaceInsideHashLiteralBraces:
     - 'test/export/data/currencies_test.rb'
     - 'test/export/data/timezones_test.rb'
 
-# Offense count: 21
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: space, compact, no_space
-Layout/SpaceInsideParens:
-  Exclude:
-    - 'test/export/data/windows_zones_test.rb'
-    - 'test/format/date_test.rb'
-
 # Offense count: 12
 # Configuration parameters: AllowSafeAssignment.
 Lint/AssignmentInCondition:
