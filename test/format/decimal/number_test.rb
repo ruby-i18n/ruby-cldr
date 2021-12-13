@@ -75,5 +75,3 @@ class TestCldrDecimalNumberFormat < Test::Unit::TestCase
     assert_equal "01234,5670", Cldr::Format::Decimal::Number.new("00000.0000", decimal: ",", group: " ").apply(1234.567)
   end
 end
-
-

@@ -50,10 +50,3 @@ class TestCldrDataTerritories < Test::Unit::TestCase
   #   end
   # end
 end
-
-
-
-
-
-
-

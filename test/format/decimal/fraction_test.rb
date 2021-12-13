@@ -15,5 +15,3 @@ class TestCldrDecimalFractionFormatWithInteger < Test::Unit::TestCase
     assert_equal ".78901", Cldr::Format::Decimal::Fraction.new("###.##").apply("78901", precision: 5)
   end
 end
-
-

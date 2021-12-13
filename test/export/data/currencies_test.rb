@@ -53,5 +53,3 @@ class TestCldrCurrencies < Test::Unit::TestCase
   #   end
   # end
 end
-
-

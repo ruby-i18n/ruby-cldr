@@ -69,9 +69,3 @@ class TestCldrDataTimezones < Test::Unit::TestCase
   #   end
   # end
 end
-
-
-
-
-
-
