@@ -1,0 +1,33 @@
+name: Tests
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: [2.3, 2.4, 2.5, 2.6, 2.7]
+        cldr-version: [34]
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Set up Ruby ${{ matrix.ruby-version }}
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: ${{ matrix.ruby-version }}
+
+      - name: Download the version of CLDR to test against
+        run: bundle exec thor cldr:download --version=${{ matrix.cldr-version }}
+
+      - name: Run tests
+        run: bundle exec ruby test/all.rb
