@@ -32,7 +32,7 @@ class TestCldrCurrencies < Test::Unit::TestCase
              :YUN, :ZAL, :ZAR, :ZMK, :ZMW, :ZRN, :ZRZ, :ZWD, :ZWL, :ZWR, :ALK,
              :ARL, :ARM, :BAN, :BGM, :BGO, :BOL, :CLE, :CNX, :COU, :ILR, :ISJ,
              :KRH, :KRO, :MCF, :MDC, :MKN, :MVP, :UYI, :VNN, :XSU, :XUA, :YUR,
-             :BYN, :CNH, :MRU, :STN, :VES]
+             :BYN, :CNH, :MRU, :STN, :VES,]
 
     currencies = Cldr::Export::Data::Currencies.new("de")[:currencies]
     assert_empty codes - currencies.keys, "Unexpected missing currencies"
@@ -42,7 +42,7 @@ class TestCldrCurrencies < Test::Unit::TestCase
 
   test "currencies populates symbol-narrow when narrow symbol is not equal to the regular symbol" do
     currencies = Cldr::Export::Data::Currencies.new("root")[:currencies]
-    assert_equal({ symbol: "US$", "narrow_symbol": "$"}, currencies[:USD])
+    assert_equal({ symbol: "US$", "narrow_symbol": "$" }, currencies[:USD])
   end
 
   # Cldr::Export::Data.locales.each do |locale|

@@ -33,7 +33,7 @@ module Cldr
             code = locales.map do |locale|
               rule = self.rule(locale)
               ruby = "{ :plural => { :keys => #{rule.keys.inspect}, :rule => #{rule.to_ruby} } }"
-              ruby = namespaces.reverse.inject(ruby) { |ruby, namespace| "{ #{namespace.inspect} => #{ruby} }"}
+              ruby = namespaces.reverse.inject(ruby) { |ruby, namespace| "{ #{namespace.inspect} => #{ruby} }" }
               "#{locale.inspect} => #{ruby}"
             end.join(",\n")
             code = code.split("\n").map { |line| "  #{line}" }.join("\n")
@@ -72,9 +72,9 @@ module Cldr
                 code.split(/and/i).inject(Proposition.new("&&")) { |rule, code| rule << parse(code) }
               when /^\s*#{expr}\s+(?:is(\s+not)?|(not\s+)?in|(!)?=)\s+#{range_list}\s*$/i
                 list = parse_list(Regexp.last_match(6))
-                Expression.new((list.first.count == 1 && list.last.count == 0) ? :is : :in, Regexp.last_match(2), !(Regexp.last_match(3).nil? && Regexp.last_match(4).nil? && Regexp.last_match(5).nil?), (list.first.count == 1 && list.last.count == 0) ? list.first.first : list, Regexp.last_match(1))
+                Expression.new(list.first.count == 1 && list.last.count == 0 ? :is : :in, Regexp.last_match(2), !(Regexp.last_match(3).nil? && Regexp.last_match(4).nil? && Regexp.last_match(5).nil?), list.first.count == 1 && list.last.count == 0 ? list.first.first : list, Regexp.last_match(1))
               when /^\s*#{expr}\s+(not\s+)?within\s+#{range_list}\s*$/i
-                Expression.new(:within, Regexp.last_match(2), !(Regexp.last_match(3) == nil), parse_list(Regexp.last_match(4)).last.first, Regexp.last_match(1))
+                Expression.new(:within, Regexp.last_match(2), !Regexp.last_match(3).nil?, parse_list(Regexp.last_match(4)).last.first, Regexp.last_match(1))
               when /^\s*$/
                 Expression.new
               else
@@ -99,7 +99,7 @@ module Cldr
           end
 
           def keys
-            inject([]) { |keys, (key, code)| keys << key.to_sym }
+            inject([]) { |keys, (key, _code)| keys << key.to_sym }
           end
 
           def to_ruby
@@ -128,7 +128,11 @@ module Cldr
           attr_reader :operator, :operand, :mod, :negate, :type
 
           def initialize(operator = nil, mod = nil, negate = nil, operand = nil, type = nil)
-            @operator, @mod, @negate, @operand, @type = operator, mod, negate, operand, type
+            @operator = operator
+            @mod = mod
+            @negate = negate
+            @operand = operand
+            @type = type
           end
 
           # Symbol  Value

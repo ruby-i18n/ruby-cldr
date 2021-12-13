@@ -29,7 +29,7 @@ module Cldr
         def find_rules(locale)
           locale = locale.to_s
 
-          sources.each_with_object({}) do |(file, source), ret|
+          sources.each_with_object({}) do |(_file, source), ret|
             # try to find exact match, then fall back
             node = find_rules_for_exact_locale(locale, source) ||
               find_rules_for_exact_locale(base_locale(locale), source) ||

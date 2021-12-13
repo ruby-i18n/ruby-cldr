@@ -16,10 +16,10 @@ module Cldr
             type = numbering.attribute("type").value
 
             param = case type
-              when "numeric"
-                "digits"
-              when "algorithmic"
-                "rules"
+            when "numeric"
+              "digits"
+            when "algorithmic"
+              "rules"
             end
 
             ret[system_name] = {

@@ -8,7 +8,11 @@ require "fileutils"
 class TestExport < Test::Unit::TestCase
   def setup
     Cldr::Export.base_path = tmp_dir
-    FileUtils.mkdir_p(tmp_dir) rescue nil
+    begin
+      FileUtils.mkdir_p(tmp_dir)
+    rescue
+      nil
+    end
   end
 
   def teardown
@@ -42,7 +46,7 @@ class TestExport < Test::Unit::TestCase
 
   test "exports data to files" do
     Cldr::Export.export(locales: ["de"], components: ["calendars"])
-    assert File.exists?(Cldr::Export.path("de", "calendars", "yml"))
+    assert File.exist?(Cldr::Export.path("de", "calendars", "yml"))
   end
 
   test "exported data starts with the locale at top level" do

@@ -53,7 +53,7 @@ module Cldr
 
         def xpath(sources)
           path = sources.map { |source| source.respond_to?(:path) ? source.path : source }.join("/")
-          path =~ /^\/?\/ldml/ ? path : "//ldml/#{path}"
+          path =~ %r{^/?/ldml} ? path : "//ldml/#{path}"
         end
 
         def doc
@@ -61,16 +61,14 @@ module Cldr
         end
 
         def paths
-          @paths ||= begin
-            if locale
-              Dir[File.join(Cldr::Export::Data.dir, "*", "#{Cldr::Export.from_i18n(locale)}.xml")].sort & Cldr::Export::Data.paths_by_root["ldml"]
-            else
-              Cldr::Export::Data.paths_by_root["supplementalData"]
-            end
+          @paths ||= if locale
+            Dir[File.join(Cldr::Export::Data.dir, "*", "#{Cldr::Export.from_i18n(locale)}.xml")].sort & Cldr::Export::Data.paths_by_root["ldml"]
+          else
+            Cldr::Export::Data.paths_by_root["supplementalData"]
           end
         end
 
-          private
+        private
 
         def merge_paths(paths_to_merge)
           # Some parts (`ldml`, `ldmlBCP47` amd `supplementalData`) of CLDR data require that you merge all the

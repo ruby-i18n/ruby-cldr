@@ -25,10 +25,10 @@ class TestCldrDataSubdivisions < Test::Unit::TestCase
     assert_empty(subdivisions_locales - main_locales)
   end
 
- #
- #   test "extract subdivisions for #{locale}" do
- #     assert_nothing_raised do
- #       Cldr::Export::Data::Subdivisions.new(locale)
- #     end
- #   end
+  #
+  #   test "extract subdivisions for #{locale}" do
+  #     assert_nothing_raised do
+  #       Cldr::Export::Data::Subdivisions.new(locale)
+  #     end
+  #   end
 end

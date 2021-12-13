@@ -40,36 +40,36 @@ module DeepSort
     end
 
     def deep_sort_by(options = {}, &block)
-      hash = self.map do |key, value|
+      hash = map do |key, value|
         [if key.respond_to?(:deep_sort_by)
            key.deep_sort_by(options, &block)
-        else
-          key
-        end,
+         else
+           key
+         end,
 
          if value.respond_to?(:deep_sort_by)
            value.deep_sort_by(options, &block)
          else
            value
-         end]
+         end,]
       end
 
       Hash[options[:hash] == false ? hash : hash.sort_by(&block)]
     end
 
     def deep_sort_by!(options = {}, &block)
-      hash = self.map do |key, value|
+      hash = map do |key, value|
         [if key.respond_to?(:deep_sort_by!)
            key.deep_sort_by!(options, &block)
-        else
-          key
-        end,
+         else
+           key
+         end,
 
          if value.respond_to?(:deep_sort_by!)
            value.deep_sort_by!(options, &block)
          else
            value
-         end]
+         end,]
       end
       replace(Hash[options[:hash] == false ? hash : hash.sort_by!(&block)])
     end

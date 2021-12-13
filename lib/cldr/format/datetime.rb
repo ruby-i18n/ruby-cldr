@@ -8,7 +8,9 @@ module Cldr
       attr_reader :format, :date, :time
 
       def initialize(format, date, time)
-        @format, @date, @time = format, date, time
+        @format = format
+        @date = date
+        @time = time
       end
 
       def apply(datetime, options = {})

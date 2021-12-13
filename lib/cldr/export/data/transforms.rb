@@ -60,10 +60,10 @@ module Cldr
         end
 
         def fix_rule(rule)
-          rule.
-            gsub("←", "<").
-            gsub("→", ">").
-            gsub("↔", "<>")
+          rule
+            .gsub("←", "<")
+            .gsub("→", ">")
+            .gsub("↔", "<>")
         end
 
         def paths

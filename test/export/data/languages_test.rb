@@ -64,7 +64,7 @@ class TestCldrDataLanguages < Test::Unit::TestCase
              :vmf, :vo, :vot, :vro, :vun, :wa, :wae, :wal, :war, :was,
              :wbp, :wo, :wuu, :xal, :xh, :xmf, :xog, :yao, :yap, :yav,
              :ybb, :yi, :yo, :yrl, :yue, :za, :zap, :zbl, :zea, :zen,
-             :zgh, :zh, :"zh-Hans", :"zh-Hant", :zu, :zun, :zxx, :zza]
+             :zgh, :zh, :"zh-Hans", :"zh-Hant", :zu, :zun, :zxx, :zza,]
 
     languages = Cldr::Export::Data::Languages.new("de")[:languages]
 

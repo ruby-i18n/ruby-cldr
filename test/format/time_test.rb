@@ -36,7 +36,7 @@ class TestCldrDateTimeFormat < Test::Unit::TestCase
 
   # TIMEZONE
 
-  test "z, zz, zzz" do # TODO is this what's meant by the spec?
+  test "z, zz, zzz" do # TODO: is this what's meant by the spec?
     assert_equal  "UTC", format(Time.utc(2000, 1, 1, 1, 1,  1), "z")
     assert_equal  "UTC", format(Time.utc(2000, 1, 1, 1, 1,  1), "zz")
     assert_equal  "UTC", format(Time.utc(2000, 1, 1, 1, 1,  1), "zzz")

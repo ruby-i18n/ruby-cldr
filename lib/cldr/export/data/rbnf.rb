@@ -30,8 +30,6 @@ module Cldr
             rules: (ruleset_node / "rbnfrule").map do |rule_node|
               radix = if radix_attr = rule_node.attribute("radix")
                 cast_value(radix_attr.value)
-              else
-                nil
               end
 
               attrs = {

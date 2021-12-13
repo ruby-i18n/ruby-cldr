@@ -98,7 +98,11 @@ module Cldr
 
         def number_system(type)
           node = select("numbers/#{type}Formats").first
-          node.attribute("numberSystem").value rescue "latn"
+          begin
+            node.attribute("numberSystem").value
+          rescue
+            "latn"
+          end
         end
 
         def unit

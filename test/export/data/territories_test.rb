@@ -28,7 +28,7 @@ class TestCldrDataTerritories < Test::Unit::TestCase
              :SM, :SN, :SO, :SR, :SS, :ST, :SV, :SX, :SY, :SZ, :TA, :TC, :TD,
              :TF, :TG, :TH, :TJ, :TK, :TL, :TM, :TN, :TO, :TR, :TT, :TV, :TW,
              :TZ, :UA, :UG, :UN, :UM, :US, :UY, :UZ, :VA, :VC, :VE, :VG, :VI,
-             :VN, :VU, :WF, :WS, :XK, :YE, :YT, :ZA, :ZM, :ZW, :ZZ, :EZ]
+             :VN, :VU, :WF, :WS, :XK, :YE, :YT, :ZA, :ZM, :ZW, :ZZ, :EZ,]
 
     territories = Cldr::Export::Data::Territories.new(:de)[:territories]
     assert_empty codes - territories.keys, "Unexpected missing territories"

@@ -2,7 +2,7 @@
 
 def tests_for(filename)
   pattern = case filename
-  when %r(gregorian\.rb)
+  when /gregorian\.rb/
     "test/export/data/calendars_test.rb"
   when %r(/base.rb)
     dir  = filename.gsub("/base.rb", "")

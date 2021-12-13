@@ -27,7 +27,11 @@ module Cldr
         hour = time.hour
         hour = case pattern[0, 1]
         when "h" # [1-12]
-          hour > 12 ? (hour - 12) : (hour == 0 ? 12 : hour)
+          if hour > 12
+            hour - 12
+          else
+            (hour == 0 ? 12 : hour)
+          end
         when "H" # [0-23]
           hour
         when "K" # [0-11]

@@ -26,7 +26,7 @@ module Cldr
 
       def parse_format(format, symbols)
         formats = format.split(symbols[:list] || ";")
-        formats << "#{symbols[:minus] || '-'}#{format}" if formats.size == 1
+        formats << "#{symbols[:minus] || "-"}#{format}" if formats.size == 1
         formats.map { |format| Number.new(format, symbols) }
       end
     end

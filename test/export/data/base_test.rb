@@ -13,7 +13,7 @@ class TestBase < Test::Unit::TestCase
       "main/af.xml",
       "rbnf/af.xml",
       "subdivisions/af.xml",
-    ].map {|f| File.join(Cldr::Export::Data.dir, f)}
+    ].map { |f| File.join(Cldr::Export::Data.dir, f) }
     assert_equal expected, Cldr::Export::Data::Base.new("af").send(:paths)
   end
 
@@ -44,11 +44,11 @@ class TestBase < Test::Unit::TestCase
       "validity/subdivision.xml",
       "validity/unit.xml",
       "validity/variant.xml",
-    ].map {|f| File.join(Cldr::Export::Data.dir, f)}
+    ].map { |f| File.join(Cldr::Export::Data.dir, f) }
 
     supplemental_data_paths = Cldr::Export::Data::Base.new(nil).send(:paths)
 
-    assert_equal expected_non_transform_files, supplemental_data_paths.reject {|p| p.include?("transforms/")}
-    assert_not_empty supplemental_data_paths.select {|p| p.include?("transforms/")}
+    assert_equal expected_non_transform_files, supplemental_data_paths.reject { |p| p.include?("transforms/") }
+    assert_not_empty supplemental_data_paths.select { |p| p.include?("transforms/") }
   end
 end

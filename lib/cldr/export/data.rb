@@ -42,16 +42,14 @@ module Cldr
           @dir ||= File.expand_path("./vendor/cldr/common")
         end
 
-        def dir=(dir)
-          @dir = dir
-        end
+        attr_writer :dir
 
         def locales
           Dir["#{dir}/main/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && Regexp.last_match(1) }
         end
 
         def components
-          self.constants.sort - [:Base, :Export]
+          constants.sort - [:Base, :Export]
         end
 
         def paths_by_root

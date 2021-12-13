@@ -43,7 +43,7 @@ class TestCldrDataTimezones < Test::Unit::TestCase
                     :"America/Indiana/Winamac", :"America/Indiana/Marengo",
                     :"America/Indiana/Vevay", :"America/Kentucky/Monticello",
                     :"Asia/Tashkent", :"Europe/Vatican", :"America/St_Vincent",
-                    :"America/St_Thomas", :"Asia/Saigon", :"America/Santa_Isabel"]
+                    :"America/St_Thomas", :"Asia/Saigon", :"America/Santa_Isabel",]
     timezones = Cldr::Export::Data::Timezones.new(:de)[:timezones]
     assert_empty codes_subset - timezones.keys, "Could not find some timezones"
     assert_equal({ city: "Wien" }, timezones[:"Europe/Vienna"])
@@ -51,7 +51,7 @@ class TestCldrDataTimezones < Test::Unit::TestCase
 
   test "timezone daylight" do
     london = Cldr::Export::Data::Timezones.new(:de)[:timezones][:"Europe/London"]
-    assert_equal({ city: "London", long: { daylight: "Britische Sommerzeit"} }, london)
+    assert_equal({ city: "London", long: { daylight: "Britische Sommerzeit" } }, london)
   end
 
   test "metazone :de Europe_Western" do

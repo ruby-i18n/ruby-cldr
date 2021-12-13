@@ -12,7 +12,7 @@ module Cldr
 
           doc.xpath("//parentLocales/parentLocale").each do |node|
             parent = Cldr::Export.to_i18n(node.attr("parent"))
-            locales = node.attr("locales").split(" ").map {|locale| Cldr::Export.to_i18n(locale) }
+            locales = node.attr("locales").split(" ").map { |locale| Cldr::Export.to_i18n(locale) }
 
             locales.each do |locale|
               self[locale] = parent

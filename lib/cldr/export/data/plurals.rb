@@ -27,7 +27,7 @@ module Cldr
 
         def initialize(locale)
           @locale = locale
-          self.merge!(rule ? to_hash : {})
+          merge!(rule ? to_hash : {})
         end
 
         def to_hash

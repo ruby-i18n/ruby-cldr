@@ -34,7 +34,6 @@ module Cldr
             def and_condition
               elements[0]
             end
-
           end
 
           def _nt_or_condition
@@ -45,11 +44,13 @@ module Cldr
               return cached
             end
 
-            i0, s0 = index, []
+            i0 = index
+            s0 = []
             r1 = _nt_and_condition
             s0 << r1
             if r1
-              i3, s3 = index, []
+              i3 = index
+              s3 = []
               if input.index(" or ", index) == index
                 r4 = instantiate_node(SyntaxNode, input, index...(index + 4))
                 @index += 4
@@ -69,10 +70,10 @@ module Cldr
                 self.index = i3
                 r3 = nil
               end
-              if r3
-                r2 = r3
+              r2 = if r3
+                r3
               else
-                r2 = instantiate_node(SyntaxNode, input, index...index)
+                instantiate_node(SyntaxNode, input, index...index)
               end
               s0 << r2
             end
@@ -86,7 +87,7 @@ module Cldr
 
             node_cache[:or_condition][start_index] = r0
 
-            return r0
+            r0
           end
 
           module AndCondition0
@@ -99,7 +100,6 @@ module Cldr
             def relation
               elements[0]
             end
-
           end
 
           def _nt_and_condition
@@ -110,11 +110,13 @@ module Cldr
               return cached
             end
 
-            i0, s0 = index, []
+            i0 = index
+            s0 = []
             r1 = _nt_relation
             s0 << r1
             if r1
-              i3, s3 = index, []
+              i3 = index
+              s3 = []
               if input.index(" and ", index) == index
                 r4 = instantiate_node(SyntaxNode, input, index...(index + 5))
                 @index += 5
@@ -134,10 +136,10 @@ module Cldr
                 self.index = i3
                 r3 = nil
               end
-              if r3
-                r2 = r3
+              r2 = if r3
+                r3
               else
-                r2 = instantiate_node(SyntaxNode, input, index...index)
+                instantiate_node(SyntaxNode, input, index...index)
               end
               s0 << r2
             end
@@ -151,7 +153,7 @@ module Cldr
 
             node_cache[:and_condition][start_index] = r0
 
-            return r0
+            r0
           end
 
           def _nt_relation
@@ -194,7 +196,7 @@ module Cldr
 
             node_cache[:relation][start_index] = r0
 
-            return r0
+            r0
           end
 
           module IsRelation0
@@ -215,7 +217,8 @@ module Cldr
               return cached
             end
 
-            i0, s0 = index, []
+            i0 = index
+            s0 = []
             r1 = _nt_expr
             s0 << r1
             if r1
@@ -235,10 +238,10 @@ module Cldr
                   terminal_parse_failure("not ")
                   r4 = nil
                 end
-                if r4
-                  r3 = r4
+                r3 = if r4
+                  r4
                 else
-                  r3 = instantiate_node(SyntaxNode, input, index...index)
+                  instantiate_node(SyntaxNode, input, index...index)
                 end
                 s0 << r3
                 if r3
@@ -257,7 +260,7 @@ module Cldr
 
             node_cache[:is_relation][start_index] = r0
 
-            return r0
+            r0
           end
 
           module InRelation0
@@ -278,7 +281,8 @@ module Cldr
               return cached
             end
 
-            i0, s0 = index, []
+            i0 = index
+            s0 = []
             r1 = _nt_expr
             s0 << r1
             if r1
@@ -289,10 +293,10 @@ module Cldr
                 terminal_parse_failure(" not")
                 r3 = nil
               end
-              if r3
-                r2 = r3
+              r2 = if r3
+                r3
               else
-                r2 = instantiate_node(SyntaxNode, input, index...index)
+                instantiate_node(SyntaxNode, input, index...index)
               end
               s0 << r2
               if r2
@@ -320,7 +324,7 @@ module Cldr
 
             node_cache[:in_relation][start_index] = r0
 
-            return r0
+            r0
           end
 
           module WithinRelation0
@@ -341,7 +345,8 @@ module Cldr
               return cached
             end
 
-            i0, s0 = index, []
+            i0 = index
+            s0 = []
             r1 = _nt_expr
             s0 << r1
             if r1
@@ -352,10 +357,10 @@ module Cldr
                 terminal_parse_failure(" not")
                 r3 = nil
               end
-              if r3
-                r2 = r3
+              r2 = if r3
+                r3
               else
-                r2 = instantiate_node(SyntaxNode, input, index...index)
+                instantiate_node(SyntaxNode, input, index...index)
               end
               s0 << r2
               if r2
@@ -383,7 +388,7 @@ module Cldr
 
             node_cache[:within_relation][start_index] = r0
 
-            return r0
+            r0
           end
 
           module Expr0
@@ -403,7 +408,8 @@ module Cldr
               return cached
             end
 
-            i0, s0 = index, []
+            i0 = index
+            s0 = []
             if input.index("n", index) == index
               r1 = instantiate_node(SyntaxNode, input, index...(index + 1))
               @index += 1
@@ -413,7 +419,8 @@ module Cldr
             end
             s0 << r1
             if r1
-              i3, s3 = index, []
+              i3 = index
+              s3 = []
               if input.index(" mod ", index) == index
                 r4 = instantiate_node(SyntaxNode, input, index...(index + 5))
                 @index += 5
@@ -433,10 +440,10 @@ module Cldr
                 self.index = i3
                 r3 = nil
               end
-              if r3
-                r2 = r3
+              r2 = if r3
+                r3
               else
-                r2 = instantiate_node(SyntaxNode, input, index...index)
+                instantiate_node(SyntaxNode, input, index...index)
               end
               s0 << r2
             end
@@ -450,7 +457,7 @@ module Cldr
 
             node_cache[:expr][start_index] = r0
 
-            return r0
+            r0
           end
 
           module Range0
@@ -471,7 +478,8 @@ module Cldr
               return cached
             end
 
-            i0, s0 = index, []
+            i0 = index
+            s0 = []
             r1 = _nt_value
             s0 << r1
             if r1
@@ -498,7 +506,7 @@ module Cldr
 
             node_cache[:range][start_index] = r0
 
-            return r0
+            r0
           end
 
           def _nt_value
@@ -509,7 +517,8 @@ module Cldr
               return cached
             end
 
-            s0, i0 = [], index
+            s0 = []
+            i0 = index
             loop do
               if input.index(Regexp.new("[0-9]"), index) == index
                 r1 = instantiate_node(SyntaxNode, input, index...(index + 1))
@@ -527,7 +536,7 @@ module Cldr
 
             node_cache[:value][start_index] = r0
 
-            return r0
+            r0
           end
         end
       end
