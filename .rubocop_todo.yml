@@ -444,21 +444,6 @@ Style/PreferredHashMethods:
   Exclude:
     - 'lib/cldr/export/data/plurals/grammar.rb'
 
-# Offense count: 24
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: same_as_string_literals, single_quotes, double_quotes
-Style/QuotedSymbols:
-  Exclude:
-    - 'lib/cldr/export/data/currencies.rb'
-    - 'lib/cldr/format/date.rb'
-    - 'test/export/data/calendars_test.rb'
-    - 'test/export/data/currencies_test.rb'
-    - 'test/export/data/metazones_test.rb'
-    - 'test/export/data/timezones_test.rb'
-    - 'test/export/data/units_test.rb'
-    - 'test/export_test.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/RedundantBegin:

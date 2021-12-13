@@ -17,13 +17,13 @@ class TestCldrDataUnits < Test::Unit::TestCase
     data = Cldr::Export::Data::Units.new("de")[:units][:unitLength][:long]
 
     assert_operator data.keys.count, :>=, 46
-    assert_equal units[:day],    data[:'duration-day']
-    assert_equal units[:week],   data[:'duration-week']
-    assert_equal units[:month],  data[:'duration-month']
-    assert_equal units[:year],   data[:'duration-year']
-    assert_equal units[:hour],   data[:'duration-hour']
-    assert_equal units[:minute], data[:'duration-minute']
-    assert_equal units[:second], data[:'duration-second']
+    assert_equal units[:day],    data[:"duration-day"]
+    assert_equal units[:week],   data[:"duration-week"]
+    assert_equal units[:month],  data[:"duration-month"]
+    assert_equal units[:year],   data[:"duration-year"]
+    assert_equal units[:hour],   data[:"duration-hour"]
+    assert_equal units[:minute], data[:"duration-minute"]
+    assert_equal units[:second], data[:"duration-second"]
   end
 
   # Cldr::Export::Data.locales.each do |locale|

@@ -50,7 +50,7 @@ class TestCldrDataTimezones < Test::Unit::TestCase
   end
 
   test "timezone daylight" do
-    london = Cldr::Export::Data::Timezones.new(:de)[:timezones][:'Europe/London']
+    london = Cldr::Export::Data::Timezones.new(:de)[:timezones][:"Europe/London"]
     assert_equal({ city: "London", long: { daylight: "Britische Sommerzeit"} }, london)
   end
 

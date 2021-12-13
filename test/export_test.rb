@@ -100,12 +100,12 @@ class TestExport < Test::Unit::TestCase
 
   test "#locales does not fall back to English (unless the locale is English based)" do
     assert_equal [:ko, :root], Cldr::Export.locales("ko", "numbers", merge: true)
-    assert_equal [:'pt-BR', :pt, :root], Cldr::Export.locales("pt_BR", "numbers", merge: true)
-    assert_equal [:'en-GB', :'en-001', :en, :root], Cldr::Export.locales("en_GB", "numbers", merge: true)
+    assert_equal [:"pt-BR", :pt, :root], Cldr::Export.locales("pt_BR", "numbers", merge: true)
+    assert_equal [:"en-GB", :"en-001", :en, :root], Cldr::Export.locales("en_GB", "numbers", merge: true)
   end
 
   test "#locales does not fall back if :merge option is false" do
-    assert_equal [:'pt-BR'], Cldr::Export.locales("pt_BR", "numbers", merge: false)
+    assert_equal [:"pt-BR"], Cldr::Export.locales("pt_BR", "numbers", merge: false)
   end
 
   # Cldr::Export::Data.locales.each do |locale|
