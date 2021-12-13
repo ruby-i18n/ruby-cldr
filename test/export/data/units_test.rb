@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"))
 
 class TestCldrDataUnits < Test::Unit::TestCase
-  test 'units' do
+  test "units" do
     units = {
       :day    => { :one => "{0} Tag",     :other => "{0} Tage" },
       :week   => { :one => "{0} Woche",   :other => "{0} Wochen" },
@@ -13,7 +13,7 @@ class TestCldrDataUnits < Test::Unit::TestCase
       :minute => { :one => "{0} Minute",  :other => "{0} Minuten" },
       :second => { :one => "{0} Sekunde", :other => "{0} Sekunden" }
     }
-    data = Cldr::Export::Data::Units.new('de')[:units][:unitLength][:long]
+    data = Cldr::Export::Data::Units.new("de")[:units][:unitLength][:long]
 
     assert_operator data.keys.count, :>=, 46
     assert_equal units[:day],    data[:'duration-day']

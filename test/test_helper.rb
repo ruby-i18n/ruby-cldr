@@ -1,8 +1,8 @@
-$:.unshift File.expand_path(File.dirname(__FILE__) + '/../lib')
+$:.unshift File.expand_path(File.dirname(__FILE__) + "/../lib")
 
-require 'test/unit'
-require 'cldr'
-require 'rubygems'
+require "test/unit"
+require "cldr"
+require "rubygems"
 
 class Test::Unit::TestCase
   def self.test(name, &block)

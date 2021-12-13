@@ -2,7 +2,7 @@ module Cldr
   module Export
     module Data
       class Calendars < Base
-        autoload :Gregorian, 'cldr/export/data/calendars/gregorian'
+        autoload :Gregorian, "cldr/export/data/calendars/gregorian"
 
         def initialize(locale)
           super

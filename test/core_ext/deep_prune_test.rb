@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../test_helper'))
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../../lib/core_ext/hash/deep_prune'))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../test_helper"))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../../lib/core_ext/hash/deep_prune"))
 
 class TestDeepPrune < Test::Unit::TestCase
   test "deep_prune! returns empty Hash for empty Hash" do

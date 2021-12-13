@@ -41,7 +41,7 @@ module Cldr
           )
 
           rules.reject do |rule|
-            rule.strip.empty? || rule.strip.start_with?('#')
+            rule.strip.empty? || rule.strip.start_with?("#")
           end
         end
 
@@ -55,15 +55,15 @@ module Cldr
               ret << rule
             end
 
-            wrap = rule.end_with?('\\')
+            wrap = rule.end_with?("\\")
           end
         end
 
         def fix_rule(rule)
           rule.
-            gsub("←", '<').
-            gsub("→", '>').
-            gsub("↔", '<>')
+            gsub("←", "<").
+            gsub("→", ">").
+            gsub("↔", "<>")
         end
 
         def paths

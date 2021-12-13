@@ -509,7 +509,7 @@ module Cldr
 
             s0, i0 = [], index
             loop do
-              if input.index(Regexp.new('[0-9]'), index) == index
+              if input.index(Regexp.new("[0-9]"), index) == index
                 r1 = instantiate_node(SyntaxNode,input, index...(index + 1))
                 @index += 1
               else

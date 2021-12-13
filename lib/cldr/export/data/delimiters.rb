@@ -7,8 +7,8 @@ module Cldr
           update(
             :delimiters => {
               :quotes => {
-                :default   => quotes('quotation'),
-                :alternate => quotes('alternateQuotation')
+                :default   => quotes("quotation"),
+                :alternate => quotes("alternateQuotation")
               }
             }
           )

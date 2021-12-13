@@ -2,6 +2,6 @@
 
 module Cldr
   module Locale
-    autoload :Fallbacks,  'cldr/locale/fallbacks'
+    autoload :Fallbacks,  "cldr/locale/fallbacks"
   end
 end

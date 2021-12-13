@@ -1,4 +1,4 @@
-require 'core_ext/string/camelize'
+require "core_ext/string/camelize"
 
 module Cldr
   module Data

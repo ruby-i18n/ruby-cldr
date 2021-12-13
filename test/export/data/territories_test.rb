@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"))
 
 class TestCldrDataTerritories < Test::Unit::TestCase
-  test 'territories :de' do
+  test "territories :de" do
     codes = [:"001", :"002", :"003", :"005", :"009", :"011", :"013", :"014",
              :"015", :"017", :"018", :"019", :"021", :"029", :"030", :"034",
              :"035", :"039", :"053", :"054", :"057", :"061", :"142", :"143",
@@ -32,10 +32,10 @@ class TestCldrDataTerritories < Test::Unit::TestCase
     territories = Cldr::Export::Data::Territories.new(:de)[:territories]
     assert_empty codes - territories.keys, "Unexpected missing territories"
     assert_empty territories.keys - codes, "Unexpected extra territories"
-    assert_equal('Deutschland', territories[:DE])
+    assert_equal("Deutschland", territories[:DE])
   end
 
-  test 'territories does not overwrite long form with the short one' do
+  test "territories does not overwrite long form with the short one" do
     territories = Cldr::Export::Data::Territories.new(:en)[:territories]
 
     assert_equal "United States", territories[:US]

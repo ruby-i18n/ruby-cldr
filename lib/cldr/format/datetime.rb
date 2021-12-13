@@ -1,7 +1,7 @@
 module Cldr
   module Format
     class Datetime
-      autoload :Base, 'cldr/format/datetime/base'
+      autoload :Base, "cldr/format/datetime/base"
 
       attr_reader :format, :date, :time
       
@@ -12,9 +12,9 @@ module Cldr
       def apply(datetime, options = {})
         format.gsub(/(\{\{(date|time)\}\})/) do
           case $2
-          when 'date'
+          when "date"
             options[:date] || date.apply(datetime, options)
-          when 'time'
+          when "time"
             options[:time] || time.apply(datetime, options)
           end
         end

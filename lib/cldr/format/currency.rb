@@ -4,7 +4,7 @@ module Cldr
   module Format
     class Currency < Decimal
       def apply(number, options = {})
-        super.gsub('¤', options[:currency] || '$')
+        super.gsub("¤", options[:currency] || "$")
       end
     end
   end

@@ -8,7 +8,7 @@ module Cldr
         end
 
         def exemplars
-          select('/ldml/characters/exemplarCharacters').map do |node|
+          select("/ldml/characters/exemplarCharacters").map do |node|
             {
               # remove enclosing brackets
               characters: node.content[1..-2],
@@ -20,7 +20,7 @@ module Cldr
         protected
 
         def type_from(node)
-          if attrib = node.attribute('type')
+          if attrib = node.attribute("type")
             attrib.value
           end
         end

@@ -14,8 +14,8 @@ module Cldr
         private
 
         def variables
-          doc.xpath('//validity/variable').inject({}) do |ret, variable|
-            name = variable.attribute('id').value
+          doc.xpath("//validity/variable").inject({}) do |ret, variable|
+            name = variable.attribute("id").value
             if VARIABLE_IDS.include?(name)
               ret[fix_var_name(name)] = split_value_list(variable.text)
             end
@@ -25,7 +25,7 @@ module Cldr
 
         def fix_var_name(var_name)
           # remove leading dollar sign
-          var_name.sub(/\A\$/, '')
+          var_name.sub(/\A\$/, "")
         end
 
         def split_value_list(value_list)

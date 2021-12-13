@@ -1,19 +1,19 @@
-require 'i18n'
-require 'fileutils'
-require 'i18n/locale/tag'
-require 'core_ext/string/camelize'
-require 'core_ext/string/underscore'
-require 'core_ext/hash/deep_stringify_keys'
-require 'core_ext/hash/deep_merge'
-require 'core_ext/hash/deep_prune'
-require 'core_ext/hash/deep_sort'
+require "i18n"
+require "fileutils"
+require "i18n/locale/tag"
+require "core_ext/string/camelize"
+require "core_ext/string/underscore"
+require "core_ext/hash/deep_stringify_keys"
+require "core_ext/hash/deep_merge"
+require "core_ext/hash/deep_prune"
+require "core_ext/hash/deep_sort"
 
 module Cldr
   module Export
-    autoload :Code, 'cldr/export/code'
-    autoload :Data, 'cldr/export/data'
-    autoload :Ruby, 'cldr/export/ruby'
-    autoload :Yaml, 'cldr/export/yaml'
+    autoload :Code, "cldr/export/code"
+    autoload :Data, "cldr/export/data"
+    autoload :Ruby, "cldr/export/ruby"
+    autoload :Yaml, "cldr/export/yaml"
 
     SHARED_COMPONENTS = %w[
       Aliases
@@ -34,7 +34,7 @@ module Cldr
 
     class << self
       def base_path
-        @@base_path ||= File.expand_path('./data')
+        @@base_path ||= File.expand_path("./data")
       end
 
       def base_path=(base_path)
@@ -59,14 +59,14 @@ module Cldr
                 source = data[:transforms].first[:source]
                 target = data[:transforms].first[:target]
                 variant = data[:transforms].first[:variant]
-                file_name = [source, target, variant].compact.join('-')
+                file_name = [source, target, variant].compact.join("-")
                 output_path = File.join(base_path, "transforms", "#{file_name}.yml")
                 write(output_path, yaml_exporter.yaml(data))
                 yield component, nil, output_path if block_given?
               end
             else
               ex = exporter(component, options[:format])
-              ex.export('', component, options, &block)
+              ex.export("", component, options, &block)
           end
         end
 
@@ -78,13 +78,13 @@ module Cldr
       end
 
       def exporter(component, format)
-        name = format ? format : component.to_s == 'Plurals' ? 'ruby' : 'yaml'
+        name = format ? format : component.to_s == "Plurals" ? "ruby" : "yaml"
         const_get(name.to_s.camelize).new
       end
 
       def data(component, locale, options = {})
         case component.to_s
-          when 'Plurals'
+          when "Plurals"
             plural_data(component, locale, options)
           else
             if is_shared_component?(component)
@@ -116,7 +116,7 @@ module Cldr
 
       def shared_data(component, options = {})
         case component.to_s
-          when 'Transforms'
+          when "Transforms"
             # do nothing, this has to be handled separately
           else
             Data.const_get(component.to_s.camelize).new
@@ -124,11 +124,11 @@ module Cldr
       end
 
       def to_i18n(locale)
-        return locale.to_s.gsub('_', '-').to_sym
+        return locale.to_s.gsub("_", "-").to_sym
       end
 
       def from_i18n(locale)
-        return locale.to_s.gsub('-', '_').to_sym
+        return locale.to_s.gsub("-", "_").to_sym
       end
 
       def locales(locale, component, options)
@@ -147,12 +147,12 @@ module Cldr
       def write(path, data)
         FileUtils.rm(path) if File.exists?(path)
         FileUtils.mkdir_p(File.dirname(path))
-        File.open(path, 'w+') { |f| f.write(data) }
+        File.open(path, "w+") { |f| f.write(data) }
       end
 
       def path(locale, component, extension)
         path = [Export.base_path]
-        path << locale.to_s.gsub('_', '-') unless is_shared_component?(component)
+        path << locale.to_s.gsub("_", "-") unless is_shared_component?(component)
         path << "#{component.to_s.underscore}.#{extension}"
         File.join(*path)
       end

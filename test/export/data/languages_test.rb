@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"))
 
 class TestCldrDataLanguages < Test::Unit::TestCase
-  test 'languages :de' do
+  test "languages :de" do
     codes = [:aa, :ab, :ace, :ach, :ada, :ady, :ae, :aeb, :af,
       :afh, :agq, :ain, :ak, :akk, :akz, :ale, :aln, :alt, :am,
       :an, :ang, :anp, :ar, :"ar-001", :arc, :arn, :aro, :arp,
@@ -65,14 +65,14 @@ class TestCldrDataLanguages < Test::Unit::TestCase
       :ybb, :yi, :yo, :yrl, :yue, :za, :zap, :zbl, :zea, :zen,
       :zgh, :zh, :"zh-Hans", :"zh-Hant", :zu, :zun, :zxx, :zza]
 
-    languages = Cldr::Export::Data::Languages.new('de')[:languages]
+    languages = Cldr::Export::Data::Languages.new("de")[:languages]
 
     assert_empty codes - languages.keys, "Unexpected missing languages"
     assert_empty languages.keys - codes, "Unexpected extra languages"
-    assert_equal('Deutsch', languages[:de])
+    assert_equal("Deutsch", languages[:de])
   end
 
-  test 'languages does not overwrite long form with the short one' do
+  test "languages does not overwrite long form with the short one" do
     languages = Cldr::Export::Data::Languages.new(:en)[:languages]
 
     assert_equal "American English", languages[:"en-US"]

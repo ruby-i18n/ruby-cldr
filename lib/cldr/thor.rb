@@ -1,9 +1,9 @@
-require 'thor'
-require 'cldr'
+require "thor"
+require "cldr"
 
 module Cldr
   class Thor < ::Thor
-    namespace 'cldr'
+    namespace "cldr"
 
     desc "download [--version=34] [--target=./vendor] [--source=http://unicode.org/Public/cldr/34/core.zip]",
         <<~DESCRIPTION
@@ -17,8 +17,8 @@ module Cldr
                    %w(version -v) => :string
 
     def download
-      require 'cldr/download'
-      Cldr.download(options['source'], options['target'], options['version'])
+      require "cldr/download"
+      Cldr.download(options["source"], options["target"], options["version"])
     end
 
     desc "export [--locales=de fr en] [--components=numbers plurals] [--target=./data] [--merge]",
@@ -30,7 +30,7 @@ module Cldr
 
     def export
       $stdout.sync
-      Cldr::Export.export(options.dup.symbolize_keys) { putc '.' }
+      Cldr::Export.export(options.dup.symbolize_keys) { putc "." }
       puts
     end
 

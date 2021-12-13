@@ -1,6 +1,6 @@
-require 'core_ext/string/underscore'
-require 'core_ext/hash/deep_merge'
-require 'nokogiri'
+require "core_ext/string/underscore"
+require "core_ext/hash/deep_merge"
+require "nokogiri"
 
 module Cldr
   module Export
@@ -25,16 +25,16 @@ module Cldr
         protected
 
           def plural?(node)
-            !!node.attribute('count')
+            !!node.attribute("count")
           end
 
           def draft?(node)
-            draft = node.attribute('draft')
-            draft && draft.value == 'unconfirmed'
+            draft = node.attribute("draft")
+            draft && draft.value == "unconfirmed"
           end
 
           def alt?(node)
-            !node.attribute('alt').nil?
+            !node.attribute("alt").nil?
           end
 
           def name(node)
@@ -42,7 +42,7 @@ module Cldr
           end
 
           def count(node)
-            node.attribute('count').value
+            node.attribute("count").value
           end
 
           def select(*sources)
@@ -50,7 +50,7 @@ module Cldr
           end
 
           def xpath(sources)
-            path = sources.map { |source| source.respond_to?(:path) ? source.path : source }.join('/')
+            path = sources.map { |source| source.respond_to?(:path) ? source.path : source }.join("/")
             path =~ /^\/?\/ldml/ ? path : "//ldml/#{path}"
           end
 
@@ -82,7 +82,7 @@ module Cldr
             #
             # However, this is not an issue, since #select will find all of the matches from each of the repeated elements,
             # and the <identity> elements are not important to us / make no sense when combined together.
-            return Nokogiri::XML('') if paths_to_merge.empty?
+            return Nokogiri::XML("") if paths_to_merge.empty?
 
             rest = paths_to_merge[1..paths_to_merge.size - 1]
             rest.inject(Nokogiri::XML(File.read(paths_to_merge.first))) do |result, path|

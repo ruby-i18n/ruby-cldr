@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"))
 
 class TestCldrDataNumbers < Test::Unit::TestCase
   test "number symbols :de" do
@@ -18,7 +18,7 @@ class TestCldrDataNumbers < Test::Unit::TestCase
       :superscripting_exponent => "·",
       :time_separator => ":",
     }
-    assert_equal expected, Cldr::Export::Data::Numbers.new('de')[:numbers][:symbols]
+    assert_equal expected, Cldr::Export::Data::Numbers.new("de")[:numbers][:symbols]
   end
 
   test "number formats :de" do
@@ -73,12 +73,12 @@ class TestCldrDataNumbers < Test::Unit::TestCase
             "100000000000000" => { "one" => "000 Bio'.'", "other" => "000 Bio'.'" } } } },
       :percent => { :number_system => "latn", :patterns => { :default => "#,##0 %" } },
       :scientific => { :number_system => "latn", :patterns => { :default => "#E0" } } }
-    assert_equal expected, Cldr::Export::Data::Numbers.new('de')[:numbers][:formats]
+    assert_equal expected, Cldr::Export::Data::Numbers.new("de")[:numbers][:formats]
   end
 
   test "redirects in root locale" do
     assert_equal :"numbers.formats.decimal.patterns.short",
-      Cldr::Export::Data::Numbers.new('root')[:numbers][:formats][:decimal][:patterns]['long']
+      Cldr::Export::Data::Numbers.new("root")[:numbers][:formats][:decimal][:patterns]["long"]
   end
 
   # Cldr::Export::Data.locales.each do |locale|

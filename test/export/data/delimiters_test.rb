@@ -1,24 +1,24 @@
 # encoding: utf-8
 
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"))
 
 class TestCldrDataDelimiters < Test::Unit::TestCase
-  test 'delimiters :de' do
+  test "delimiters :de" do
     expected = {
       :delimiters => {
         :quotes => {
           :default => {
-            :start => '„',
-            :end   => '“'
+            :start => "„",
+            :end   => "“"
           },
           :alternate => {
-            :start => '‚',
-            :end   => '‘'
+            :start => "‚",
+            :end   => "‘"
           }
         }
       }
     }
-    assert_equal expected, Cldr::Export::Data::Delimiters.new('de')
+    assert_equal expected, Cldr::Export::Data::Delimiters.new("de")
   end
 
   # Cldr::Export::Data.locales.each do |locale|

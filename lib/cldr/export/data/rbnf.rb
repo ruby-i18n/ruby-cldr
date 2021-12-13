@@ -58,7 +58,7 @@ module Cldr
         end
 
         def fix_rule(rule)
-          rule.gsub(/\A'/, '').gsub("←", '<').gsub("→", '>')
+          rule.gsub(/\A'/, "").gsub("←", "<").gsub("→", ">")
         end
       end
     end

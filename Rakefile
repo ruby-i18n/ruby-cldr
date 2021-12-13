@@ -1,8 +1,8 @@
-require 'rubygems'
-require 'rake'
+require "rubygems"
+require "rake"
 
 begin
-  require 'jeweler'
+  require "jeweler"
   Jeweler::Tasks.new do |gem|
     gem.name = "ruby-cldr"
     gem.summary = %Q{Ruby library for exporting and using data from CLDR }

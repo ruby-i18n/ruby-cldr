@@ -8,9 +8,9 @@ module Cldr
           start, pad = orientation == :left ? [0, :rjust] : [-length, :ljust]
 
           string = string.dup
-          string = string.ljust(length, '#') if string.length < length
+          string = string.ljust(length, "#") if string.length < length
           string[start, length] = value
-          string.gsub('#', '')
+          string.gsub("#", "")
         end
       end
     end

@@ -6,16 +6,16 @@ module Cldr
           def initialize(locale)
             super
             update(
-              :months   => contexts('month'),
-              :days     => contexts('day'),
+              :months   => contexts("month"),
+              :days     => contexts("day"),
               :eras     => eras,
-              :quarters => contexts('quarter'),
-              :periods  => contexts('dayPeriod', :group => "alt"),
+              :quarters => contexts("quarter"),
+              :periods  => contexts("dayPeriod", :group => "alt"),
               :fields   => fields,
               :formats => {
-                :date     => formats('date'),
-                :time     => formats('time'),
-                :datetime => formats('dateTime')
+                :date     => formats("date"),
+                :time     => formats("time"),
+                :datetime => formats("dateTime")
               },
               :additional_formats => additional_formats
             )
@@ -27,7 +27,7 @@ module Cldr
 
           def contexts(kind, options = {})
             select(calendar, "#{kind}s/#{kind}Context").inject({}) do |result, node|
-              context = node.attribute('type').value.to_sym
+              context = node.attribute("type").value.to_sym
               result[context] = widths(node, kind, context, options)
               result
             end
@@ -35,20 +35,20 @@ module Cldr
 
           def widths(node, kind, context, options = {})
             select(node, "#{kind}Width").inject({}) do |result, node|
-              width = node.attribute('type').value.to_sym
+              width = node.attribute("type").value.to_sym
               result[width] = elements(node, kind, context, width, options)
               result
             end
           end
 
           def elements(node, kind, context, width, options = {})
-            aliased = select(node, 'alias').first
+            aliased = select(node, "alias").first
 
             if aliased
-              xpath_to_key(aliased.attribute('path').value, kind, context, width)
+              xpath_to_key(aliased.attribute("path").value, kind, context, width)
             else
               select(node, kind).inject({}) do |result, node|
-                key = node.attribute('type').value
+                key = node.attribute("type").value
                 key = key =~ /^\d*$/ ? key.to_i : key.to_sym
 
                 if options[:group] && found_group = node.attribute(options[:group])
@@ -85,15 +85,15 @@ module Cldr
 
           def eras
             if calendar
-              base_path = calendar.path.gsub('/ldml/', '') + '/eras'
+              base_path = calendar.path.gsub("/ldml/", "") + "/eras"
               keys = select("#{base_path}/*").map { |node| node.name }
 
               keys.inject({}) do |result, name|
                 path = "#{base_path}/#{name}/*"
-                key  = name.gsub('era', '').gsub(/s$/, '').downcase.to_sym
+                key  = name.gsub("era", "").gsub(/s$/, "").downcase.to_sym
                 key_result = select(path).inject({}) do |ret, node|
                   next ret if node.name == "alias" # TODO: Actually handle alias nodes, https://github.com/ruby-i18n/ruby-cldr/issues/78
-                  type = node.attribute('type').value.to_i
+                  type = node.attribute("type").value.to_i
                   ret[type] = node.content
                   ret
                 end
@@ -116,7 +116,7 @@ module Cldr
 
           def formats(type)
             formats = select(calendar, "#{type}Formats/#{type}FormatLength").inject({}) do |result, node|
-              key = node.attribute('type').value.to_sym
+              key = node.attribute("type").value.to_sym
               result[key] = pattern(node, type)
               result
             end
@@ -128,7 +128,7 @@ module Cldr
 
           def additional_formats
             select(calendar, "dateTimeFormats/availableFormats/dateFormatItem").inject({}) do |result, node|
-              key = node.attribute('id').value
+              key = node.attribute("id").value
               result[key] = node.content
               result
             end
@@ -136,7 +136,7 @@ module Cldr
 
           def default_format(type)
             if node = select(calendar, "#{type}Formats/default").first
-              key = node.attribute('choice').value.to_sym
+              key = node.attribute("choice").value.to_sym
               { :default => :"calendars.gregorian.formats.#{type.downcase}.#{key}" }
             end
           end
@@ -144,7 +144,7 @@ module Cldr
           def pattern(node, type)
             select(node, "#{type}Format/pattern").inject({}) do |result, node|
               pattern = node.content
-              pattern = pattern.gsub('{0}', '{{time}}').gsub('{1}', '{{date}}') if type == 'dateTime'
+              pattern = pattern.gsub("{0}", "{{time}}").gsub("{1}", "{{date}}") if type == "dateTime"
               result[:pattern] = pattern
               result
             end
@@ -154,8 +154,8 @@ module Cldr
           # That probably means this `fields` method should be moved up to the parent as well.
           def fields
             select("dates/fields/field").inject({}) do |result, node|
-              key  = node.attribute('type').value.to_sym
-              name = node.xpath('displayName').first
+              key  = node.attribute("type").value.to_sym
+              name = node.xpath("displayName").first
               result[key] = name.content if name
               result
             end

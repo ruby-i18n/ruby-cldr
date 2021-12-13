@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"))
 
 class TestBase < Test::Unit::TestCase
   test "#paths finds all the language-dependent data files" do
@@ -13,7 +13,7 @@ class TestBase < Test::Unit::TestCase
       "rbnf/af.xml",
       "subdivisions/af.xml",
     ].map {|f| File.join(Cldr::Export::Data.dir, f)}
-    assert_equal expected, Cldr::Export::Data::Base.new('af').send(:paths)
+    assert_equal expected, Cldr::Export::Data::Base.new("af").send(:paths)
   end
 
   test "#paths finds all the supplemental data files" do
