@@ -5,9 +5,9 @@ module Cldr
         def initialize(locale)
           super
           update(
-            :units => {
-              :unitLength => unitLength,
-              :durationUnit => durationUnit,
+            units: {
+              unitLength: unitLength,
+              durationUnit: durationUnit,
             }
           )
         end

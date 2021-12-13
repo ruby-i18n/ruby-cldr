@@ -5,13 +5,13 @@ require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"
 class TestCldrDataUnits < Test::Unit::TestCase
   test "units" do
     units = {
-      :day    => { :one => "{0} Tag",     :other => "{0} Tage" },
-      :week   => { :one => "{0} Woche",   :other => "{0} Wochen" },
-      :month  => { :one => "{0} Monat",   :other => "{0} Monate" },
-      :year   => { :one => "{0} Jahr",    :other => "{0} Jahre" },
-      :hour   => { :one => "{0} Stunde",  :other => "{0} Stunden" },
-      :minute => { :one => "{0} Minute",  :other => "{0} Minuten" },
-      :second => { :one => "{0} Sekunde", :other => "{0} Sekunden" }
+      day: { one: "{0} Tag", other: "{0} Tage" },
+      week: { one: "{0} Woche", other: "{0} Wochen" },
+      month: { one: "{0} Monat", other: "{0} Monate" },
+      year: { one: "{0} Jahr",    other: "{0} Jahre" },
+      hour: { one: "{0} Stunde",  other: "{0} Stunden" },
+      minute: { one: "{0} Minute",  other: "{0} Minuten" },
+      second: { one: "{0} Sekunde", other: "{0} Sekunden" }
     }
     data = Cldr::Export::Data::Units.new("de")[:units][:unitLength][:long]
 

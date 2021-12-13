@@ -4,7 +4,7 @@ module Cldr
       class Characters < Base
         def initialize(locale)
           super
-          update(:characters => { :exemplars => exemplars })
+          update(characters: { exemplars: exemplars })
         end
 
         def exemplars

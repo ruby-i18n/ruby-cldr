@@ -4,7 +4,7 @@ module Cldr
       class Languages < Base
         def initialize(locale)
           super
-          update(:languages => languages)
+          update(languages: languages)
         end
 
         def languages

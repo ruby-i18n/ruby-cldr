@@ -6,18 +6,18 @@ module Cldr
           def initialize(locale)
             super
             update(
-              :months   => contexts("month"),
-              :days     => contexts("day"),
-              :eras     => eras,
-              :quarters => contexts("quarter"),
-              :periods  => contexts("dayPeriod", :group => "alt"),
-              :fields   => fields,
-              :formats => {
-                :date     => formats("date"),
-                :time     => formats("time"),
-                :datetime => formats("dateTime")
+              months: contexts("month"),
+              days: contexts("day"),
+              eras: eras,
+              quarters: contexts("quarter"),
+              periods: contexts("dayPeriod", group: "alt"),
+              fields: fields,
+              formats: {
+                date: formats("date"),
+                time: formats("time"),
+                datetime: formats("dateTime")
               },
-              :additional_formats => additional_formats
+              additional_formats: additional_formats
             )
           end
 
@@ -137,7 +137,7 @@ module Cldr
           def default_format(type)
             if node = select(calendar, "#{type}Formats/default").first
               key = node.attribute("choice").value.to_sym
-              { :default => :"calendars.gregorian.formats.#{type.downcase}.#{key}" }
+              { default: :"calendars.gregorian.formats.#{type.downcase}.#{key}" }
             end
           end
 

@@ -4,11 +4,11 @@ module Cldr
       class Layout < Base
         def initialize(locale)
           super
-          update(:layout => layout)
+          update(layout: layout)
         end
 
         def layout
-          result = { :orientation => { :character_order => nil } }
+          result = { orientation: { character_order: nil } }
 
           if node = select("layout/orientation/characterOrder/text()").first
             result[:orientation][:character_order] = node.text

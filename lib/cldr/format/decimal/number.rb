@@ -4,7 +4,7 @@ module Cldr
       class Number
         attr_reader :prefix, :suffix, :integer_format, :fraction_format, :symbols
 
-        DEFAULT_SYMBOLS = { :group => ",", :decimal => ".", :plus_sign => "+", :minus_sign => "-" }
+        DEFAULT_SYMBOLS = { group: ",", decimal: ".", plus_sign: "+", minus_sign: "-" }
         FORMAT_PATTERN  = /([^0#,\.]*)([0#,\.]+)([^0#,\.]*)$/
 
         def initialize(format, symbols = {})

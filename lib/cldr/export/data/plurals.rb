@@ -30,7 +30,7 @@ module Cldr
 
         def to_hash
           rule_rb = rule ? rule.to_ruby : nil
-          { :keys => (rule || {}).keys, :rule => rule_rb }
+          { keys: (rule || {}).keys, rule: rule_rb }
         end
 
         def rule

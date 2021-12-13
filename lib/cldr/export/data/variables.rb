@@ -8,7 +8,7 @@ module Cldr
 
         def initialize
           super(nil)
-          update(:variables => variables)
+          update(variables: variables)
         end
 
         private

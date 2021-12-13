@@ -4,7 +4,7 @@ module Cldr
       class Territories < Base
         def initialize(locale)
           super
-          update(:territories => territories)
+          update(territories: territories)
         end
 
         def territories

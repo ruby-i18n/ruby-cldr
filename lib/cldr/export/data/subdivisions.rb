@@ -5,7 +5,7 @@ module Cldr
 
         def initialize(locale)
           super
-          update(:subdivisions => subdivisions)
+          update(subdivisions: subdivisions)
         end
 
         private

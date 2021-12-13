@@ -8,9 +8,9 @@ module Cldr
           super
 
           update(
-            :formats => formats,
-            :timezones => timezones,
-            :metazones => metazones
+            formats: formats,
+            timezones: timezones,
+            metazones: metazones
           )
         end
 

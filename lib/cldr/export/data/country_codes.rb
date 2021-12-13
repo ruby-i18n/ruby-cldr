@@ -4,7 +4,7 @@ module Cldr
       class CountryCodes < Base
         def initialize
           super(nil)
-          update(:country_codes => country_codes)
+          update(country_codes: country_codes)
         end
 
         private

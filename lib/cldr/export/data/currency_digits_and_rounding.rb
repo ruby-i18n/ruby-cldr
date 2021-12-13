@@ -13,7 +13,7 @@ module Cldr
             digits = node.attr("digits").to_i
             rounding = node.attr("rounding").to_i
 
-            self[code.upcase.to_sym] = { :digits => digits, :rounding => rounding }
+            self[code.upcase.to_sym] = { digits: digits, rounding: rounding }
           end
         end
       end

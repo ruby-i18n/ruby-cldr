@@ -4,12 +4,12 @@ module Cldr
       class TerritoriesContainment < Base
         def initialize(*)
           super(nil)
-          update(:territories => territories)
+          update(territories: territories)
         end
 
         def territories
           @territories ||= doc.xpath("supplementalData/territoryContainment/group").inject(
-            Hash.new { |h, k| h[k] = { :contains => [] } }
+            Hash.new { |h, k| h[k] = { contains: [] } }
           ) do |memo, territory|
             territory_id = territory.attribute("type").value
             children = territory.attribute("contains").value.split(" ")

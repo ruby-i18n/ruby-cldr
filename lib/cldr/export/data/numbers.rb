@@ -5,25 +5,25 @@ module Cldr
         def initialize(locale)
           super
           update(
-            :numbers => {
-              :symbols => symbols,
-              :formats => {
-                :decimal => {
-                  :number_system => number_system("decimal"),
-                  :patterns => format("decimal")
+            numbers: {
+              symbols: symbols,
+              formats: {
+                decimal: {
+                  number_system: number_system("decimal"),
+                  patterns: format("decimal")
                 },
-                :scientific => {
-                  :number_system => number_system("scientific"),
-                  :patterns => format("scientific")
+                scientific: {
+                  number_system: number_system("scientific"),
+                  patterns: format("scientific")
                 },
-                :percent => {
-                  :number_system => number_system("percent"),
-                  :patterns => format("percent")
+                percent: {
+                  number_system: number_system("percent"),
+                  patterns: format("percent")
                 },
-                :currency => {
-                  :number_system => number_system("currency"),
-                  :patterns => format("currency"),
-                  :unit => unit
+                currency: {
+                  number_system: number_system("currency"),
+                  patterns: format("currency"),
+                  unit: unit
                 }
               }
             }
@@ -32,7 +32,7 @@ module Cldr
       
         def currency
           currency = format("currency")
-          currency.update(:unit => unit) unless unit.empty?
+          currency.update(unit: unit) unless unit.empty?
           currency
         end
 

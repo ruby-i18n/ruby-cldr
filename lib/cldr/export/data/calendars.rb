@@ -6,7 +6,7 @@ module Cldr
 
         def initialize(locale)
           super
-          update(:calendars => { :gregorian => Gregorian.new(locale) })
+          update(calendars: { gregorian: Gregorian.new(locale) })
         end
       end
     end

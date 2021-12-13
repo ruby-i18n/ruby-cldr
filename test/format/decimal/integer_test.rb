@@ -38,7 +38,7 @@ class TestCldrDecimalIntegerFormatWithInteger < Test::Unit::TestCase
   end
   
   test "does not round with :precision => 1" do
-    assert_equal "123", Cldr::Format::Decimal::Integer.new("###").apply(123.55, :precision => 1)
+    assert_equal "123", Cldr::Format::Decimal::Integer.new("###").apply(123.55, precision: 1)
   end
   
   test "ignores a fraction part given in the format string" do
@@ -50,18 +50,18 @@ class TestCldrDecimalIntegerFormatWithInteger < Test::Unit::TestCase
   end
   
   test "cldr example #,##0.### => 1 234" do
-    assert_equal "1 234", Cldr::Format::Decimal::Integer.new("#,##0.###", :group => " ").apply(1234.567)
+    assert_equal "1 234", Cldr::Format::Decimal::Integer.new("#,##0.###", group: " ").apply(1234.567)
   end
   
   test "cldr example ###0.##### => 1234" do
-    assert_equal "1234", Cldr::Format::Decimal::Integer.new("###0.#####", :group => " ").apply(1234.567)
+    assert_equal "1234", Cldr::Format::Decimal::Integer.new("###0.#####", group: " ").apply(1234.567)
   end
   
   test "cldr example ###0.0000# => 1234" do
-    assert_equal "1234", Cldr::Format::Decimal::Integer.new("###0.0000#", :group => " ").apply(1234.567)
+    assert_equal "1234", Cldr::Format::Decimal::Integer.new("###0.0000#", group: " ").apply(1234.567)
   end
   
   test "cldr example 00000.0000 => 01234" do
-    assert_equal "01234", Cldr::Format::Decimal::Integer.new("00000.0000", :group => " ").apply(1234.567)
+    assert_equal "01234", Cldr::Format::Decimal::Integer.new("00000.0000", group: " ").apply(1234.567)
   end
 end

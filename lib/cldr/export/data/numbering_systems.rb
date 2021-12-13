@@ -7,7 +7,7 @@ module Cldr
 
         def initialize(*args)
           super(nil)
-          update(:numbering_systems => numbering_systems)
+          update(numbering_systems: numbering_systems)
         end
 
         def numbering_systems

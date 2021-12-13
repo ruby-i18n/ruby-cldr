@@ -5,10 +5,10 @@ module Cldr
         def initialize(locale)
           super
           update(
-            :delimiters => {
-              :quotes => {
-                :default   => quotes("quotation"),
-                :alternate => quotes("alternateQuotation")
+            delimiters: {
+              quotes: {
+                default: quotes("quotation"),
+                alternate: quotes("alternateQuotation")
               }
             }
           )

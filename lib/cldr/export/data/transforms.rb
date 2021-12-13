@@ -10,7 +10,7 @@ module Cldr
         def initialize(transform_file)
           super(nil)  # no locale
           @transform_file = transform_file
-          update(:transforms => transforms)
+          update(transforms: transforms)
         end
 
         private
@@ -18,11 +18,11 @@ module Cldr
         def transforms
           doc.xpath("supplementalData/transforms/transform").map do |transform_node|
             {
-              :source => transform_node.attribute("source").value,
-              :target => transform_node.attribute("target").value,
-              :variant => get_variant(transform_node),
-              :direction => transform_node.attribute("direction").value,
-              :rules => rules(transform_node)
+              source: transform_node.attribute("source").value,
+              target: transform_node.attribute("target").value,
+              variant: get_variant(transform_node),
+              direction: transform_node.attribute("direction").value,
+              rules: rules(transform_node)
             }
           end
         end

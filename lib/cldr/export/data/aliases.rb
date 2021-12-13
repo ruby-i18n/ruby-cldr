@@ -8,7 +8,7 @@ module Cldr
 
         def initialize
           super(nil)
-          update(:aliases => aliases)
+          update(aliases: aliases)
         end
 
         private

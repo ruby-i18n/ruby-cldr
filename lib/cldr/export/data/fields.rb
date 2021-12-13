@@ -4,7 +4,7 @@ module Cldr
       class Fields < Base
         def initialize(locale)
           super
-          update(:fields => fields)
+          update(fields: fields)
         end
 
         private

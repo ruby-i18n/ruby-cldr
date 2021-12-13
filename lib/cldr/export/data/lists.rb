@@ -4,7 +4,7 @@ module Cldr
       class Lists < Base
         def initialize(locale)
           super
-          update(:lists => lists)
+          update(lists: lists)
         end
 
         def lists

@@ -34,7 +34,7 @@ class TestCldrDecimalNumberFormat < Test::Unit::TestCase
   end
   
   test "interpolates a fraction when not defined by the format but :precision given" do
-    assert_equal "123.45", Cldr::Format::Decimal::Number.new("###").apply(123.45, :precision => 2)
+    assert_equal "123.45", Cldr::Format::Decimal::Number.new("###").apply(123.45, precision: 2)
   end
   
   test "rounds a fraction" do
@@ -46,31 +46,31 @@ class TestCldrDecimalNumberFormat < Test::Unit::TestCase
   end
   
   test "rounds with precision => 0" do
-    assert_equal "124", Cldr::Format::Decimal::Number.new("###.##").apply(123.55, :precision => 0)
+    assert_equal "124", Cldr::Format::Decimal::Number.new("###.##").apply(123.55, precision: 0)
   end
   
   test "rounds with precision => 1" do
-    assert_equal "124", Cldr::Format::Decimal::Number.new("###.##").apply(123.55, :precision => 0)
+    assert_equal "124", Cldr::Format::Decimal::Number.new("###.##").apply(123.55, precision: 0)
   end
   
   test "cldr example #,##0.## => 1 234,57" do
-    assert_equal "1 234,57", Cldr::Format::Decimal::Number.new("#,##0.##", :decimal => ",", :group => " ").apply(1234.567)
+    assert_equal "1 234,57", Cldr::Format::Decimal::Number.new("#,##0.##", decimal: ",", group: " ").apply(1234.567)
   end
   
   test "cldr example #,##0.### => 1 234,567" do
-    assert_equal "1 234,567", Cldr::Format::Decimal::Number.new("#,##0.###", :decimal => ",", :group => " ").apply(1234.567)
+    assert_equal "1 234,567", Cldr::Format::Decimal::Number.new("#,##0.###", decimal: ",", group: " ").apply(1234.567)
   end
   
   test "cldr example ###0.##### => 1234,567" do
-    assert_equal "1234,567", Cldr::Format::Decimal::Number.new("###0.#####", :decimal => ",", :group => " ").apply(1234.567)
+    assert_equal "1234,567", Cldr::Format::Decimal::Number.new("###0.#####", decimal: ",", group: " ").apply(1234.567)
   end
   
   test "cldr example ###0.0000# => 1234,5670" do
-    assert_equal "1234,5670", Cldr::Format::Decimal::Number.new("###0.0000#", :decimal => ",", :group => " ").apply(1234.567)
+    assert_equal "1234,5670", Cldr::Format::Decimal::Number.new("###0.0000#", decimal: ",", group: " ").apply(1234.567)
   end
   
   test "cldr example 00000.0000 => 01234,5670" do
-    assert_equal "01234,5670", Cldr::Format::Decimal::Number.new("00000.0000", :decimal => ",", :group => " ").apply(1234.567)
+    assert_equal "01234,5670", Cldr::Format::Decimal::Number.new("00000.0000", decimal: ",", group: " ").apply(1234.567)
   end
 end
 

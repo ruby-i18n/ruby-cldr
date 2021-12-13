@@ -5,7 +5,7 @@ module Cldr
 
         def initialize
           super(nil)
-          update(:segments => segmentations)
+          update(segments: segmentations)
         end
 
         def segmentations
@@ -18,16 +18,16 @@ module Cldr
 
         def segmentation(node)
           {
-            :variables => variables(node),
-            :rules => rules(node)
+            variables: variables(node),
+            rules: rules(node)
           }
         end
 
         def variables(node)
           (node / "variables" / "variable").map do |variable|
             {
-              :id => cast_value(variable.attribute("id").value),
-              :value => variable.text
+              id: cast_value(variable.attribute("id").value),
+              value: variable.text
             }
           end
         end
@@ -35,8 +35,8 @@ module Cldr
         def rules(node)
           (node / "segmentRules" / "rule").map do |rule|
             {
-              :id => cast_value(rule.attribute("id").value),
-              :value => rule.text
+              id: cast_value(rule.attribute("id").value),
+              value: rule.text
             }
           end
         end

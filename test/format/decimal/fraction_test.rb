@@ -10,7 +10,7 @@ class TestCldrDecimalFractionFormatWithInteger < Test::Unit::TestCase
   end
   
   test ":precision option overrides format precision" do
-    assert_equal ".78901", Cldr::Format::Decimal::Fraction.new("###.##").apply("78901", :precision => 5)
+    assert_equal ".78901", Cldr::Format::Decimal::Fraction.new("###.##").apply("78901", precision: 5)
   end
 end
 

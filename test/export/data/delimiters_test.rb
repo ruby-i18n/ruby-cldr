@@ -5,15 +5,15 @@ require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"
 class TestCldrDataDelimiters < Test::Unit::TestCase
   test "delimiters :de" do
     expected = {
-      :delimiters => {
-        :quotes => {
-          :default => {
-            :start => "„",
-            :end   => "“"
+      delimiters: {
+        quotes: {
+          default: {
+            start: "„",
+            end: "“"
           },
-          :alternate => {
-            :start => "‚",
-            :end   => "‘"
+          alternate: {
+            start: "‚",
+            end: "‘"
           }
         }
       }

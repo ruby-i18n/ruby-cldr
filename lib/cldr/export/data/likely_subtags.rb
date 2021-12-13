@@ -5,7 +5,7 @@ module Cldr
 
         def initialize
           super(nil)
-          update(:subtags => subtags)
+          update(subtags: subtags)
         end
 
         private
