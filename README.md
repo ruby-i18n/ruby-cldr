@@ -30,13 +30,13 @@ thor cldr:download
 The following command will export all known components from all locales to the target directory ./data/[locale]/[component].{yml,rb}:
 
 ```
-$ thor cldr:export
+thor cldr:export
 ```
 
 You can also optionally specify locales and/or components to export as well as the target directory:
 
 ```
-$ thor cldr:export --locales de fr en --components numbers plurals --target=./tmp/export
+thor cldr:export --locales de fr en --components numbers plurals --target=./tmp/export
 ```
 
 This will export the components :numbers and :plurals from the locales `de`, `fr` and `en` to the same target directory.
@@ -46,7 +46,7 @@ Also note that CLDR natively builds on a locale fallback concept where all local
 By default this library just exports data that is present in CLDR for a given locale. If you do not want to use locale fallbacks in your application you'll need to "flatten" locale fallbacks and merge the data during export time. To do that you can use the `--merge` option:
 
 ```
-$ thor cldr:export --merge
+thor cldr:export --merge
 ```
 
 ## Formatters
@@ -56,20 +56,20 @@ The library includes a bunch of formatter classes that can be used to format Rub
 E.g.:
 
 ```ruby
-	options = { :decimal => ',', :group => ' ' }
-	format  = Cldr::Format::Numeric.new('#,##0.##', options)
-	format.apply(1234.567)
-	# => "1 234,57"
+options = { :decimal => ',', :group => ' ' }
+format  = Cldr::Format::Numeric.new('#,##0.##', options)
+format.apply(1234.567)
+# => "1 234,57"
 
-	calendar = Cldr::Export::Data::Calendars.new(:de)[:calendars][:gregorian]
-	format   = Cldr::Export::Format::Date.new('EEEE, d. MMMM y', calendar)
-	format.apply(Date.new(2010, 1, 11))
-	# => "Montag, 11. Januar 2010"
+calendar = Cldr::Export::Data::Calendars.new(:de)[:calendars][:gregorian]
+format   = Cldr::Export::Format::Date.new('EEEE, d. MMMM y', calendar)
+format.apply(Date.new(2010, 1, 11))
+# => "Montag, 11. Januar 2010"
 
-	calendar = Cldr::Export::Data::Calendars.new(:de)[:calendars][:gregorian]
-	format   = Cldr::Format::Time.new('HH:mm:ss z', calendar)
-	format.apply(Time.utc(2010, 1, 1, 13, 12, 11))
-	# => "13:12:11 UTC"
+calendar = Cldr::Export::Data::Calendars.new(:de)[:calendars][:gregorian]
+format   = Cldr::Format::Time.new('HH:mm:ss z', calendar)
+format.apply(Time.utc(2010, 1, 1, 13, 12, 11))
+# => "13:12:11 UTC"
 ```
 
 In order to make these things easier to use the library provides a bunch of helpers defined in the module `Cldr::Format`. (This module is supposed to work as an extension to the Simple backend in the [`I18n` gem](https://github.com/ruby-i18n/i18n) but is included here to suggest a common API to formatters and make development easier for usecases outside of the `I18n` gem. If you want to include this module somewhere else you have to implement a few abstract methods to provide translations.)
@@ -77,32 +77,32 @@ In order to make these things easier to use the library provides a bunch of help
 E.g.:
 
 ```ruby
-	format(:de, 123456.78)
-	# => "123.456,78"
+format(:de, 123456.78)
+# => "123.456,78"
 
-	format(:de, 123456.78, :as => :percent)
-	# => "123.457 %"
+format(:de, 123456.78, :as => :percent)
+# => "123.457 %"
 
-	format(:de, 123456.78, :currency => 'EUR') 
-	# => "123.456,78 EUR"
+format(:de, 123456.78, :currency => 'EUR') 
+# => "123.456,78 EUR"
 
-	format(:de, Date.new(2010, 1, 1), :format => :full)
-	# => "Freitag, 1. Januar 2010"
+format(:de, Date.new(2010, 1, 1), :format => :full)
+# => "Freitag, 1. Januar 2010"
 
-	format(:de, Time.utc(2010, 1, 1, 13, 15, 17), :format => :long)
-	# => "13:15:17 UTC"
+format(:de, Time.utc(2010, 1, 1, 13, 15, 17), :format => :long)
+# => "13:15:17 UTC"
 
-	format(:de, DateTime.new(2010, 11, 12, 13, 14, 15), :format => :long)
-	# => "12. November 2010 13:14:15 +00:00"
+format(:de, DateTime.new(2010, 11, 12, 13, 14, 15), :format => :long)
+# => "12. November 2010 13:14:15 +00:00"
 
-	format(:de, DateTime.new(2010, 11, 12, 13, 14, 15), :date_format => :long, :time_format => :short)
-	# => "12. November 2010 13:14"
+format(:de, DateTime.new(2010, 11, 12, 13, 14, 15), :date_format => :long, :time_format => :short)
+# => "12. November 2010 13:14"
 ```
 
 ## Tests
 
 ```
- bundle exec ruby test/all.rb
+bundle exec ruby test/all.rb
 ```
 
 ## Resources
