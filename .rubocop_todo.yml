@@ -75,28 +75,6 @@ Layout/EmptyLineAfterMagicComment:
     - 'lib/cldr/format.rb'
     - 'ruby-cldr.gemspec'
 
-# Offense count: 18
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
-Layout/EmptyLinesAroundClassBody:
-  Exclude:
-    - 'lib/cldr/export/data/aliases.rb'
-    - 'lib/cldr/export/data/likely_subtags.rb'
-    - 'lib/cldr/export/data/numbering_systems.rb'
-    - 'lib/cldr/export/data/plurals/rules.rb'
-    - 'lib/cldr/export/data/rbnf.rb'
-    - 'lib/cldr/export/data/rbnf_root.rb'
-    - 'lib/cldr/export/data/region_currencies.rb'
-    - 'lib/cldr/export/data/segments_root.rb'
-    - 'lib/cldr/export/data/subdivisions.rb'
-    - 'lib/cldr/export/data/timezones.rb'
-    - 'lib/cldr/export/data/transforms.rb'
-    - 'lib/cldr/export/data/variables.rb'
-    - 'lib/cldr/export/yaml.rb'
-    - 'test/export/data/metazones_test.rb'
-    - 'test/export/data/windows_zones_test.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

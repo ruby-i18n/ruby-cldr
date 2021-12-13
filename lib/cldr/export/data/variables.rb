@@ -4,7 +4,6 @@ module Cldr
   module Export
     module Data
       class Variables < Base
-
         # only these variables will be exported
         VARIABLE_IDS = %w($grandfathered $language $territory $script $variant)
 

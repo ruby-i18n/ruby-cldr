@@ -4,7 +4,6 @@ module Cldr
   module Export
     module Data
       class RegionCurrencies < Base
-
         def initialize
           super(nil)
           update(region_currencies: currencies)

@@ -5,7 +5,6 @@ module Cldr
   module Export
     module Data
       class Rbnf < Base
-
         def initialize(*args)
           super
           update(rbnf: { grouping: rule_groups })

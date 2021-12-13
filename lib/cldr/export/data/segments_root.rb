@@ -4,7 +4,6 @@ module Cldr
   module Export
     module Data
       class SegmentsRoot < Base
-
         def initialize
           super(nil)
           update(segments: segmentations)
@@ -55,7 +54,6 @@ module Cldr
             value
           end
         end
-
       end
     end
   end

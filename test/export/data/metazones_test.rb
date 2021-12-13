@@ -14,5 +14,4 @@ class TestCldrDataMetazones < Test::Unit::TestCase
     primaryzones = Cldr::Export::Data::Metazones.new[:primaryzones]
     assert_equal("Europe/Berlin", primaryzones[:"DE"])
   end
-
 end

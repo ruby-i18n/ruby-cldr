@@ -4,7 +4,6 @@ module Cldr
   module Export
     module Data
       class LikelySubtags < Base
-
         def initialize
           super(nil)
           update(subtags: subtags)

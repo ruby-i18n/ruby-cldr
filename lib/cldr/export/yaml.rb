@@ -5,7 +5,6 @@ require "yaml"
 module Cldr
   module Export
     class Yaml
-
       def export(locale, component, options = {})
         data = Export.data(component, locale, options)
         data.deep_prune!

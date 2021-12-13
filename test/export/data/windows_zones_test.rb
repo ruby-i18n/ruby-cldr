@@ -9,5 +9,4 @@ class TestCldrDataMetazones < Test::Unit::TestCase
     zones = Cldr::Export::Data::WindowsZones.new
     assert_equal(["Europe/Berlin", "Europe/Busingen"], zones["W. Europe Standard Time"]["DE"])
   end
-
 end

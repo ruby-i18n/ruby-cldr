@@ -4,7 +4,6 @@ module Cldr
   module Export
     module Data
       class Subdivisions < Base
-
         def initialize(locale)
           super
           update(subdivisions: subdivisions)

@@ -4,7 +4,6 @@ module Cldr
   module Export
     module Data
       class Aliases < Base
-
         # only these aliases will be exported
         ALIAS_TAGS = %w(languageAlias territoryAlias)
 

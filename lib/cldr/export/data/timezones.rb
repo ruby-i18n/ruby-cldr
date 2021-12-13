@@ -56,7 +56,6 @@ module Cldr
             result[node.name.to_sym] = node.content
           end
         end
-
       end
     end
   end

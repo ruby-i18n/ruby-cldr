@@ -5,7 +5,6 @@ module Cldr
   module Export
     module Data
       class NumberingSystems < Base
-
         def initialize(*args)
           super(nil)
           update(numbering_systems: numbering_systems)

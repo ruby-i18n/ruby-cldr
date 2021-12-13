@@ -5,7 +5,6 @@ module Cldr
   module Export
     module Data
       class Transforms < Base
-
         attr_reader :transform_file
 
         def initialize(transform_file)
@@ -70,7 +69,6 @@ module Cldr
         def paths
           [transform_file]
         end
-
       end
     end
   end

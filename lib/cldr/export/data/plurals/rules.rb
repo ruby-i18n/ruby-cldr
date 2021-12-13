@@ -43,7 +43,6 @@ module Cldr
 
         class Rule < Array
           class << self
-
             def parse_list(str)
               values = []
               ranges = []
