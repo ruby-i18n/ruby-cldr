@@ -4,8 +4,9 @@ require 'zip'
 
 module Cldr
   class << self
-    def download(source = nil, target = nil)
-      source ||= 'http://unicode.org/Public/cldr/34/core.zip'
+    def download(source = nil, target = nil, version = nil)
+      version ||= 34
+      source ||= "http://unicode.org/Public/cldr/#{version}/core.zip"
       target ||= File.expand_path('./vendor/cldr')
 
       URI.parse(source).open do |tempfile|
