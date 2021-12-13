@@ -41,8 +41,8 @@ module Cldr
           end
         end
 
-        def path
-          @path ||= "#{Cldr::Export::Data.dir}/segments/root.xml"
+        def paths
+          @paths ||= ["#{Cldr::Export::Data.dir}/segments/root.xml"]
         end
 
         def cast_value(value)

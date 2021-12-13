@@ -30,11 +30,6 @@ module Cldr
             ret
           end
         end
-
-        def path
-          @path ||= "#{Cldr::Export::Data.dir}/supplemental/numberingSystems.xml"
-        end
-
       end
     end
   end

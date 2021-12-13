@@ -36,11 +36,6 @@ module Cldr
             ret
           end
         end
-
-        def path
-          @path ||= "#{Cldr::Export::Data.dir}/supplemental/supplementalMetadata.xml"
-        end
-
       end
     end
   end
