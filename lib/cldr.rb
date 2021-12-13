@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "core_ext/hash/symbolize_keys"
 
 module Cldr

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # http://unicode.org/draft/reports/tr35/tr35.html#Language_Plural_Rules
 #
 # condition       = and_condition ('or' and_condition)*

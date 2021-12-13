@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # I probably don't really get timezones.
 
 module Cldr

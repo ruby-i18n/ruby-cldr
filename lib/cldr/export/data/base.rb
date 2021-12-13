@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "core_ext/string/underscore"
 require "core_ext/hash/deep_merge"
 require "nokogiri"

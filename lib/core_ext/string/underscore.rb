@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class String
    def underscore
      to_s.gsub(/::/, "/").

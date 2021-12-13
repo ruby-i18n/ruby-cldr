@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copied from https://github.com/mcrossen/deepsort/blob/786fe3dd35980f028c0842797d25b27e53cd95f8/lib/deepsort.rb
 # MIT licensed
 

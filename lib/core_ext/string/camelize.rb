@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class String
   def camelize
     self.gsub(/(^.|_[a-zA-Z])/) { |m| m.sub("_","").capitalize }

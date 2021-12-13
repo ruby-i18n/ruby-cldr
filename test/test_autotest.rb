@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def tests_for(filename)
   pattern = case filename
   when %r(gregorian\.rb)
