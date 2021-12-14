@@ -47,11 +47,6 @@ Lint/MissingSuper:
     - 'lib/cldr/format/decimal/fraction.rb'
     - 'lib/cldr/format/decimal/integer.rb'
 
-# Offense count: 3
-Lint/UnreachableCode:
-  Exclude:
-    - 'lib/cldr/format/date.rb'
-
 # Offense count: 2
 # Configuration parameters: CountBlocks.
 Metrics/BlockNesting:
