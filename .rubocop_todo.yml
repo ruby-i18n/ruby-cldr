@@ -101,14 +101,13 @@ Style/ClassVars:
     - 'lib/cldr/export/data/base.rb'
     - 'lib/cldr/export/data/plurals.rb'
 
-# Offense count: 5
+# Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: AllowCoercion.
 Style/DateTime:
   Exclude:
     - 'lib/cldr/export/data/metazones.rb'
     - 'test/export/data/metazones_test.rb'
-    - 'test/format/datetime_test.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
