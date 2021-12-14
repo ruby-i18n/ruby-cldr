@@ -58,50 +58,6 @@ class TestExport < Test::Unit::TestCase
     assert data["de"]
   end
 
-  test "writes dot-separated symbols to yaml in a way that can be loaded back" do
-    data = { "format" => { "narrow" => :"calendars.gregorian.months.stand-alone.narrow" } }
-    yaml = Cldr::Export::Yaml.new.yaml(data.deep_stringify_keys)
-
-    assert_equal data, YAML.load(yaml)
-  end
-
-  test "escapes data in a way that can be properly loaded back" do
-    data = ["017", "017b", "019", "0", "1", "AAA", 1, 101]
-    yaml = Cldr::Export::Yaml.new.yaml(data)
-    new_data = YAML.load(yaml)
-
-    assert_equal data, new_data
-  end
-
-  test "escapes keys in a way that can be properly parsed back" do
-    data = {
-      "017" => 17,
-      15 => 9,
-      9 => "009",
-    }
-    yaml = Cldr::Export::Yaml.new.yaml(data)
-    new_data = YAML.load(yaml)
-
-    assert_equal data, new_data
-  end
-
-  test "escapes unicode in a way that can be properly parsed back" do
-    space = '\u2009'.encode("utf-8")
-    data = {
-      "a" => "ä",
-      "space" => space,
-      "o" => "ø",
-      "vowel" => "ৃ",
-    }
-    yaml = Cldr::Export::Yaml.new.yaml(data)
-    new_data = YAML.load(yaml)
-
-    assert_equal data, new_data
-    assert_include yaml, "ৃ"
-    assert_include yaml, "ø"
-    assert_include yaml, space
-  end
-
   test "#locales does not fall back to English (unless the locale is English based)" do
     assert_equal [:ko, :root], Cldr::Export.locales("ko", "numbers", merge: true)
     assert_equal [:"pt-BR", :pt, :root], Cldr::Export.locales("pt_BR", "numbers", merge: true)
