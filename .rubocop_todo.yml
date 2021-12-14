@@ -71,13 +71,3 @@ Style/DateTime:
 Style/EmptyElse:
   Exclude:
     - 'lib/cldr/format/date.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: AllowMethodsWithArguments, IgnoredMethods.
-# IgnoredMethods: respond_to, define_method
-Style/SymbolProc:
-  Exclude:
-    - 'lib/cldr/export/data/calendars/gregorian.rb'
-    - 'lib/cldr/export/data/plurals/rules.rb'
-    - 'test/export/data/calendars_test.rb'

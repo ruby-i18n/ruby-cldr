@@ -84,7 +84,7 @@ module Cldr
           def eras
             if calendar
               base_path = calendar.path.gsub("/ldml/", "") + "/eras"
-              keys = select("#{base_path}/*").map { |node| node.name }
+              keys = select("#{base_path}/*").map(&:name)
 
               keys.each_with_object({}) do |name, result|
                 path = "#{base_path}/#{name}/*"
