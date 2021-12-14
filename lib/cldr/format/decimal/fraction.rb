@@ -4,7 +4,7 @@ module Cldr
   module Format
     class Decimal
       class Fraction < Base
-        attr_reader :format, :decimal, :precision
+        attr_reader :decimal, :precision
 
         def initialize(format, symbols = {})
           @format  = format ? format.split(".").pop : ""

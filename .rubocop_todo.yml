@@ -28,11 +28,10 @@ Lint/AssignmentInCondition:
     - 'lib/cldr/export/data/transforms.rb'
     - 'lib/cldr/format/decimal/integer.rb'
 
-# Offense count: 2
+# Offense count: 1
 Lint/DuplicateMethods:
   Exclude:
     - 'lib/cldr/export/data/plurals/grammar.rb'
-    - 'lib/cldr/format/decimal/fraction.rb'
 
 # Offense count: 11
 Lint/MissingSuper:
