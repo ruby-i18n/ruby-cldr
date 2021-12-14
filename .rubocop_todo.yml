@@ -29,11 +29,6 @@ Metrics/BlockNesting:
 Metrics/ParameterLists:
   MaxOptionalParameters: 5
 
-# Offense count: 7
-Security/Eval:
-  Exclude:
-    - 'test/export/data/plurals_test.rb'
-
 # Offense count: 5
 Style/ClassVars:
   Exclude:
