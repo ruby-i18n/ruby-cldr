@@ -1,15 +1,17 @@
-require 'fileutils'
+# frozen_string_literal: true
+
+require "fileutils"
 
 module Cldr
   module Export
     module Data
       class Plurals < Hash
-        autoload :Grammar,     'cldr/export/data/plurals/grammar'
-        autoload :Parser,      'cldr/export/data/plurals/grammar'
-        autoload :Rules,       'cldr/export/data/plurals/rules'
-        autoload :Rule,        'cldr/export/data/plurals/rules'
-        autoload :Proposition, 'cldr/export/data/plurals/rules'
-        autoload :Expression,  'cldr/export/data/plurals/rules'
+        autoload :Grammar,     "cldr/export/data/plurals/grammar"
+        autoload :Parser,      "cldr/export/data/plurals/grammar"
+        autoload :Rules,       "cldr/export/data/plurals/rules"
+        autoload :Rule,        "cldr/export/data/plurals/rules"
+        autoload :Proposition, "cldr/export/data/plurals/rules"
+        autoload :Expression,  "cldr/export/data/plurals/rules"
 
         class << self
           def rules
@@ -25,12 +27,12 @@ module Cldr
 
         def initialize(locale)
           @locale = locale
-          self.merge!(rule ? to_hash : {})
+          merge!(rule ? to_hash : {})
         end
 
         def to_hash
           rule_rb = rule ? rule.to_ruby : nil
-          { :keys => (rule || {}).keys, :rule => rule_rb }
+          { keys: (rule || {}).keys, rule: rule_rb }
         end
 
         def rule

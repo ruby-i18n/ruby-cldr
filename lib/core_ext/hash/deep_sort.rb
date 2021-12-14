@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copied from https://github.com/mcrossen/deepsort/blob/786fe3dd35980f028c0842797d25b27e53cd95f8/lib/deepsort.rb
 # MIT licensed
 
@@ -38,36 +40,36 @@ module DeepSort
     end
 
     def deep_sort_by(options = {}, &block)
-      hash = self.map do |key, value|
+      hash = map do |key, value|
         [if key.respond_to?(:deep_sort_by)
-          key.deep_sort_by(options, &block)
-        else
-          key
-        end,
+           key.deep_sort_by(options, &block)
+         else
+           key
+         end,
 
-        if value.respond_to?(:deep_sort_by)
-          value.deep_sort_by(options, &block)
-        else
-          value
-        end]
+         if value.respond_to?(:deep_sort_by)
+           value.deep_sort_by(options, &block)
+         else
+           value
+         end,]
       end
 
       Hash[options[:hash] == false ? hash : hash.sort_by(&block)]
     end
 
     def deep_sort_by!(options = {}, &block)
-      hash = self.map do |key, value|
+      hash = map do |key, value|
         [if key.respond_to?(:deep_sort_by!)
-          key.deep_sort_by!(options, &block)
-        else
-          key
-        end,
+           key.deep_sort_by!(options, &block)
+         else
+           key
+         end,
 
-        if value.respond_to?(:deep_sort_by!)
-          value.deep_sort_by!(options, &block)
-        else
-          value
-        end]
+         if value.respond_to?(:deep_sort_by!)
+           value.deep_sort_by!(options, &block)
+         else
+           value
+         end,]
       end
       replace(Hash[options[:hash] == false ? hash : hash.sort_by!(&block)])
     end

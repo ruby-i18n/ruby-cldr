@@ -1,16 +1,16 @@
 # encoding: UTF-8
+# frozen_string_literal: true
 
 module Cldr
   module Export
     module Data
       class Transforms < Base
-
         attr_reader :transform_file
 
         def initialize(transform_file)
           super(nil)  # no locale
           @transform_file = transform_file
-          update(:transforms => transforms)
+          update(transforms: transforms)
         end
 
         private
@@ -18,11 +18,11 @@ module Cldr
         def transforms
           doc.xpath("supplementalData/transforms/transform").map do |transform_node|
             {
-              :source => transform_node.attribute("source").value,
-              :target => transform_node.attribute("target").value,
-              :variant => get_variant(transform_node),
-              :direction => transform_node.attribute("direction").value,
-              :rules => rules(transform_node)
+              source: transform_node.attribute("source").value,
+              target: transform_node.attribute("target").value,
+              variant: get_variant(transform_node),
+              direction: transform_node.attribute("direction").value,
+              rules: rules(transform_node),
             }
           end
         end
@@ -41,7 +41,7 @@ module Cldr
           )
 
           rules.reject do |rule|
-            rule.strip.empty? || rule.strip.start_with?('#')
+            rule.strip.empty? || rule.strip.start_with?("#")
           end
         end
 
@@ -55,21 +55,20 @@ module Cldr
               ret << rule
             end
 
-            wrap = rule.end_with?('\\')
+            wrap = rule.end_with?("\\")
           end
         end
 
         def fix_rule(rule)
-          rule.
-            gsub("←", '<').
-            gsub("→", '>').
-            gsub("↔", '<>')
+          rule
+            .gsub("←", "<")
+            .gsub("→", ">")
+            .gsub("↔", "<>")
         end
 
         def paths
           [transform_file]
         end
-
       end
     end
   end

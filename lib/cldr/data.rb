@@ -1,9 +1,11 @@
-require 'core_ext/string/camelize'
+# frozen_string_literal: true
+
+require "core_ext/string/camelize"
 
 module Cldr
   module Data
     # autoload :De, 'data/de'
-    # 
+    #
     # class << self
     #   def [](locale)
     #     @data ||= {}

@@ -1,33 +1,33 @@
+# frozen_string_literal: true
+
 module Cldr
   module Export
     module Data
       class SegmentsRoot < Base
-
         def initialize
           super(nil)
-          update(:segments => segmentations)
+          update(segments: segmentations)
         end
 
         def segmentations
-          doc.xpath("ldml/segmentations/segmentation").inject({}) do |ret, seg|
+          doc.xpath("ldml/segmentations/segmentation").each_with_object({}) do |seg, ret|
             type = seg.attribute("type").value
             ret[type] = segmentation(seg)
-            ret
           end
         end
 
         def segmentation(node)
           {
-            :variables => variables(node),
-            :rules => rules(node)
+            variables: variables(node),
+            rules: rules(node),
           }
         end
 
         def variables(node)
           (node / "variables" / "variable").map do |variable|
             {
-              :id => cast_value(variable.attribute("id").value),
-              :value => variable.text
+              id: cast_value(variable.attribute("id").value),
+              value: variable.text,
             }
           end
         end
@@ -35,8 +35,8 @@ module Cldr
         def rules(node)
           (node / "segmentRules" / "rule").map do |rule|
             {
-              :id => cast_value(rule.attribute("id").value),
-              :value => rule.text
+              id: cast_value(rule.attribute("id").value),
+              value: rule.text,
             }
           end
         end
@@ -54,7 +54,6 @@ module Cldr
             value
           end
         end
-
       end
     end
   end

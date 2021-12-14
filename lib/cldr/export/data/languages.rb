@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 module Cldr
   module Export
     module Data
       class Languages < Base
         def initialize(locale)
           super
-          update(:languages => languages)
+          update(languages: languages)
         end
 
         def languages
-          @languages ||= select('localeDisplayNames/languages/language').inject({}) do |result, node|
-            result[Cldr::Export.to_i18n(node.attribute('type').value)] = node.content unless draft?(node) or alt?(node)
-            result
+          @languages ||= select("localeDisplayNames/languages/language").each_with_object({}) do |node, result|
+            result[Cldr::Export.to_i18n(node.attribute("type").value)] = node.content unless draft?(node) or alt?(node)
           end
         end
       end

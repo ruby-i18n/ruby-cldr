@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Cldr
   module Format
     class Datetime
@@ -11,21 +13,21 @@ module Cldr
 
         protected
 
-          def compile(format)
-            (class << self; self; end).class_eval <<-code
+        def compile(format)
+          (class << self; self; end).class_eval(<<-code)
               def apply(date, options = {}); #{compile_format(format)}; end
-            code
-          end
+          code
+        end
 
-          # compile_format("EEEE, d. MMMM y") # =>
-          #   '' + weekday(date, "EEEE", 4) + ', ' + day(date, "d", 1) + '. ' +
-          #        month(date, "MMMM", 4)   + ' ' + year(date, "y", 1) + ''
-          def compile_format(format)
-            "'" + format.gsub(self.class.const_get(:PATTERN)) do |token|
-              method = self.class.const_get(:METHODS)[token[0, 1]]
-              "' + #{method}(date, #{token.inspect}, #{token.length}).to_s + '"
-            end + "'"
-          end
+        # compile_format("EEEE, d. MMMM y") # =>
+        #   '' + weekday(date, "EEEE", 4) + ', ' + day(date, "d", 1) + '. ' +
+        #        month(date, "MMMM", 4)   + ' ' + year(date, "y", 1) + ''
+        def compile_format(format)
+          "'" + format.gsub(self.class.const_get(:PATTERN)) do |token|
+            method = self.class.const_get(:METHODS)[token[0, 1]]
+            "' + #{method}(date, #{token.inspect}, #{token.length}).to_s + '"
+          end + "'"
+        end
       end
     end
   end

@@ -1,5 +1,7 @@
-$:.unshift(File.dirname(__FILE__) + '/lib')
+# frozen_string_literal: true
 
-require 'rubygems'
-require 'thor'
-require 'cldr/thor'
+$:.unshift(File.dirname(__FILE__) + "/lib")
+
+require "rubygems"
+require "thor"
+require "cldr/thor"

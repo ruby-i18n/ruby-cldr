@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # module Cldr
 #   module Export
 #     module Code

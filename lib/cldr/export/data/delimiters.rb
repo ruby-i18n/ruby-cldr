@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Cldr
   module Export
     module Data
@@ -5,11 +7,11 @@ module Cldr
         def initialize(locale)
           super
           update(
-            :delimiters => {
-              :quotes => {
-                :default   => quotes('quotation'),
-                :alternate => quotes('alternateQuotation')
-              }
+            delimiters: {
+              quotes: {
+                default: quotes("quotation"),
+                alternate: quotes("alternateQuotation"),
+              },
             }
           )
         end

@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 class Hash
   def symbolize_keys
-    inject({}) { |result, (key, value)|
+    each_with_object({}) do |(key, value), result|
       key = key.to_sym if key.respond_to?(:to_sym)
       result[key] = value
-      result
-    }
+    end
   end
 end
- 

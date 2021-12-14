@@ -1,6 +1,7 @@
 # encoding: utf-8
+# frozen_string_literal: true
 
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"))
 
 class TestBase < Test::Unit::TestCase
   test "#paths finds all the language-dependent data files" do
@@ -12,8 +13,8 @@ class TestBase < Test::Unit::TestCase
       "main/af.xml",
       "rbnf/af.xml",
       "subdivisions/af.xml",
-    ].map {|f| File.join(Cldr::Export::Data.dir, f)}
-    assert_equal expected, Cldr::Export::Data::Base.new('af').send(:paths)
+    ].map { |f| File.join(Cldr::Export::Data.dir, f) }
+    assert_equal expected, Cldr::Export::Data::Base.new("af").send(:paths)
   end
 
   test "#paths finds all the supplemental data files" do
@@ -43,11 +44,11 @@ class TestBase < Test::Unit::TestCase
       "validity/subdivision.xml",
       "validity/unit.xml",
       "validity/variant.xml",
-    ].map {|f| File.join(Cldr::Export::Data.dir, f)}
+    ].map { |f| File.join(Cldr::Export::Data.dir, f) }
 
     supplemental_data_paths = Cldr::Export::Data::Base.new(nil).send(:paths)
 
-    assert_equal expected_non_transform_files, supplemental_data_paths.reject {|p| p.include?("transforms/")}
-    assert_not_empty supplemental_data_paths.select {|p| p.include?("transforms/")}
+    assert_equal expected_non_transform_files, supplemental_data_paths.reject { |p| p.include?("transforms/") }
+    assert_not_empty supplemental_data_paths.select { |p| p.include?("transforms/") }
   end
 end

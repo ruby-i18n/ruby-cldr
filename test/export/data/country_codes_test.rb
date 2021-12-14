@@ -1,9 +1,10 @@
 # encoding: utf-8
+# frozen_string_literal: true
 
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"))
 
 class TestCldrDataCountryCodes < Test::Unit::TestCase
-  test 'country codes' do
+  test "country codes" do
     expected =
       {
         AA: {
@@ -12,7 +13,7 @@ class TestCldrDataCountryCodes < Test::Unit::TestCase
         },
         AC: {
           "alpha3" => "ASC",
-        }
+        },
       }
     country_codes = Cldr::Export::Data::CountryCodes.new
     assert_equal(country_codes[:country_codes][:AA], expected[:AA])

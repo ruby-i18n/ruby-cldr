@@ -1,31 +1,32 @@
 # encoding: utf-8
+# frozen_string_literal: true
 
-require File.expand_path(File.join(File.dirname(__FILE__) + '/../../test_helper'))
+require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"))
 
 class TestCldrDataNumbers < Test::Unit::TestCase
   test "number symbols :de" do
     expected = {
-      :decimal => ",",
-      :exponential => "E",
-      :group => ".",
-      :infinity => "∞",
-      :list => ";",
-      :minus_sign => "-",
-      :nan => "NaN",
-      :per_mille => "‰",
-      :percent_sign => "%",
-      :plus_sign => "+",
-      :superscripting_exponent => "·",
-      :time_separator => ":",
+      decimal: ",",
+      exponential: "E",
+      group: ".",
+      infinity: "∞",
+      list: ";",
+      minus_sign: "-",
+      nan: "NaN",
+      per_mille: "‰",
+      percent_sign: "%",
+      plus_sign: "+",
+      superscripting_exponent: "·",
+      time_separator: ":",
     }
-    assert_equal expected, Cldr::Export::Data::Numbers.new('de')[:numbers][:symbols]
+    assert_equal expected, Cldr::Export::Data::Numbers.new("de")[:numbers][:symbols]
   end
 
   test "number formats :de" do
     expected = {
-      :currency => {
-        :number_system => "latn",
-        :patterns => {
+      currency: {
+        number_system: "latn",
+        patterns: {
           :default => "#,##0.00 ¤",
           "short" => {
             "1000" => { "one" => "0", "other" => "0" },
@@ -39,11 +40,14 @@ class TestCldrDataNumbers < Test::Unit::TestCase
             "100000000000" => { "one" => "000 Mrd'.' ¤", "other" => "000 Mrd'.' ¤" },
             "1000000000000" => { "one" => "0 Bio'.' ¤", "other" => "0 Bio'.' ¤" },
             "10000000000000" => { "one" => "00 Bio'.' ¤", "other" => "00 Bio'.' ¤" },
-            "100000000000000" => { "one" => "000 Bio'.' ¤", "other" => "000 Bio'.' ¤" } } },
-        :unit => { "one" => "{0} {1}", "other" => "{0} {1}" } },
-      :decimal => {
-        :number_system => "latn",
-        :patterns => {
+            "100000000000000" => { "one" => "000 Bio'.' ¤", "other" => "000 Bio'.' ¤" },
+          },
+        },
+        unit: { "one" => "{0} {1}", "other" => "{0} {1}" },
+      },
+      decimal: {
+        number_system: "latn",
+        patterns: {
           :default => "#,##0.###",
           "long" => {
             "1000" => { "one" => "0 Tausend", "other" => "0 Tausend" },
@@ -57,7 +61,8 @@ class TestCldrDataNumbers < Test::Unit::TestCase
             "100000000000" => { "one" => "000 Milliarden", "other" => "000 Milliarden" },
             "1000000000000" => { "one" => "0 Billion", "other" => "0 Billionen" },
             "10000000000000" => { "one" => "00 Billionen", "other" => "00 Billionen" },
-            "100000000000000" => { "one" => "000 Billionen", "other" => "000 Billionen" } },
+            "100000000000000" => { "one" => "000 Billionen", "other" => "000 Billionen" },
+          },
           "short" => {
             "1000" => { "one" => "0", "other" => "0" },
             "10000" => { "one" => "0", "other" => "0" },
@@ -70,15 +75,19 @@ class TestCldrDataNumbers < Test::Unit::TestCase
             "100000000000" => { "one" => "000 Mrd'.'", "other" => "000 Mrd'.'" },
             "1000000000000" => { "one" => "0 Bio'.'", "other" => "0 Bio'.'" },
             "10000000000000" => { "one" => "00 Bio'.'", "other" => "00 Bio'.'" },
-            "100000000000000" => { "one" => "000 Bio'.'", "other" => "000 Bio'.'" } } } },
-      :percent => { :number_system => "latn", :patterns => { :default => "#,##0 %" } },
-      :scientific => { :number_system => "latn", :patterns => { :default => "#E0" } } }
-    assert_equal expected, Cldr::Export::Data::Numbers.new('de')[:numbers][:formats]
+            "100000000000000" => { "one" => "000 Bio'.'", "other" => "000 Bio'.'" },
+          },
+        },
+      },
+      percent: { number_system: "latn", patterns: { default: "#,##0 %" } },
+      scientific: { number_system: "latn", patterns: { default: "#E0" } },
+    }
+    assert_equal expected, Cldr::Export::Data::Numbers.new("de")[:numbers][:formats]
   end
 
   test "redirects in root locale" do
     assert_equal :"numbers.formats.decimal.patterns.short",
-      Cldr::Export::Data::Numbers.new('root')[:numbers][:formats][:decimal][:patterns]['long']
+      Cldr::Export::Data::Numbers.new("root")[:numbers][:formats][:decimal][:patterns]["long"]
   end
 
   # Cldr::Export::Data.locales.each do |locale|
