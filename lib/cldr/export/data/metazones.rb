@@ -8,6 +8,8 @@ module Cldr
     module Data
       class Metazones < Hash
         def initialize
+          super
+
           path = "#{Cldr::Export::Data.dir}/supplemental/metaZones.xml"
           doc = File.open(path) { |file| Nokogiri::XML(file) }
           self[:timezones] = doc.xpath("//metaZones/metazoneInfo/timezone").each_with_object({}) do |node, result|

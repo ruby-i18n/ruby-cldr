@@ -7,6 +7,8 @@ module Cldr
     module Data
       class CurrencyDigitsAndRounding < Hash
         def initialize
+          super
+
           path = "#{Cldr::Export::Data.dir}/supplemental/supplementalData.xml"
           doc = File.open(path) { |file| Nokogiri::XML(file) }
 

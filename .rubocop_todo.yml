@@ -19,20 +19,6 @@ Lint/DuplicateMethods:
   Exclude:
     - 'lib/cldr/export/data/plurals/grammar.rb'
 
-# Offense count: 11
-Lint/MissingSuper:
-  Exclude:
-    - 'lib/cldr/export/data/base.rb'
-    - 'lib/cldr/export/data/currency_digits_and_rounding.rb'
-    - 'lib/cldr/export/data/metazones.rb'
-    - 'lib/cldr/export/data/parent_locales.rb'
-    - 'lib/cldr/export/data/plural_rules.rb'
-    - 'lib/cldr/export/data/plurals.rb'
-    - 'lib/cldr/export/data/plurals/rules.rb'
-    - 'lib/cldr/export/data/windows_zones.rb'
-    - 'lib/cldr/format/decimal/fraction.rb'
-    - 'lib/cldr/format/decimal/integer.rb'
-
 # Offense count: 2
 # Configuration parameters: CountBlocks.
 Metrics/BlockNesting:

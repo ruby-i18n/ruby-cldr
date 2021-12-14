@@ -7,6 +7,8 @@ module Cldr
         attr_reader :decimal, :precision
 
         def initialize(format, symbols = {})
+          super()
+
           @format  = format ? format.split(".").pop : ""
           @decimal = symbols[:decimal] || "."
           @precision = @format.length

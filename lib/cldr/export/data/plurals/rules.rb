@@ -95,6 +95,8 @@ module Cldr
           attr_reader :locales
 
           def initialize(locales)
+            super()
+
             @locales = locales.map { |locale| Cldr::Export.to_i18n(locale) }
           end
 
@@ -116,6 +118,8 @@ module Cldr
 
         class Proposition < Array
           def initialize(type = nil)
+            super()
+
             @type = type
           end
 

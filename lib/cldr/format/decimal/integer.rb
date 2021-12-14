@@ -7,6 +7,8 @@ module Cldr
         attr_reader :format, :separator, :groups
 
         def initialize(format, symbols = {})
+          super()
+
           format     = format.split(".")[0]
           @format    = prepare_format(format, symbols)
           @groups    = parse_groups(format)
