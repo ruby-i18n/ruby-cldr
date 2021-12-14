@@ -27,7 +27,7 @@ module Cldr
         end
 
         def parse_groups(format)
-          return [] unless index = format.rindex(",")
+          return [] unless (index = format.rindex(","))
           rest   = format[0, index]
           widths = [format.length - index - 1]
           widths << rest.length - rest.rindex(",") - 1 if rest.rindex(",")

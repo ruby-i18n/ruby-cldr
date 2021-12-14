@@ -11,7 +11,7 @@ module Cldr
 
         def lists
           select("listPatterns/listPattern").each_with_object({}) do |list_pattern, list_pattern_ret|
-            pattern_type = if attribute = list_pattern.attribute("type")
+            pattern_type = if (attribute = list_pattern.attribute("type"))
               attribute.value.to_sym
             else
               :default

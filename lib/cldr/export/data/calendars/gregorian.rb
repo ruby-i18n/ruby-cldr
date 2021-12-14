@@ -51,7 +51,7 @@ module Cldr
                 key = node.attribute("type").value
                 key = key =~ /^\d*$/ ? key.to_i : key.to_sym
 
-                if options[:group] && found_group = node.attribute(options[:group])
+                if options[:group] && (found_group = node.attribute(options[:group]))
                   result[found_group.value] ||= {}
                   result[found_group.value][key] = node.content
                 else
@@ -114,7 +114,7 @@ module Cldr
               key = node.attribute("type").value.to_sym
               result[key] = pattern(node, type)
             end
-            if default = default_format(type)
+            if (default = default_format(type))
               formats = default.merge(formats)
             end
             formats
@@ -128,7 +128,7 @@ module Cldr
           end
 
           def default_format(type)
-            if node = select(calendar, "#{type}Formats/default").first
+            if (node = select(calendar, "#{type}Formats/default").first)
               key = node.attribute("choice").value.to_sym
               { default: :"calendars.gregorian.formats.#{type.downcase}.#{key}" }
             end

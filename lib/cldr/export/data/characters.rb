@@ -22,9 +22,7 @@ module Cldr
         protected
 
         def type_from(node)
-          if attrib = node.attribute("type")
-            attrib.value
-          end
+          node.attribute("type")&.value
         end
       end
     end

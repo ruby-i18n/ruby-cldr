@@ -22,7 +22,7 @@ module Cldr
 
         def alias_for(alias_tag)
           doc.xpath("//alias/#{alias_tag}").each_with_object({}) do |alias_data, ret|
-            next unless replacement_attr = alias_data.attribute("replacement")
+            next unless (replacement_attr = alias_data.attribute("replacement"))
             replacement = replacement_attr.value
 
             if replacement.include?(" ")

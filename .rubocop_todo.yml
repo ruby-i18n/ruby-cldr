@@ -14,20 +14,6 @@ Gemspec/RequireMFA:
   Exclude:
     - 'ruby-cldr.gemspec'
 
-# Offense count: 12
-# Configuration parameters: AllowSafeAssignment.
-Lint/AssignmentInCondition:
-  Exclude:
-    - 'lib/cldr/export/data/aliases.rb'
-    - 'lib/cldr/export/data/calendars/gregorian.rb'
-    - 'lib/cldr/export/data/characters.rb'
-    - 'lib/cldr/export/data/layout.rb'
-    - 'lib/cldr/export/data/lists.rb'
-    - 'lib/cldr/export/data/rbnf.rb'
-    - 'lib/cldr/export/data/region_currencies.rb'
-    - 'lib/cldr/export/data/transforms.rb'
-    - 'lib/cldr/format/decimal/integer.rb'
-
 # Offense count: 1
 Lint/DuplicateMethods:
   Exclude:

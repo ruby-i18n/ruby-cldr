@@ -28,9 +28,7 @@ module Cldr
         end
 
         def get_variant(node)
-          if attrib = node.attribute("variant")
-            attrib.value
-          end
+          node.attribute("variant")&.value
         end
 
         def rules(transform_node)
