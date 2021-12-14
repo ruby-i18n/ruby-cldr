@@ -40,7 +40,6 @@ module Cldr
         shared_components.each do |component|
           case component
           when "Transforms"
-            yaml_exporter = Cldr::Export::Yaml.new
             Dir.glob("#{Cldr::Export::Data.dir}/transforms/**.xml").each do |transform_file|
               data = Data::Transforms.new(transform_file)
               source = data[:transforms].first[:source]
@@ -48,7 +47,7 @@ module Cldr
               variant = data[:transforms].first[:variant]
               file_name = [source, target, variant].compact.join("-")
               output_path = File.join(base_path, "transforms", "#{file_name}.yml")
-              write(output_path, yaml_exporter.yaml(data))
+              write(output_path, data.to_yaml)
               yield component, nil, output_path if block_given?
             end
           else
