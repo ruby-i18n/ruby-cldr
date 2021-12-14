@@ -1,9 +1,10 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-require File.dirname(__FILE__) + "/test_helper.rb"
 require "yaml"
 require "fileutils"
+
+require File.expand_path(File.join(File.dirname(__FILE__), "test_helper"))
 
 class TestExport < Test::Unit::TestCase
   def setup

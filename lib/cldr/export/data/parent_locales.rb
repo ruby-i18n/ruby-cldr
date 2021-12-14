@@ -19,6 +19,10 @@ module Cldr
             end
           end
         end
+
+        def to_h
+          deep_stringify
+        end
       end
     end
   end
