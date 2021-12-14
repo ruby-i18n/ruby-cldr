@@ -86,14 +86,6 @@ Style/EmptyElse:
   Exclude:
     - 'lib/cldr/format/date.rb'
 
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: short, verbose
-Style/PreferredHashMethods:
-  Exclude:
-    - 'lib/cldr/export/data/plurals/grammar.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: AllowMethodsWithArguments, IgnoredMethods.
