@@ -5,7 +5,7 @@ gem 'i18n'
 gem 'nokogiri'
 
 group :development do
-  gem 'jeweler'
+  gem 'juwelier'
   gem 'pry-nav'
   gem 'pry'
   gem "rubocop-lsp", require: false

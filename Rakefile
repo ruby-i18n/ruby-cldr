@@ -2,8 +2,8 @@ require 'rubygems'
 require 'rake'
 
 begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
+  require 'juwelier'
+  Juwelier::Tasks.new do |gem|
     gem.name = "ruby-cldr"
     gem.summary = %Q{Ruby library for exporting and using data from CLDR }
     gem.description = %Q{Ruby library for exporting and using data from CLDR, see http://cldr.unicode.org}
@@ -13,7 +13,7 @@ begin
     gem.license = "MIT"
     gem.files =  FileList["*.thor", "[A-Z]*", "{lib,test}/**/*"]
   end
-  Jeweler::GemcutterTasks.new
+  Juwelier::GemcutterTasks.new
 rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+  puts "Juwelier (or a dependency) not available. Install it with: gem install juwelier"
 end
