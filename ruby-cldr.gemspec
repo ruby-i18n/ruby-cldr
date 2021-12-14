@@ -93,7 +93,7 @@ Gem::Specification.new do |s|
     "lib/core_ext/hash/deep_merge.rb",
     "lib/core_ext/hash/deep_prune.rb",
     "lib/core_ext/hash/deep_sort.rb",
-    "lib/core_ext/hash/deep_stringify_keys.rb",
+    "lib/core_ext/hash/deep_stringify.rb",
     "lib/core_ext/hash/symbolize_keys.rb",
     "lib/core_ext/string/camelize.rb",
     "lib/core_ext/string/underscore.rb",
