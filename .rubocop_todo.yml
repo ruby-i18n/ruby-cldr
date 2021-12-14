@@ -57,13 +57,6 @@ Metrics/BlockNesting:
 Metrics/ParameterLists:
   MaxOptionalParameters: 5
 
-# Offense count: 2
-# Configuration parameters: EnforcedStyle, IgnoredPatterns.
-# SupportedStyles: snake_case, camelCase
-Naming/MethodName:
-  Exclude:
-    - 'lib/cldr/export/data/units.rb'
-
 # Offense count: 7
 Security/Eval:
   Exclude:
