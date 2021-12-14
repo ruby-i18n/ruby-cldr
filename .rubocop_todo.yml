@@ -62,16 +62,6 @@ Security/Eval:
   Exclude:
     - 'test/export/data/plurals_test.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, conditionals
-Style/AndOr:
-  Exclude:
-    - 'lib/cldr/export/data/languages.rb'
-    - 'lib/cldr/export/data/subdivisions.rb'
-    - 'lib/cldr/export/data/territories.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
