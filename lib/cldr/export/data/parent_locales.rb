@@ -6,7 +6,7 @@ module Cldr
   module Export
     module Data
       class ParentLocales < Hash
-        def initialize(_ = nil)
+        def initialize
           path = File.join(Cldr::Export::Data.dir, "supplemental", "supplementalData.xml")
           doc = File.open(path) { |file| Nokogiri::XML(file) }
 
@@ -18,6 +18,10 @@ module Cldr
               self[locale] = parent
             end
           end
+        end
+
+        def to_h
+          deep_stringify
         end
       end
     end
