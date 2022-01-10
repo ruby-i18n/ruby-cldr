@@ -21,7 +21,7 @@ module Cldr
           end
 
           def locales
-            @locales ||= map { |rule| rule.locales }.flatten.map(&:to_s).sort.map(&:to_sym)
+            @locales ||= map(&:locales).flatten.map(&:to_s).sort.map(&:to_sym)
           end
 
           def rule(locale)
@@ -95,6 +95,8 @@ module Cldr
           attr_reader :locales
 
           def initialize(locales)
+            super()
+
             @locales = locales.map { |locale| Cldr::Export.to_i18n(locale) }
           end
 
@@ -116,11 +118,13 @@ module Cldr
 
         class Proposition < Array
           def initialize(type = nil)
+            super()
+
             @type = type
           end
 
           def to_ruby
-            @ruby ||= "(" << map { |expr| expr.to_ruby }.join(" #{@type} ") << ")"
+            @ruby ||= "(" << map(&:to_ruby).join(" #{@type} ") << ")"
           end
         end
 

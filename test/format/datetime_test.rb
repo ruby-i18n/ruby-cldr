@@ -13,7 +13,7 @@ class TestCldrDatetimeFormat < Test::Unit::TestCase
   test "datetime pattern :de" do
     date   = Cldr::Format::Date.new("dd.MM.yyyy", @calendar)
     time   = Cldr::Format::Time.new("HH:mm", @calendar)
-    result = Cldr::Format::Datetime.new("{{date}} {{time}}", date, time).apply(DateTime.new(2010, 1, 10, 13, 12, 11))
+    result = Cldr::Format::Datetime.new("{{date}} {{time}}", date, time).apply(Time.new(2010, 1, 10, 13, 12, 11))
     assert_equal "10.01.2010 13:12", result
   end
 end

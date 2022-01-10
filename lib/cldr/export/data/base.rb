@@ -13,6 +13,7 @@ module Cldr
         @@doc_cache = {}
 
         def initialize(locale)
+          super()
           @locale = locale
         end
 

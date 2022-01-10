@@ -193,8 +193,8 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   end
 
   test "merged calendars for de-AT contains all date format and stand-alone name types" do
-    assert_equal ["abbreviated", "narrow", "wide"], gregorian(merged: true)[:months][:format].keys.map { |key| key.to_s }.sort
-    assert_equal ["abbreviated", "narrow", "wide"], gregorian(merged: true)[:months][:"stand-alone"].keys.map { |key| key.to_s }.sort
+    assert_equal ["abbreviated", "narrow", "wide"], gregorian(merged: true)[:months][:format].keys.map(&:to_s).sort
+    assert_equal ["abbreviated", "narrow", "wide"], gregorian(merged: true)[:months][:"stand-alone"].keys.map(&:to_s).sort
   end
 
   test "calendars for :root only contains `abbr` since we do not yet handle alias nodes" do

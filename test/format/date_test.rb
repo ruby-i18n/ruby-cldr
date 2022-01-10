@@ -199,12 +199,13 @@ class TestCldrDateFormat < Test::Unit::TestCase
     assert_equal "Oktober", format(Date.new(2010, 10, 1), "MMMM")
   end
 
-  # requires cldr's "multiple inheritance"
-  #
-  # test "pattern MMMMM" do
-  #   assert_equal 'J', format(Date.new(2010,  1, 1), 'MMMMM')
-  #   assert_equal 'O', format(Date.new(2010, 10, 1), 'MMMMM')
-  # end
+  test "pattern MMMMM" do
+    # requires cldr's "multiple inheritance"
+    assert_raises NotImplementedError do
+      assert_equal "J", format(Date.new(2010, 1, 1), "MMMMM")
+      assert_equal "O", format(Date.new(2010, 10, 1), "MMMMM")
+    end
+  end
 
   test "pattern L" do
     assert_equal   "1", format(Date.new(2010, 1, 1), "L")
@@ -216,25 +217,24 @@ class TestCldrDateFormat < Test::Unit::TestCase
     assert_equal "10", format(Date.new(2010, 10, 1), "LL")
   end
 
-  # requires cldr's "multiple inheritance"
-  #
-  # test "pattern LLL" do
-  #   assert_equal 'Jan', format(Date.new(2010,  1, 1), 'LLL')
-  #   assert_equal 'Okt', format(Date.new(2010, 10, 1), 'LLL')
-  # end
-  #
-  # test "pattern LLLL" do
-  #   assert_equal 'Januar',  format(Date.new(2010,  1, 1), 'LLLL')
-  #   assert_equal 'Oktober', format(Date.new(2010, 10, 1), 'LLLL')
-  # end
-  #
-  # test "pattern LLLLL" do
-  #   assert_equal 'J', format(Date.new(2010,  1, 1), 'LLLLL')
-  #   assert_equal 'O', format(Date.new(2010, 10, 1), 'LLLLL')
-  # end
+  test "pattern LLL" do
+    # requires cldr's "multiple inheritance"
+    assert_raises NotImplementedError do
+      assert_equal "Jan", format(Date.new(2010, 1, 1), "LLL")
+      assert_equal "Okt", format(Date.new(2010, 10, 1), "LLL")
+    end
+  end
+
+  test "pattern LLLL" do
+    # requires cldr's "multiple inheritance"
+    assert_raises NotImplementedError do
+      assert_equal "Januar",  format(Date.new(2010, 1, 1), "LLLL")
+      assert_equal "Oktober", format(Date.new(2010, 10, 1), "LLLL")
+    end
+  end
 
   test "pattern LLLLL" do
-    assert_equal "J", format(Date.new(2010,  1, 1), "LLLLL")
+    assert_equal "J", format(Date.new(2010, 1, 1), "LLLLL")
     assert_equal "O", format(Date.new(2010, 10, 1), "LLLLL")
   end
 

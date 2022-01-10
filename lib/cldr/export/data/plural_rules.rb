@@ -9,6 +9,8 @@ module Cldr
         attr_reader :locale
 
         def initialize(locale)
+          super()
+
           find_rules(locale).each_pair do |rule_type, rule_data|
             self[rule_type.to_sym] = rule_data.each_with_object({}) do |rule, ret|
               ret[rule.attributes["count"].text] = rule.text

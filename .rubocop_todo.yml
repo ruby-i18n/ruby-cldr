@@ -14,50 +14,10 @@ Gemspec/RequireMFA:
   Exclude:
     - 'ruby-cldr.gemspec'
 
-# Offense count: 12
-# Configuration parameters: AllowSafeAssignment.
-Lint/AssignmentInCondition:
-  Exclude:
-    - 'lib/cldr/export/data/aliases.rb'
-    - 'lib/cldr/export/data/calendars/gregorian.rb'
-    - 'lib/cldr/export/data/characters.rb'
-    - 'lib/cldr/export/data/layout.rb'
-    - 'lib/cldr/export/data/lists.rb'
-    - 'lib/cldr/export/data/rbnf.rb'
-    - 'lib/cldr/export/data/region_currencies.rb'
-    - 'lib/cldr/export/data/transforms.rb'
-    - 'lib/cldr/format/decimal/integer.rb'
-
-# Offense count: 2
+# Offense count: 1
 Lint/DuplicateMethods:
   Exclude:
     - 'lib/cldr/export/data/plurals/grammar.rb'
-    - 'lib/cldr/format/decimal/fraction.rb'
-
-# Offense count: 11
-Lint/MissingSuper:
-  Exclude:
-    - 'lib/cldr/export/data/base.rb'
-    - 'lib/cldr/export/data/currency_digits_and_rounding.rb'
-    - 'lib/cldr/export/data/metazones.rb'
-    - 'lib/cldr/export/data/parent_locales.rb'
-    - 'lib/cldr/export/data/plural_rules.rb'
-    - 'lib/cldr/export/data/plurals.rb'
-    - 'lib/cldr/export/data/plurals/rules.rb'
-    - 'lib/cldr/export/data/windows_zones.rb'
-    - 'lib/cldr/format/decimal/fraction.rb'
-    - 'lib/cldr/format/decimal/integer.rb'
-
-# Offense count: 3
-Lint/UnreachableCode:
-  Exclude:
-    - 'lib/cldr/format/date.rb'
-
-# Offense count: 2
-Lint/UselessAssignment:
-  Exclude:
-    - 'lib/cldr/export/data/currency_digits_and_rounding.rb'
-    - 'lib/cldr/format/decimal/base.rb'
 
 # Offense count: 2
 # Configuration parameters: CountBlocks.
@@ -69,46 +29,6 @@ Metrics/BlockNesting:
 Metrics/ParameterLists:
   MaxOptionalParameters: 5
 
-# Offense count: 2
-# Configuration parameters: EnforcedStyle, IgnoredPatterns.
-# SupportedStyles: snake_case, camelCase
-Naming/MethodName:
-  Exclude:
-    - 'lib/cldr/export/data/units.rb'
-
-# Offense count: 1
-# Configuration parameters: NamePrefix, ForbiddenPrefixes, AllowedMethods, MethodDefinitionMacros.
-# NamePrefix: is_, has_, have_
-# ForbiddenPrefixes: is_, has_, have_
-# AllowedMethods: is_a?
-# MethodDefinitionMacros: define_method, define_singleton_method
-Naming/PredicateName:
-  Exclude:
-    - 'lib/cldr/export.rb'
-
-# Offense count: 7
-Security/Eval:
-  Exclude:
-    - 'test/export/data/plurals_test.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, conditionals
-Style/AndOr:
-  Exclude:
-    - 'lib/cldr/export/data/languages.rb'
-    - 'lib/cldr/export/data/subdivisions.rb'
-    - 'lib/cldr/export/data/territories.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: nested, compact
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'test/test_helper.rb'
-
 # Offense count: 5
 Style/ClassVars:
   Exclude:
@@ -117,14 +37,13 @@ Style/ClassVars:
     - 'lib/cldr/export/data/base.rb'
     - 'lib/cldr/export/data/plurals.rb'
 
-# Offense count: 5
+# Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: AllowCoercion.
 Style/DateTime:
   Exclude:
     - 'lib/cldr/export/data/metazones.rb'
     - 'test/export/data/metazones_test.rb'
-    - 'test/format/datetime_test.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -133,35 +52,3 @@ Style/DateTime:
 Style/EmptyElse:
   Exclude:
     - 'lib/cldr/format/date.rb'
-
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: short, verbose
-Style/PreferredHashMethods:
-  Exclude:
-    - 'lib/cldr/export/data/plurals/grammar.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: RequireEnglish.
-# SupportedStyles: use_perl_names, use_english_names
-Style/SpecialGlobalVars:
-  EnforcedStyle: use_perl_names
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: AllowMethodsWithArguments, IgnoredMethods.
-# IgnoredMethods: respond_to, define_method
-Style/SymbolProc:
-  Exclude:
-    - 'lib/cldr/export/data/calendars/gregorian.rb'
-    - 'lib/cldr/export/data/plurals/rules.rb'
-    - 'test/export/data/calendars_test.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/ZeroLengthPredicate:
-  Exclude:
-    - 'lib/cldr/export/data/currencies.rb'
-    - 'lib/cldr/export/data/numbers.rb'

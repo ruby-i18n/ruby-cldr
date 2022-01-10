@@ -38,7 +38,7 @@ module Cldr
 
           def _nt_or_condition
             start_index = index
-            if node_cache[:or_condition].has_key?(index)
+            if node_cache[:or_condition].key?(index)
               cached = node_cache[:or_condition][index]
               @index = cached.interval.end if cached
               return cached
@@ -104,7 +104,7 @@ module Cldr
 
           def _nt_and_condition
             start_index = index
-            if node_cache[:and_condition].has_key?(index)
+            if node_cache[:and_condition].key?(index)
               cached = node_cache[:and_condition][index]
               @index = cached.interval.end if cached
               return cached
@@ -158,7 +158,7 @@ module Cldr
 
           def _nt_relation
             start_index = index
-            if node_cache[:relation].has_key?(index)
+            if node_cache[:relation].key?(index)
               cached = node_cache[:relation][index]
               @index = cached.interval.end if cached
               return cached
@@ -211,7 +211,7 @@ module Cldr
 
           def _nt_is_relation
             start_index = index
-            if node_cache[:is_relation].has_key?(index)
+            if node_cache[:is_relation].key?(index)
               cached = node_cache[:is_relation][index]
               @index = cached.interval.end if cached
               return cached
@@ -275,7 +275,7 @@ module Cldr
 
           def _nt_in_relation
             start_index = index
-            if node_cache[:in_relation].has_key?(index)
+            if node_cache[:in_relation].key?(index)
               cached = node_cache[:in_relation][index]
               @index = cached.interval.end if cached
               return cached
@@ -339,7 +339,7 @@ module Cldr
 
           def _nt_within_relation
             start_index = index
-            if node_cache[:within_relation].has_key?(index)
+            if node_cache[:within_relation].key?(index)
               cached = node_cache[:within_relation][index]
               @index = cached.interval.end if cached
               return cached
@@ -402,7 +402,7 @@ module Cldr
 
           def _nt_expr
             start_index = index
-            if node_cache[:expr].has_key?(index)
+            if node_cache[:expr].key?(index)
               cached = node_cache[:expr][index]
               @index = cached.interval.end if cached
               return cached
@@ -472,7 +472,7 @@ module Cldr
 
           def _nt_range
             start_index = index
-            if node_cache[:range].has_key?(index)
+            if node_cache[:range].key?(index)
               cached = node_cache[:range][index]
               @index = cached.interval.end if cached
               return cached
@@ -511,7 +511,7 @@ module Cldr
 
           def _nt_value
             start_index = index
-            if node_cache[:value].has_key?(index)
+            if node_cache[:value].key?(index)
               cached = node_cache[:value][index]
               @index = cached.interval.end if cached
               return cached

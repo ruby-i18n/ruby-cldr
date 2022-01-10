@@ -8,13 +8,13 @@ module Cldr
           super
           update(
             units: {
-              unitLength: unitLength,
-              durationUnit: durationUnit,
+              unitLength: unit_length,
+              durationUnit: duration_unit,
             }
           )
         end
 
-        def unitLength
+        def unit_length
           select("units/unitLength").each_with_object({}) do |node, result|
             result[node.attribute("type").value.to_sym] = units(node)
           end
@@ -33,7 +33,7 @@ module Cldr
           end
         end
 
-        def durationUnit
+        def duration_unit
           select("units/durationUnit").each_with_object({}) do |node, result|
             result[node.attribute("type").value.to_sym] = node.xpath("durationUnitPattern").first.content
           end

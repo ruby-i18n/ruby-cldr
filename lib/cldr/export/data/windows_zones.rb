@@ -8,6 +8,8 @@ module Cldr
     module Data
       class WindowsZones < Hash
         def initialize
+          super
+
           path = "#{Cldr::Export::Data.dir}/supplemental/windowsZones.xml"
           doc = File.open(path) { |file| Nokogiri::XML(file) }
           doc.xpath("//windowsZones/mapTimezones/mapZone").each_with_object(self) do |node, result|

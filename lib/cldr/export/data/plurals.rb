@@ -26,6 +26,8 @@ module Cldr
         attr_reader :locale
 
         def initialize(locale)
+          super()
+
           @locale = locale
           merge!(rule ? to_hash : {})
         end

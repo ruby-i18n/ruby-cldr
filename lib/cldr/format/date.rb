@@ -84,8 +84,8 @@ module Cldr
         when 4
           calendar[:months][:format][:wide][date.month]
         when 5
-          raise 'not yet implemented (requires cldr\'s "multiple inheritance")'
-          calendar[:months][:format][:narrow][date.month]
+          raise NotImplementedError, 'not yet implemented (requires cldr\'s "multiple inheritance")'
+          # calendar[:months][:format][:narrow][date.month]
         else
           # raise unknown date format
         end
@@ -98,11 +98,11 @@ module Cldr
         when 2
           date.month.to_s.rjust(length, "0")
         when 3
-          raise 'not yet implemented (requires cldr\'s "multiple inheritance")'
-          calendar[:months][:"stand-alone"][:abbreviated][date.month]
+          raise NotImplementedError, 'not yet implemented (requires cldr\'s "multiple inheritance")'
+          # calendar[:months][:"stand-alone"][:abbreviated][date.month]
         when 4
-          raise 'not yet implemented (requires cldr\'s "multiple inheritance")'
-          calendar[:months][:"stand-alone"][:wide][date.month]
+          raise NotImplementedError, 'not yet implemented (requires cldr\'s "multiple inheritance")'
+          # calendar[:months][:"stand-alone"][:wide][date.month]
         when 5
           calendar[:months][:"stand-alone"][:narrow][date.month]
         else
