@@ -1,20 +1,17 @@
-# Ruby library for exporting and using data from CLDR
+# Ruby library for exporting data from CLDR
 
 [![Tests](https://github.com/ruby-i18n/ruby-cldr/actions/workflows/test.yml/badge.svg)](https://github.com/ruby-i18n/ruby-cldr/actions/workflows/test.yml)
 
-CLDR (["Common Locale Data Repository"](https://cldr.unicode.org/)) contains tons of high-quality locale data such as formatting rules for dates, times, numbers, currencies as well as language, country, calendar-specific names etc.
+The Unicode Consortium's [Common Locale Data Repository (CLDR)](https://cldr.unicode.org/) contains tons of high-quality locale data such as formatting rules for dates, times, numbers, currencies as well as language, country, calendar-specific names etc.
 
-For localizing applications in Ruby we'll obviously be able to use this incredibly comprehensive and well-maintained resource.
+For localizing applications in Ruby we obviously want to use this incredibly comprehensive and well-maintained resource.
 
-This library is a first stab at that goal. You can: 
-
-* export CLDR data to YAML and Ruby formatted files which are supposed to be usable in an [`I18n`](https://github.com/ruby-i18n/i18n) context but might be usable elsewhere, too. 
-* use CLDR compliant formatters for the following types: number, percentage, currency, date, time, datetime.
+`ruby-cldr` exports the [XML-serialized CLDR data](https://github.com/unicode-org/cldr/releases) as YAML and Ruby files, for consumption in an [`I18n`](https://github.com/ruby-i18n/i18n) context.
 
 ## Requirements
 
   * Ruby 2.6+
-  * Thor
+  * [Thor](http://whatisthor.com/)
 
 ## Installation
 
@@ -27,7 +24,7 @@ thor cldr:download
 
 ## Export
 
-The following command will export all known components from all locales to the target directory ./data/[locale]/[component].{yml,rb}:
+By default, the `thor cldr:export` command will export all known components from all locales to the target directory:
 
 ```
 thor cldr:export
@@ -41,62 +38,58 @@ thor cldr:export --locales de fr en --components numbers plurals --target=./tmp/
 
 This will export the components :numbers and :plurals from the locales `de`, `fr` and `en` to the same target directory.
 
-Also note that CLDR natively builds on a locale fallback concept where all locales eventually fall back to a `root` locale. E.g., the `de-AT` locale only contains a single format for numbers, which means that an application is supposed to use other formats from the `de` locale (fallback). Particular bits of information are only present in the `root` locale where all locales fall back to eventually.
+### Draft level
 
-By default this library just exports data that is present in CLDR for a given locale. If you do not want to use locale fallbacks in your application you'll need to "flatten" locale fallbacks and merge the data during export time. To do that you can use the `--merge` option:
+CLDR defines a hierarchy of 4 [draft levels](http://www.unicode.org/reports/tr35/#Attribute_draft), used to indicate how confident they are in the data: `approved`, `contributed`, `provisional`, and `unconfirmed`.
+
+By default, `ruby-cldr` only exports data from the `contributed` draft level or above (i.e., `contributed` or `approved`). This is the same threshold as is used by the [ICU](https://icu.unicode.org/) (International Components for Unicode).
+
+Set the `--draft=` parameter to any of the 4 draft levels to have `ruby-cldr` only export data with at least that draft level (e.g., setting `--draft=provisional` will export any data with the `provisional` or above draft level (i.e., `provisional`, `contributed` and `approved`)).
 
 ```
-thor cldr:export --merge
+thor cldr:export --draft=provisional
 ```
 
-## Formatters
+### Flattening
 
-The library includes a bunch of formatter classes that can be used to format Ruby objects like `Numeric`s, `Date`, `Time`, `DateTime` etc. using the format information provided by CLDR.
+CLDR defines several mechanisms for keys to inheriting values from other keys:
 
-E.g.:
+* [Locale Inheritance](http://www.unicode.org/reports/tr35/#Locale_Inheritance)
+* [Lateral Inheritance](http://www.unicode.org/reports/tr35/#Lateral_Inheritance)
+* [Aliases](http://www.unicode.org/reports/tr35/#Alias_Elements)
 
-```ruby
-options = { :decimal => ',', :group => ' ' }
-format  = Cldr::Format::Numeric.new('#,##0.##', options)
-format.apply(1234.567)
-# => "1 234,57"
+Some clients will be unable to support these mechanisms, and therefore `ruby-cldr` is able to export "flattened" versions of the data to simplify the lookups.
 
-calendar = Cldr::Export::Data::Calendars.new(:de)[:calendars][:gregorian]
-format   = Cldr::Export::Format::Date.new('EEEE, d. MMMM y', calendar)
-format.apply(Date.new(2010, 1, 11))
-# => "Montag, 11. Januar 2010"
+### Locale Inheritance
 
-calendar = Cldr::Export::Data::Calendars.new(:de)[:calendars][:gregorian]
-format   = Cldr::Format::Time.new('HH:mm:ss z', calendar)
-format.apply(Time.utc(2010, 1, 1, 13, 12, 11))
-# => "13:12:11 UTC"
+All locales have an inheritance chain that eventually ends in the special `root` locale.
+Data is not included in a given locale if it is present in a parent locale later in the inheritance chain.
+
+e.g., In CLDR v41, the `en-AT` inheritance chain is defined as `en-AT` -> `en-150` -> `en` -> `root`.
+Only data specific to `en-AT` will be present in the `en-AT` files. If there is data shared with other child locales of `en-AT`'s parent `en-150` (e.g., `en-DE`), then that data will be present in the `en-150` files instead of each of the children, with the understanding that the client will follow the inheritance chain to find a key if it is not found in the specific child locale.
+
+Set the `--no-locale-inheritance` flag if your client cannot handle locale inheritance, and `ruby-cldr` will resolve all of the keys for every locale as part of the export. Note: this will result in A LOT of duplicate data being output, resulting in increased memory usage when the data is loaded.
+
+```
+thor cldr:export --no-locale-inheritance
 ```
 
-In order to make these things easier to use the library provides a bunch of helpers defined in the module `Cldr::Format`. (This module is supposed to work as an extension to the Simple backend in the [`I18n` gem](https://github.com/ruby-i18n/i18n) but is included here to suggest a common API to formatters and make development easier for usecases outside of the `I18n` gem. If you want to include this module somewhere else you have to implement a few abstract methods to provide translations.)
+### Lateral Inheritance
 
-E.g.:
+Set the `--no-lateral-inheritance` flag if your client cannot handle lateral inheritance, and `ruby-cldr` will resolve the keys for all combinations of CLDR-defined lateral attributes as part of the export. Note: this will result in A LOT of duplicate data being output, resulting in increased memory usage when the data is loaded.
 
-```ruby
-format(:de, 123456.78)
-# => "123.456,78"
+```
+thor cldr:export --no-lateral-inheritance
+```
 
-format(:de, 123456.78, :as => :percent)
-# => "123.457 %"
+### Aliases
 
-format(:de, 123456.78, :currency => 'EUR') 
-# => "123.456,78 EUR"
+CLDR [Aliases](http://www.unicode.org/reports/tr35/#Alias_Elements) are exported as `Symbol`s, and `ruby-i18n/i18n`'s `I18n::Backend::Fallbacks` knows how to restart the lookup of a key when it encounters a alias/`Symbol`.
 
-format(:de, Date.new(2010, 1, 1), :format => :full)
-# => "Freitag, 1. Januar 2010"
+Set the `--no-aliases` flag if your client cannot handle aliases, and `ruby-cldr` will resolve the aliases as part of the export. Note: this will result in duplicate data being output, resulting in increased memory usage when the data is loaded.
 
-format(:de, Time.utc(2010, 1, 1, 13, 15, 17), :format => :long)
-# => "13:15:17 UTC"
-
-format(:de, DateTime.new(2010, 11, 12, 13, 14, 15), :format => :long)
-# => "12. November 2010 13:14:15 +00:00"
-
-format(:de, DateTime.new(2010, 11, 12, 13, 14, 15), :date_format => :long, :time_format => :short)
-# => "12. November 2010 13:14"
+```
+thor cldr:export --no-aliases
 ```
 
 ## Tests
@@ -107,8 +100,7 @@ bundle exec ruby test/all.rb
 
 ## Resources
 
-For additional information on CLDR plural rules see:
-
-  * https://unicode.org/reports/tr35/tr35-numbers.html#Language_Plural_Rules
-  * https://unicode-org.github.io/cldr-staging/charts/40/supplemental/language_plural_rules.html
-
+* [`unicode-org/cldr`](https://github.com/unicode-org/cldr), the official upstream source of CLDR data
+* [`unicode-org/cldr-json`](https://github.com/unicode-org/cldr-json/), a JSON serialization of the CLDR data
+* [CLDR Markup specification](http://www.unicode.org/reports/tr35/)
+* [Plural Rules table](https://unicode-org.github.io/cldr-staging/charts/41/supplemental/language_plural_rules.html)
