@@ -1,37 +1,9 @@
-## Welcome to GitHub Pages
+## ruby-cldr
 
-You can use the [editor on GitHub](https://github.com/ruby-i18n/ruby-cldr/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+`ruby-cldr` is a Ruby library for exporting data from Unicode Consortium's Common Locale Data Repository (CLDR).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+CLDR contains tons of high-quality locale data such as formatting rules for dates, times, numbers, currencies as well as language, country, calendar-specific names etc.
 
-### Markdown
+For localizing applications in Ruby we obviously want to use this incredibly comprehensive and well-maintained resource.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ruby-i18n/ruby-cldr/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+See the [README](https://github.com/ruby-i18n/ruby-cldr) for more information.
