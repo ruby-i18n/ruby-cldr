@@ -27,10 +27,6 @@ module Cldr
 
         protected
 
-        def plural?(node)
-          !!node.attribute("count")
-        end
-
         def draft?(node)
           draft = node.attribute("draft")
           draft && draft.value == "unconfirmed"
