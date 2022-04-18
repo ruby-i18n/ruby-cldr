@@ -10,6 +10,8 @@ module Cldr
           update(rbnf: { grouping: rule_groups })
         end
 
+        private
+
         def rule_groups
           grouping_nodes = select("rbnf/rulesetGrouping")
           return {} if grouping_nodes.empty?

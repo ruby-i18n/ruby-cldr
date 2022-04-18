@@ -16,6 +16,8 @@ module Cldr
           )
         end
 
+        private
+
         def quotes(type)
           start = select("delimiters/#{type}Start").first
           end_  = select("delimiters/#{type}End").first

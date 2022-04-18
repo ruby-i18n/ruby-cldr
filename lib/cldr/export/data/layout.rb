@@ -9,6 +9,8 @@ module Cldr
           update(layout: layout)
         end
 
+        private
+
         def layout
           result = { orientation: { character_order: nil } }
 

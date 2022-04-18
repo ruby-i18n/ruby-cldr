@@ -9,6 +9,8 @@ module Cldr
           update(territories: territories)
         end
 
+        private
+
         def territories
           @territories ||= select("localeDisplayNames/territories/territory").each_with_object({}) do |node, result|
             result[node.attribute("type").value.to_sym] = node.content unless draft?(node) || alt?(node)

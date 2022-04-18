@@ -14,6 +14,8 @@ module Cldr
           )
         end
 
+        private
+
         def unit_length
           select("units/unitLength").each_with_object({}) do |node, result|
             result[node.attribute("type").value.to_sym] = units(node)

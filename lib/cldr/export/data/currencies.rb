@@ -9,9 +9,11 @@ module Cldr
           update(currencies: currencies)
         end
 
+        private
+
         def currencies
           select("numbers/currencies/*").each_with_object({}) do |node, result|
-            currency = self.currency(node)
+            currency = currency(node)
             result[node.attribute("type").value.to_sym] = currency unless currency.empty?
           end
         end

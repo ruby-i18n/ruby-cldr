@@ -16,6 +16,8 @@ module Cldr
           )
         end
 
+        private
+
         def formats
           @formats ||= select("dates/timeZoneNames/*").each_with_object({}) do |format, result|
             if format.name.end_with?("Format")
