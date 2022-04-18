@@ -25,15 +25,26 @@ module Cldr
       Cldr::Download.download(options["source"], options["target"], options["version"])
     end
 
-    desc "export [--locales=de fr en] [--components=numbers plurals] [--target=#{Cldr::Export::DEFAULT_TARGET}] [--merge/--no-merge]",
+    desc "export [--locales=de fr en] [--components=Numbers Plurals] [--target=#{Cldr::Export::DEFAULT_TARGET}] [--merge/--no-merge]",
       "Export CLDR data by locales and components to target dir"
     option :locales, aliases: [:l], type: :array, banner: "de fr en"
-    option :components, aliases: [:c], type: :array, banner: "numbers plurals"
+    option :components, aliases: [:c], type: :array, banner: "Numbers Plurals", enum: Cldr::Export::Data.components
     option :target, aliases: [:t], type: :string, default: Cldr::Export::DEFAULT_TARGET, banner: Cldr::Export::DEFAULT_TARGET
     option :merge, aliases: [:m], type: :boolean, default: false
     def export
       $stdout.sync
-      Cldr::Export.export(options.dup.symbolize_keys) { putc(".") }
+
+      formatted_options = options.dup.symbolize_keys
+
+      # We do this validation, since thor doesn't
+      # https://github.com/rails/thor/issues/783
+      if formatted_options.key?(:components)
+        formatted_options[:components] = formatted_options[:components].map(&:to_sym) if formatted_options.key?(:components)
+        unknown_components = formatted_options[:components] - Cldr::Export::Data.components
+        raise ArgumentError, "Unknown components: #{unknown_components.join(", ")}" unless unknown_components.empty?
+      end
+
+      Cldr::Export.export(formatted_options) { putc(".") }
       puts
     end
 

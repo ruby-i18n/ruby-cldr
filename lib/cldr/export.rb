@@ -17,7 +17,12 @@ module Cldr
     autoload :Ruby, "cldr/export/ruby"
     autoload :Yaml, "cldr/export/yaml"
 
-    SHARED_COMPONENTS = ["Aliases", "CountryCodes", "CurrencyDigitsAndRounding", "LikelySubtags", "Metazones", "NumberingSystems", "ParentLocales", "RbnfRoot", "RegionCurrencies", "SegmentsRoot", "TerritoriesContainment", "Transforms", "Variables", "WindowsZones"]
+    SHARED_COMPONENTS = [
+      :Aliases, :CountryCodes, :CurrencyDigitsAndRounding, :LikelySubtags,
+      :Metazones, :NumberingSystems, :ParentLocales, :RbnfRoot,
+      :RegionCurrencies, :SegmentsRoot, :TerritoriesContainment,
+      :Transforms, :Variables, :WindowsZones,
+    ].freeze
 
     DEFAULT_TARGET = "./data"
 
@@ -32,7 +37,7 @@ module Cldr
 
       def export(options = {}, &block)
         locales        = options[:locales] || Data.locales
-        components     = (options[:components] || Data.components).map { |c| c.to_s.camelize }
+        components     = options[:components] || Data.components
         self.base_path = options[:target] if options[:target]
 
         shared_components, locale_components = components.partition do |component|
@@ -41,7 +46,7 @@ module Cldr
 
         shared_components.each do |component|
           case component
-          when "Transforms"
+          when :Transforms
             Dir.glob("#{Cldr::Export::Data.dir}/transforms/**.xml").each do |transform_file|
               data = Data::Transforms.new(transform_file)
               source = data[:transforms].first[:source]
@@ -69,14 +74,14 @@ module Cldr
         name = if format
           format
         else
-          component.to_s == "Plurals" ? "ruby" : "yaml"
+          component == :Plurals ? "ruby" : "yaml"
         end
         const_get(name.to_s.camelize).new
       end
 
       def data(component, locale, options = {})
-        case component.to_s
-        when "Plurals"
+        case component
+        when :Plurals
           plural_data(component, locale, options)
         else
           if shared_component?(component)
@@ -89,7 +94,7 @@ module Cldr
 
       def locale_based_data(component, locale, options = {})
         data = locales(locale, component, options).inject({}) do |result, locale|
-          data = Data.const_get(component.to_s.camelize).new(locale)
+          data = Data.const_get(component.to_s).new(locale)
           if data
             data.is_a?(Hash) ? data.deep_merge(result) : data
           else
@@ -107,11 +112,11 @@ module Cldr
       end
 
       def shared_data(component, options = {})
-        case component.to_s
-        when "Transforms"
+        case component
+        when :Transforms
         # do nothing, this has to be handled separately
         else
-          Data.const_get(component.to_s.camelize).new
+          Data.const_get(component.to_s).new
         end
       end
 
@@ -154,7 +159,7 @@ module Cldr
       end
 
       def should_merge_root?(locale, component, options)
-        return false if ["Rbnf", "Fields"].include?(component)
+        return false if [:Rbnf, :Fields].include?(component)
         return true if options[:merge]
         locale == :en
       end

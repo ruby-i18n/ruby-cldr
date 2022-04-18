@@ -25,33 +25,33 @@ class TestExport < Test::Unit::TestCase
   end
 
   test "passing the merge option generates and merge data for all fallback locales" do
-    data = Cldr::Export.data("numbers", "de-AT")
+    data = Cldr::Export.data(:Numbers, "de-AT")
     assert !data[:numbers][:formats][:nan]
 
-    data = Cldr::Export.data("numbers", "de-AT", merge: true)
+    data = Cldr::Export.data(:Numbers, "de-AT", merge: true)
     assert_equal "NaN", data[:numbers][:symbols][:nan]
   end
 
   test "passing the merge option generates and merges Plurals data from fallback locales" do
-    data = Cldr::Export.data("Plurals", "af-NA")
+    data = Cldr::Export.data(:Plurals, "af-NA")
     assert_equal "", data
 
-    data = Cldr::Export.data("Plurals", "af-NA", merge: true)
+    data = Cldr::Export.data(:Plurals, "af-NA", merge: true)
     assert_match(/{ :'af-NA' => { :i18n => { :plural/, data)
   end
 
   test "the merge option respects parentLocales" do
-    data = Cldr::Export.data("calendars", "en-GB", merge: true)
+    data = Cldr::Export.data(:Calendars, "en-GB", merge: true)
     assert_equal "dd/MM/y", data[:calendars][:gregorian][:additional_formats]["yMd"]
   end
 
   test "exports data to files" do
-    Cldr::Export.export(locales: ["de"], components: ["calendars"])
+    Cldr::Export.export(locales: ["de"], components: [:Calendars])
     assert File.exist?(Cldr::Export.path("de", "calendars", "yml"))
   end
 
   test "exported data starts with the locale at top level" do
-    Cldr::Export.export(locales: ["de"], components: ["calendars"])
+    Cldr::Export.export(locales: ["de"], components: [:Calendars])
     data = {}
     File.open(Cldr::Export.path("de", "calendars", "yml")) do |f|
       data = YAML.load(f)
