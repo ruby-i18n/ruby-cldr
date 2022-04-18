@@ -66,7 +66,7 @@ class TestCldrDataLanguages < Test::Unit::TestCase
              :ybb, :yi, :yo, :yrl, :yue, :za, :zap, :zbl, :zea, :zen,
              :zgh, :zh, :"zh-Hans", :"zh-Hant", :zu, :zun, :zxx, :zza,]
 
-    languages = Cldr::Export::Data::Languages.new("de")[:languages]
+    languages = Cldr::Export::Data::Languages.new(:de)[:languages]
 
     assert_empty codes - languages.keys, "Unexpected missing languages"
     assert_empty languages.keys - codes, "Unexpected extra languages"

@@ -25,9 +25,9 @@ module Cldr
       Cldr::Download.download(options["source"], options["target"], options["version"])
     end
 
-    desc "export [--locales=de fr en] [--components=Numbers Plurals] [--target=#{Cldr::Export::DEFAULT_TARGET}] [--merge/--no-merge]",
+    desc "export [--locales=de fr-FR en-ZA] [--components=Numbers Plurals] [--target=#{Cldr::Export::DEFAULT_TARGET}] [--merge/--no-merge]",
       "Export CLDR data by locales and components to target dir"
-    option :locales, aliases: [:l], type: :array, banner: "de fr en"
+    option :locales, aliases: [:l], type: :array, banner: "de fr-FR en-ZA", enum: Cldr::Export::Data.locales
     option :components, aliases: [:c], type: :array, banner: "Numbers Plurals", enum: Cldr::Export::Data.components
     option :target, aliases: [:t], type: :string, default: Cldr::Export::DEFAULT_TARGET, banner: Cldr::Export::DEFAULT_TARGET
     option :merge, aliases: [:m], type: :boolean, default: false
@@ -38,6 +38,11 @@ module Cldr
 
       # We do this validation, since thor doesn't
       # https://github.com/rails/thor/issues/783
+      if formatted_options.key?(:locales)
+        formatted_options[:locales] = formatted_options[:locales].map(&:to_sym) if formatted_options.key?(:locales)
+        unknown_locales = formatted_options[:locales] - Cldr::Export::Data.locales
+        raise ArgumentError, "Unknown locales: #{unknown_locales.map { |l| "`#{l}`" }.join(", ")}" unless unknown_locales.empty?
+      end
       if formatted_options.key?(:components)
         formatted_options[:components] = formatted_options[:components].map(&:to_sym) if formatted_options.key?(:components)
         unknown_components = formatted_options[:components] - Cldr::Export::Data.components

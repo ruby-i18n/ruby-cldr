@@ -5,7 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__) + "/../test_helper"))
 
 class TestYaml < Test::Unit::TestCase
   test "Hash values are deep sorted" do
-    data = Cldr::Export::Yaml.new.export("fr", :Currencies, merge: true)
+    data = Cldr::Export::Yaml.new.export(:fr, :Currencies, merge: true)
     assert_equal deep_flatten(data.deep_sort).to_a, deep_flatten(data).to_a
   end
 

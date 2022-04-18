@@ -129,8 +129,6 @@ module Cldr
       end
 
       def locales(locale, component, options)
-        locale = to_i18n(locale)
-
         locales = if options[:merge]
           Cldr.fallbacks[locale]
         else
@@ -149,7 +147,7 @@ module Cldr
 
       def path(locale, component, extension)
         path = [Export.base_path]
-        path << locale.to_s.gsub("_", "-") unless shared_component?(component)
+        path << locale.to_s unless shared_component?(component)
         path << "#{component.to_s.underscore}.#{extension}"
         File.join(*path)
       end

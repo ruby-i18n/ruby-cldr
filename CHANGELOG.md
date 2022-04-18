@@ -32,6 +32,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Fixed bug with fallbacks for locales that had more than two segments, [#101](https://github.com/ruby-i18n/ruby-cldr/pull/101)
 - Merge all the related data files before doing lookups, [#98](https://github.com/ruby-i18n/ruby-cldr/pull/98)
 - Standardize component names for the `thor cldr:export` command (and internally in the codebase), [#121](https://github.com/ruby-i18n/ruby-cldr/pull/121)
+- Standardize locale names for the `thor cldr:export` command (and internally in the codebase), [#121](https://github.com/ruby-i18n/ruby-cldr/pull/121)
+- Output `plurals.rb` with the `ruby-cldr` style locale codes (only affects `pt-PT` in CLDR v34), [#121](https://github.com/ruby-i18n/ruby-cldr/pull/121)
 
 ---
 

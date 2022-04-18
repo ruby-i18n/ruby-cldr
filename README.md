@@ -36,7 +36,7 @@ thor cldr:export
 You can also optionally specify locales and/or components to export as well as the target directory:
 
 ```
-thor cldr:export --locales de fr en --components Numbers Plurals --target=./tmp/export
+thor cldr:export --locales de fr-FR en-ZA --components Numbers Plurals --target=./tmp/export
 ```
 
 This will export the components `Numbers` and `Plurals` from the locales `de`, `fr` and `en` to the same target directory.
