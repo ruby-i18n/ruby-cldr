@@ -9,6 +9,12 @@ module Cldr
           update(segments: segmentations)
         end
 
+        def paths
+          @paths ||= ["#{Cldr::Export::Data.dir}/segments/root.xml"]
+        end
+
+        private
+
         def segmentations
           doc.xpath("ldml/segmentations/segmentation").each_with_object({}) do |seg, ret|
             type = seg.attribute("type").value
@@ -39,10 +45,6 @@ module Cldr
               value: rule.text,
             }
           end
-        end
-
-        def paths
-          @paths ||= ["#{Cldr::Export::Data.dir}/segments/root.xml"]
         end
 
         def cast_value(value)

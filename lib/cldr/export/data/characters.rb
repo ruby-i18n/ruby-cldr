@@ -9,6 +9,8 @@ module Cldr
           update(characters: { exemplars: exemplars })
         end
 
+        private
+
         def exemplars
           select("/ldml/characters/exemplarCharacters").map do |node|
             {

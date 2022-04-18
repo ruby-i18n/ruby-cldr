@@ -10,6 +10,8 @@ module Cldr
           update(numbering_systems: numbering_systems)
         end
 
+        private
+
         def numbering_systems
           doc.xpath("supplementalData/numberingSystems/numberingSystem").each_with_object({}) do |numbering, ret|
             system_name = numbering.attribute("id").value
