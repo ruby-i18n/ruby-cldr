@@ -19,13 +19,15 @@ module Cldr
 
     SHARED_COMPONENTS = ["Aliases", "CountryCodes", "CurrencyDigitsAndRounding", "LikelySubtags", "Metazones", "NumberingSystems", "ParentLocales", "RbnfRoot", "RegionCurrencies", "SegmentsRoot", "TerritoriesContainment", "Transforms", "Variables", "WindowsZones"]
 
+    DEFAULT_TARGET = "./data"
+
     class << self
       def base_path
-        @@base_path ||= File.expand_path("./data")
+        @@base_path ||= File.expand_path(DEFAULT_TARGET)
       end
 
       def base_path=(base_path)
-        @@base_path = base_path
+        @@base_path = File.expand_path(base_path)
       end
 
       def export(options = {}, &block)
