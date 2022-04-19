@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
 require "rubygems"
-require "rexml/document"
+require "nokogiri"
 
 module Cldr
   module Export
@@ -10,10 +10,12 @@ module Cldr
         class Rules < Array
           class << self
             def parse(xml)
+              doc = Nokogiri.XML(xml)
+
               rules = new
-              REXML::Document.new(xml).elements.each("//pluralRules") do |tag|
-                rule = Rule.new(tag.attributes["locales"].split(/\s+/))
-                tag.elements.each("pluralRule") { |tag| rule << [tag.attributes["count"], tag.text] }
+              doc.xpath("//pluralRules").each do |node|
+                rule = Rule.new(node.attribute("locales").value.split(/\s+/))
+                node.xpath("pluralRule").each { |child| rule << [child.attribute("count").value, child.text] }
                 rules << rule
               end
               rules
