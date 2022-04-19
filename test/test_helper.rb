@@ -25,6 +25,10 @@ module Test
           end
         end
       end
+
+      def setup
+        Cldr::Export.minimum_draft_status = Cldr::DraftStatus::CONTRIBUTED
+      end
     end
   end
 end

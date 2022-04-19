@@ -10,7 +10,7 @@ module Cldr
           super
 
           path = File.join(Cldr::Export::Data.dir, "supplemental", "supplementalData.xml")
-          doc = File.open(path) { |file| Nokogiri::XML(file) }
+          doc = Cldr::Export::DataFile.parse(File.read(path))
 
           doc.xpath("//parentLocales/parentLocale").each do |node|
             parent = Cldr::Export.to_i18n(node.attr("parent"))

@@ -12,10 +12,11 @@ require "core_ext/hash/deep_sort"
 
 module Cldr
   module Export
-    autoload :Code, "cldr/export/code"
-    autoload :Data, "cldr/export/data"
-    autoload :Ruby, "cldr/export/ruby"
-    autoload :Yaml, "cldr/export/yaml"
+    autoload :Code,     "cldr/export/code"
+    autoload :Data,     "cldr/export/data"
+    autoload :DataFile, "cldr/export/data_file"
+    autoload :Ruby,     "cldr/export/ruby"
+    autoload :Yaml,     "cldr/export/yaml"
 
     SHARED_COMPONENTS = [
       :Aliases, :CountryCodes, :CurrencyDigitsAndRounding, :LikelySubtags,
@@ -35,9 +36,19 @@ module Cldr
         @@base_path = File.expand_path(base_path)
       end
 
+      def minimum_draft_status
+        raise StandardError, "minimum_draft_status is not yet set." unless defined?(@@minimum_draft_status)
+        @@minimum_draft_status
+      end
+
+      def minimum_draft_status=(draft_status)
+        @@minimum_draft_status = draft_status
+      end
+
       def export(options = {}, &block)
         locales        = options[:locales] || Data.locales
         components     = options[:components] || Data.components
+        self.minimum_draft_status = options[:minimum_draft_status] if options[:minimum_draft_status]
         self.base_path = options[:target] if options[:target]
 
         shared_components, locale_components = components.partition do |component|
