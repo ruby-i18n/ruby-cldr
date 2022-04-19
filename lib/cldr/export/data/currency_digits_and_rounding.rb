@@ -10,7 +10,7 @@ module Cldr
           super
 
           path = "#{Cldr::Export::Data.dir}/supplemental/supplementalData.xml"
-          doc = File.open(path) { |file| Nokogiri::XML(file) }
+          doc = Cldr::Export::DataFile.parse(File.read(path))
 
           doc.xpath("//currencyData/fractions/info").each do |node|
             code = node.attr("iso4217")

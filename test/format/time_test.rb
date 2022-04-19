@@ -6,6 +6,7 @@ require "date"
 
 class TestCldrTimeFormat < Test::Unit::TestCase
   def setup
+    super
     @locale = :de
     @calendar = Cldr::Export::Data::Calendars.new(@locale)[:calendars][:gregorian]
   end

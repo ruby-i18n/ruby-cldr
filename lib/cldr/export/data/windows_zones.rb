@@ -11,7 +11,7 @@ module Cldr
           super
 
           path = "#{Cldr::Export::Data.dir}/supplemental/windowsZones.xml"
-          doc = File.open(path) { |file| Nokogiri::XML(file) }
+          doc = Cldr::Export::DataFile.parse(File.read(path))
           doc.xpath("//windowsZones/mapTimezones/mapZone").each_with_object(self) do |node, result|
             zone = node.attr("other").to_s
             territory = node.attr("territory")
