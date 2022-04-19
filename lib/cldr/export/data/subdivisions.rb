@@ -13,7 +13,7 @@ module Cldr
 
         def subdivisions
           @subdivisions ||= select("localeDisplayNames/subdivisions/subdivision").each_with_object({}) do |node, result|
-            result[node.attribute("type").value.to_sym] = node.content unless draft?(node) || alt?(node)
+            result[node.attribute("type").value.to_sym] = node.content unless alt?(node)
           end
         end
       end
