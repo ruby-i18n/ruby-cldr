@@ -31,7 +31,7 @@ module Cldr
         def unit(node)
           node.xpath("unitPattern").each_with_object({}) do |node, result|
             count = node.attribute("count") ? node.attribute("count").value.to_sym : :one
-            result[count] = node.content unless draft?(node)
+            result[count] = node.content
           end
         end
 

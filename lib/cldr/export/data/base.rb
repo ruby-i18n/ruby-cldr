@@ -27,12 +27,7 @@ module Cldr
 
         protected
 
-        def draft?(node)
-          draft = node.attribute("draft")
-          draft && draft.value == "unconfirmed"
-        end
-
-        def alt?(node)
+        def alt?(node) # TODO: Move this into DataFile
           !node.attribute("alt").nil?
         end
 
