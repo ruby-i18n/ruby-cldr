@@ -19,7 +19,7 @@ class TestCldrDataDelimiters < Test::Unit::TestCase
         },
       },
     }
-    assert_equal expected, Cldr::Export::Data::Delimiters.new("de")
+    assert_equal expected, Cldr::Export::Data::Delimiters.new(:de)
   end
 
   # Cldr::Export::Data.locales.each do |locale|

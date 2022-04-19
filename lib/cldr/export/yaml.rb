@@ -23,7 +23,7 @@ module Cldr
         unless data.empty?
           data = data.deep_stringify_keys if data.respond_to?(:deep_stringify_keys)
           data = data.deep_sort if data.respond_to?(:deep_sort)
-          data = { Cldr::Export.to_i18n(locale).to_s => data } if locale != ""
+          data = { locale.to_s => data } if locale != ""
         end
         data
       end

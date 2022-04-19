@@ -45,7 +45,7 @@ module Cldr
         attr_writer :dir
 
         def locales
-          Dir["#{dir}/main/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && Regexp.last_match(1) }
+          Dir["#{dir}/main/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && Regexp.last_match(1) }.map { |l| Cldr::Export.to_i18n(l) }.sort
         end
 
         def components

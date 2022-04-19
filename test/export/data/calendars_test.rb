@@ -6,7 +6,7 @@ require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"
 class TestCldrDataCalendars < Test::Unit::TestCase
   def gregorian(options = {})
     locale = options[:locale] || :de
-    Cldr::Export.data(:calendars, locale, options)[:calendars][:gregorian]
+    Cldr::Export.data(:Calendars, locale, options)[:calendars][:gregorian]
   end
 
   test "calendars months :de" do

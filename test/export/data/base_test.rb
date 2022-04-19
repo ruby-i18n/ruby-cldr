@@ -14,7 +14,7 @@ class TestBase < Test::Unit::TestCase
       "rbnf/af.xml",
       "subdivisions/af.xml",
     ].map { |f| File.join(Cldr::Export::Data.dir, f) }
-    assert_equal expected, Cldr::Export::Data::Base.new("af").send(:paths)
+    assert_equal expected, Cldr::Export::Data::Base.new(:af).send(:paths)
   end
 
   test "#paths finds all the supplemental data files" do
