@@ -153,6 +153,7 @@ module Cldr
           def to_ruby
             @ruby ||= begin
               return nil unless @operator
+
               enclose = false
               fraction = false
               case @type

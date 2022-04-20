@@ -61,6 +61,7 @@ module Cldr
                   pattern_count_node = pattern_node.attribute("count")
 
                   next if draft?(pattern_node)
+
                   pattern_key = pattern_key_node ? pattern_key_node.value : :default
 
                   if pattern_count_node
