@@ -4,7 +4,7 @@
 require File.expand_path(File.join(File.dirname(__FILE__) + "/../test_helper"))
 require "date"
 
-class TestCldrDateTimeFormat < Test::Unit::TestCase
+class TestCldrTimeFormat < Test::Unit::TestCase
   def setup
     @locale = :de
     @calendar = Cldr::Export::Data::Calendars.new(@locale)[:calendars][:gregorian]
