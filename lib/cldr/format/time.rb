@@ -52,6 +52,7 @@ module Cldr
 
       def second_fraction(time, pattern, length)
         raise "can not use the S format with more than 6 digits" if length > 6
+
         (time.usec.to_f / 10**(6 - length)).round.to_s.rjust(length, "0")
       end
 

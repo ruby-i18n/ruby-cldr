@@ -91,6 +91,7 @@ module Cldr
                 key  = name.gsub("era", "").gsub(/s$/, "").downcase.to_sym
                 key_result = select(path).each_with_object({}) do |node, ret|
                   next ret if node.name == "alias" # TODO: Actually handle alias nodes, https://github.com/ruby-i18n/ruby-cldr/issues/78
+
                   type = node.attribute("type").value.to_i
                   ret[type] = node.content
                 end

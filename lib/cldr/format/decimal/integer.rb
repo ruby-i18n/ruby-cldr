@@ -21,6 +21,7 @@ module Cldr
 
         def format_groups(string)
           return string if groups.empty?
+
           tokens = []
           tokens << chop_group(string, groups.first)
           tokens << chop_group(string, groups.last) while string.length > groups.last
@@ -30,6 +31,7 @@ module Cldr
 
         def parse_groups(format)
           return [] unless (index = format.rindex(","))
+
           rest   = format[0, index]
           widths = [format.length - index - 1]
           widths << rest.length - rest.rindex(",") - 1 if rest.rindex(",")

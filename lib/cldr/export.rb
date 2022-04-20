@@ -159,6 +159,7 @@ module Cldr
       def should_merge_root?(locale, component, options)
         return false if [:Rbnf, :Fields].include?(component)
         return true if options[:merge]
+
         locale == :en
       end
     end

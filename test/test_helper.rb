@@ -17,6 +17,7 @@ module Test
           false
         end
         raise "#{test_name} is already defined in #{self}" if defined
+
         if block_given?
           define_method(test_name, &block)
         else

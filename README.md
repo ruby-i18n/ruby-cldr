@@ -6,14 +6,14 @@ CLDR (["Common Locale Data Repository"](https://cldr.unicode.org/)) contains ton
 
 For localizing applications in Ruby we'll obviously be able to use this incredibly comprehensive and well-maintained resource.
 
-This library is a first stab at that goal. You can: 
+This library is a first stab at that goal. You can:
 
-* export CLDR data to YAML and Ruby formatted files which are supposed to be usable in an [`I18n`](https://github.com/ruby-i18n/i18n) context but might be usable elsewhere, too. 
+* export CLDR data to YAML and Ruby formatted files which are supposed to be usable in an [`I18n`](https://github.com/ruby-i18n/i18n) context but might be usable elsewhere, too.
 * use CLDR compliant formatters for the following types: number, percentage, currency, date, time, datetime.
 
 ## Requirements
 
-  * Ruby 2.6+
+  * Ruby 2.7+
   * Thor
 
 ## Installation
@@ -83,7 +83,7 @@ format(:de, 123456.78)
 format(:de, 123456.78, :as => :percent)
 # => "123.457 %"
 
-format(:de, 123456.78, :currency => 'EUR') 
+format(:de, 123456.78, :currency => 'EUR')
 # => "123.456,78 EUR"
 
 format(:de, Date.new(2010, 1, 1), :format => :full)
