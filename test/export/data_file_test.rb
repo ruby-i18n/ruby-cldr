@@ -150,6 +150,46 @@ class TestDataFile < Test::Unit::TestCase
 
     assert_nil(parsed.locale)
   end
+
+  def test_alt_value_removal
+    xml_contents = <<~XML_CONTENTS
+      <?xml version="1.0" encoding="UTF-8" ?>
+      <ldml>
+        <identity>
+          <version number="$Revision$"/>
+          <language type="de"/>
+        </identity>
+        <localeDisplayNames>
+          <languages>
+            <language type="chy">Cheyenne</language>
+            <language type="ckb">Zentralkurdisch</language>
+            <language type="ckb" alt="menu">Kurdisch (Sorani)</language>
+            <language type="co">Korsisch</language>
+          </languages>
+        </localeDisplayNames>
+      </ldml>
+    XML_CONTENTS
+
+    parsed = Cldr::Export::DataFile.parse(xml_contents, minimum_draft_status: Cldr::DraftStatus::APPROVED)
+
+    expected = <<~XML_CONTENTS
+      <?xml version="1.0" encoding="UTF-8"?>
+      <ldml>
+        <identity>
+          <version number="$Revision$"/>
+          <language type="de"/>
+        </identity>
+        <localeDisplayNames>
+          <languages>
+            <language type="chy">Cheyenne</language>
+            <language type="ckb">Zentralkurdisch</language>
+            <language type="co">Korsisch</language>
+          </languages>
+        </localeDisplayNames>
+      </ldml>
+    XML_CONTENTS
+    assert_equal(expected, parsed.doc.to_xml)
+  end
 end
 
 class TestDataFileDraftStatusFilter < Test::Unit::TestCase

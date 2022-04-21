@@ -29,13 +29,23 @@ module Cldr
           end
           doc
         end
+
+        def filter_alt_values(doc)
+          # Until we determine how to handle alt values, we'll just remove them.
+          # TODO: https://github.com/ruby-i18n/ruby-cldr/issues/125
+          doc.traverse do |child|
+            next unless child.text?
+            child.parent.remove if child.parent.attribute("alt")
+          end
+          doc
+        end
       end
 
       attr_reader :doc, :minimum_draft_status
 
       def initialize(doc, minimum_draft_status: nil)
         @minimum_draft_status = minimum_draft_status || Cldr::Export.minimum_draft_status
-        @doc = Cldr::Export::DataFile.filter_by_draft(doc, @minimum_draft_status)
+        @doc = filter_data(doc)
       end
 
       def traverse(&block)
@@ -77,6 +87,14 @@ module Cldr
         end
 
         Cldr::Export::DataFile.new(result, minimum_draft_status: minimum_draft_status)
+      end
+
+      private
+
+      def filter_data(doc)
+        doc = Cldr::Export::DataFile.filter_by_draft(doc, minimum_draft_status)
+        doc = Cldr::Export::DataFile.filter_alt_values(doc)
+        doc
       end
     end
   end
