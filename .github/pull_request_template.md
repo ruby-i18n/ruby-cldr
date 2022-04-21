@@ -32,3 +32,7 @@ Are there any test results or screenshots that would be useful to include? How c
 -->
 
 ...
+
+### Checklist
+
+* [ ] I have added a CHANGELOG entry for this change (or determined that it isn't needed)
