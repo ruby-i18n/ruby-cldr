@@ -48,7 +48,7 @@ class TestCldrDataLanguages < Test::Unit::TestCase
              :nym, :nyn, :nyo, :nzi, :oc, :oj, :om, :or, :os, :osa, :ota,
              :pa, :pag, :pal, :pam, :pap, :pau, :pcd, :pcm, :pdc, :pdt,
              :peo, :pfl, :phn, :pi, :pl, :pms, :pnt, :pon, :prg, :pro,
-             :ps, :pt, :qu, :quc, :qug, :raj, :rap, :rar, :rgn, :rif, :rm,
+             :ps, :pt, :qu, :quc, :qug, :raj, :rap, :rar, :rgn, :rhg, :rif, :rm,
              :rn, :ro, :"ro-MD", :rof, :rom, :rtm, :ru, :rue, :rug,
              :rup, :rw, :rwk, :sa, :sad, :sah, :sam, :saq, :sas, :sat, :saz,
              :sba, :sbp, :sc, :scn, :sco, :sd, :sdc, :sdh, :se, :see, :seh,
