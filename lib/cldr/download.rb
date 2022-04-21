@@ -8,7 +8,7 @@ module Cldr
   module Download
     DEFAULT_SOURCE = "http://unicode.org/Public/cldr/%{version}/core.zip"
     DEFAULT_TARGET = "./vendor/cldr"
-    DEFAULT_VERSION = 39
+    DEFAULT_VERSION = 40
 
     class << self
       def download(source = DEFAULT_SOURCE, target = DEFAULT_TARGET, version = DEFAULT_VERSION)
