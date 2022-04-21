@@ -27,10 +27,6 @@ module Cldr
 
         protected
 
-        def alt?(node) # TODO: Move this into DataFile
-          !node.attribute("alt").nil?
-        end
-
         def name(node)
           node.name.underscore
         end
