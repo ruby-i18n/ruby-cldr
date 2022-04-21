@@ -31,3 +31,9 @@ jobs:
 
       - name: Run tests
         run: bundle exec ruby test/all.rb
+
+      - name: Export the data
+        run: bundle exec thor cldr:export
+
+      - name: Validate the data
+        run: bundle exec thor cldr:validate

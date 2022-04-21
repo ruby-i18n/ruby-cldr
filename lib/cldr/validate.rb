@@ -6,7 +6,7 @@ module Cldr
   class Validate
     class << self
       def validate(target)
-        errors = Dir.glob("#{target}/**/*.yml").reject {|path| path.match?(%r{/transforms/})}.flat_map do |path|
+        errors = Dir.glob("#{target}/**/*.yml").reject { |path| path.match?(%r{/transforms/}) }.flat_map do |path|
           validate_yaml_file(path)
         end
         errors += Dir.glob("#{target}/**/*.rb").flat_map do |path|
