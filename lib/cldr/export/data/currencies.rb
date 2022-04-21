@@ -28,9 +28,10 @@ module Cldr
             end
           end
 
-          symbol = select(node, "symbol")
-          narrow_symbol = symbol.select { |child_node| child_node.values.include?("narrow") }.first
-          data[:symbol] = symbol.first.content unless symbol.empty?
+          symbols = select(node, "symbol")
+          symbol = symbols.select { |child_node| child_node.attribute("alt").nil? }.first
+          narrow_symbol = symbols.select { |child_node| child_node.attribute("alt")&.value == ("narrow") }.first
+          data[:symbol] = symbol.content unless symbol.nil?
           data[:narrow_symbol] = narrow_symbol.content unless narrow_symbol.nil?
 
           data
