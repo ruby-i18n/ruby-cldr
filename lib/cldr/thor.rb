@@ -3,6 +3,7 @@
 require "thor"
 require "cldr"
 require "cldr/download"
+require "cldr/validate"
 
 module Cldr
   class Thor < ::Thor
@@ -54,5 +55,14 @@ module Cldr
     end
 
     # TODO: flatten task, e.g. flatten all plural locale files into one big file
+
+    desc "validate", "Run QA checks against the output data"
+    option :target, aliases: [:t], type: :string,
+      default: Cldr::Export::DEFAULT_TARGET,
+      banner: Cldr::Export::DEFAULT_TARGET,
+      desc: "Where on the filesystem the extracted data to validate is"
+    def validate
+      Cldr::Validate.validate(options["target"])
+    end
   end
 end
