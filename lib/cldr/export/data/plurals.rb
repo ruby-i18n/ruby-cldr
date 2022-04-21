@@ -15,11 +15,7 @@ module Cldr
 
         class << self
           def rules
-            @@rules ||= Rules.parse(source)
-          end
-
-          def source
-            File.read("#{Cldr::Export::Data.dir}/supplemental/plurals.xml")
+            @@rules ||= Rules.parse(File.read("#{Cldr::Export::Data.dir}/supplemental/plurals.xml"))
           end
         end
 

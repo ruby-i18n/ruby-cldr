@@ -10,7 +10,7 @@ module Cldr
         class Rules < Array
           class << self
             def parse(xml)
-              doc = Nokogiri.XML(xml)
+              doc = Cldr::Export::DataFile.parse(xml)
 
               rules = new
               doc.xpath("//pluralRules").each do |node|

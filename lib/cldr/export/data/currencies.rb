@@ -20,13 +20,11 @@ module Cldr
 
         def currency(node)
           data = select(node, "displayName").each_with_object({}) do |node, result|
-            unless draft?(node)
-              if node.attribute("count")
-                count = node.attribute("count").value.to_sym
-                result[count] = node.content
-              else
-                result[:name] = node.content
-              end
+            if node.attribute("count")
+              count = node.attribute("count").value.to_sym
+              result[count] = node.content
+            else
+              result[:name] = node.content
             end
           end
 

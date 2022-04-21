@@ -9,6 +9,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), "test_helper"))
 class TestExport < Test::Unit::TestCase
   def setup
     Cldr::Export.base_path = tmp_dir
+    Cldr::Export.minimum_draft_status = Cldr::DraftStatus::CONTRIBUTED
     begin
       FileUtils.mkdir_p(tmp_dir)
     rescue

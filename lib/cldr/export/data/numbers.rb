@@ -42,7 +42,7 @@ module Cldr
 
         def symbols
           select("numbers/symbols/*").each_with_object({}) do |node, result|
-            result[name(node).to_sym] = node.content unless draft?(node)
+            result[name(node).to_sym] = node.content
           end
         end
 
@@ -59,8 +59,6 @@ module Cldr
                   pattern_key_node = pattern_node.attribute("type")
 
                   pattern_count_node = pattern_node.attribute("count")
-
-                  next if draft?(pattern_node)
 
                   pattern_key = pattern_key_node ? pattern_key_node.value : :default
 

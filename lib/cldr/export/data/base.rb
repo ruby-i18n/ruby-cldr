@@ -27,12 +27,7 @@ module Cldr
 
         protected
 
-        def draft?(node)
-          draft = node.attribute("draft")
-          draft && draft.value == "unconfirmed"
-        end
-
-        def alt?(node)
+        def alt?(node) # TODO: Move this into DataFile
           !node.attribute("alt").nil?
         end
 
@@ -68,26 +63,13 @@ module Cldr
         private
 
         def merge_paths(paths_to_merge)
-          # Some parts (`ldml`, `ldmlBCP47` amd `supplementalData`) of CLDR data require that you merge all the
-          # files with the same root element before doing lookups.
-          # Ref: https://www.unicode.org/reports/tr35/tr35.html#XML_Format
-          #
-          # The return of this method is a merged XML Nokogiri document.
-          # Note that it technically is no longer compliant with the CLDR `ldml.dtd`, since:
-          # * it has repeated elements
-          # * the <identity> elements no longer refer to the filename
-          #
-          # However, this is not an issue, since #select will find all of the matches from each of the repeated elements,
-          # and the <identity> elements are not important to us / make no sense when combined together.
-          return Nokogiri::XML("") if paths_to_merge.empty?
+          return Cldr::Export::DataFile.new(Nokogiri::XML("")) if paths_to_merge.empty?
 
-          rest = paths_to_merge[1..paths_to_merge.size - 1]
-          rest.each_with_object(Nokogiri::XML(File.read(paths_to_merge.first))) do |path, result|
-            next_doc = Nokogiri::XML(File.read(path))
-
-            next_doc.root.children.each do |child|
-              result.root.add_child(child)
-            end
+          first = Cldr::Export::DataFile.parse(File.read(paths_to_merge.first))
+          rest = paths_to_merge[1..]
+          rest.reduce(first) do |result, path|
+            parsed = Cldr::Export::DataFile.parse(File.read(path))
+            result.merge(parsed)
           end
         end
       end

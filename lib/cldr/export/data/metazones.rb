@@ -11,7 +11,7 @@ module Cldr
           super
 
           path = "#{Cldr::Export::Data.dir}/supplemental/metaZones.xml"
-          doc = File.open(path) { |file| Nokogiri::XML(file) }
+          doc = Cldr::Export::DataFile.parse(File.read(path))
           self[:timezones] = doc.xpath("//metaZones/metazoneInfo/timezone").each_with_object({}) do |node, result|
             timezone = node.attr("type").to_sym
             result[timezone] = metazone(node.xpath("usesMetazone"))
