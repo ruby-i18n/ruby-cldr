@@ -34,6 +34,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Standardize component names for the `thor cldr:export` command (and internally in the codebase), [#121](https://github.com/ruby-i18n/ruby-cldr/pull/121)
 - Standardize locale names for the `thor cldr:export` command (and internally in the codebase), [#121](https://github.com/ruby-i18n/ruby-cldr/pull/121)
 - Output `plurals.rb` with the `ruby-cldr` style locale codes (only affects `pt-PT` in CLDR v34), [#121](https://github.com/ruby-i18n/ruby-cldr/pull/121)
+- Export data at with a consistent minimum draft status, [#124](https://github.com/ruby-i18n/ruby-cldr/pull/124)
+- Add `--draft-status` flag for specifying the minimum draft status for data to be exported, [#124](https://github.com/ruby-i18n/ruby-cldr/pull/124)
 
 ---
 
