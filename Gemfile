@@ -10,6 +10,7 @@ group :development do
   gem "jeweler"
   gem "pry-nav"
   gem "pry"
+  gem "psych", ">= 4.0.0"
   gem "rubocop-lsp", require: false
   gem "rubocop-shopify", require: false
   gem "rubyzip"
