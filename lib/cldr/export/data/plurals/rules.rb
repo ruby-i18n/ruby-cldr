@@ -63,7 +63,7 @@ module Cldr
               code = scrub_code(code)
 
               code = code.split("@").first.to_s
-              operand = /(n|i|f|t|v|w)/i
+              operand = /(n|i|v|w|f|t|c|e)/i # Ordered as they appear in the spec.
               expr = /#{operand}(?:\s+(?:mod|%)\s+([\d]+))?/i
               range = /(?:\d+\.\.\d+|\d+)/i
               range_list = /(#{range}(?:\s*,\s*#{range})*)/i
@@ -142,12 +142,19 @@ module Cldr
           end
 
           # Symbol  Value
-          # n       absolute value of the source number (integer and decimals).
-          # i       integer digits of n.
-          # v       number of visible fraction digits in n, with trailing zeros.
-          # w       number of visible fraction digits in n, without trailing zeros.
-          # f       visible fractional digits in n, with trailing zeros.
-          # t       visible fractional digits in n, without trailing zeros.
+          # n       the absolute value of N.*
+          # i       the integer digits of N.*
+          # v       the number of visible fraction digits in N, _with_ trailing zeros.*
+          # w       the number of visible fraction digits in N, _without_ trailing zeros.*
+          # f       the visible fraction digits in N, _with_ trailing zeros, expressed as an integer.*
+          # t       the visible fraction digits in N, _without_ trailing zeros, expressed as an integer.*
+          # c       compact decimal exponent value: exponent of the power of 10 used in compact decimal formatting.
+          # e       a deprecated synonym for ‘c’. Note: it may be redefined in the future.
+          #
+          # * If there is a compact decimal exponent value (‘c’), then the n, i, f, t, v, and w values are computed
+          # after shifting the decimal point in the original by the ‘c’ value. So for 1.2c3, the n, i, f, t, v,
+          # and w values are the same as those of 1200: i=1200 and f=0. Similarly, 1.2005c3 has i=1200 and
+          # f=5 (corresponding to 1200.5).
           #
           # http://www.unicode.org/reports/tr35/tr35-numbers.html#Language_Plural_Rules
           def to_ruby
@@ -171,9 +178,18 @@ module Cldr
               when "w"
                 op = '(w = n.to_s.split(".")[1]) ? w.gsub(/0+$/, "").length : 0'
                 enclose = true
-              else
+              when "c", "e"
+                # We don't support numbers in the "compact decimal" format.
+                # Since `c`/`e` are always 0 for non-"compact decimal" format
+                # numbers, we just hardcode it to 0 for now.
+                # TODO: https://github.com/ruby-i18n/ruby-cldr/issues/131
+                op = "#{@type} = 0"
+                enclose = true
+              when "n"
                 fraction = true
                 op = "n.to_f"
+              else
+                raise StandardError, "Unknown plural operand `#{@type}`"
               end
               if @mod
                 op = "(" << op << ")" if enclose

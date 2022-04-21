@@ -106,6 +106,13 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
     assert_equal([:in, [[], [3..4]], "2", "f"], [rule[1][1].operator, rule[1][1].operand, rule[1][1].mod, rule[1][1].type])
   end
 
+  def test_parse_fails_when_given_unknown_operand
+    exc = assert_raises do
+      Cldr::Export::Data::Plurals::Rule.parse("q = 0")
+    end
+    assert_equal("can not parse 'q = 0'", exc.message)
+  end
+
   def test_compiles_empty
     assert_equal(nil, Cldr::Export::Data::Plurals::Rule.parse("").to_ruby)
     assert_equal(nil, Cldr::Export::Data::Plurals::Rule.parse(" ").to_ruby)
@@ -171,6 +178,10 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
 
   def test_compiles_n_list_range2
     assert_equal("((n.to_f % 100) != 100 || (((n.to_f % 100) % 1).zero? && (!(10..19).include?(n.to_f % 100) || !(90..99).include?(n.to_f % 100))))", Cldr::Export::Data::Plurals::Rule.parse("n % 100 != 10..19,90..99,100").to_ruby)
+  end
+
+  def test_compiles_e_operand_as_always_0
+    assert_equal("((e = 0) == 0 || !(0..5).include?(e = 0))", Cldr::Export::Data::Plurals::Rule.parse("e = 0 or e != 0..5").to_ruby)
   end
 
   def test_eval_n_in
@@ -247,5 +258,18 @@ class TestCldrDataPluralParser < Test::Unit::TestCase
     assert_equal(:other, fn.call(0.11))
     assert_equal(:other, fn.call("0.220"))
     assert_equal(:other, fn.call("41.0"))
+  end
+
+  def test_e_operand
+    # one: i = 0,1 @integer 0, 1 @decimal 0.0~1.5
+    # many: e = 0 and i != 0 and i % 1000000 = 0 and v = 0 or e != 0..5 @integer 1000000, 1c6, 2c6, 3c6, 4c6, 5c6, 6c6, … @decimal 1.0000001c6, 1.1c6, 2.0000001c6, 2.1c6, 3.0000001c6, 3.1c6, …
+    # other: @integer 2~17, 100, 1000, 10000, 100000, 1c3, 2c3, 3c3, 4c3, 5c3, 6c3, … @decimal 2.0~3.5, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, 1.0001c3, 1.1c3, 2.0001c3, 2.1c3, 3.0001c3, 3.1c3, …
+    fn = eval(cldr_rules.rule(:fr).to_ruby) # rubocop:disable Security/Eval
+    assert_equal(:one, fn.call(0))
+    assert_equal(:one, fn.call(1))
+    assert_equal(:many, fn.call(1000000))
+    assert_equal(:many, fn.call(2000000))
+    assert_equal(:other, fn.call(1000001))
+    assert_equal(:other, fn.call(1000000.0))
   end
 end
