@@ -19,6 +19,7 @@ class TestBase < Test::Unit::TestCase
 
   test "#paths finds all the supplemental data files" do
     expected_non_transform_files = [
+      "supplemental-temp/coverageLevels2.xml",
       "supplemental/attributeValueValidity.xml",
       "supplemental/characters.xml",
       "supplemental/coverageLevels.xml",
