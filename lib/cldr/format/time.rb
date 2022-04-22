@@ -61,12 +61,12 @@ module Cldr
         when 1..3
           time.zone
         else
-          raise 'not yet implemented (requires timezone translation data")'
+          raise NotImplementedError, 'not yet implemented (requires timezone translation data")'
         end
       end
 
       def timezone_generic_non_location(time, pattern, length)
-        raise 'not yet implemented (requires timezone translation data")'
+        raise NotImplementedError, 'not yet implemented (requires timezone translation data")'
       end
 
       def round_to(number, precision)

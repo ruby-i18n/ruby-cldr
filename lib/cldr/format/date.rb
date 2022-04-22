@@ -63,10 +63,10 @@ module Cldr
         when 2
           quarter.to_s.rjust(length, "0")
         when 3
-          raise 'not yet implemented (requires cldr\'s "multiple inheritance")'
+          raise NotImplementedError, 'not yet implemented (requires cldr\'s "multiple inheritance")'
           # calendar[:quarters][:'stand-alone'][:abbreviated][key]
         when 4
-          raise 'not yet implemented (requires cldr\'s "multiple inheritance")'
+          raise NotImplementedError, 'not yet implemented (requires cldr\'s "multiple inheritance")'
           # calendar[:quarters][:'stand-alone'][:wide][key]
         when 5
           calendar[:quarters][:"stand-alone"][:narrow][quarter]
