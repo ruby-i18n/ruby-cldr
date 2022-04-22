@@ -158,7 +158,10 @@ module Cldr
 
       def path(locale, component, extension)
         path = [Export.base_path]
-        path << locale.to_s unless shared_component?(component)
+        unless shared_component?(component)
+          path << "locales"
+          path << locale.to_s
+        end
         path << "#{component.to_s.underscore}.#{extension}"
         File.join(*path)
       end
