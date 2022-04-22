@@ -23,7 +23,7 @@ module Cldr
       }
 
       def era(date, pattern, length)
-        raise "not implemented"
+        raise NotImplementedError, "not implemented"
       end
 
       def year(date, pattern, length)
@@ -34,11 +34,11 @@ module Cldr
       end
 
       def year_of_week_of_year(date, pattern, length)
-        raise "not implemented"
+        raise NotImplementedError, "not implemented"
       end
 
       def day_of_week_in_month(date, pattern, length) # e.g. 2nd Wed in July
-        raise "not implemented"
+        raise NotImplementedError, "not implemented"
       end
 
       def quarter(date, pattern, length)
@@ -135,11 +135,11 @@ module Cldr
 
       def weekday_local(date, pattern, length)
         # "Like E except adds a numeric value depending on the local starting day of the week"
-        raise "not implemented (need to defer a country to lookup the local first day of week from weekdata)"
+        raise NotImplementedError, "not implemented (need to defer a country to lookup the local first day of week from weekdata)"
       end
 
       def weekday_local_stand_alone(date, pattern, length)
-        raise "not implemented (need to defer a country to lookup the local first day of week from weekdata)"
+        raise NotImplementedError, "not implemented (need to defer a country to lookup the local first day of week from weekdata)"
       end
     end
   end
