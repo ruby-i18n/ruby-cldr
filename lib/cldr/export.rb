@@ -70,7 +70,7 @@ module Cldr
             end
           else
             ex = exporter(component, options[:format])
-            ex.export("", component, options, &block)
+            ex.export(nil, component, options, &block)
           end
         end
 
