@@ -69,7 +69,7 @@ module Cldr
           rest = paths_to_merge[1..]
           rest.reduce(first) do |result, path|
             parsed = Cldr::Export::DataFile.parse(File.read(path))
-            result.merge(parsed)
+            result.merge!(parsed)
           end
         end
       end

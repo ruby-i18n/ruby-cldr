@@ -63,6 +63,8 @@ class TestDataFile < Test::Unit::TestCase
     assert_equal(first_contents, first_parsed.doc.to_xml)
     assert_equal(second_contents, second_parsed.doc.to_xml)
 
+    merged_with_mutation = first_parsed.merge!(second_parsed)
+
     expected = <<~XML_CONTENTS
       <?xml version="1.0" encoding="UTF-8"?>
       <ldml>
@@ -103,6 +105,8 @@ class TestDataFile < Test::Unit::TestCase
 
     assert_instance_of(Cldr::Export::DataFile, merged)
     assert_equal(expected, merged.doc.to_xml)
+    assert_instance_of(Cldr::Export::DataFile, merged_with_mutation)
+    assert_equal(expected, merged_with_mutation.doc.to_xml)
   end
 
   def test_locale_parsing

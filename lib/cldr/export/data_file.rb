@@ -58,6 +58,24 @@ module Cldr
       end
 
       def merge(other)
+        verify_merging_requirements(other)
+        Cldr::Export::DataFile.new(merge_docs!(@doc.dup, other.doc), minimum_draft_status: minimum_draft_status)
+      end
+
+      def merge!(other)
+        verify_merging_requirements(other)
+        merge_docs!(@doc, other.doc)
+        self
+      end
+
+      private
+
+      def verify_merging_requirements(other)
+        raise StandardError, "Cannot merge data file with more permissive draft status" if other.minimum_draft_status < minimum_draft_status
+        raise StandardError, "Cannot merge data file from different locales" if other.locale != locale
+      end
+
+      def merge_docs!(doc, other)
         # Some parts (`ldml`, `ldmlBCP47` amd `supplementalData`) of CLDR data require that you merge all the
         # files with the same root element before doing lookups.
         # Ref: https://www.unicode.org/reports/tr35/tr35.html#XML_Format
@@ -68,15 +86,10 @@ module Cldr
         #
         # However, this is not an issue, since #xpath will find all of the matches from each of the repeated elements,
         # and the <identity> elements are not important to us / make no sense when combined together.
-        raise StandardError, "Cannot merge data file with more permissive draft status" if other.minimum_draft_status < minimum_draft_status
-        raise StandardError, "Cannot merge data file from different locales" if other.locale != locale
-
-        result = @doc.dup
-        other.doc.root.children.each do |child|
-          result.root.add_child(child.dup)
+        other.root.children.each do |child|
+          doc.root.add_child(child.dup)
         end
-
-        Cldr::Export::DataFile.new(result, minimum_draft_status: minimum_draft_status)
+        doc
       end
     end
   end
