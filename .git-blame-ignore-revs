@@ -1,0 +1,82 @@
+# RuboCop commits
+
+## 2022-04-20: Apply `rubocop -a --only=Layout/EmptyLineAfterGuardClause`
+0e06046e050615266634885d6bcfb142e6c5e0b9
+
+## 2021-12-13: Autocorrect `Style/SymbolProc`
+683b4a989a47b92a36e5cd0b34f0c4adf5dc583b
+
+## 2021-12-13: Autocorrect `Style/PreferredHashMethods`
+1ac7f16311ebff16e9e9339255313b647bb32cb3
+
+## 2021-12-13: Autocorrect `Style/ClassAndModuleChildren`
+9c4012da5c56b6d78c15715b4e977d356ccdd9ea
+
+## 2021-12-13: Autocorrect `Style/AndOr`
+8755ec5374831e1e16e37710982d313e233e6f2b
+
+## 2021-12-13: Autocorrect `Style/ZeroLengthPredicate`
+5e9f3aee1121e692acb0373b0f67b3d8541cd0b3
+
+## 2021-12-13: Autocorrect `Style/SpecialGlobalVars`
+96402d986d652cd5ddea01c1ffc7ddab4386bb27
+
+## 2021-12-13: Autocorrect `Style/WordArray`
+a42b72dcbae983e1b2f55e7802833110850ac3ce
+
+## 2021-12-13: Autocorrect `Style/RedundantPercentQ`
+6e954e9098acadd40d4d7282296148138451c34a
+
+## 2021-12-13: Autocorrect `Layout/EmptyLinesAroundClassBody`
+316f27b7140ac0da9a7c83262b4905875a1ee67b
+
+## 2021-12-13: Autocorrect `Layout/IndentationWidth`
+615c0c3b9e51f8715cddd7cc8df1e75138eba40f
+
+## 2021-12-13: Autocorrect `Style/PerlBackrefs`
+2e31dfa62f8c2728a72e7241ed1221a3c9134a6d
+
+## 2021-12-13: Autocorrect `Layout/SpaceInsideParens`
+96554d14f882456076c7af97b22ad0cea4d5a23b
+
+## 2021-12-13: Autocorrect `Layout/SpaceAroundOperators`
+d586968abdee6ca9a94a5ba7242eac021beb73df
+
+## 2021-12-13: Autocorrect `Style/QuotedSymbols`
+000d48cafe0c2bdaef6be197f854e589c50c01b7
+
+## 2021-12-13: Autocorrect `Layout/ExtraSpacing`
+90e57b3b86df53886e3922f7cc8cbe3b637820ca
+
+## 2021-12-13: Autocorrect `Style/TrailingCommaInHashLiteral`
+75a1aa7be00f15d5dfc247034c8da7c2e7e81276
+
+## 2021-12-13: Autocorrect `Layout/SpaceAfterComma`
+87fc0afd697a66febaecd6c69a5f96eec098ca17
+
+## 2021-12-13: Autocorrect `Style/EachWithObject`
+6ca15328f0352c046128d6e167054f0944f4afaf
+
+## 2021-12-13: Autocorrect `Layout/TrailingEmptyLines`
+7ba858d7c40ffb22084bf932f087139c20beba35
+
+## 2021-12-13: Autocorrect `Layout/TrailingWhitespace`
+76e69ab0ea9702dc60c82564bca62eda03ee646f
+
+## 2021-12-13: Autocorrect `Layout/HashAlignment`
+229e6ff8209850381a121b8e0eff137e4da081e5
+
+## 2021-12-13: Autocorrect `Style/MethodCallWithArgsParentheses`
+a057d7361f34d3dea78e254dc866f937d23dbe89
+
+## 2021-12-13: Autocorrect `Style/FrozenStringLiteralComment`
+c839d296b7f9e0bd0fbefe1dae548f6003ca0840
+
+## 2021-12-13: Autocorrect `Layout/ArrayAlignment`
+d3ef77ac5e0ed2778a277b97465692ab7b18a534
+
+## 2021-12-13: Autocorrect `Style/HashSyntax`
+2f1e4442b6cfd0f6819a3852b4852594b3951431
+
+## 2021-12-13: Autocorrect `Style/StringLiterals`
+3905dbee72b1f2f4c6ce4f2895aae1c07668b694
