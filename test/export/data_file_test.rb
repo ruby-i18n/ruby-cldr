@@ -7,7 +7,7 @@ class TestDataFile < Test::Unit::TestCase
     File.read("#{Cldr::Export::Data.dir}/main/de.xml")
   end
 
-  def test_merging
+  test "merging" do
     first_contents = <<~XML_CONTENTS
       <?xml version="1.0" encoding="UTF-8"?>
       <ldml>
@@ -109,7 +109,7 @@ class TestDataFile < Test::Unit::TestCase
     assert_equal(expected, merged_with_mutation.doc.to_xml)
   end
 
-  def test_locale_parsing
+  test "locale parsing" do
     xml_contents = <<~XML_CONTENTS
       <?xml version="1.0" encoding="UTF-8" ?>
       <ldml>
@@ -140,7 +140,7 @@ class TestDataFile < Test::Unit::TestCase
     assert_equal(:"de-CH", parsed.locale)
   end
 
-  def test_locale_parsing_returns_nil_when_missing
+  test "locale parsing returns nil when missing" do
     xml_contents = <<~XML_CONTENTS
       <?xml version="1.0" encoding="UTF-8" ?>
       <ldml>
@@ -163,7 +163,7 @@ class TestDataFileDraftStatusFilter < Test::Unit::TestCase
     File.read("#{Cldr::Export::Data.dir}/main/de.xml")
   end
 
-  def test_filters_file_by_draft_status
+  test "filters file by draft status" do
     unconfirmed_count = pairs(Cldr::Export::DataFile.parse(cldr_data, minimum_draft_status: Cldr::DraftStatus::UNCONFIRMED)).count
     provisional_count = pairs(Cldr::Export::DataFile.parse(cldr_data, minimum_draft_status: Cldr::DraftStatus::PROVISIONAL)).count
     contributed_count = pairs(Cldr::Export::DataFile.parse(cldr_data, minimum_draft_status: Cldr::DraftStatus::CONTRIBUTED)).count
@@ -174,7 +174,7 @@ class TestDataFileDraftStatusFilter < Test::Unit::TestCase
     assert(contributed_count >= approved_count, "Found #{contributed_count} contributed pairs, and #{approved_count} approved pairs")
   end
 
-  def test_removes_draft_pairs_and_empty_ancestors
+  test "removes draft pairs and empty ancestors" do
     xml_contents = <<~XML_CONTENTS
       <?xml version="1.0" encoding="UTF-8" ?>
       <ldml>
