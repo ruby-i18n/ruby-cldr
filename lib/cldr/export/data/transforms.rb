@@ -13,6 +13,12 @@ module Cldr
           update(transforms: transforms)
         end
 
+        protected
+
+        def doc
+          Cldr::Export::DataFile.parse(File.read(transform_file))
+        end
+
         private
 
         def transforms
@@ -62,10 +68,6 @@ module Cldr
             .gsub("←", "<")
             .gsub("→", ">")
             .gsub("↔", "<>")
-        end
-
-        def paths
-          [transform_file]
         end
       end
     end

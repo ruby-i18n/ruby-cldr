@@ -9,10 +9,7 @@ module Cldr
         def initialize
           super
 
-          path = File.join(Cldr::Export::Data.dir, "supplemental", "supplementalData.xml")
-          doc = Cldr::Export::DataFile.parse(File.read(path))
-
-          doc.xpath("//parentLocales/parentLocale").each do |node|
+          Cldr::Export::Data::RAW_DATA[nil].xpath("//parentLocales/parentLocale").each do |node|
             parent = Cldr::Export.to_i18n(node.attr("parent"))
             locales = node.attr("locales").split(" ").map { |locale| Cldr::Export.to_i18n(locale) }
 
