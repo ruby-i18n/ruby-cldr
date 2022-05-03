@@ -28,6 +28,12 @@ module Cldr
             keys.sort
           end
 
+          def slice(*keys)
+            rules = self.class.new
+            super.slice(*keys).each { |locale, rule| rules[locale] = rule }
+            rules
+          end
+
           def to_ruby(options = {})
             namespaces = options[:namespaces] || [:i18n]
             code = map do |locale, rule|
@@ -35,8 +41,8 @@ module Cldr
               ruby = namespaces.reverse.inject(ruby) { |ruby, namespace| "{ #{namespace.inspect} => #{ruby} }" }
               "#{locale.inspect} => #{ruby}"
             end.join(",\n")
-            code = code.split("\n").map { |line| "  #{line}" }.join("\n")
-            "{\n" + code + "\n}"
+            code = code.split("\n").map(&:to_s).join("\n")
+            "{ #{code} }"
           end
         end
 

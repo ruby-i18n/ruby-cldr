@@ -35,10 +35,10 @@ class TestExport < Test::Unit::TestCase
 
   test "passing the merge option generates and merges Plurals data from fallback locales" do
     data = Cldr::Export.data(:Plurals, :"af-NA")
-    assert_equal "", data
+    assert_nil(data)
 
     data = Cldr::Export.data(:Plurals, :"af-NA", merge: true)
-    assert_match(/{ :'af-NA' => { :i18n => { :plural/, data)
+    assert_equal([:"af-NA"], data.keys)
   end
 
   test "the merge option respects parentLocales" do
