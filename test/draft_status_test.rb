@@ -4,38 +4,38 @@
 require File.expand_path(File.join(File.dirname(__FILE__), "test_helper"))
 
 class TestExport < Test::Unit::TestCase
-  def test_statuses_can_be_compared
+  test "statuses can be compared" do
     assert(Cldr::DraftStatus::UNCONFIRMED < Cldr::DraftStatus::PROVISIONAL)
     assert(Cldr::DraftStatus::PROVISIONAL < Cldr::DraftStatus::CONTRIBUTED)
     assert(Cldr::DraftStatus::CONTRIBUTED < Cldr::DraftStatus::APPROVED)
   end
 
-  def test_statuses_can_be_looked_up_by_name
+  test "statuses can be looked up by name" do
     assert_equal(Cldr::DraftStatus::UNCONFIRMED, Cldr::DraftStatus.fetch("unconfirmed"))
     assert_equal(Cldr::DraftStatus::PROVISIONAL, Cldr::DraftStatus.fetch("provisional"))
     assert_equal(Cldr::DraftStatus::CONTRIBUTED, Cldr::DraftStatus.fetch("contributed"))
     assert_equal(Cldr::DraftStatus::APPROVED, Cldr::DraftStatus.fetch("approved"))
   end
 
-  def test_statuses_can_be_looked_up_by_symbolic_name
+  test "statuses can be looked up by symbolic name" do
     assert_equal(Cldr::DraftStatus::UNCONFIRMED, Cldr::DraftStatus.fetch(:unconfirmed))
     assert_equal(Cldr::DraftStatus::PROVISIONAL, Cldr::DraftStatus.fetch(:provisional))
     assert_equal(Cldr::DraftStatus::CONTRIBUTED, Cldr::DraftStatus.fetch(:contributed))
     assert_equal(Cldr::DraftStatus::APPROVED, Cldr::DraftStatus.fetch(:approved))
   end
 
-  def test_statuses_can_be_looked_up_by_themselves
+  test "statuses can be looked up by themselves" do
     assert_equal(Cldr::DraftStatus::UNCONFIRMED, Cldr::DraftStatus.fetch(Cldr::DraftStatus::UNCONFIRMED))
     assert_equal(Cldr::DraftStatus::PROVISIONAL, Cldr::DraftStatus.fetch(Cldr::DraftStatus::PROVISIONAL))
     assert_equal(Cldr::DraftStatus::CONTRIBUTED, Cldr::DraftStatus.fetch(Cldr::DraftStatus::CONTRIBUTED))
     assert_equal(Cldr::DraftStatus::APPROVED, Cldr::DraftStatus.fetch(Cldr::DraftStatus::APPROVED))
   end
 
-  def test_invalid_statuses_are_not_found
+  test "invalid statuses are not found" do
     assert_raises(KeyError) { Cldr::DraftStatus.fetch(:invalid) }
   end
 
-  def test_statuses_are_their_own_class
+  test "statuses are their own class" do
     Cldr::DraftStatus::ALL.each do |status|
       assert_instance_of(Cldr::DraftStatus::Status, status)
     end
