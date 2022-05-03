@@ -34,7 +34,7 @@ module Cldr
         end
 
         def rule
-          @rule = Plurals.rules.rule(locale)
+          @rule = Plurals.rules[locale]
         end
       end
     end
