@@ -12,11 +12,13 @@ require "core_ext/hash/deep_sort"
 
 module Cldr
   module Export
-    autoload :Code,     "cldr/export/code"
-    autoload :Data,     "cldr/export/data"
-    autoload :DataFile, "cldr/export/data_file"
-    autoload :Ruby,     "cldr/export/ruby"
-    autoload :Yaml,     "cldr/export/yaml"
+    autoload :Code,              "cldr/export/code"
+    autoload :Data,              "cldr/export/data"
+    autoload :DataFile,          "cldr/export/data_file"
+    autoload :DataSet,           "cldr/export/data_set"
+    autoload :FileBasedDataSet,  "cldr/export/file_based_data_set"
+    autoload :Ruby,              "cldr/export/ruby"
+    autoload :Yaml,              "cldr/export/yaml"
 
     SHARED_COMPONENTS = [
       :Aliases, :CountryCodes, :CurrencyDigitsAndRounding, :LikelySubtags,
