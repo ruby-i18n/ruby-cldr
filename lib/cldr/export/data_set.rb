@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 require_relative "nil_data_set"
+require_relative "resolver"
 
 module Cldr
   module Export
     class DataSet
+      include Cldr::Export::Resolver
+
       def initialize(parent: nil)
         @file_cache = {}
         @parent = parent || NilDataSet
