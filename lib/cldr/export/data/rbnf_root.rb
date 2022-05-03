@@ -5,13 +5,7 @@ module Cldr
     module Data
       class RbnfRoot < Rbnf
         def initialize
-          super(nil)
-        end
-
-        private
-
-        def paths
-          @paths ||= [File.join(Cldr::Export::Data.dir, "rbnf", "root.xml")]
+          super(:root)
         end
       end
     end

@@ -9,11 +9,9 @@ module Cldr
       class Plurals
         class Rules < Hash
           class << self
-            def parse(xml)
-              doc = Cldr::Export::DataFile.parse(xml)
-
+            def read(data_file)
               rules = new
-              doc.xpath("//pluralRules").each do |node|
+              data_file.xpath("//pluralRules").each do |node|
                 rule = Rule.new
                 node.xpath("pluralRule").each { |child| rule << [child.attribute("count").value, child.text] }
 

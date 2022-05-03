@@ -20,10 +20,6 @@ module Cldr
             memo[territory_id][:contains].sort!
           end
         end
-
-        def path
-          @path ||= "#{Cldr::Export::Data.dir}/supplemental/supplementalData.xml"
-        end
       end
     end
   end

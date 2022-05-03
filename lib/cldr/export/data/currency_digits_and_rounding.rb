@@ -9,10 +9,7 @@ module Cldr
         def initialize
           super
 
-          path = "#{Cldr::Export::Data.dir}/supplemental/supplementalData.xml"
-          doc = Cldr::Export::DataFile.parse(File.read(path))
-
-          doc.xpath("//currencyData/fractions/info").each do |node|
+          Cldr::Export::Data::RAW_DATA[nil].xpath("//currencyData/fractions/info").each do |node|
             code = node.attr("iso4217")
             digits = node.attr("digits").to_i
             rounding = node.attr("rounding").to_i

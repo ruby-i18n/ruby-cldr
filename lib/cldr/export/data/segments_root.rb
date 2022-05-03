@@ -5,12 +5,8 @@ module Cldr
     module Data
       class SegmentsRoot < Base
         def initialize
-          super(nil)
+          super(:root)
           update(segments: segmentations)
-        end
-
-        def paths
-          @paths ||= ["#{Cldr::Export::Data.dir}/segments/root.xml"]
         end
 
         private

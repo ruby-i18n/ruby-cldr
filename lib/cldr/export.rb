@@ -49,7 +49,7 @@ module Cldr
       end
 
       def export(options = {}, &block)
-        locales        = options[:locales] || Data.locales
+        locales        = options[:locales] || Data::RAW_DATA.locales
         components     = options[:components] || Data.components
         self.minimum_draft_status = options[:minimum_draft_status] if options[:minimum_draft_status]
         self.base_path = options[:target] if options[:target]
@@ -61,7 +61,7 @@ module Cldr
         shared_components.each do |component|
           case component
           when :Transforms
-            Dir.glob("#{Cldr::Export::Data.dir}/transforms/**.xml").each do |transform_file|
+            Dir.glob("#{Cldr::Export::Data::RAW_DATA.directory}/transforms/**.xml").each do |transform_file|
               data = Data::Transforms.new(transform_file)
               source = data[:transforms].first[:source]
               target = data[:transforms].first[:target]
