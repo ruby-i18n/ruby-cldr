@@ -10,14 +10,14 @@ module Cldr
         def initialize
           super
 
-          path = "#{Cldr::Export::Data.dir}/supplemental/metaZones.xml"
-          doc = Cldr::Export::DataFile.parse(File.read(path))
-          self[:timezones] = doc.xpath("//metaZones/metazoneInfo/timezone").each_with_object({}) do |node, result|
+          data_file = Cldr::Export::Data::RAW_DATA[nil]
+
+          self[:timezones] = data_file.xpath("//metaZones/metazoneInfo/timezone").each_with_object({}) do |node, result|
             timezone = node.attr("type").to_sym
             result[timezone] = metazone(node.xpath("usesMetazone"))
             result[timezone].sort_by! { |zone| [zone["from"] ? zone["from"] : DateTime.new, zone["to"] ? zone["to"] : DateTime.now] }
           end
-          self[:primaryzones] = doc.xpath("//primaryZones/primaryZone").each_with_object({}) do |node, result|
+          self[:primaryzones] = data_file.xpath("//primaryZones/primaryZone").each_with_object({}) do |node, result|
             territory = node.attr("iso3166").to_sym
             result[territory] = node.content
           end
