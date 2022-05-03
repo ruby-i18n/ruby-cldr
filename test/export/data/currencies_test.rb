@@ -44,12 +44,4 @@ class TestCldrCurrencies < Test::Unit::TestCase
     currencies = Cldr::Export::Data::Currencies.new(:root)[:currencies]
     assert_equal({ symbol: "US$", "narrow_symbol": "$" }, currencies[:USD])
   end
-
-  # Cldr::Export::Data.locales.each do |locale|
-  #   test "extract currencies for #{locale}" do
-  #     assert_nothing_raised do
-  #       Cldr::Export::Data::Currencies.new(locale)
-  #     end
-  #   end
-  # end
 end

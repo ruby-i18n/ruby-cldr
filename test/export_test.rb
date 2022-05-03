@@ -69,15 +69,4 @@ class TestExport < Test::Unit::TestCase
   test "#locales does not fall back if :merge option is false" do
     assert_equal [:"pt-BR"], Cldr::Export.locales(:"pt-BR", "numbers", merge: false)
   end
-
-  # Cldr::Export::Data.locales.each do |locale|
-  #   Cldr::Export::Data.components.each do |component|
-  #     test "exported yaml file yaml for #{locale}/#{component} readable" do
-  #       Cldr::Export.export(:locales => [locale], :components => [component])
-  #       assert_nothing_raised do
-  #         YAML.load(File.open(Cldr::Export::Data::Export.path(locale, component))) rescue Errno::ENOENT
-  #       end
-  #     end
-  #   end
-  # end
 end

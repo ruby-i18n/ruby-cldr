@@ -78,12 +78,4 @@ class TestCldrDataLanguages < Test::Unit::TestCase
 
     assert_equal "American English", languages[:"en-US"]
   end
-
-  # Cldr::Export::Data.locales.each do |locale|
-  #   test "extract languages for #{locale}" do
-  #     assert_nothing_raised do
-  #       Cldr::Export::Data::Languages.new(locale)
-  #     end
-  #   end
-  # end
 end

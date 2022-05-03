@@ -25,12 +25,4 @@ class TestCldrDataUnits < Test::Unit::TestCase
     assert_equal units[:minute], data[:"duration-minute"]
     assert_equal units[:second], data[:"duration-second"]
   end
-
-  # Cldr::Export::Data.locales.each do |locale|
-  #   test "extract units for #{locale}" do
-  #     assert_nothing_raised do
-  #       Cldr::Export::Data::Units.new(locale)
-  #     end
-  #   end
-  # end
 end

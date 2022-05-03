@@ -207,10 +207,4 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     }
     assert_equal eras, gregorian(locale: :root)[:eras]
   end
-
-  # Cldr::Export::Data.locales.each do |locale|
-  #   test "extract calendars for #{locale}" do
-  #     Cldr::Export::Data::Calendars.new(locale)
-  #   end
-  # end
 end

@@ -42,12 +42,4 @@ class TestCldrDataTerritories < Test::Unit::TestCase
 
     assert_equal "United States", territories[:US]
   end
-
-  # Cldr::Export::Data.locales.each do |locale|
-  #   test "extract territories for #{locale}" do
-  #     assert_nothing_raised do
-  #       Cldr::Export::Data::Territories.new(locale)
-  #     end
-  #   end
-  # end
 end

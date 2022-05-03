@@ -60,12 +60,4 @@ class TestCldrDataTimezones < Test::Unit::TestCase
     short = { generic: "WEZ", standard: "WEZ", daylight: "WESZ" }
     assert_equal({ long: long, short: short }, europe_western)
   end
-
-  # Cldr::Export::Data.locales.each do |locale|
-  #   test "extract timezones for #{locale}" do
-  #     assert_nothing_raised do
-  #       Cldr::Export::Data::Timezones.new(locale)
-  #     end
-  #   end
-  # end
 end
