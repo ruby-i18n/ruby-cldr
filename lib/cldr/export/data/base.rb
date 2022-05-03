@@ -45,7 +45,7 @@ module Cldr
         end
 
         def doc
-          Cldr::Export::Data::RAW_DATA[locale]
+          Cldr::Export::Data::FLAT_DATA[locale]
         end
       end
     end

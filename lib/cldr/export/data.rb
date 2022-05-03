@@ -38,6 +38,7 @@ module Cldr
       autoload :Transforms,                "cldr/export/data/transforms"
 
       RAW_DATA = Cldr::Export::FileBasedDataSet.new(directory: File.expand_path("./vendor/cldr/common"))
+      FLAT_DATA = Cldr::Export::FlattenedDataSet.new(parent: RAW_DATA)
 
       class << self
         def components

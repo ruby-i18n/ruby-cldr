@@ -10,7 +10,7 @@ module Cldr
         def initialize
           super
 
-          data_file = Cldr::Export::Data::RAW_DATA[nil]
+          data_file = Cldr::Export::Data::FLAT_DATA[nil]
 
           self[:timezones] = data_file.xpath("//metaZones/metazoneInfo/timezone").each_with_object({}) do |node, result|
             timezone = node.attr("type").to_sym

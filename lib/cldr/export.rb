@@ -50,7 +50,7 @@ module Cldr
       end
 
       def export(options = {}, &block)
-        locales        = options[:locales] || Data::RAW_DATA.locales
+        locales        = options[:locales] || Data::FLAT_DATA.locales
         components     = options[:components] || Data.components
         self.minimum_draft_status = options[:minimum_draft_status] if options[:minimum_draft_status]
         self.base_path = options[:target] if options[:target]

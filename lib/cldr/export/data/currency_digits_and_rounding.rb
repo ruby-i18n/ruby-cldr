@@ -9,7 +9,7 @@ module Cldr
         def initialize
           super
 
-          Cldr::Export::Data::RAW_DATA[nil].xpath("//currencyData/fractions/info").each do |node|
+          Cldr::Export::Data::FLAT_DATA[nil].xpath("//currencyData/fractions/info").each do |node|
             code = node.attr("iso4217")
             digits = node.attr("digits").to_i
             rounding = node.attr("rounding").to_i

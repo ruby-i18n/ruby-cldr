@@ -10,7 +10,7 @@ module Cldr
         def initialize
           super
 
-          Cldr::Export::Data::RAW_DATA[nil].xpath("//windowsZones/mapTimezones/mapZone").each_with_object(self) do |node, result|
+          Cldr::Export::Data::FLAT_DATA[nil].xpath("//windowsZones/mapTimezones/mapZone").each_with_object(self) do |node, result|
             zone = node.attr("other").to_s
             territory = node.attr("territory")
             timezones = node.attr("type").split(" ")
