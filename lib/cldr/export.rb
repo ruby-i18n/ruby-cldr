@@ -118,8 +118,15 @@ module Cldr
       end
 
       def plural_data(component, locale, options = {})
-        data = locale_based_data(component, locale, options)
-        data.empty? ? "" : "{ :'#{locale}' => { :i18n => { :plural => { :keys => #{data[:keys].inspect}, :rule => #{data[:rule]} } } } }"
+        result = locales(locale, component, options).lazy.map do |ancestor|
+          Data::Plurals.rules.slice(ancestor)
+        end.reject(&:empty?).first
+
+        if result && result.keys != [locale]
+          result[locale] = result.delete(result.keys.first)
+        end
+
+        result
       end
 
       def shared_data(component, options = {})

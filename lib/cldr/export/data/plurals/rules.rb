@@ -7,39 +7,42 @@ module Cldr
   module Export
     module Data
       class Plurals
-        class Rules < Array
+        class Rules < Hash
           class << self
             def parse(xml)
               doc = Cldr::Export::DataFile.parse(xml)
 
               rules = new
               doc.xpath("//pluralRules").each do |node|
-                rule = Rule.new(node.attribute("locales").value.split(/\s+/))
+                rule = Rule.new
                 node.xpath("pluralRule").each { |child| rule << [child.attribute("count").value, child.text] }
-                rules << rule
+
+                locales = node.attribute("locales").value.split(/\s+/).map { |locale| Cldr::Export.to_i18n(locale) }
+                locales.each { |locale| rules[locale] = rule }
               end
               rules
             end
           end
 
           def locales
-            @locales ||= map(&:locales).flatten.map(&:to_s).sort.map(&:to_sym)
+            keys.sort
           end
 
-          def rule(locale)
-            detect { |rule| rule.locales.include?(locale.to_sym) }
+          def slice(*keys)
+            rules = self.class.new
+            super.slice(*keys).each { |locale, rule| rules[locale] = rule }
+            rules
           end
 
           def to_ruby(options = {})
             namespaces = options[:namespaces] || [:i18n]
-            code = locales.map do |locale|
-              rule = self.rule(locale)
+            code = map do |locale, rule|
               ruby = "{ :plural => { :keys => #{rule.keys.inspect}, :rule => #{rule.to_ruby} } }"
               ruby = namespaces.reverse.inject(ruby) { |ruby, namespace| "{ #{namespace.inspect} => #{ruby} }" }
               "#{locale.inspect} => #{ruby}"
             end.join(",\n")
-            code = code.split("\n").map { |line| "  #{line}" }.join("\n")
-            "{\n" + code + "\n}"
+            code = code.split("\n").map(&:to_s).join("\n")
+            "{ #{code} }"
           end
         end
 
@@ -92,14 +95,6 @@ module Cldr
                 .gsub(/(\d+)=(\d+)/, '\1 = \2') # 10=100-> 10 = 100
                 .gsub(/(n)!=(\d+)/, '\1 != \2') # n!=100 -> n != 100
             end
-          end
-
-          attr_reader :locales
-
-          def initialize(locales)
-            super()
-
-            @locales = locales.map { |locale| Cldr::Export.to_i18n(locale) }
           end
 
           def keys
