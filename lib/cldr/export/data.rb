@@ -42,7 +42,7 @@ module Cldr
 
       class << self
         def components
-          constants.sort - [:Base, :Export, :RAW_DATA]
+          constants.sort - [:Base, :Export, :FLAT_DATA, :RAW_DATA]
         end
       end
     end
