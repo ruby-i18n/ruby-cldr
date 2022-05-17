@@ -55,6 +55,7 @@ GEM
     parser (3.0.3.2)
       ast (~> 2.4.1)
     power_assert (1.1.3)
+    prettier_print (0.1.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -82,16 +83,19 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.15.0)
       parser (>= 3.0.1.1)
-    rubocop-lsp (0.1.6)
-      language_server-protocol (>= 3.16)
-      rubocop (>= 1.0)
     rubocop-shopify (2.3.0)
       rubocop (~> 1.22)
+    ruby-lsp (0.0.2)
+      language_server-protocol
+      rubocop (>= 1.0)
+      syntax_tree (>= 2.3)
     ruby-progressbar (1.11.0)
     rubyzip (1.3.0)
     semver2 (3.4.2)
     slop (3.6.0)
     stringio (3.0.1)
+    syntax_tree (2.6.0)
+      prettier_print
     test-unit (3.3.0)
       power_assert
     thor (0.20.3)
@@ -108,8 +112,8 @@ DEPENDENCIES
   pry
   pry-nav
   psych (>= 4.0.0)
-  rubocop-lsp
   rubocop-shopify
+  ruby-lsp
   rubyzip
   test-unit
   thor

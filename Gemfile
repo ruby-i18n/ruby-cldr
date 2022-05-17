@@ -11,8 +11,8 @@ group :development do
   gem "pry-nav"
   gem "pry"
   gem "psych", ">= 4.0.0"
-  gem "rubocop-lsp", require: false
   gem "rubocop-shopify", require: false
+  gem "ruby-lsp", require: false
   gem "rubyzip"
   gem "test-unit"
 end
