@@ -1,5 +1,5 @@
 {
     "recommendations": [
-        "shopify.rubocop-lsp",
+        "shopify.ruby-lsp",
     ]
 }
