@@ -160,7 +160,7 @@ module Cldr
       def write(path, data)
         FileUtils.rm(path) if File.exist?(path)
         FileUtils.mkdir_p(File.dirname(path))
-        File.open(path, "w+") { |f| f.write(data) }
+        File.write(path, data)
       end
 
       def path(locale, component, extension)
