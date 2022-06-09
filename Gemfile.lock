@@ -100,7 +100,7 @@ GEM
       prettier_print
     test-unit (3.5.3)
       power_assert
-    thor (0.20.3)
+    thor (1.2.1)
     thread_safe (0.3.6)
     unicode-display_width (2.1.0)
 
