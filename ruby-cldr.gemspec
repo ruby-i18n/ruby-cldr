@@ -34,6 +34,7 @@ Gem::Specification.new do |s|
     "lib/cldr.rb",
     "lib/cldr/data.rb",
     "lib/cldr/download.rb",
+    "lib/cldr/draft_status.rb",
     "lib/cldr/export.rb",
     "lib/cldr/export/code.rb",
     "lib/cldr/export/code/numbers.rb",
@@ -73,6 +74,7 @@ Gem::Specification.new do |s|
     "lib/cldr/export/data/units.rb",
     "lib/cldr/export/data/variables.rb",
     "lib/cldr/export/data/windows_zones.rb",
+    "lib/cldr/export/data_file.rb",
     "lib/cldr/export/ruby.rb",
     "lib/cldr/export/yaml.rb",
     "lib/cldr/format.rb",
@@ -90,6 +92,7 @@ Gem::Specification.new do |s|
     "lib/cldr/locale.rb",
     "lib/cldr/locale/fallbacks.rb",
     "lib/cldr/thor.rb",
+    "lib/cldr/validate.rb",
     "lib/core_ext/hash/deep_merge.rb",
     "lib/core_ext/hash/deep_prune.rb",
     "lib/core_ext/hash/deep_sort.rb",
@@ -99,8 +102,11 @@ Gem::Specification.new do |s|
     "lib/core_ext/string/underscore.rb",
     "test/all.rb",
     "test/core_ext/deep_prune_test.rb",
+    "test/core_ext/deep_stringify_test.rb",
+    "test/draft_status_test.rb",
     "test/export/code/numbers_test.rb",
     "test/export/data/all.rb",
+    "test/export/data/base_test.rb",
     "test/export/data/calendars_test.rb",
     "test/export/data/country_codes_test.rb",
     "test/export/data/currencies_test.rb",
@@ -108,6 +114,7 @@ Gem::Specification.new do |s|
     "test/export/data/languages_test.rb",
     "test/export/data/metazones_test.rb",
     "test/export/data/numbers_test.rb",
+    "test/export/data/parent_locales_test.rb",
     "test/export/data/plurals_test.rb",
     "test/export/data/subdivisions_test.rb",
     "test/export/data/territories_containment_test.rb",
@@ -115,6 +122,7 @@ Gem::Specification.new do |s|
     "test/export/data/timezones_test.rb",
     "test/export/data/units_test.rb",
     "test/export/data/windows_zones_test.rb",
+    "test/export/data_file_test.rb",
     "test/export/yaml_test.rb",
     "test/export_test.rb",
     "test/format/all.rb",
@@ -133,7 +141,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/ruby-i18n/ruby-cldr"
   s.licenses = ["MIT"]
-  s.rubygems_version = "3.2.20"
+  s.rubygems_version = "3.3.7"
   s.summary = "Ruby library for exporting and using data from CLDR"
 
   if s.respond_to?(:specification_version)
@@ -147,6 +155,9 @@ Gem::Specification.new do |s|
     s.add_development_dependency("jeweler", [">= 0"])
     s.add_development_dependency("pry", [">= 0"])
     s.add_development_dependency("pry-nav", [">= 0"])
+    s.add_development_dependency("psych", [">= 4.0.0"])
+    s.add_development_dependency("rubocop-shopify", [">= 0"])
+    s.add_development_dependency("ruby-lsp", [">= 0"])
     s.add_development_dependency("rubyzip", [">= 0"])
     s.add_development_dependency("test-unit", [">= 0"])
   else
@@ -155,6 +166,9 @@ Gem::Specification.new do |s|
     s.add_dependency("nokogiri", [">= 0"])
     s.add_dependency("pry", [">= 0"])
     s.add_dependency("pry-nav", [">= 0"])
+    s.add_dependency("psych", [">= 4.0.0"])
+    s.add_dependency("rubocop-shopify", [">= 0"])
+    s.add_dependency("ruby-lsp", [">= 0"])
     s.add_dependency("rubyzip", [">= 0"])
     s.add_dependency("test-unit", [">= 0"])
     s.add_dependency("thor", [">= 0"])
