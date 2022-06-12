@@ -62,7 +62,7 @@ GEM
       slop (~> 3.4)
     pry-nav (1.0.0)
       pry (>= 0.9.10, < 0.15)
-    psych (4.0.3)
+    psych (4.0.4)
       stringio
     racc (1.6.0)
     rack (2.2.3.1)
@@ -95,7 +95,7 @@ GEM
     semver2 (3.4.2)
     slop (3.6.0)
     sorbet-runtime (0.5.10087)
-    stringio (3.0.1)
+    stringio (3.0.2)
     syntax_tree (2.7.1)
       prettier_print
     test-unit (3.5.3)
