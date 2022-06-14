@@ -38,6 +38,7 @@ module Cldr
 
       def minimum_draft_status
         raise StandardError, "minimum_draft_status is not yet set." unless defined?(@@minimum_draft_status)
+
         @@minimum_draft_status
       end
 

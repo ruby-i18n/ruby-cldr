@@ -221,6 +221,7 @@ class TestDataFileDraftStatusFilter < Test::Unit::TestCase
 
     doc.traverse do |node|
       next unless node.text?
+
       yield node.path, node.text
     end
   end

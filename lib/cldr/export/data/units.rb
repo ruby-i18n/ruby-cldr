@@ -33,6 +33,7 @@ module Cldr
             # Ignore cases for now. We don't have a way to expose them yet.
             # TODO: https://github.com/ruby-i18n/ruby-cldr/issues/67
             next result if node.attribute("case")
+
             count = node.attribute("count") ? node.attribute("count").value.to_sym : :one
             result[count] = node.content
           end
