@@ -90,7 +90,7 @@ GEM
       sorbet-runtime
       syntax_tree (>= 2.3)
     ruby-progressbar (1.11.0)
-    rubyzip (1.3.0)
+    rubyzip (2.3.2)
     semver2 (3.4.2)
     sorbet-runtime (0.5.10087)
     stringio (3.0.2)
