@@ -1,5 +1,8 @@
 # RuboCop commits
 
+## 2022-06-14: Autocorrect `Layout/EmptyLineAfterGuardClause`
+d96b73ffcd169b0b5e2c6c1650d261e0a18ffbe4
+
 ## 2022-04-20: Apply `rubocop -a --only=Layout/EmptyLineAfterGuardClause`
 0e06046e050615266634885d6bcfb142e6c5e0b9
 
