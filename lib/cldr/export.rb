@@ -105,7 +105,7 @@ module Cldr
       end
 
       def locale_based_data(component, locale, options = {})
-        data = locales(locale, component, options).inject({}) do |result, locale|
+        locales_to_merge(locale, component, options).inject({}) do |result, locale|
           data = Data.const_get(component.to_s).new(locale)
           if data
             data.is_a?(Hash) ? data.deep_merge(result) : data
@@ -113,13 +113,10 @@ module Cldr
             result
           end
         end
-
-        # data = resolve_links if options[:merge] TODO!!
-        data
       end
 
       def plural_data(component, locale, options = {})
-        result = locales(locale, component, options).lazy.map do |ancestor|
+        result = locales_to_merge(locale, component, options).lazy.map do |ancestor|
           Data::Plurals.rules.slice(ancestor)
         end.reject(&:empty?).first
 
@@ -147,15 +144,14 @@ module Cldr
         locale.to_s.gsub("-", "_").to_sym
       end
 
-      def locales(locale, component, options)
-        locales = if options[:merge]
-          Cldr.fallbacks[locale]
+      def locales_to_merge(locale, component, options)
+        if options[:merge]
+          locales = Cldr.fallbacks[locale]
+          locales.reject! { |locale| locale == :root } unless should_merge_root?(component)
+          locales
         else
-          [locale, :root]
+          [locale]
         end
-
-        locales.pop unless should_merge_root?(locale, component, options)
-        locales
       end
 
       def write(path, data)
@@ -178,11 +174,10 @@ module Cldr
         SHARED_COMPONENTS.include?(component)
       end
 
-      def should_merge_root?(locale, component, options)
+      def should_merge_root?(component)
         return false if [:Rbnf, :Fields].include?(component)
-        return true if options[:merge]
 
-        locale == :en
+        true
       end
     end
   end
