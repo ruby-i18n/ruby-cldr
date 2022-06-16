@@ -10,10 +10,10 @@ class TestCldrDataSubdivisions < Test::Unit::TestCase
     assert_equal("ケベック州", subdivisions[:caqc])
   end
 
-  test "subdivisions for a non an unsupported locale :zz" do
-    subdivisions = Cldr::Export::Data::Subdivisions.new(:zz)
+  test "subdivisions empty for unsupported locale :zz" do
+    data = Cldr::Export::Data::Subdivisions.new(:zz)
 
-    assert_empty(subdivisions)
+    assert_empty(data[:subdivisions])
   end
 
   test "subdivisions locales are a subset of main locales" do
@@ -24,11 +24,4 @@ class TestCldrDataSubdivisions < Test::Unit::TestCase
 
     assert_empty(subdivisions_locales - main_locales)
   end
-
-  #
-  #   test "extract subdivisions for #{locale}" do
-  #     assert_nothing_raised do
-  #       Cldr::Export::Data::Subdivisions.new(locale)
-  #     end
-  #   end
 end

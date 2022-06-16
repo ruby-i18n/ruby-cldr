@@ -17,14 +17,6 @@ module Cldr
           @locale = locale
         end
 
-        def update(hash)
-          hash.each { |key, value| self[key] = value }
-        end
-
-        def []=(key, value)
-          store(key, value) unless value.nil? || value.respond_to?(:empty?) && value.empty?
-        end
-
         protected
 
         def alt?(node) # TODO: Move this into DataFile
