@@ -15,7 +15,7 @@ module Cldr
 
         class << self
           def rules
-            @@rules ||= Rules.parse(File.read("#{Cldr::Export::Data.dir}/supplemental/plurals.xml"))
+            @@rules ||= Rules.read(Cldr::Export::Data::RAW_DATA[nil])
           end
         end
       end

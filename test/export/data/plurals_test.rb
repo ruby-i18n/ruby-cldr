@@ -3,12 +3,8 @@
 require File.join(File.expand_path(File.dirname(__FILE__)), "../../test_helper")
 
 class TestCldrDataPluralParser < Test::Unit::TestCase
-  def cldr_data
-    File.read(File.dirname(__FILE__) + "/../../../vendor/cldr/common/supplemental/plurals.xml")
-  end
-
   def cldr_rules
-    Cldr::Export::Data::Plurals::Rules.parse(cldr_data)
+    Cldr::Export::Data::Plurals::Rules.read(Cldr::Export::Data::RAW_DATA[nil])
   end
 
   test "compiles to valid ruby code" do

@@ -22,7 +22,7 @@ module Cldr
 
         def sources
           @sources ||= ["plurals", "ordinals"].each_with_object({}) do |source_name, ret|
-            ret[source_name] = Cldr::Export::DataFile.parse(File.read("#{Cldr::Export::Data.dir}/supplemental/#{source_name}.xml"))
+            ret[source_name] = Cldr::Export::DataFile.parse(File.read("#{Cldr::Export::Data::RAW_DATA.directory}/supplemental/#{source_name}.xml"))
           end
         end
 

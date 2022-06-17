@@ -37,23 +37,11 @@ module Cldr
       autoload :WindowsZones,              "cldr/export/data/windows_zones"
       autoload :Transforms,                "cldr/export/data/transforms"
 
+      RAW_DATA = Cldr::Export::FileBasedDataSet.new(directory: File.expand_path("./vendor/cldr/common"))
+
       class << self
-        def dir
-          @dir ||= File.expand_path("./vendor/cldr/common")
-        end
-
-        attr_writer :dir
-
-        def locales
-          Dir["#{dir}/main/*.xml"].map { |path| path =~ /([\w_-]+)\.xml/ && Regexp.last_match(1) }.map { |l| Cldr::Export.to_i18n(l) }.sort
-        end
-
         def components
-          constants.sort - [:Base, :Export]
-        end
-
-        def paths_by_root
-          @paths ||= Dir[File.join(dir, "**", "*.xml")].sort.group_by { |path| Nokogiri::XML(File.read(path)).root.name }
+          constants.sort - [:Base, :Export, :RAW_DATA]
         end
       end
     end

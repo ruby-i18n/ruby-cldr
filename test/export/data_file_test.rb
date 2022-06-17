@@ -4,7 +4,7 @@ require File.join(File.expand_path(File.dirname(__FILE__)), "../test_helper")
 
 class TestDataFile < Test::Unit::TestCase
   def cldr_data
-    File.read("#{Cldr::Export::Data.dir}/main/de.xml")
+    File.read("#{Cldr::Export::Data::RAW_DATA.directory}/main/de.xml")
   end
 
   test "merging" do
@@ -160,7 +160,7 @@ class TestDataFileDraftStatusFilter < Test::Unit::TestCase
   def setup; end # We don't want the default behaviour for these.
 
   def cldr_data
-    File.read("#{Cldr::Export::Data.dir}/main/de.xml")
+    File.read("#{Cldr::Export::Data::RAW_DATA.directory}/main/de.xml")
   end
 
   test "filters file by draft status" do
