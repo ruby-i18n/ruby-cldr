@@ -4,6 +4,7 @@ require "thor"
 require "cldr"
 require "cldr/download"
 require "cldr/validate"
+require "cldr/validate_upstream_assumptions"
 
 module Cldr
   class Thor < ::Thor
@@ -67,6 +68,11 @@ module Cldr
     end
 
     # TODO: flatten task, e.g. flatten all plural locale files into one big file
+
+    desc "validate_upstream", "Verify our assumptions about the CLDR data are correct."
+    def validate_upstream
+      Cldr::ValidateUpstreamAssumptions.validate
+    end
 
     desc "validate", "Run QA checks against the output data"
     option :target, aliases: [:t], type: :string,

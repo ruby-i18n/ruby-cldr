@@ -35,5 +35,5 @@ jobs:
       - name: Export the data
         run: bundle exec thor cldr:export
 
-      - name: Validate the data
+      - name: Validate the exported data
         run: bundle exec thor cldr:validate
