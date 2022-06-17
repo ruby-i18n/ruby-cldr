@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
-    "TODO",
   ]
   s.files = [
     "CHANGELOG.md",
@@ -28,7 +27,6 @@ Gem::Specification.new do |s|
     "LICENSE",
     "README.md",
     "Rakefile",
-    "TODO",
     "VERSION",
     "cldr.thor",
     "lib/cldr.rb",
@@ -151,14 +149,14 @@ Gem::Specification.new do |s|
   if s.respond_to?(:add_runtime_dependency)
     s.add_runtime_dependency("i18n", [">= 0"])
     s.add_runtime_dependency("nokogiri", [">= 0"])
+    s.add_runtime_dependency("psych", [">= 4.0.0"])
+    s.add_runtime_dependency("rubyzip", [">= 0"])
     s.add_runtime_dependency("thor", [">= 0"])
     s.add_development_dependency("jeweler", [">= 0"])
     s.add_development_dependency("pry", [">= 0"])
     s.add_development_dependency("pry-nav", [">= 0"])
-    s.add_development_dependency("psych", [">= 4.0.0"])
     s.add_development_dependency("rubocop-shopify", [">= 0"])
     s.add_development_dependency("ruby-lsp", [">= 0"])
-    s.add_development_dependency("rubyzip", [">= 0"])
     s.add_development_dependency("test-unit", [">= 0"])
   else
     s.add_dependency("i18n", [">= 0"])
