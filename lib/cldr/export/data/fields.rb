@@ -13,12 +13,15 @@ module Cldr
 
         def fields
           select("dates/fields/field").each_with_object({}) do |field_node, ret|
-            type = field_node.attribute("type").value
+            type = field_node.attribute("type").value.to_sym
             ret[type] = field(field_node)
           end
         end
 
         def field(field_node)
+          aliased = select(field_node, "alias").first
+          return xpath_to_key(aliased.attribute("path").value) if aliased
+
           result = {}
 
           unless (display_name = (field_node / "displayName").text).empty?
@@ -55,6 +58,14 @@ module Cldr
             count = relative_time_pattern_node.attribute("count").value
             ret[count] = relative_time_pattern_node.text
           end
+        end
+
+        def xpath_to_key(xpath)
+          match = xpath.match(%r{^\.\./field\[@type='([^']*)'\]$})
+          raise StandardError, "Didn't find expected data in alias path attribute: #{xpath}" unless match
+
+          type = match[1]
+          :"fields.#{type}"
         end
       end
     end
