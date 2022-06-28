@@ -161,7 +161,7 @@ module Cldr
       end
 
       def write(path, data)
-        FileUtils.rm(path) if File.exist?(path)
+        FileUtils.rm_rf(path)
         FileUtils.mkdir_p(File.dirname(path))
         File.write(path, data)
       end
