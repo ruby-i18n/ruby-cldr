@@ -139,12 +139,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/ruby-i18n/ruby-cldr"
   s.licenses = ["MIT"]
-  s.rubygems_version = "3.3.7"
   s.summary = "Ruby library for exporting and using data from CLDR"
-
-  if s.respond_to?(:specification_version)
-    s.specification_version = 4
-  end
 
   if s.respond_to?(:add_runtime_dependency)
     s.add_runtime_dependency("i18n", [">= 0"])
