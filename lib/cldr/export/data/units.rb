@@ -23,12 +23,18 @@ module Cldr
         end
 
         def units(node)
+          aliased = select(node, "alias").first
+          return units_xpath_to_key(aliased.attribute("path").value) if aliased
+
           node.xpath("unit").each_with_object({}) do |node, result|
             result[node.attribute("type").value.to_sym] = unit(node)
           end
         end
 
         def unit(node)
+          aliased = select(node, "alias").first
+          return unit_xpath_to_key(aliased.attribute("path").value) if aliased
+
           node.xpath("unitPattern").each_with_object({}) do |node, result|
             # Ignore cases for now. We don't have a way to expose them yet.
             # TODO: https://github.com/ruby-i18n/ruby-cldr/issues/67
@@ -43,6 +49,22 @@ module Cldr
           select("units/durationUnit").each_with_object({}) do |node, result|
             result[node.attribute("type").value.to_sym] = node.xpath("durationUnitPattern").first.content
           end
+        end
+
+        def units_xpath_to_key(xpath)
+          match = xpath.match(%r{^\.\./unitLength\[@type='([^']*)'\]$})
+          raise StandardError, "Didn't find expected data in alias path attribute: #{xpath}" unless match
+
+          type = match[1]
+          :"units.unitLength.#{type}"
+        end
+
+        def unit_xpath_to_key(xpath)
+          match = xpath.match(%r{^\.\./unit\[@type='([^']*)'\]$})
+          raise StandardError, "Didn't find expected data in alias path attribute: #{xpath}" unless match
+
+          type = match[1]
+          :"units.unitLength.short.#{type}"
         end
       end
     end
