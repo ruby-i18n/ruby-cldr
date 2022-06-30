@@ -210,13 +210,14 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     assert_equal ["abbreviated", "narrow", "wide"], gregorian(merged: true)[:months][:"stand-alone"].keys.map(&:to_s).sort
   end
 
-  test "calendars for :root only contains `abbr` since we do not yet handle alias nodes" do
-    # https://github.com/ruby-i18n/ruby-cldr/issues/78
+  test "Gregorian eras for :root contains the expected alias nodes" do
     eras = {
       abbr: {
         0 => "BCE",
         1 => "CE",
       },
+      name: :"calendars.gregorian.eras.abbr",
+      narrow: :"calendars.gregorian.eras.abbr",
     }
     assert_equal eras, gregorian(locale: :root)[:eras]
   end
