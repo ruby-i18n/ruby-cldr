@@ -25,4 +25,19 @@ class TestCldrDataUnits < Test::Unit::TestCase
     assert_equal units[:minute], data[:"duration-minute"]
     assert_equal units[:second], data[:"duration-second"]
   end
+
+  test "Alias nodes are exported as paths to their targets" do
+    data = Cldr::Export::Data::Units.new(:root)
+    path = data.dig(:units, :unitLength, :short, :"duration-week-person")
+    assert_equal :"units.unitLength.short.duration-week", path
+
+    duration = data.dig(*split_path_string(path))
+    assert_not_nil duration
+  end
+
+  private
+
+  def split_path_string(path)
+    path.to_s.split(".").map(&:to_sym)
+  end
 end
