@@ -30,6 +30,13 @@ module Cldr
       EXPECTED_ALIAS_LOCATIONS = [
         "/ldml/dates/calendars/calendar/dayPeriods/dayPeriodContext/dayPeriodWidth/alias",
         "/ldml/dates/calendars/calendar/days/dayContext/dayWidth/alias",
+
+        # Currently only used by `islamic-*` calendars, which we don't export yet.
+        # https://github.com/ruby-i18n/ruby-cldr/issues/168
+        "/ldml/dates/calendars/calendar/eras/alias",
+
+        "/ldml/dates/calendars/calendar/eras/eraNames/alias",
+        "/ldml/dates/calendars/calendar/eras/eraNarrow/alias",
         "/ldml/dates/calendars/calendar/months/monthContext/monthWidth/alias",
         "/ldml/dates/calendars/calendar/quarters/quarterContext/quarterWidth/alias",
       ].freeze
