@@ -34,6 +34,10 @@ module Cldr
         "/ldml/dates/calendars/calendar/days/dayContext/dayWidth/alias",
         "/ldml/dates/calendars/calendar/months/monthContext/monthWidth/alias",
         "/ldml/dates/calendars/calendar/quarters/quarterContext/quarterWidth/alias",
+        "/ldml/dates/fields/field/alias",
+        "/ldml/listPatterns/listPattern/alias",
+        "/ldml/units/unitLength/alias",
+        "/ldml/units/unitLength/unit/alias",
       ].freeze
 
       # Alias locations that exist, but we don't support, since we don't export this data.
