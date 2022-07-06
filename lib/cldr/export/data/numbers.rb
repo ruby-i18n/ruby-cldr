@@ -41,7 +41,7 @@ module Cldr
         end
 
         def symbols
-          select("numbers/symbols/*").each_with_object({}) do |node, result|
+          select("numbers/symbols[@numberSystem=\"latn\"]/*").each_with_object({}) do |node, result|
             result[name(node).to_sym] = node.content
           end
         end
