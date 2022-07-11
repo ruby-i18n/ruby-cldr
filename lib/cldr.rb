@@ -6,6 +6,7 @@ module Cldr
   autoload :Data,         "cldr/data"
   autoload :DraftStatus,  "cldr/draft_status"
   autoload :Export,       "cldr/export"
+  autoload :Ldml,         "cldr/ldml"
   autoload :Locale,       "cldr/locale"
   autoload :Format,       "cldr/format"
 

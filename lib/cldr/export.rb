@@ -16,6 +16,7 @@ module Cldr
     autoload :Data,              "cldr/export/data"
     autoload :DataFile,          "cldr/export/data_file"
     autoload :DataSet,           "cldr/export/data_set"
+    autoload :Element,           "cldr/export/element"
     autoload :FileBasedDataSet,  "cldr/export/file_based_data_set"
     autoload :Ruby,              "cldr/export/ruby"
     autoload :Yaml,              "cldr/export/yaml"
