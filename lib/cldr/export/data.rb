@@ -27,6 +27,7 @@ module Cldr
       autoload :Rbnf,                      "cldr/export/data/rbnf"
       autoload :RbnfRoot,                  "cldr/export/data/rbnf_root"
       autoload :RegionCurrencies,          "cldr/export/data/region_currencies"
+      autoload :RegionValidity,            "cldr/export/data/region_validity"
       autoload :SegmentsRoot,              "cldr/export/data/segments_root"
       autoload :Subdivisions,              "cldr/export/data/subdivisions"
       autoload :Territories,               "cldr/export/data/territories"

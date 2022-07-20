@@ -24,7 +24,7 @@ module Cldr
     SHARED_COMPONENTS = [
       :Aliases, :CountryCodes, :CurrencyDigitsAndRounding, :LikelySubtags,
       :Metazones, :NumberingSystems, :ParentLocales, :RbnfRoot,
-      :RegionCurrencies, :SegmentsRoot, :TerritoriesContainment,
+      :RegionCurrencies, :RegionValidity, :SegmentsRoot, :TerritoriesContainment,
       :Transforms, :Variables, :WindowsZones,
     ].freeze
 
