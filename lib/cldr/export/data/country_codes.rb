@@ -12,9 +12,7 @@ module Cldr
         private
 
         def country_codes
-          doc.xpath("//codeMappings/*").each_with_object({}) do |node, hash|
-            next unless node.name == "territoryCodes"
-
+          doc.xpath("//codeMappings/territoryCodes").each_with_object({}) do |node, hash|
             type = node.attribute("type").to_s.to_sym
             hash[type] = {}
             hash[type]["numeric"] = node[:numeric] if node[:numeric]
