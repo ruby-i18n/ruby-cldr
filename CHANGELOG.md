@@ -38,6 +38,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `--draft-status` flag for specifying the minimum draft status for data to be exported, [#124](https://github.com/ruby-i18n/ruby-cldr/pull/124)
 - Export locale-specific data files into `locales` subdirectory, [#135](https://github.com/ruby-i18n/ruby-cldr/pull/135)
 - Inherit currency symbol from ancestor locale instead of using other versions, [#137](https://github.com/ruby-i18n/ruby-cldr/pull/137)
+- Export region validity data, [#179](https://github.com/ruby-i18n/ruby-cldr/pull/179)
 
 ---
 
