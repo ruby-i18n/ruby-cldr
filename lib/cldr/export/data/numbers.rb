@@ -35,12 +35,6 @@ module Cldr
 
         private
 
-        def currency
-          currency = format("currency")
-          currency.update(unit: unit) unless unit.empty?
-          currency
-        end
-
         def symbols
           select("numbers/symbols[@numberSystem=\"latn\"]/*").each_with_object({}) do |node, result|
             result[name(node).to_sym] = node.content
