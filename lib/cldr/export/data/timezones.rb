@@ -35,7 +35,7 @@ module Cldr
             result[type][:long] = long unless long.empty?
             short = nodes_to_hash(zone.xpath("short/*"))
             result[type][:short] = short unless short.empty?
-            city = select_single(zone, "exemplarCity")
+            city = select_single(zone, "exemplarCity[not(@alt)]")
             result[type][:city] = city.content if city
           end
         end
