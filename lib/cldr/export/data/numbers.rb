@@ -78,7 +78,7 @@ module Cldr
                 end
               end
             else
-              aliased = select(format_length_node, "alias").first
+              aliased = select_single(format_length_node, "alias")
 
               if aliased
                 format_result[format_key] = xpath_to_redirect(aliased.attribute("path").value)

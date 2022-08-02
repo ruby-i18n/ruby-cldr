@@ -24,7 +24,7 @@ module Cldr
           end
 
           def calendar
-            @calendar ||= select('dates/calendars/calendar[@type="gregorian"]').first
+            @calendar ||= select_single('dates/calendars/calendar[@type="gregorian"]')
           end
 
           def contexts(kind, options = {})
@@ -42,7 +42,7 @@ module Cldr
           end
 
           def elements(node, kind, context, width, options = {})
-            aliased = select(node, "alias").first
+            aliased = select_single(node, "alias")
 
             if aliased
               xpath_to_key(aliased.attribute("path").value, kind, context, width)
@@ -72,8 +72,8 @@ module Cldr
           end
 
           def periods
-            am = select(calendar, "am").first
-            pm = select(calendar, "pm").first
+            am = select_single(calendar, "am")
+            pm = select_single(calendar, "pm")
 
             result = {}
             result[:am] = am.content if am
@@ -133,7 +133,7 @@ module Cldr
           end
 
           def default_format(type)
-            if (node = select(calendar, "#{type}Formats/default").first)
+            if (node = select_single(calendar, "#{type}Formats/default"))
               key = node.attribute("choice").value.to_sym
               { default: :"calendars.gregorian.formats.#{type.downcase}.#{key}" }
             end

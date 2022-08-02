@@ -14,7 +14,7 @@ module Cldr
         def layout
           result = { orientation: {} }
 
-          if (node = select("layout/orientation/characterOrder/text()").first)
+          if (node = select_single("layout/orientation/characterOrder/text()"))
             result[:orientation][:character_order] = node.text
           end
 

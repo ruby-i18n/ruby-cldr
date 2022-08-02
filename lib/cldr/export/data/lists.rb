@@ -23,7 +23,7 @@ module Cldr
         end
 
         def list_pattern(list_pattern)
-          aliased = select(list_pattern, "alias").first
+          aliased = select_single(list_pattern, "alias")
           if aliased
             xpath_to_key(aliased.attribute("path").value)
           else

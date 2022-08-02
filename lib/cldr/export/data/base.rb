@@ -31,6 +31,13 @@ module Cldr
           doc.xpath(xpath(sources))
         end
 
+        def select_single(*sources)
+          results = doc.xpath(xpath(sources))
+          raise "#{locale || "<supplemental>"}: Expected 1 result for `#{sources}`, got #{results.size}" if results.size > 1
+
+          results.first
+        end
+
         def xpath(sources)
           path = sources.map { |source| source.respond_to?(:path) ? source.path : source }.join("/")
           path =~ %r{^/?/ldml} ? path : "//ldml/#{path}"

@@ -19,7 +19,7 @@ module Cldr
         end
 
         def field(field_node)
-          aliased = select(field_node, "alias").first
+          aliased = select_single(field_node, "alias")
           return xpath_to_key(aliased.attribute("path").value) if aliased
 
           result = {}

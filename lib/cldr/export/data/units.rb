@@ -23,7 +23,7 @@ module Cldr
         end
 
         def units(node)
-          aliased = select(node, "alias").first
+          aliased = select_single(node, "alias")
           return units_xpath_to_key(aliased.attribute("path").value) if aliased
 
           node.xpath("unit").each_with_object({}) do |node, result|
@@ -32,7 +32,7 @@ module Cldr
         end
 
         def unit(node)
-          aliased = select(node, "alias").first
+          aliased = select_single(node, "alias")
           return unit_xpath_to_key(aliased.attribute("path").value) if aliased
 
           node.xpath("unitPattern").each_with_object({}) do |node, result|

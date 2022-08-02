@@ -19,8 +19,8 @@ module Cldr
         private
 
         def quotes(type)
-          start = select("delimiters/#{type}Start").first
-          end_  = select("delimiters/#{type}End").first
+          start = select_single("delimiters/#{type}Start")
+          end_  = select_single("delimiters/#{type}End")
 
           result = {}
           result[:start] = start.content if start
