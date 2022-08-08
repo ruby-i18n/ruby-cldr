@@ -35,8 +35,10 @@ module Cldr
     ALL_BY_NAME = ALL.to_h { |status| [status.to_s, status] }.freeze
     private_constant :ALL_BY_NAME
 
-    def self.fetch(name)
-      ALL_BY_NAME.fetch(name.to_s)
+    class << self
+      def fetch(name)
+        ALL_BY_NAME.fetch(name.to_s)
+      end
     end
   end
 end
