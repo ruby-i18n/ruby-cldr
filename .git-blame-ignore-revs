@@ -1,5 +1,8 @@
 # RuboCop commits
 
+## 2022-08-08: Fix `Style/ClassMethodsDefinitions` violations
+c2ed42ee3fbb1c81f21750b7d44afc704ea95818
+
 ## 2022-06-14: Autocorrect `Layout/EmptyLineAfterGuardClause`
 d96b73ffcd169b0b5e2c6c1650d261e0a18ffbe4
 
