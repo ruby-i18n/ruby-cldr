@@ -19,7 +19,7 @@ module Cldr
                 time: formats("time"),
                 datetime: formats("dateTime"),
               },
-              additional_formats: additional_formats
+              additional_formats: additional_formats,
             )
           end
 

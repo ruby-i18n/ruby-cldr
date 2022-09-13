@@ -10,7 +10,7 @@ module Cldr
             units: {
               unitLength: unit_length,
               durationUnit: duration_unit,
-            }
+            },
           )
         end
 

@@ -11,7 +11,7 @@ module Cldr
 
         def territories
           @territories ||= doc.xpath("supplementalData/territoryContainment/group").each_with_object(
-            Hash.new { |h, k| h[k] = { contains: [] } }
+            Hash.new { |h, k| h[k] = { contains: [] } },
           ) do |territory, memo|
             territory_id = territory.attribute("type").value
             children = territory.attribute("contains").value.split(" ")

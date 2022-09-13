@@ -28,7 +28,7 @@ module Cldr
                   unit: unit,
                 },
               },
-            }
+            },
           )
         end
 
