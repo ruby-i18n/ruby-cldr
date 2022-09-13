@@ -12,7 +12,7 @@ module Cldr
                 default: quotes("quotation"),
                 alternate: quotes("alternateQuotation"),
               },
-            }
+            },
           )
         end
 

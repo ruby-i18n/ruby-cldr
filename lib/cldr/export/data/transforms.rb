@@ -41,7 +41,7 @@ module Cldr
           rules = fix_rule_wrapping(
             doc.xpath("#{transform_node.path}/tRule").flat_map do |rule_node|
               fix_rule(rule_node.content).split("\n").map(&:strip)
-            end
+            end,
           )
 
           rules.reject do |rule|

@@ -12,7 +12,7 @@ module Cldr
           update(
             formats: formats,
             timezones: timezones,
-            metazones: metazones
+            metazones: metazones,
           )
         end
 

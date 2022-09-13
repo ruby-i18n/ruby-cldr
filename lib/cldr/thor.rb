@@ -24,7 +24,7 @@ module Cldr
       banner: Cldr::Download::DEFAULT_SOURCE,
       desc: "Override the location of the CLDR zip to download. Overrides --version"
     def download
-      Cldr::Download.download(options["source"], options["target"], options["version"])
+      Cldr::Download.download(options["source"], options["target"], options["version"]) { putc(".") }
     end
 
     DEFAULT_MINIMUM_DRAFT_STATUS = Cldr::DraftStatus::CONTRIBUTED
