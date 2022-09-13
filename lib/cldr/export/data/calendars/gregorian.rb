@@ -68,19 +68,6 @@ module Cldr
             :"calendars.gregorian.#{kind}s.#{context}.#{width}"
           end
 
-          def xpath_width
-          end
-
-          def periods
-            am = select_single(calendar, "am")
-            pm = select_single(calendar, "pm")
-
-            result = {}
-            result[:am] = am.content if am
-            result[:pm] = pm.content if pm
-            result
-          end
-
           def eras
             if calendar
               base_path = calendar.path.sub(%r{^/ldml/}, "") + "/eras"
