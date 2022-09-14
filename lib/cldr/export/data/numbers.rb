@@ -8,28 +8,29 @@ module Cldr
           super
           update(
             numbers: {
-              symbols: symbols,
               formats: {
-                decimal: {
-                  number_system: number_system("decimal"),
-                  patterns: format("decimal"),
-                },
-                scientific: {
-                  number_system: number_system("scientific"),
-                  patterns: format("scientific"),
-                },
-                percent: {
-                  number_system: number_system("percent"),
-                  patterns: format("percent"),
-                },
                 currency: {
                   number_system: number_system("currency"),
                   patterns: format("currency"),
                   unit: unit,
                 },
+                decimal: {
+                  number_system: number_system("decimal"),
+                  patterns: format("decimal"),
+                },
+                percent: {
+                  number_system: number_system("percent"),
+                  patterns: format("percent"),
+                },
+                scientific: {
+                  number_system: number_system("scientific"),
+                  patterns: format("scientific"),
+                },
               },
+              symbols: symbols,
             },
           )
+          deep_sort!
         end
 
         private
@@ -51,7 +52,7 @@ module Cldr
             format_nodes = select(format_length_node, "#{type}Format")
 
             format_key = format_length_node.attribute("type")
-            format_key = format_key ? format_key.value : :default
+            format_key = format_key ? format_key.value.to_sym : :default
 
             if !format_nodes.empty?
               format_nodes.each do |format_node|
@@ -60,10 +61,10 @@ module Cldr
 
                   pattern_count_node = pattern_node.attribute("count")
 
-                  pattern_key = pattern_key_node ? pattern_key_node.value : :default
+                  pattern_key = pattern_key_node ? pattern_key_node.value.to_sym : :default
 
                   if pattern_count_node
-                    pattern_count = pattern_count_node.value
+                    pattern_count = pattern_count_node.value.to_sym
 
                     if pattern_result[pattern_key].nil?
                       pattern_result[pattern_key] ||= {}
@@ -108,7 +109,7 @@ module Cldr
 
         def unit
           @unit ||= select("numbers/currencyFormats/unitPattern").each_with_object({}) do |node, result|
-            count = node.attribute("count").value
+            count = node.attribute("count").value.to_sym
             result[count] = node.content
           end
         end

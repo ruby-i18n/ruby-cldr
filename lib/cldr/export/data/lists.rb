@@ -7,6 +7,7 @@ module Cldr
         def initialize(locale)
           super
           update(lists: lists)
+          deep_sort!
         end
 
         private

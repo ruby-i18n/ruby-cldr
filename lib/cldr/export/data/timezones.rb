@@ -11,9 +11,10 @@ module Cldr
 
           update(
             formats: formats,
-            timezones: timezones,
             metazones: metazones,
+            timezones: timezones,
           )
+          deep_sort!
         end
 
         private
@@ -31,12 +32,12 @@ module Cldr
           @timezones ||= select("dates/timeZoneNames/zone").each_with_object({}) do |zone, result|
             type = zone.attr("type").to_sym
             result[type] = {}
+            city = select_single(zone, "exemplarCity[not(@alt)]")
+            result[type][:city] = city.content if city
             long = nodes_to_hash(zone.xpath("long/*"))
             result[type][:long] = long unless long.empty?
             short = nodes_to_hash(zone.xpath("short/*"))
             result[type][:short] = short unless short.empty?
-            city = select_single(zone, "exemplarCity[not(@alt)]")
-            result[type][:city] = city.content if city
           end
         end
 

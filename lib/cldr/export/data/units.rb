@@ -8,10 +8,11 @@ module Cldr
           super
           update(
             units: {
-              unitLength: unit_length,
               durationUnit: duration_unit,
+              unitLength: unit_length,
             },
           )
+          deep_sort!
         end
 
         private

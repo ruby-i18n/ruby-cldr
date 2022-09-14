@@ -21,6 +21,8 @@ module Cldr
             territory = node.attr("iso3166").to_sym
             result[territory] = node.content
           end
+
+          deep_sort!
         end
 
         protected

@@ -7,6 +7,7 @@ module Cldr
         def initialize
           super(nil)
           update(country_codes: country_codes)
+          deep_sort!
         end
 
         private

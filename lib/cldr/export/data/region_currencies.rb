@@ -7,6 +7,7 @@ module Cldr
         def initialize
           super(nil)
           update(region_currencies: currencies)
+          deep_sort!
         end
 
         private

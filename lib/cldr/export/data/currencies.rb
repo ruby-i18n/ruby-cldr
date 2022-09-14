@@ -7,6 +7,7 @@ module Cldr
         def initialize(locale)
           super
           update(currencies: currencies)
+          deep_sort!
         end
 
         private
@@ -29,10 +30,11 @@ module Cldr
           end
 
           symbols = select(node, "symbol")
-          symbol = symbols.select { |child_node| child_node.attribute("alt").nil? }.first
           narrow_symbol = symbols.select { |child_node| child_node.attribute("alt")&.value == ("narrow") }.first
-          data[:symbol] = symbol.content unless symbol.nil?
           data[:narrow_symbol] = narrow_symbol.content unless narrow_symbol.nil?
+
+          symbol = symbols.select { |child_node| child_node.attribute("alt").nil? }.first
+          data[:symbol] = symbol.content unless symbol.nil?
 
           data
         end

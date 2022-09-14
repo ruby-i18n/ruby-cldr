@@ -16,6 +16,8 @@ module Cldr
 
             self[code.upcase.to_sym] = { digits: digits, rounding: rounding }
           end
+
+          deep_sort!
         end
       end
     end
