@@ -7,6 +7,7 @@ module Cldr
         def initialize
           super(nil)
           update(subtags: subtags)
+          deep_sort!
         end
 
         private

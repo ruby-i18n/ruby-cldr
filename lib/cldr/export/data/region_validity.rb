@@ -7,6 +7,7 @@ module Cldr
         def initialize
           super(nil)
           update(validity: { regions: regions })
+          deep_sort!
         end
 
         private

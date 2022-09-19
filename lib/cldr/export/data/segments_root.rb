@@ -7,6 +7,7 @@ module Cldr
         def initialize
           super(:root)
           update(segments: segmentations)
+          deep_sort!
         end
 
         private

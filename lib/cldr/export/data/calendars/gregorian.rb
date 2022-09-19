@@ -8,18 +8,18 @@ module Cldr
           def initialize(locale)
             super
             update(
-              months: contexts("month"),
+              additional_formats: additional_formats,
               days: contexts("day"),
-              eras: eras,
-              quarters: contexts("quarter"),
-              periods: contexts("dayPeriod", group: "alt"),
-              fields: fields,
+              eras: eras.deep_sort,
+              fields: fields.deep_sort,
               formats: {
                 date: formats("date"),
-                time: formats("time"),
                 datetime: formats("dateTime"),
+                time: formats("time"),
               },
-              additional_formats: additional_formats,
+              months: contexts("month"),
+              periods: contexts("dayPeriod", group: "alt").deep_sort,
+              quarters: contexts("quarter"),
             )
           end
 
@@ -52,8 +52,8 @@ module Cldr
                 key = key =~ /^\d*$/ ? key.to_i : key.to_sym
 
                 if options[:group] && (found_group = node.attribute(options[:group]))
-                  result[found_group.value] ||= {}
-                  result[found_group.value][key] = node.content
+                  result[found_group.value.to_sym] ||= {}
+                  result[found_group.value.to_sym][key] = node.content
                 else
                   result[key] = node.content
                 end

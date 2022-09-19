@@ -10,6 +10,7 @@ module Cldr
         def initialize
           super(nil)
           update(aliases: aliases)
+          deep_sort!
         end
 
         private

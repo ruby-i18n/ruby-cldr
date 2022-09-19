@@ -17,6 +17,8 @@ module Cldr
             result[zone] ||= {}
             result[zone][territory] = timezones
           end
+
+          deep_sort!
         end
       end
     end

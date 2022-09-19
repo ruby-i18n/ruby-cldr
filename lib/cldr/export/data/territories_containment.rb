@@ -7,6 +7,7 @@ module Cldr
         def initialize(*)
           super(nil)
           update(territories: territories)
+          deep_sort!
         end
 
         def territories

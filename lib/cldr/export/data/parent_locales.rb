@@ -17,6 +17,8 @@ module Cldr
               self[locale] = parent
             end
           end
+
+          deep_sort!
         end
 
         def to_h

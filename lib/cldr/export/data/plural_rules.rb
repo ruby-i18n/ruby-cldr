@@ -16,6 +16,8 @@ module Cldr
               ret[rule.attributes["count"].text] = rule.text
             end
           end
+
+          deep_sort!
         end
 
         private
