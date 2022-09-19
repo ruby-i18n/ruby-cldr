@@ -22,14 +22,14 @@ module Cldr
         def currency(node)
           (node / "currency").map do |currency|
             currency_code = currency.attribute("iso4217").value
-            result = { currency: currency_code }
+            result = { "currency" => currency_code }
 
             if (from_node = currency.attribute("from"))
-              result[:from] = from_node.value
+              result["from"] = from_node.value
             end
 
             if (to_node = currency.attribute("to"))
-              result[:to] = to_node.value
+              result["to"] = to_node.value
             end
 
             result
