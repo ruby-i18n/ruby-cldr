@@ -62,7 +62,7 @@ GEM
       method_source (~> 1.0)
     pry-nav (1.0.0)
       pry (>= 0.9.10, < 0.15)
-    psych (4.0.5)
+    psych (4.0.6)
       stringio
     racc (1.6.0)
     rack (2.2.3.1)
