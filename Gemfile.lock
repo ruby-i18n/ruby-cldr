@@ -97,7 +97,7 @@ GEM
     stringio (3.0.2)
     syntax_tree (3.5.0)
       prettier_print
-    test-unit (3.5.3)
+    test-unit (3.5.5)
       power_assert
     thor (1.2.1)
     thread_safe (0.3.6)
