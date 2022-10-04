@@ -86,16 +86,16 @@ GEM
       parser (>= 3.1.1.0)
     rubocop-shopify (2.10.1)
       rubocop (~> 1.35)
-    ruby-lsp (0.3.2)
+    ruby-lsp (0.3.3)
       language_server-protocol (~> 3.17.0)
       sorbet-runtime
       syntax_tree (>= 3.4)
     ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
     semver2 (3.4.2)
-    sorbet-runtime (0.5.10404)
+    sorbet-runtime (0.5.10477)
     stringio (3.0.2)
-    syntax_tree (3.5.0)
+    syntax_tree (3.6.1)
       prettier_print
     test-unit (3.5.3)
       power_assert
