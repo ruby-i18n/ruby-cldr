@@ -29,7 +29,7 @@ module Cldr
 
           def contexts(kind, options = {})
             select(calendar, "#{kind}s/#{kind}Context").each_with_object({}) do |node, result|
-              context = node.attribute("type").value.to_sym
+              context = node.attribute("type").value.underscore.to_sym
               result[context] = widths(node, kind, context, options)
             end
           end
@@ -49,7 +49,7 @@ module Cldr
             else
               select(node, kind).each_with_object({}) do |node, result|
                 key = node.attribute("type").value
-                key = key =~ /^\d*$/ ? key.to_i : key.to_sym
+                key = key =~ /^\d*$/ ? key.to_i : key.underscore.to_sym
 
                 if options[:group] && (found_group = node.attribute(options[:group]))
                   result[found_group.value.to_sym] ||= {}
@@ -63,7 +63,7 @@ module Cldr
 
           def xpath_to_key(xpath, kind, context, width)
             kind    = (xpath =~ %r(/([^\/]*)Width) && Regexp.last_match(1)) || kind
-            context = (xpath =~ %r(Context\[@type='([^\/]*)'\]) && Regexp.last_match(1)) || context
+            context = (xpath =~ %r(Context\[@type='([^\/]*)'\]) && Regexp.last_match(1))&.underscore || context
             width   = (xpath =~ %r(Width\[@type='([^\/]*)'\]) && Regexp.last_match(1)) || width
             :"calendars.gregorian.#{kind}s.#{context}.#{width}"
           end
@@ -103,7 +103,7 @@ module Cldr
 
           def formats(type)
             formats = select(calendar, "#{type}Formats/#{type}FormatLength").each_with_object({}) do |node, result|
-              key = node.attribute("type").value.to_sym
+              key = node.attribute("type").value.underscore.to_sym
               result[key] = pattern(node, type)
             end
             if (default = default_format(type))
@@ -138,7 +138,7 @@ module Cldr
           # That probably means this `fields` method should be moved up to the parent as well.
           def fields
             select("dates/fields/field").each_with_object({}) do |node, result|
-              key  = node.attribute("type").value.to_sym
+              key  = node.attribute("type").value.underscore.gsub(/dayperiod/, "day_period").to_sym
               name = node.xpath("displayName").first
               result[key] = name.content if name
             end

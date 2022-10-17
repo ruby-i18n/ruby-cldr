@@ -14,7 +14,7 @@ module Cldr
 
         def fields
           select("dates/fields/field").each_with_object({}) do |field_node, ret|
-            type = field_node.attribute("type").value.to_sym
+            type = field_node.attribute("type").value.underscore.to_sym
             ret[type] = field(field_node)
           end
         end
@@ -65,7 +65,7 @@ module Cldr
           match = xpath.match(%r{^\.\./field\[@type='([^']*)'\]$})
           raise StandardError, "Didn't find expected data in alias path attribute: #{xpath}" unless match
 
-          type = match[1]
+          type = match[1].underscore
           :"fields.#{type}"
         end
       end

@@ -43,6 +43,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Sort the data at the component level, allowing components to specify their own sort orders, [#200](https://github.com/ruby-i18n/ruby-cldr/pull/200)
 - Export `<contextTransforms>` data, [#206](https://github.com/ruby-i18n/ruby-cldr/pull/206)
 - `Numbers` component now outputs data from all number systems, [#189](https://github.com/ruby-i18n/ruby-cldr/pull/189)
+- Use `snake_case` for key names unless they are an external identifier, [#207](https://github.com/ruby-i18n/ruby-cldr/pull/207)
 
 ---
 

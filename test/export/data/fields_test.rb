@@ -6,8 +6,8 @@ require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"
 class TestCldrDataFields < Test::Unit::TestCase
   test "Alias nodes are exported as paths to their targets" do
     data = Cldr::Export::Data::Fields.new(:root)
-    path = data.dig(:fields, :"day-narrow")
-    assert_equal :"fields.day-short", path
+    path = data.dig(:fields, :day_narrow)
+    assert_equal :"fields.day_short", path
 
     path = data.dig(*split_path_string(path))
     assert_equal :"fields.day", path

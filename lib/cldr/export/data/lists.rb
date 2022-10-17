@@ -15,7 +15,7 @@ module Cldr
         def lists
           select("listPatterns/listPattern").each_with_object({}) do |list_pattern, list_pattern_ret|
             pattern_type = if (attribute = list_pattern.attribute("type"))
-              attribute.value.to_sym
+              attribute.value.underscore.to_sym
             else
               :default
             end
@@ -44,7 +44,7 @@ module Cldr
           match = xpath.match(%r{^\.\./listPattern\[@type='([^']*)'\]$})
           raise StandardError, "Didn't find expected data in alias path attribute: #{xpath}" unless match
 
-          type = match[1]
+          type = match[1].underscore
           :"lists.#{type}"
         end
       end
