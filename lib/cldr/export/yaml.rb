@@ -29,6 +29,8 @@ module Cldr
             raise "#{component} data for #{locale} is not sorted." unless sorted_data.to_s == data.to_s || UNSORTED_COMPONENTS.include?(component)
           end
 
+          DeepValidateKeys.validate(data, component)
+
           data = { locale.to_s => data } unless locale.nil?
         end
         data
