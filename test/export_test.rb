@@ -27,10 +27,10 @@ class TestExport < Test::Unit::TestCase
 
   test "passing the merge option generates and merge data for all fallback locales" do
     data = Cldr::Export.data(:Numbers, :"de-AT")
-    assert !data[:numbers][:formats][:nan]
+    assert !data[:numbers][:latn][:formats][:nan]
 
     data = Cldr::Export.data(:Numbers, :"de-AT", merge: true)
-    assert_equal "NaN", data[:numbers][:symbols][:nan]
+    assert_equal "NaN", data[:numbers][:latn][:symbols][:nan]
   end
 
   test "passing the merge option generates and merges Plurals data from fallback locales" do
