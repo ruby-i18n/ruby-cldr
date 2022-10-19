@@ -43,7 +43,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    nokogiri (1.13.8)
+    nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth2 (1.4.1)
