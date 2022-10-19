@@ -14,7 +14,7 @@ module Cldr
 
         def segmentations
           doc.xpath("ldml/segmentations/segmentation").each_with_object({}) do |seg, ret|
-            type = seg.attribute("type").value
+            type = seg.attribute("type").value.underscore.to_sym
             ret[type] = segmentation(seg)
           end
         end

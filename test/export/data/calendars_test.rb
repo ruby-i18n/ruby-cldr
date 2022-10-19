@@ -16,7 +16,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
         narrow: { 1 => "J", 2 => "F", 3 => "M", 4 => "A", 5 => "M", 6 => "J", 7 => "J", 8 => "A", 9 => "S", 10 => "O", 11 => "N", 12 => "D" },
         wide: { 1 => "Januar", 2 => "Februar", 3 => "März", 4 => "April", 5 => "Mai", 6 => "Juni", 7 => "Juli", 8 => "August", 9 => "September", 10 => "Oktober", 11 => "November", 12 => "Dezember" },
       },
-      "stand-alone": {
+      stand_alone: {
         abbreviated: { 1 => "Jan", 2 => "Feb", 3 => "Mär", 4 => "Apr", 5 => "Mai", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Okt", 11 => "Nov", 12 => "Dez" },
         narrow: { 1 => "J", 2 => "F", 3 => "M", 4 => "A", 5 => "M", 6 => "J", 7 => "J", 8 => "A", 9 => "S", 10 => "O", 11 => "N", 12 => "D" },
         wide: { 1 => "Januar", 2 => "Februar", 3 => "März", 4 => "April", 5 => "Mai", 6 => "Juni", 7 => "Juli", 8 => "August", 9 => "September", 10 => "Oktober", 11 => "November", 12 => "Dezember" },
@@ -31,7 +31,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
         abbreviated: { 1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec" },
         wide: { 1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December" },
       },
-      "stand-alone": {
+      stand_alone: {
         narrow: { 1 => "J", 2 => "F", 3 => "M", 4 => "A", 5 => "M", 6 => "J", 7 => "J", 8 => "A", 9 => "S", 10 => "O", 11 => "N", 12 => "D" },
       },
     }
@@ -42,10 +42,10 @@ class TestCldrDataCalendars < Test::Unit::TestCase
     months = {
       format: {
         abbreviated: { 1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec" },
-        narrow: :"calendars.gregorian.months.stand-alone.narrow",
+        narrow: :"calendars.gregorian.months.stand_alone.narrow",
         wide: { 1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December" },
       },
-      "stand-alone": {
+      stand_alone: {
         abbreviated: :"calendars.gregorian.months.format.abbreviated",
         narrow: { 1 => "J", 2 => "F", 3 => "M", 4 => "A", 5 => "M", 6 => "J", 7 => "J", 8 => "A", 9 => "S", 10 => "O", 11 => "N", 12 => "D" },
         wide: :"calendars.gregorian.months.format.wide",
@@ -62,7 +62,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
         narrow: { sun: "S", mon: "M", tue: "D", wed: "M", thu: "D", fri: "F", sat: "S" },
         short: { sun: "So.", mon: "Mo.", tue: "Di.", wed: "Mi.", thu: "Do.", fri: "Fr.", sat: "Sa." },
       },
-      "stand-alone": {
+      stand_alone: {
         abbreviated: { sun: "So", mon: "Mo", tue: "Di", wed: "Mi", thu: "Do", fri: "Fr", sat: "Sa" },
         narrow: { sun: "S", mon: "M", tue: "D", wed: "M", thu: "D", fri: "F", sat: "S" },
         short: { sun: "So.", mon: "Mo.", tue: "Di.", wed: "Mi.", thu: "Do.", fri: "Fr.", sat: "Sa." },
@@ -79,7 +79,7 @@ class TestCldrDataCalendars < Test::Unit::TestCase
         narrow: { 1 => "1", 2 => "2", 3 => "3", 4 => "4" },
         abbreviated: { 1 => "Q1", 2 => "Q2", 3 => "Q3", 4 => "Q4" },
       },
-      "stand-alone": {
+      stand_alone: {
         abbreviated: { 1 => "Q1", 2 => "Q2", 3 => "Q3", 4 => "Q4" },
         narrow: { 1 => "1", 2 => "2", 3 => "3", 4 => "4" },
         wide: { 1 => "1. Quartal", 2 => "2. Quartal", 3 => "3. Quartal", 4 => "4. Quartal" },
@@ -157,57 +157,57 @@ class TestCldrDataCalendars < Test::Unit::TestCase
   test "calendars fields :de" do
     fields = {
       day: "Tag",
-      "day-narrow": "Tag",
-      "day-short": "Tag",
-      dayOfYear: "Tag des Jahres",
-      "dayOfYear-narrow": "T/J",
-      "dayOfYear-short": "Tag des Jahres",
-      dayperiod: "Tageshälfte",
-      "dayperiod-narrow": "Tagesh.",
-      "dayperiod-short": "Tageshälfte",
+      day_narrow: "Tag",
+      day_short: "Tag",
+      day_of_year: "Tag des Jahres",
+      day_of_year_narrow: "T/J",
+      day_of_year_short: "Tag des Jahres",
+      day_period: "Tageshälfte",
+      day_period_narrow: "Tagesh.",
+      day_period_short: "Tageshälfte",
       era: "Epoche",
-      "era-narrow": "E",
-      "era-short": "Epoche",
+      era_narrow: "E",
+      era_short: "Epoche",
       hour: "Stunde",
-      "hour-narrow": "Std.",
-      "hour-short": "Std.",
+      hour_narrow: "Std.",
+      hour_short: "Std.",
       minute: "Minute",
-      "minute-narrow": "Min.",
-      "minute-short": "Min.",
+      minute_narrow: "Min.",
+      minute_short: "Min.",
       month: "Monat",
-      "month-narrow": "M",
-      "month-short": "Monat",
+      month_narrow: "M",
+      month_short: "Monat",
       quarter: "Quartal",
-      "quarter-narrow": "Q",
-      "quarter-short": "Quart.",
+      quarter_narrow: "Q",
+      quarter_short: "Quart.",
       second: "Sekunde",
-      "second-narrow": "Sek.",
-      "second-short": "Sek.",
+      second_narrow: "Sek.",
+      second_short: "Sek.",
       week: "Woche",
-      "week-narrow": "W",
-      "week-short": "Woche",
-      weekOfMonth: "Woche des Monats",
-      "weekOfMonth-narrow": "Wo. des Monats",
-      "weekOfMonth-short": "W/M",
+      week_narrow: "W",
+      week_short: "Woche",
+      week_of_month: "Woche des Monats",
+      week_of_month_narrow: "Wo. des Monats",
+      week_of_month_short: "W/M",
       weekday: "Wochentag",
-      "weekday-narrow": "Wochent.",
-      "weekday-short": "Wochentag",
-      weekdayOfMonth: "Wochentag",
-      "weekdayOfMonth-narrow": "WT",
-      "weekdayOfMonth-short": "Wochentag",
+      weekday_narrow: "Wochent.",
+      weekday_short: "Wochentag",
+      weekday_of_month: "Wochentag",
+      weekday_of_month_narrow: "WT",
+      weekday_of_month_short: "Wochentag",
       year: "Jahr",
-      "year-narrow": "J",
-      "year-short": "Jahr",
+      year_narrow: "J",
+      year_short: "Jahr",
       zone: "Zeitzone",
-      "zone-narrow": "Zeitz.",
-      "zone-short": "Zeitzone",
+      zone_narrow: "Zeitz.",
+      zone_short: "Zeitzone",
     }
     assert_equal fields, gregorian[:fields]
   end
 
   test "merged calendars for de-AT contains all date format and stand-alone name types" do
     assert_equal ["abbreviated", "narrow", "wide"], gregorian(merged: true)[:months][:format].keys.map(&:to_s).sort
-    assert_equal ["abbreviated", "narrow", "wide"], gregorian(merged: true)[:months][:"stand-alone"].keys.map(&:to_s).sort
+    assert_equal ["abbreviated", "narrow", "wide"], gregorian(merged: true)[:months][:stand_alone].keys.map(&:to_s).sort
   end
 
   test "Gregorian eras for :root contains the expected alias nodes" do

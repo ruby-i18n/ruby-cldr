@@ -13,10 +13,11 @@ module Cldr
 
         def context_transforms
           @context_transforms ||= select("contextTransforms/contextTransformUsage").each_with_object({}) do |usage_node, result|
-            usage_type = usage_node.attribute("type").value.to_sym
+            usage_type = usage_node.attribute("type").value.underscore.to_sym
             result[usage_type] = usage_node.xpath("contextTransform").each_with_object({}) do |transform_node, result|
-              transform_type = transform_node.attribute("type").value.to_sym
-              result[transform_type] = transform_node.content
+              context_type = transform_node.attribute("type").value.underscore.to_sym
+              transform_type = transform_node.content.underscore.gsub(/firstword/, "first_word")
+              result[context_type] = transform_type
             end
           end
         end

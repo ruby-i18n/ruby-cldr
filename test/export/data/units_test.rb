@@ -14,22 +14,22 @@ class TestCldrDataUnits < Test::Unit::TestCase
       minute: { one: "{0} Minute",  other: "{0} Minuten" },
       second: { one: "{0} Sekunde", other: "{0} Sekunden" },
     }
-    data = Cldr::Export::Data::Units.new(:de)[:units][:unitLength][:long]
+    data = Cldr::Export::Data::Units.new(:de)[:units][:unit_length][:long]
 
     assert_operator data.keys.count, :>=, 46
-    assert_equal units[:day],    data[:"duration-day"]
-    assert_equal units[:week],   data[:"duration-week"]
-    assert_equal units[:month],  data[:"duration-month"]
-    assert_equal units[:year],   data[:"duration-year"]
-    assert_equal units[:hour],   data[:"duration-hour"]
-    assert_equal units[:minute], data[:"duration-minute"]
-    assert_equal units[:second], data[:"duration-second"]
+    assert_equal units[:day],    data[:duration_day]
+    assert_equal units[:week],   data[:duration_week]
+    assert_equal units[:month],  data[:duration_month]
+    assert_equal units[:year],   data[:duration_year]
+    assert_equal units[:hour],   data[:duration_hour]
+    assert_equal units[:minute], data[:duration_minute]
+    assert_equal units[:second], data[:duration_second]
   end
 
   test "Alias nodes are exported as paths to their targets" do
     data = Cldr::Export::Data::Units.new(:root)
-    path = data.dig(:units, :unitLength, :short, :"duration-week-person")
-    assert_equal :"units.unitLength.short.duration-week", path
+    path = data.dig(:units, :unit_length, :short, :duration_week_person)
+    assert_equal :"units.unit_length.short.duration_week", path
 
     duration = data.dig(*split_path_string(path))
     assert_not_nil duration

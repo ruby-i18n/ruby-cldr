@@ -64,12 +64,12 @@ module Cldr
           quarter.to_s.rjust(length, "0")
         when 3
           raise NotImplementedError, 'not yet implemented (requires cldr\'s "multiple inheritance")'
-          # calendar[:quarters][:'stand-alone'][:abbreviated][key]
+          # calendar[:quarters][:stand_alone][:abbreviated][key]
         when 4
           raise NotImplementedError, 'not yet implemented (requires cldr\'s "multiple inheritance")'
-          # calendar[:quarters][:'stand-alone'][:wide][key]
+          # calendar[:quarters][:stand_alone][:wide][key]
         when 5
-          calendar[:quarters][:"stand-alone"][:narrow][quarter]
+          calendar[:quarters][:stand_alone][:narrow][quarter]
         end
       end
 
@@ -99,12 +99,12 @@ module Cldr
           date.month.to_s.rjust(length, "0")
         when 3
           raise NotImplementedError, 'not yet implemented (requires cldr\'s "multiple inheritance")'
-          # calendar[:months][:"stand-alone"][:abbreviated][date.month]
+          # calendar[:months][:stand_alone][:abbreviated][date.month]
         when 4
           raise NotImplementedError, 'not yet implemented (requires cldr\'s "multiple inheritance")'
-          # calendar[:months][:"stand-alone"][:wide][date.month]
+          # calendar[:months][:stand_alone][:wide][date.month]
         when 5
-          calendar[:months][:"stand-alone"][:narrow][date.month]
+          calendar[:months][:stand_alone][:narrow][date.month]
         else
           # raise unknown date format
         end
@@ -129,7 +129,7 @@ module Cldr
         when 4
           calendar[:days][:format][:wide][key]
         when 5
-          calendar[:days][:"stand-alone"][:narrow][key]
+          calendar[:days][:stand_alone][:narrow][key]
         end
       end
 

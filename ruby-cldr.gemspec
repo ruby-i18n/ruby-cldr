@@ -73,6 +73,7 @@ Gem::Specification.new do |s|
     "lib/cldr/export/data/variables.rb",
     "lib/cldr/export/data/windows_zones.rb",
     "lib/cldr/export/data_file.rb",
+    "lib/cldr/export/deep_validate_keys.rb",
     "lib/cldr/export/ruby.rb",
     "lib/cldr/export/yaml.rb",
     "lib/cldr/format.rb",

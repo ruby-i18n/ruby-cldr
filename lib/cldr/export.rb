@@ -3,6 +3,7 @@
 require "i18n"
 require "fileutils"
 require "i18n/locale/tag"
+require "cldr/export/deep_validate_keys"
 require "core_ext/string/camelize"
 require "core_ext/string/underscore"
 require "core_ext/hash/deep_stringify"

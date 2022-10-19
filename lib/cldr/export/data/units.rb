@@ -8,8 +8,8 @@ module Cldr
           super
           update(
             units: {
-              durationUnit: duration_unit,
-              unitLength: unit_length,
+              duration_unit: duration_unit,
+              unit_length: unit_length,
             },
           )
           deep_sort!
@@ -19,7 +19,7 @@ module Cldr
 
         def unit_length
           select("units/unitLength").each_with_object({}) do |node, result|
-            result[node.attribute("type").value.to_sym] = units(node)
+            result[node.attribute("type").value.underscore.to_sym] = units(node)
           end
         end
 
@@ -28,7 +28,7 @@ module Cldr
           return units_xpath_to_key(aliased.attribute("path").value) if aliased
 
           node.xpath("unit").each_with_object({}) do |node, result|
-            result[node.attribute("type").value.to_sym] = unit(node)
+            result[node.attribute("type").value.underscore.to_sym] = unit(node)
           end
         end
 
@@ -48,7 +48,7 @@ module Cldr
 
         def duration_unit
           select("units/durationUnit").each_with_object({}) do |node, result|
-            result[node.attribute("type").value.to_sym] = node.xpath("durationUnitPattern").first.content
+            result[node.attribute("type").value.underscore.to_sym] = node.xpath("durationUnitPattern").first.content
           end
         end
 
@@ -56,16 +56,16 @@ module Cldr
           match = xpath.match(%r{^\.\./unitLength\[@type='([^']*)'\]$})
           raise StandardError, "Didn't find expected data in alias path attribute: #{xpath}" unless match
 
-          type = match[1]
-          :"units.unitLength.#{type}"
+          type = match[1].underscore
+          :"units.unit_length.#{type}"
         end
 
         def unit_xpath_to_key(xpath)
           match = xpath.match(%r{^\.\./unit\[@type='([^']*)'\]$})
           raise StandardError, "Didn't find expected data in alias path attribute: #{xpath}" unless match
 
-          type = match[1]
-          :"units.unitLength.short.#{type}"
+          type = match[1].underscore
+          :"units.unit_length.short.#{type}"
         end
       end
     end
