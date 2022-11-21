@@ -10,7 +10,7 @@ module Cldr
   class Thor < ::Thor
     namespace "cldr"
 
-    desc "download [--version=#{Cldr::Download::DEFAULT_VERSION}] [--target=#{Cldr::Download::DEFAULT_TARGET}] [--source=#{format(Cldr::Download::DEFAULT_SOURCE, version: Cldr::Download::DEFAULT_VERSION)}]", "Download and extract CLDR data"
+    desc "download [--version=#{Cldr::Download::DEFAULT_VERSION}] [--target=#{Cldr::Download::DEFAULT_TARGET}] [--source=#{format(Cldr::Download::DEFAULT_SOURCE, version: Cldr::Download::DEFAULT_VERSION)}] [--pre-release]", "Download and extract CLDR data"
     option :version, aliases: [:v], type: :numeric,
       default: Cldr::Download::DEFAULT_VERSION,
       banner: Cldr::Download::DEFAULT_VERSION,
@@ -23,8 +23,11 @@ module Cldr
       default: Cldr::Download::DEFAULT_SOURCE,
       banner: Cldr::Download::DEFAULT_SOURCE,
       desc: "Override the location of the CLDR zip to download. Overrides --version"
+    option :"pre-release", type: :boolean,
+      default: false,
+      desc: "Whether the source is a pre-release version"
     def download
-      Cldr::Download.download(options["source"], options["target"], options["version"]) { putc(".") }
+      Cldr::Download.download(options["source"], options["target"], options["version"], pre_release: options["pre-release"]) { putc(".") }
     end
 
     DEFAULT_MINIMUM_DRAFT_STATUS = Cldr::DraftStatus::CONTRIBUTED
