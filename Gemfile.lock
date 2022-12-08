@@ -43,7 +43,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    nokogiri (1.13.9)
+    nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth2 (1.4.1)
@@ -64,7 +64,7 @@ GEM
       pry (>= 0.9.10, < 0.15)
     psych (5.0.0)
       stringio
-    racc (1.6.0)
+    racc (1.6.1)
     rack (2.2.3.1)
     rainbow (3.1.1)
     rake (13.0.1)
