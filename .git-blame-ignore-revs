@@ -1,5 +1,14 @@
 # RuboCop commits
 
+## 2023-01-04: Correct RuboCop indentation offenses
+4707a6b7e0e2d71a162db87e8c040aabad5bbf3a
+
+## 2022-09-13: Autocorrect `Style/MagicCommentFormat` offenses
+35bf9c64468f6830a8309717dc6ba1586f1043f5
+
+## 2022-09-13: Autocorrect `Style/TrailingCommaInArguments` offenses
+87a64b008a299a43d061386732eec027c04a19f7
+
 ## 2022-08-08: Fix `Style/ClassMethodsDefinitions` violations
 c2ed42ee3fbb1c81f21750b7d44afc704ea95818
 
