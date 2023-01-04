@@ -23,10 +23,21 @@ module Cldr
     autoload :Yaml,              "cldr/export/yaml"
 
     SHARED_COMPONENTS = [
-      :Aliases, :CountryCodes, :CurrencyDigitsAndRounding, :LikelySubtags,
-      :Metazones, :NumberingSystems, :ParentLocales, :RbnfRoot,
-      :RegionCurrencies, :RegionValidity, :SegmentsRoot, :TerritoriesContainment,
-      :Transforms, :Variables, :WindowsZones,
+      :Aliases,
+      :CountryCodes,
+      :CurrencyDigitsAndRounding,
+      :LikelySubtags,
+      :Metazones,
+      :NumberingSystems,
+      :ParentLocales,
+      :RbnfRoot,
+      :RegionCurrencies,
+      :RegionValidity,
+      :SegmentsRoot,
+      :TerritoriesContainment,
+      :Transforms,
+      :Variables,
+      :WindowsZones,
     ].freeze
 
     DEFAULT_TARGET = "./data"
