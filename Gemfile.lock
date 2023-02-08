@@ -62,7 +62,7 @@ GEM
       method_source (~> 1.0)
     pry-nav (1.0.0)
       pry (>= 0.9.10, < 0.15)
-    psych (5.0.2)
+    psych (5.1.0)
       stringio
     racc (1.6.2)
     rack (2.2.6.2)
@@ -94,7 +94,7 @@ GEM
     rubyzip (2.3.2)
     semver2 (3.4.2)
     sorbet-runtime (0.5.10626)
-    stringio (3.0.4)
+    stringio (3.0.5)
     syntax_tree (5.2.0)
       prettier_print (>= 1.2.0)
     test-unit (3.5.7)
