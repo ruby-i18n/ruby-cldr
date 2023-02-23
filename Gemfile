@@ -9,6 +9,7 @@ gem "rubyzip"
 gem "thor"
 
 group :development do
+  gem "debug"
   gem "jeweler"
   gem "pry-nav"
   gem "pry"
