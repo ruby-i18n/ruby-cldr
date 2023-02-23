@@ -36,6 +36,7 @@ module Cldr
       autoload :Timezones,                 "cldr/export/data/timezones"
       autoload :Units,                     "cldr/export/data/units"
       autoload :Variables,                 "cldr/export/data/variables"
+      autoload :WeekData,                  "cldr/export/data/week_data"
       autoload :WindowsZones,              "cldr/export/data/windows_zones"
       autoload :Transforms,                "cldr/export/data/transforms"
 

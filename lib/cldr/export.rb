@@ -37,6 +37,7 @@ module Cldr
       :TerritoriesContainment,
       :Transforms,
       :Variables,
+      :WeekData,
       :WindowsZones,
     ].freeze
 
