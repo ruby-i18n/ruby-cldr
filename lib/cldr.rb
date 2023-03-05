@@ -3,12 +3,14 @@
 require "core_ext/hash/symbolize_keys"
 
 module Cldr
-  autoload :Data,         "cldr/data"
-  autoload :DraftStatus,  "cldr/draft_status"
-  autoload :Export,       "cldr/export"
-  autoload :Ldml,         "cldr/ldml"
-  autoload :Locale,       "cldr/locale"
-  autoload :Format,       "cldr/format"
+  autoload :Download,                    "cldr/download"
+  autoload :DraftStatus,                 "cldr/draft_status"
+  autoload :Export,                      "cldr/export"
+  autoload :Format,                      "cldr/format"
+  autoload :Ldml,                        "cldr/ldml"
+  autoload :Locale,                      "cldr/locale"
+  autoload :Validate,                    "cldr/validate"
+  autoload :ValidateUpstreamAssumptions, "cldr/validate_upstream_assumptions"
 
   class << self
     def fallbacks
