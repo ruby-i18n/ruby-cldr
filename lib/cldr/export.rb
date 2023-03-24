@@ -124,7 +124,7 @@ module Cldr
         locales_to_merge(locale, component, options).inject({}) do |result, locale|
           data = Data.const_get(component.to_s).new(locale)
           if data
-            data.is_a?(Hash) ? data.deep_merge(result) : data
+            data.is_a?(Hash) ? data.deep_merge(result).deep_sort : data
           else
             result
           end
