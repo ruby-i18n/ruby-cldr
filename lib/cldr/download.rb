@@ -23,7 +23,7 @@ module Cldr
               path = File.join(target, entry.name)
               FileUtils.mkdir_p(File.dirname(path))
               file.extract(entry, path)
-              yield path
+              yield path if block_given?
             end
           end
         end
