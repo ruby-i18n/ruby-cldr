@@ -18,14 +18,14 @@ module Cldr
 
           grouping_nodes.map do |grouping_node|
             type = grouping_node.attribute("type").value.underscore
-            next if type == 'numbering_system_rules' && !is_a?(RbnfRoot)
+            next if type == "numbering_system_rules" && !is_a?(RbnfRoot)
 
             [
               type,
               (grouping_node / "ruleset").map do |ruleset_node|
                 [
                   ruleset_node.attribute("type").value,
-                  rule_set(ruleset_node)
+                  rule_set(ruleset_node),
                 ]
               end.to_h,
             ]
@@ -47,7 +47,7 @@ module Cldr
 
               [
                 cast_value(rule_node.attribute("value").value).to_s,
-                attrs
+                attrs,
               ]
             end.to_h,
           }
