@@ -37,8 +37,8 @@ module Cldr
 
     desc "export [--locales=de fr-FR en-ZA] [--components=Numbers Plurals] [--target=#{Cldr::Export::DEFAULT_TARGET}] [--merge/--no-merge]",
       "Export CLDR data by locales and components to target dir"
-    option :locales, aliases: [:l], type: :array, banner: "de fr-FR en-ZA", enum: Cldr::Export::Data::RAW_DATA.locales
-    option :components, aliases: [:c], type: :array, banner: "Numbers Plurals", enum: Cldr::Export::Data.components
+    option :locales, aliases: [:l], type: :array, banner: "de fr-FR en-ZA", enum: Cldr::Export::Data::RAW_DATA.locales.map(&:to_s)
+    option :components, aliases: [:c], type: :array, banner: "Numbers Plurals", enum: Cldr::Export::Data.components.map(&:to_s)
     option :target, aliases: [:t], type: :string, default: Cldr::Export::DEFAULT_TARGET, banner: Cldr::Export::DEFAULT_TARGET
     option :draft_status,
       aliases: [:d],
@@ -53,17 +53,11 @@ module Cldr
 
       formatted_options = options.dup.symbolize_keys
 
-      # We do this validation, since thor doesn't
-      # https://github.com/rails/thor/issues/783
       if formatted_options.key?(:locales)
-        formatted_options[:locales] = formatted_options[:locales].map(&:to_sym) if formatted_options.key?(:locales)
-        unknown_locales = formatted_options[:locales] - Cldr::Export::Data::RAW_DATA.locales
-        raise ArgumentError, "Unknown locales: #{unknown_locales.map { |l| "`#{l}`" }.join(", ")}" unless unknown_locales.empty?
+        formatted_options[:locales] = formatted_options[:locales].map(&:to_sym)
       end
       if formatted_options.key?(:components)
-        formatted_options[:components] = formatted_options[:components].map(&:to_sym) if formatted_options.key?(:components)
-        unknown_components = formatted_options[:components] - Cldr::Export::Data.components
-        raise ArgumentError, "Unknown components: #{unknown_components.join(", ")}" unless unknown_components.empty?
+        formatted_options[:components] = formatted_options[:components].map(&:to_sym)
       end
 
       if formatted_options.key?(:draft_status)
