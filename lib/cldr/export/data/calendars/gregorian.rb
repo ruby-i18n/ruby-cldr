@@ -138,7 +138,7 @@ module Cldr
           # That probably means this `fields` method should be moved up to the parent as well.
           def fields
             select("dates/fields/field").each_with_object({}) do |node, result|
-              key  = node.attribute("type").value.underscore.gsub(/dayperiod/, "day_period").to_sym
+              key  = node.attribute("type").value.underscore.gsub("dayperiod", "day_period").to_sym
               name = node.xpath("displayName").first
               result[key] = name.content if name
             end

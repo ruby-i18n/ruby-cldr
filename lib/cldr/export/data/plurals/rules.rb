@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 require "rubygems"
 require "nokogiri"
@@ -151,9 +151,9 @@ module Cldr
           #
           # http://www.unicode.org/reports/tr35/tr35-numbers.html#Language_Plural_Rules
           def to_ruby
-            @ruby ||= begin
-              return nil unless @operator
+            return unless @operator
 
+            @ruby ||= begin
               enclose = false
               fraction = false
               case @type

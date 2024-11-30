@@ -6,7 +6,7 @@ require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"
 class TestCldrDataTerritories < Test::Unit::TestCase
   test "territories :de" do
     # rubocop:disable Layout/MultilineArrayLineBreaks
-    codes = [
+    codes = [ # rubocop:disable Metrics/CollectionLiteralLength
       :"001", :"002", :"003", :"005", :"009", :"011", :"013", :"014",
       :"015", :"017", :"018", :"019", :"021", :"029", :"030", :"034",
       :"035", :"039", :"053", :"054", :"057", :"061", :"142", :"143",

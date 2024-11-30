@@ -8,7 +8,7 @@ module Cldr
         attr_reader :transform_file
 
         def initialize(transform_file)
-          super(nil)  # no locale
+          super(nil) # no locale
           @transform_file = transform_file
           update(transforms: transforms)
         end

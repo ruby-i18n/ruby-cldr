@@ -10,7 +10,7 @@ def tests_for(filename)
     dir  = File.dirname(dir).gsub(%(lib/cldr), "")
     "test/#{dir}/{#{base},#{base}/**/*}_test.rb"
   when %r(lib/cldr/.*\.rb)
-    "test/" + filename.gsub("lib/cldr/", "").gsub(/\.rb/, "_test.rb")
+    "test/" + filename.gsub("lib/cldr/", "").gsub(/\.rb$/, "_test.rb")
   when %r(^test/.*_test\.rb)
     filename
   end

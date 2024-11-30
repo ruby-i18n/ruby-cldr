@@ -6,7 +6,7 @@ require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"
 class TestCldrCurrencies < Test::Unit::TestCase
   test "currencies :de" do
     # rubocop:disable Layout/MultilineArrayLineBreaks
-    codes = [
+    codes = [ # rubocop:disable Metrics/CollectionLiteralLength
       :ADP, :AED, :AFA, :AFN, :ALL, :AMD, :ANG, :AOA, :AOK, :AON, :AOR,
       :ARA, :ARP, :ARS, :ATS, :AUD, :AWG, :AZM, :AZN, :BAD, :BAM, :BBD,
       :BDT, :BEC, :BEF, :BEL, :BGL, :BGN, :BHD, :BIF, :BMD, :BND, :BOB,
