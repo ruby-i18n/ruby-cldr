@@ -147,7 +147,7 @@ Gem::Specification.new do |s|
     s.add_runtime_dependency("nokogiri", [">= 0"])
     s.add_runtime_dependency("psych", [">= 4.0.0"])
     s.add_runtime_dependency("rubyzip", [">= 0"])
-    s.add_runtime_dependency("thor", [">= 0"])
+    s.add_runtime_dependency("thor", [">= 1.3.0"])
     s.add_development_dependency("jeweler", [">= 0"])
     s.add_development_dependency("pry", [">= 0"])
     s.add_development_dependency("pry-nav", [">= 0"])
@@ -165,6 +165,6 @@ Gem::Specification.new do |s|
     s.add_dependency("ruby-lsp", [">= 0"])
     s.add_dependency("rubyzip", [">= 0"])
     s.add_dependency("test-unit", [">= 0"])
-    s.add_dependency("thor", [">= 0"])
+    s.add_dependency("thor", [">= 1.3.0"])
   end
 end
