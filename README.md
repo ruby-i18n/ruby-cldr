@@ -16,7 +16,7 @@ There are still a number of issues that need to be addressed before it can be co
 
 ## Requirements
 
-  * Ruby 2.7+
+  * Ruby 3.0+
   * [Thor](http://whatisthor.com/)
 
 ## Installation
