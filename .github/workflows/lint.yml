@@ -19,11 +19,11 @@ jobs:
       - name: Install libyaml
         run: sudo apt-get update -y && sudo apt-get install -y libyaml-dev
 
-      - name: Set up Ruby 3.1
+      - name: Set up Ruby 3.3
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          ruby-version: 3.1
+          ruby-version: 3.3
 
       - name: Lint code
         run: bundle exec rubocop
