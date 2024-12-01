@@ -1,4 +1,4 @@
-# frozen_string_literal: false
+# frozen_string_literal: true
 
 require "rubygems"
 require "nokogiri"
@@ -105,21 +105,21 @@ module Cldr
               if code
                 "#{code} ? :#{key} : #{result}"
               else
-                ":" << key.to_s
+                ":#{key}"
               end
             end + " }"
           end
         end
 
         class Proposition < Array
-          def initialize(type = nil)
+          def initialize(type)
             super()
 
             @type = type
           end
 
           def to_ruby
-            @ruby ||= "(" << map(&:to_ruby).join(" #{@type} ") << ")"
+            @ruby ||= "(#{map(&:to_ruby).join(" #{@type} ")})"
           end
         end
 
@@ -151,76 +151,80 @@ module Cldr
           #
           # http://www.unicode.org/reports/tr35/tr35-numbers.html#Language_Plural_Rules
           def to_ruby
-            @ruby ||= begin
-              return nil unless @operator
+            return unless @operator
 
+            @ruby ||= begin
               enclose = false
               fraction = false
-              case @type
+
+              op = case @type
               when "i"
-                op = "n.to_i"
+                "n.to_i"
               when "f"
-                op = '(f = n.to_s.split(".")[1]) ? f.to_i : 0'
                 enclose = true
+                '(f = n.to_s.split(".")[1]) ? f.to_i : 0'
               when "t"
-                op = '(t = n.to_s.split(".")[1]) ? t.gsub(/0+$/, "").to_i : 0'
                 enclose = true
+                '(t = n.to_s.split(".")[1]) ? t.gsub(/0+$/, "").to_i : 0'
               when "v"
-                op = '(v = n.to_s.split(".")[1]) ? v.length : 0'
                 enclose = true
+                '(v = n.to_s.split(".")[1]) ? v.length : 0'
               when "w"
-                op = '(w = n.to_s.split(".")[1]) ? w.gsub(/0+$/, "").length : 0'
                 enclose = true
+                '(w = n.to_s.split(".")[1]) ? w.gsub(/0+$/, "").length : 0'
               when "c", "e"
                 # We don't support numbers in the "compact decimal" format.
                 # Since `c`/`e` are always 0 for non-"compact decimal" format
                 # numbers, we just hardcode it to 0 for now.
                 # TODO: https://github.com/ruby-i18n/ruby-cldr/issues/131
-                op = "#{@type} = 0"
                 enclose = true
+                "#{@type} = 0"
               when "n"
                 fraction = true
-                op = "n.to_f"
+                "n.to_f"
               else
                 raise StandardError, "Unknown plural operand `#{@type}`"
               end
+
               if @mod
-                op = "(" << op << ")" if enclose
-                op << " % " << @mod.to_s
+                op = "(#{op})" if enclose
+                op = "#{op} % #{@mod}"
                 enclose = false
               end
+
               case @operator
               when :is
-                op = "(" << op << ")" if enclose
-                op << (@negate ? " != " : " == ") << @operand.to_s
+                op = "(#{op})" if enclose
+                op = "#{op} #{@negate ? "!=" : "=="} #{@operand}"
               when :in
                 values = @operand.first
                 ranges = @operand.last
                 prepend = (@negate ? "!" : "")
                 str = ""
                 bop = op
-                bop = "(" << bop << ")" if enclose || @mod
+                bop = "(#{bop})" if enclose || @mod
                 if values.count == 1
-                  str = bop + (@negate ? " != " : " == ") << values.first.to_s
+                  str = "#{bop} #{@negate ? "!=" : "=="} #{values.first}"
                 elsif values.count > 1
                   str = prepend + "#{values.inspect}.include?(#{op})"
                 end
                 enclose = ranges.count > 1 || (values.count > 0 && ranges.count > 0)
                 if ranges.count > 0
-                  str << " || " if values.count > 0
-                  str << "((#{bop} % 1).zero? && " if fraction
-                  str << "(" if ranges.count > 1
-                  str << prepend + "(#{ranges.shift.inspect}).include?(#{op})"
-                  ranges.each do |range|
-                    str << " || " << prepend + "(#{range.inspect}).include?(#{op})"
-                  end
-                  str << ")" if ranges.count > 0
-                  str << ")" if fraction
+                  str += " || " if values.count > 0
+                  str += "((#{bop} % 1).zero? && " if fraction
+
+                  ranges_formatted = ranges.map do |range|
+                    "#{prepend}(#{range.inspect}).include?(#{op})"
+                  end.join(" || ")
+                  ranges_formatted = "(#{ranges_formatted})" if ranges.count > 1
+                  str += ranges_formatted
+
+                  str += ")" if fraction
                 end
-                str = "(" << str << ")" if enclose
+                str = "(#{str})" if enclose
                 str
               when :within
-                op = "(" << op << ")" if enclose || @mod
+                op = "(#{op})" if enclose || @mod
                 (@negate ? "!" : "") + "#{op}.between?(#{@operand.first}, #{@operand.last})"
               else
                 raise "unknown operator '#{@operator}'"

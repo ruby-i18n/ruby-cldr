@@ -29,7 +29,7 @@ module Cldr
 
       # Aliases need explicit special handling. Once that handling has been added,
       # the element chain covered by the handling gets added to this list.
-      SUPPORTED_ALIAS_ELEMENT_CHAINS = [
+      SUPPORTED_ALIAS_ELEMENT_CHAINS = [ # rubocop:disable Metrics/CollectionLiteralLength
         "/ldml/dates/calendars/calendar[@type=\"gregorian\"]/dayPeriods/dayPeriodContext[@type=\"format\"]/dayPeriodWidth[@type=\"narrow\"]/alias",
         "/ldml/dates/calendars/calendar[@type=\"gregorian\"]/dayPeriods/dayPeriodContext[@type=\"format\"]/dayPeriodWidth[@type=\"wide\"]/alias",
         "/ldml/dates/calendars/calendar[@type=\"gregorian\"]/dayPeriods/dayPeriodContext[@type=\"stand-alone\"]/dayPeriodWidth[@type=\"abbreviated\"]/alias",
