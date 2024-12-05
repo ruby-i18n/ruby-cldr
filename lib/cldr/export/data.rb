@@ -19,6 +19,7 @@ module Cldr
       autoload :Layout,                    "cldr/export/data/layout"
       autoload :LikelySubtags,             "cldr/export/data/likely_subtags"
       autoload :Lists,                     "cldr/export/data/lists"
+      autoload :LocaleDisplayPattern,      "cldr/export/data/locale_display_pattern"
       autoload :Metazones,                 "cldr/export/data/metazones"
       autoload :NumberingSystems,          "cldr/export/data/numbering_systems"
       autoload :Numbers,                   "cldr/export/data/numbers"
