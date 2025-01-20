@@ -87,7 +87,7 @@ GEM
       method_source (~> 1.0)
     pry-nav (1.0.0)
       pry (>= 0.9.10, < 0.15)
-    psych (5.2.2)
+    psych (5.2.3)
       date
       stringio
     racc (1.8.1)
