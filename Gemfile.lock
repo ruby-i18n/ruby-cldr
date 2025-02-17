@@ -49,7 +49,7 @@ GEM
     jwt (2.9.3)
       base64
     language_server-protocol (3.17.0.4)
-    logger (1.6.5)
+    logger (1.6.6)
     method_source (1.1.0)
     mime-types (2.99.3)
     mini_portile2 (2.8.8)
@@ -116,7 +116,7 @@ GEM
       parser (>= 3.3.1.0)
     rubocop-shopify (2.15.1)
       rubocop (~> 1.51)
-    ruby-lsp (0.23.8)
+    ruby-lsp (0.23.11)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 4)
@@ -124,7 +124,7 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (2.4.1)
     semver2 (3.4.2)
-    sorbet-runtime (0.5.11798)
+    sorbet-runtime (0.5.11834)
     stringio (3.1.2)
     test-unit (3.6.7)
       power_assert
