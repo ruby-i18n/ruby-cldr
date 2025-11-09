@@ -10,7 +10,7 @@ module Cldr
         loop do
           if defined_parents[ancestry.last]
             ancestry << defined_parents[ancestry.last]
-          elsif I18n::Locale::Tag.tag(ancestry.last).parents.count > 0
+          elsif I18n::Locale::Tag.tag(ancestry.last).parents.any?
             ancestry << I18n::Locale::Tag.tag(ancestry.last).parents.first.to_sym
           else
             break

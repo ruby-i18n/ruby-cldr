@@ -21,17 +21,17 @@ if $PROGRAM_NAME == __FILE__
   require "test/unit"
 
   class TestAutotestMatching < Test::Unit::TestCase
-    define_method :"test: default mapping for library files" do
+    define_method test_default_mapping_for_library_files do
       assert tests_for("lib/cldr/format/date.rb").all? { |file| file =~ /date_test.rb/ }
       assert tests_for("lib/cldr/format/decimal/fraction.rb").all? { |file| file =~ /fraction_test.rb/ }
       assert tests_for("lib/cldr/format/decimal/base.rb").all? { |file| file =~ /decimal/ }
     end
 
-    define_method :"test: mapping for gregorian.rb" do
+    define_method test_mapping_for_gregorian_rb do
       assert_equal ["test/export/data/calendars_test.rb"], tests_for("lib/cldr/calendars/gregorian.rb")
     end
 
-    define_method :"test: default mapping for test files" do
+    define_method test_default_mapping_for_test_files do
       assert_equal ["test/export_test.rb"], tests_for("test/export_test.rb")
     end
   end

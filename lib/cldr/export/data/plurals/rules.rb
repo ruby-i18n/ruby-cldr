@@ -51,7 +51,7 @@ module Cldr
               ranges = []
               str.split(",").each do |value|
                 parts = value.split("..")
-                if parts.count == 1
+                if parts.one?
                   values << value.to_i
                 else
                   ranges << (parts.first.to_i..parts.last.to_i)
@@ -75,7 +75,7 @@ module Cldr
                 code.split(/and/i).inject(Proposition.new("&&")) { |rule, code| rule << parse(code) }
               when /^\s*#{expr}\s+(?:is(\s+not)?|(not\s+)?in|(!)?=)\s+#{range_list}\s*$/i
                 list = parse_list(Regexp.last_match(6))
-                Expression.new(list.first.count == 1 && list.last.count == 0 ? :is : :in, Regexp.last_match(2), !(Regexp.last_match(3).nil? && Regexp.last_match(4).nil? && Regexp.last_match(5).nil?), list.first.count == 1 && list.last.count == 0 ? list.first.first : list, Regexp.last_match(1))
+                Expression.new(list.first.one? && list.last.none? ? :is : :in, Regexp.last_match(2), !(Regexp.last_match(3).nil? && Regexp.last_match(4).nil? && Regexp.last_match(5).nil?), list.first.one? && list.last.none? ? list.first.first : list, Regexp.last_match(1))
               when /^\s*#{expr}\s+(not\s+)?within\s+#{range_list}\s*$/i
                 Expression.new(:within, Regexp.last_match(2), !Regexp.last_match(3).nil?, parse_list(Regexp.last_match(4)).last.first, Regexp.last_match(1))
               when /^\s*$/
@@ -203,14 +203,14 @@ module Cldr
                 str = ""
                 bop = op
                 bop = "(#{bop})" if enclose || @mod
-                if values.count == 1
+                if values.one?
                   str = "#{bop} #{@negate ? "!=" : "=="} #{values.first}"
                 elsif values.count > 1
                   str = prepend + "#{values.inspect}.include?(#{op})"
                 end
-                enclose = ranges.count > 1 || (values.count > 0 && ranges.count > 0)
-                if ranges.count > 0
-                  str += " || " if values.count > 0
+                enclose = ranges.count > 1 || (values.any? && ranges.any?)
+                if ranges.any?
+                  str += " || " if values.any?
                   str += "((#{bop} % 1).zero? && " if fraction
 
                   ranges_formatted = ranges.map do |range|
