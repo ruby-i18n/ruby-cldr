@@ -7,7 +7,7 @@ class DeepValidateKeys
       hash.each do |key, value|
         full_path = key_path + [key]
         raise ArgumentError, "Invalid key: #{full_path} in #{component}" unless key.to_s == key.to_s.underscore ||
-          SNAKE_CASE_EXCEPTIONS.fetch(component, []).any? { |exception| paths_match(exception, full_path) }
+          SNAKE_CASE_EXCEPTIONS.fetch(component, []).any? { |exception| paths_match?(exception, full_path) }
 
         validate(value, component, full_path) if value.is_a?(Hash)
       end
@@ -46,7 +46,7 @@ class DeepValidateKeys
       ],
     }
 
-    def paths_match(pattern, key)
+    def paths_match?(pattern, key)
       raise NotImplementedError, "Multiple * in pattern is unsupported" if pattern.count { |element| element == "*" } > 1
 
       pattern_index = 0
