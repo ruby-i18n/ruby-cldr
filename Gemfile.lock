@@ -131,7 +131,7 @@ GEM
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 5)
     ruby-progressbar (1.13.0)
-    rubyzip (2.4.1)
+    rubyzip (3.2.2)
     semver2 (3.4.2)
     stringio (3.1.7)
     test-unit (3.7.0)
