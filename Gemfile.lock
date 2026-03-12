@@ -87,7 +87,7 @@ GEM
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.6.0)
+    prism (1.9.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -100,8 +100,9 @@ GEM
     rack (2.2.20)
     rainbow (3.1.1)
     rake (13.2.1)
-    rbs (3.9.5)
+    rbs (3.10.3)
       logger
+      tsort
     rchardet (1.8.0)
     rdoc (7.0.1)
       erb
@@ -126,7 +127,7 @@ GEM
       prism (~> 1.4)
     rubocop-shopify (2.18.0)
       rubocop (~> 1.62)
-    ruby-lsp (0.26.4)
+    ruby-lsp (0.26.8)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 5)
