@@ -191,9 +191,7 @@ module Cldr
       end
 
       def should_merge_root?(component)
-        return false if [:Rbnf, :Fields].include?(component)
-
-        true
+        ![:Fields].include?(component)
       end
     end
   end
