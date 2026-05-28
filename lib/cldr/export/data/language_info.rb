@@ -42,10 +42,10 @@ module Cldr
         def language_matches(matches_node)
           matches_node.xpath("./languageMatch").map do |match_node|
             {
-              desired: Cldr::Export.to_i18n(match_node.attribute("desired")).to_s,
-              supported: Cldr::Export.to_i18n(match_node.attribute("supported")).to_s,
-              distance: match_node.attribute("distance").to_s.to_i,
-              oneway: match_node.attribute("oneway").to_s == "true",
+              "desired" => Cldr::Export.to_i18n(match_node.attribute("desired")).to_s,
+              "supported" => Cldr::Export.to_i18n(match_node.attribute("supported")).to_s,
+              "distance" => match_node.attribute("distance").to_s.to_i,
+              "oneway" => match_node.attribute("oneway").to_s == "true",
             }.reject { |_, v| v == false }
           end
         end
