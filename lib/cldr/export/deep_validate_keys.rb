@@ -25,6 +25,10 @@ class DeepValidateKeys
       CountryCodes: [["country_codes", "."]],
       CurrencyDigitsAndRounding: [["."]],
       Fields: [["*", "relative", "."]],
+      LanguageInfo: [
+        ["language_matching", ".", "match_variables", "."],
+        ["language_matching", ".", "paradigm_locales", "."],
+      ],
       Languages: [["languages", "."]],
       LikelySubtags: [["subtags", "."]],
       Metazones: [

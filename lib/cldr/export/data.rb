@@ -16,6 +16,7 @@ module Cldr
       autoload :Delimiters,                "cldr/export/data/delimiters"
       autoload :Fields,                    "cldr/export/data/fields"
       autoload :Languages,                 "cldr/export/data/languages"
+      autoload :LanguageInfo,              "cldr/export/data/language_info"
       autoload :Layout,                    "cldr/export/data/layout"
       autoload :LikelySubtags,             "cldr/export/data/likely_subtags"
       autoload :Lists,                     "cldr/export/data/lists"
