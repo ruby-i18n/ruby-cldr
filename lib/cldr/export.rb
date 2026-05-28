@@ -26,6 +26,7 @@ module Cldr
       :Aliases,
       :CountryCodes,
       :CurrencyDigitsAndRounding,
+      :LanguageInfo,
       :LikelySubtags,
       :Metazones,
       :NumberingSystems,

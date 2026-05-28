@@ -47,6 +47,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `WeekData` component, [#229](https://github.com/ruby-i18n/ruby-cldr/pull/229)
 - Drop support for Ruby 2, [#265](https://github.com/ruby-i18n/ruby-cldr/pull/265)
 - Drop support for Ruby 3.0, [#268](https://github.com/ruby-i18n/ruby-cldr/pull/268)
+- Add `LanguageInfo` component
 
 ---
 
