@@ -39,8 +39,8 @@ module Cldr
             return xpath_to_symbols_alias(aliased["path"])
           end
 
-          select("numbers/symbols[@numberSystem=\"#{number_system}\"]/*").each_with_object({}) do |node, result|
-            result[name(node).to_sym] = node.content
+          select("numbers/symbols[@numberSystem=\"#{number_system}\"]/*").to_h do |node|
+            [name(node).to_sym, node.content]
           end
         end
 

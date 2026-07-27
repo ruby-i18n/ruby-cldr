@@ -33,8 +33,8 @@ module Cldr
         end
 
         def get_pattern_parts(list_pattern)
-          select(list_pattern, "listPatternPart").each_with_object({}) do |part, part_ret|
-            part_ret[part.attribute("type").value.to_sym] = part.content
+          select(list_pattern, "listPatternPart").to_h do |part|
+            [part.attribute("type").value.to_sym, part.content]
           end
         end
 
