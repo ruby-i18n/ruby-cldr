@@ -14,7 +14,7 @@ module Cldr
 
       attr_reader :element_name, :attribute_name, :type, :mode
 
-      def initialize(element_name, attribute_name, type, mode, status, deprecated) # rubocop:disable Metrics/ParameterLists
+      def initialize(element_name, attribute_name, type, mode, status, deprecated)
         @element_name = element_name
         @attribute_name = attribute_name
         @type = type

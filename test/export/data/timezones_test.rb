@@ -5,7 +5,6 @@ require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"
 
 class TestCldrDataTimezones < Test::Unit::TestCase
   test "timezones :de" do
-    # rubocop:disable Layout/MultilineArrayLineBreaks
     codes_subset = [
       :"Etc/Unknown", :"Europe/Tirane", :"Asia/Yerevan", :"Antarctica/Vostok",
       :"Antarctica/DumontDUrville", :"Europe/Vienna", :"Europe/Brussels",

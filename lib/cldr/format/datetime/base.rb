@@ -14,9 +14,9 @@ module Cldr
         protected
 
         def compile(format)
-          (class << self; self; end).class_eval(<<-code)
+          (class << self; self; end).class_eval(<<-CODE)
               def apply(date, options = {}); #{compile_format(format)}; end
-          code
+CODE
         end
 
         # compile_format("EEEE, d. MMMM y") # =>
