@@ -5,7 +5,7 @@ module Cldr
     module Data
       class Aliases < Base
         # only these aliases will be exported
-        ALIAS_TAGS = ["languageAlias", "territoryAlias"]
+        ALIAS_TAGS = ["languageAlias", "territoryAlias"].freeze
 
         def initialize
           super(nil)

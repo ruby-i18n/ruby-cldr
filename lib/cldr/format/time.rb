@@ -17,7 +17,7 @@ module Cldr
         "Z" => :timezone,
         "v" => :timezone_generic_non_location,
         "V" => :timezone_metazone,
-      }
+      }.freeze
 
       def period(time, pattern, length)
         calendar[:periods][:format][:wide][time.strftime("%p").downcase.to_sym]

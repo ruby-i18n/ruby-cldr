@@ -20,7 +20,7 @@ module Cldr
         "E" => :weekday,
         "e" => :weekday_local,
         "c" => :weekday_local_stand_alone,
-      }
+      }.freeze
 
       def era(date, pattern, length)
         raise NotImplementedError, "not implemented"
@@ -119,7 +119,7 @@ module Cldr
         end
       end
 
-      WEEKDAY_KEYS = [:sun, :mon, :tue, :wed, :thu, :fri, :sat]
+      WEEKDAY_KEYS = [:sun, :mon, :tue, :wed, :thu, :fri, :sat].freeze
 
       def weekday(date, pattern, length)
         key = WEEKDAY_KEYS[date.wday]

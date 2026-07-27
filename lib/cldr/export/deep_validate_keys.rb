@@ -48,7 +48,7 @@ class DeepValidateKeys
         ["."],
         [".", "."],
       ],
-    }
+    }.freeze
 
     def paths_match?(pattern, key)
       raise NotImplementedError, "Multiple * in pattern is unsupported" if pattern.count { |element| element == "*" } > 1
