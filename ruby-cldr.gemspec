@@ -147,10 +147,4 @@ Gem::Specification.new do |s|
   s.add_dependency("psych", [">= 4.0.0"])
   s.add_dependency("rubyzip", [">= 0"])
   s.add_dependency("thor", [">= 1.3.0"])
-  s.add_development_dependency("jeweler", [">= 0"])
-  s.add_development_dependency("pry", [">= 0"])
-  s.add_development_dependency("pry-nav", [">= 0"])
-  s.add_development_dependency("rubocop-shopify", [">= 0"])
-  s.add_development_dependency("ruby-lsp", [">= 0"])
-  s.add_development_dependency("test-unit", [">= 0"])
 end

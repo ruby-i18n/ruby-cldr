@@ -12,9 +12,9 @@ module Cldr
         private
 
         def locale_display_pattern
-          @locale_display_pattern ||= select("localeDisplayNames/localeDisplayPattern/*").each_with_object({}) do |node, result|
-            result[node.name.underscore] = node.content
-          end
+          @locale_display_pattern ||= select("localeDisplayNames/localeDisplayPattern/*").to_h do |node|
+                                        [node.name.underscore, node.content]
+                                      end
         end
       end
     end

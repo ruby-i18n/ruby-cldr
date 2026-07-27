@@ -55,8 +55,8 @@ module Cldr
         protected
 
         def nodes_to_hash(nodes)
-          nodes.each_with_object({}) do |node, result|
-            result[node.name.to_sym] = node.content
+          nodes.to_h do |node|
+            [node.name.to_sym, node.content]
           end
         end
       end

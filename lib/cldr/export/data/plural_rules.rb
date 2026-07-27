@@ -12,9 +12,9 @@ module Cldr
           super()
 
           find_rules(locale).each_pair do |rule_type, rule_data|
-            self[rule_type.to_sym] = rule_data.each_with_object({}) do |rule, ret|
-              ret[rule.attributes["count"].text] = rule.text
-            end
+            self[rule_type.to_sym] = rule_data.to_h do |rule|
+                                       [rule.attributes["count"].text, rule.text]
+                                     end
           end
 
           deep_sort!
@@ -23,9 +23,9 @@ module Cldr
         private
 
         def sources
-          @sources ||= ["plurals", "ordinals"].each_with_object({}) do |source_name, ret|
-            ret[source_name] = Cldr::Export::DataFile.parse(File.read("#{Cldr::Export::Data::RAW_DATA.directory}/supplemental/#{source_name}.xml"))
-          end
+          @sources ||= ["plurals", "ordinals"].to_h do |source_name|
+                         [source_name, Cldr::Export::DataFile.parse(File.read("#{Cldr::Export::Data::RAW_DATA.directory}/supplemental/#{source_name}.xml"))]
+                       end
         end
 
         def find_rules(locale)

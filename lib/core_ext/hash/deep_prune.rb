@@ -9,4 +9,4 @@ module DeepPrune
   end
 end
 
-Hash.send(:include, DeepPrune)
+Hash.include DeepPrune

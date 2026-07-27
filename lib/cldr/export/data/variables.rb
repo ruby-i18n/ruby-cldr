@@ -5,7 +5,7 @@ module Cldr
     module Data
       class Variables < Base
         # only these variables will be exported
-        VARIABLE_IDS = ["$grandfathered", "$language", "$territory", "$script", "$variant"]
+        VARIABLE_IDS = ["$grandfathered", "$language", "$territory", "$script", "$variant"].freeze
 
         def initialize
           super(nil)

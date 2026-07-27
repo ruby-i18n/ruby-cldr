@@ -5,8 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__) + "/../../test_helper"
 
 class TestCldrDataLanguages < Test::Unit::TestCase
   test "languages :de" do
-    # rubocop:disable Layout/MultilineArrayLineBreaks
-    codes = [ # rubocop:disable Metrics/CollectionLiteralLength
+    codes = [
       :aa, :ab, :ace, :ach, :ada, :ady, :ae, :aeb, :af,
       :afh, :agq, :ain, :ak, :akk, :akz, :ale, :aln, :alt, :am,
       :an, :ang, :anp, :ar, :"ar-001", :arc, :arn, :aro, :arp,

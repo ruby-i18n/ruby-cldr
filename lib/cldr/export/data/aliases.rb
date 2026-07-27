@@ -5,7 +5,7 @@ module Cldr
     module Data
       class Aliases < Base
         # only these aliases will be exported
-        ALIAS_TAGS = ["languageAlias", "territoryAlias"]
+        ALIAS_TAGS = ["languageAlias", "territoryAlias"].freeze
 
         def initialize
           super(nil)
@@ -16,8 +16,8 @@ module Cldr
         private
 
         def aliases
-          ALIAS_TAGS.each_with_object({}) do |alias_tag, ret|
-            ret[alias_tag.sub("Alias", "")] = alias_for(alias_tag)
+          ALIAS_TAGS.to_h do |alias_tag|
+            [alias_tag.sub("Alias", ""), alias_for(alias_tag)]
           end
         end
 

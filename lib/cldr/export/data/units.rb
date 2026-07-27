@@ -18,8 +18,8 @@ module Cldr
         private
 
         def unit_length
-          select("units/unitLength").each_with_object({}) do |node, result|
-            result[node.attribute("type").value.underscore.to_sym] = units(node)
+          select("units/unitLength").to_h do |node|
+            [node.attribute("type").value.underscore.to_sym, units(node)]
           end
         end
 
@@ -27,8 +27,8 @@ module Cldr
           aliased = select_single(node, "alias")
           return units_xpath_to_key(aliased.attribute("path").value) if aliased
 
-          node.xpath("unit").each_with_object({}) do |node, result|
-            result[node.attribute("type").value.underscore.to_sym] = unit(node)
+          node.xpath("unit").to_h do |node|
+            [node.attribute("type").value.underscore.to_sym, unit(node)]
           end
         end
 
@@ -47,8 +47,8 @@ module Cldr
         end
 
         def duration_unit
-          select("units/durationUnit").each_with_object({}) do |node, result|
-            result[node.attribute("type").value.underscore.to_sym] = node.xpath("durationUnitPattern").first.content
+          select("units/durationUnit").to_h do |node|
+            [node.attribute("type").value.underscore.to_sym, node.xpath("durationUnitPattern").first.content]
           end
         end
 

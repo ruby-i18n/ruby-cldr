@@ -85,4 +85,4 @@ module DeepSort
   end
 end
 
-Hash.send(:include, DeepSort::DeepSortHash)
+Hash.include DeepSort::DeepSortHash
