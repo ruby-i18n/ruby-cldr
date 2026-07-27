@@ -39,7 +39,7 @@ module Cldr
               ruby = namespaces.reverse.inject(ruby) { |ruby, namespace| "{ #{namespace.inspect} => #{ruby} }" }
               "#{locale.inspect} => #{ruby}"
             end.join(",\n")
-            code = code.split("\n").map(&:to_s).join("\n")
+            code = code.split("\n").join("\n")
             "{ #{code} }"
           end
         end
