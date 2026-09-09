@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "bigdecimal"
+
 module Cldr
   module Format
     class Decimal
@@ -33,12 +35,13 @@ module Cldr
         def parse_number(number, options = {})
           precision = options[:precision] || fraction_format.precision
           number = round_to(number, precision)
-          number.abs.to_s.split(".")
+          number.abs.to_s("F").split(".")
         end
 
+        # BigDecimal keeps full precision, avoids Float scientific notation, and
+        # rounds half-even (ties to even) as CLDR / UTS #35 mandates.
         def round_to(number, precision)
-          factor = 10**precision
-          (number * factor).round.to_f / factor
+          BigDecimal(number.to_r, 0).round(precision, half: :even)
         end
       end
     end
