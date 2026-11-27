@@ -18,7 +18,7 @@ module Cldr
 
       private
 
-      UNSORTED_COMPONENTS = [:Calendars, :Delimiters, :Lists].freeze
+      UNSORTED_COMPONENTS = [:Calendars, :Delimiters, :Lists, :Rbnf, :RbnfRoot].freeze
 
       def format(data, locale, component)
         data.deep_prune!
