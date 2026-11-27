@@ -74,4 +74,34 @@ class TestCldrDecimalNumberFormat < Test::Unit::TestCase
   test "cldr example 00000.0000 => 01234,5670" do
     assert_equal "01234,5670", Cldr::Format::Decimal::Number.new("00000.0000", decimal: ",", group: " ").apply(1234.567)
   end
+
+  # CLDR / UTS #35 rounds half-even; expected values cross-checked against ICU and Babel 2.17.
+  test "rounds exact halves to even at precision 2" do
+    number = Cldr::Format::Decimal::Number.new("0.00")
+    assert_equal "0.12", number.apply(0.125)
+    assert_equal "0.62", number.apply(0.625)
+    assert_equal "0.38", number.apply(0.375)
+    assert_equal "0.88", number.apply(0.875)
+    assert_equal "2.12", number.apply(2.125)
+  end
+
+  test "rounds exact halves to even at precision 0" do
+    number = Cldr::Format::Decimal::Number.new("0")
+    assert_equal "0", number.apply(0.5)
+    assert_equal "2", number.apply(1.5)
+    assert_equal "2", number.apply(2.5)
+    assert_equal "4", number.apply(3.5)
+    assert_equal "4", number.apply(4.5)
+  end
+
+  test "formats large integers without scientific notation" do
+    number = Cldr::Format::Decimal::Number.new("#,##0")
+    assert_equal "1,000,000,000,000,000", number.apply(10**15)
+    assert_equal "10,000,000,000,000,000", number.apply(10**16)
+    assert_equal "12,345,678,901,234,567,890", number.apply(12345678901234567890)
+  end
+
+  test "keeps full precision for integers above 2**53" do
+    assert_equal "9,007,199,254,740,993", Cldr::Format::Decimal::Number.new("#,##0").apply(2**53 + 1)
+  end
 end

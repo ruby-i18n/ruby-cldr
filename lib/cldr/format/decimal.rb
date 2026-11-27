@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "bigdecimal"
+
 module Cldr
   module Format
     class Decimal
@@ -15,7 +17,7 @@ module Cldr
       end
 
       def apply(number, options = {})
-        number = Float(number)
+        number = BigDecimal(number) unless number.is_a?(::Numeric)
         format = number.abs == number ? positive : negative
         format.apply(number, options)
       rescue TypeError, ArgumentError
